@@ -127,8 +127,9 @@ class MailDocumentEditor(Category(oldMailDocumentEditor)):
 
         # find nodes which might contain senders signature
         possibles = [
-            "body > div > blockquote > div > br",
-            "body > blockquote > br",
+            #"body > div > blockquote > div > br",
+            "body > div > blockquote br",
+            "body > blockquote br",
             "body > blockquote > div",
         ]
 
@@ -230,10 +231,11 @@ class MailDocumentEditor(Category(oldMailDocumentEditor)):
 
     # provide customize attribution
     def customize_attribution(self, dom, view, reply, inreplyto, forward):
-        contents = dom.querySelector_(".AppleOriginalContents")
-        if contents:
-            contents.setInnerHTML_(reply.render_attribution(
-                html        = unicode(contents.innerHTML()).encode('utf-8'),
+        root    = dom.documentElement()
+        node    = root.firstDescendantBlockQuote().parentNode()
+        if node:
+            node.setInnerHTML_(reply.render_attribution(
+                html        = unicode(node.innerHTML()).encode('utf-8'),
                 inreplyto   = inreplyto,
                 forward     = forward, 
             ))
