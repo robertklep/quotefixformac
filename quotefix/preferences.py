@@ -14,6 +14,7 @@ class QuoteFixPreferencesController(NSObject):
     useCustomForwardingAttribution  = objc.IBOutlet()
     customForwardingAttribution     = objc.IBOutlet()
     debugging                       = objc.IBOutlet()
+    helpButton                      = objc.IBOutlet()
     _window                         = objc.IBOutlet()
 
     @classmethod
@@ -67,6 +68,11 @@ class QuoteFixPreferencesController(NSObject):
     @objc.IBAction
     def changeDebugging_(self, sender):
         self.app.is_debugging = sender.state()
+
+    @objc.IBAction
+    def helpButtonPressed_(self, sender):
+        # open help url
+        NSWorkspace.sharedWorkspace().openURL_(NSURL.URLWithString_("http://code.google.com/p/quotefixformac/wiki/CustomAttribution"))
 
     def awakeFromNib(self):
         self.keepAttributionWhitespace.setState_(self.app.keep_attribution_whitespace)

@@ -5,25 +5,29 @@ from    quotefix.utils  import swizzle, Template
 import  re
 
 # enable personalized attribution by rigging the Message class
-oldMessage = lookUpClass('Message')
-class Message(Category(oldMessage)):
+Message = lookUpClass('Message')
+class Message(Category(Message)):
 
     @classmethod
     def __init__(cls, app):
         cls.app = app
 
-    @swizzle(oldMessage, 'replyPrefixWithSpacer:')
+    # replace Message (class-)methods with a version which inserts
+    # a placeholder (to be replaced with a user-defined template in
+    # render_attribution())
+    @swizzle(Message, 'replyPrefixWithSpacer:')
     def replyPrefixWithSpacer(cls, original, arg):
         if cls.app.use_custom_reply_attribution:
             return "__CUSTOM_REPLY_ATTRIBUTION__"
         return original(cls, arg)
 
-    @swizzle(oldMessage, 'forwardedMessagePrefixWithSpacer:')
+    @swizzle(Message, 'forwardedMessagePrefixWithSpacer:')
     def forwardedMessagePrefixWithSpacer(cls, original, arg):
         if cls.app.use_custom_forwarding_attribution:
             return "__CUSTOM_FORWARDING_ATTRIBUTION__"
         return original(cls, arg)
 
+    # render a user-defined template to provide a customized attribution
     def render_attribution(self, html, inreplyto, forward):
         if forward:
             template    = self.app.custom_forwarding_attribution
@@ -45,13 +49,14 @@ class Message(Category(oldMessage)):
         }
         params.update(self.expand_nsdate(inreplyto.dateSent(),        'message.sent'))
         params.update(self.expand_nsdate(inreplyto.dateReceived(),    'message.received'))
-        params.update(self.expand_nsdate(inreplyto.dateReceived(),    'message.lastviewed'))
-        params.update(self.expand_nsdate(self.dateSent(),             'response.sent'))
-        params.update(self.expand_nsdate(self.dateReceived(),         'response.received'))
-        params.update(self.expand_nsdate(self.dateReceived(),         'response.lastviewed'))
+        params.update(self.expand_nsdate(inreplyto.dateLastViewed(),  'message.lastviewed'))
+        params.update(self.expand_datetime(datetime.now(),            'now'))
 
         # expand template
         attribution = Template(template).substitute(params).encode('utf-8')
+
+        # convert newlines to HTML
+        attribution = attribution.replace('\n', '<br>')
 
         # replace placeholder with new attribution
         return re.sub('^\s*' + placeholder, attribution, html)
@@ -60,7 +65,9 @@ class Message(Category(oldMessage)):
     def expand_nsdate(self, nsdate, prefix):
         # convert NSDate to datetime
         date = datetime.strptime(nsdate.description()[:-6], "%Y-%m-%d %H:%M:%S")
+        return self.expand_datetime(date, prefix)
 
+    def expand_datetime(self, date, prefix):
         # return dictionary with useful values
         return {
             prefix                  : date.strftime("%c"),

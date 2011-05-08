@@ -13,14 +13,14 @@ NEW         = 5
 SUPPORTED   = [ REPLY, REPLY_ALL, FORWARD ]
 
 # our own MailDocumentEditor implementation
-oldMailDocumentEditor = lookUpClass('MailDocumentEditor')
-class MailDocumentEditor(Category(oldMailDocumentEditor)):
+MailDocumentEditor = lookUpClass('MailDocumentEditor')
+class MailDocumentEditor(Category(MailDocumentEditor)):
 
     @classmethod
     def __init__(cls, app):
         cls.app = app
 
-    @swizzle(oldMailDocumentEditor, 'finishLoadingEditor')
+    @swizzle(MailDocumentEditor, 'finishLoadingEditor')
     def finishLoadingEditor(self, original):
         logging.debug('MailDocumentEditor finishLoadingEditor')
 
@@ -42,6 +42,9 @@ class MailDocumentEditor(Category(oldMailDocumentEditor)):
             # grab composeView instance (this is the WebView which contains the
             # message editor) and check for the right conditions
             view = objc.getInstanceVariable(self, 'composeWebView')
+
+            # move cursor to end of document
+            view.moveToEndOfDocument_(self)
 
             # grab some other variables we need to perform our business
             backend     = self.backEnd()
@@ -234,6 +237,7 @@ class MailDocumentEditor(Category(oldMailDocumentEditor)):
         root    = dom.documentElement()
         node    = root.firstDescendantBlockQuote().parentNode()
         if node:
+            # see quotefix.attribution
             node.setInnerHTML_(reply.render_attribution(
                 html        = unicode(node.innerHTML()).encode('utf-8'),
                 inreplyto   = inreplyto,

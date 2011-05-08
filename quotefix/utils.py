@@ -3,6 +3,8 @@ import  objc, re
 # Method Swizzler: exchange an existing Objective-C method with a new
 # implementation (akin to monkeypatching)
 def swizzle(cls, SEL):
+    if isinstance(cls, basestring):
+        cls = objc.lookUpClass(cls)
     def decorator(func):
         oldIMP = cls.instanceMethodForSelector_(SEL)
         if oldIMP.isClassMethod:
