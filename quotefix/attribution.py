@@ -49,7 +49,6 @@ class Message(Category(Message)):
         }
         params.update(self.expand_nsdate(inreplyto.dateSent(),        'message.sent'))
         params.update(self.expand_nsdate(inreplyto.dateReceived(),    'message.received'))
-        params.update(self.expand_nsdate(inreplyto.dateLastViewed(),  'message.lastviewed'))
         params.update(self.expand_datetime(datetime.now(),            'now'))
 
         # expand template

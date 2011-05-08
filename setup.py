@@ -15,16 +15,7 @@ setup(
     data_files  = [ 'QuoteFixPreferences.nib' ],
     options     = dict(py2app = dict(
         extension   = '.mailbundle',
-        includes    = [ 
-            "quotefix/__init__.py", 
-            "quotefix/app.py",
-            "quotefix/fixer.py", 
-            "quotefix/menu.py", 
-            "quotefix/preferences.py", 
-            "quotefix/attribution.py", 
-            "quotefix/alert.py", 
-            "quotefix/utils.py",
-        ],
+        packages    = [ 'quotefix' ],
         plist       = dict(
             NSPrincipalClass                    = 'QuoteFix',
             CFBundleIdentifier                  = 'name.klep.mail.QuoteFix',
