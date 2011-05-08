@@ -88,3 +88,11 @@ class QuoteFixPreferencesController(NSObject):
     def window(self):
         """ Called by Alert() """
         return self._window
+
+    # act as a delegate for text fields
+    def controlTextDidChange_(self, notification):
+        obj = notification.object()
+        if obj == self.customReplyAttribution:
+            self.changeCustomReplyAttribution_(obj)
+        elif obj == self.customForwardingAttribution:
+            self.changeCustomForwardingAttribution_(obj)
