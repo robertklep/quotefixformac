@@ -15,6 +15,7 @@ class QuoteFixPreferencesController(NSObject):
     customForwardingAttribution     = objc.IBOutlet()
     updateInterval                  = objc.IBOutlet()
     lastUpdateCheck                 = objc.IBOutlet()
+    currentVersion                  = objc.IBOutlet()
     checkUpdateButton               = objc.IBOutlet()
     debugging                       = objc.IBOutlet()
     helpButton                      = objc.IBOutlet()
@@ -75,6 +76,7 @@ class QuoteFixPreferencesController(NSObject):
     @objc.IBAction
     def performUpdateCheckNow_(self, sender):
         self.app.check_for_updates()
+        self.setLastUpdateCheck()
 
     @objc.IBAction
     def changeDebugging_(self, sender):
@@ -86,6 +88,7 @@ class QuoteFixPreferencesController(NSObject):
         NSWorkspace.sharedWorkspace().openURL_(NSURL.URLWithString_("http://code.google.com/p/quotefixformac/wiki/CustomAttribution"))
 
     def awakeFromNib(self):
+        self.currentVersion.setStringValue_(self.app.version)
         self.keepAttributionWhitespace.setState_(self.app.keep_attribution_whitespace)
         self.removeTrailingWhitespace.setState_(self.app.remove_trailing_whitespace)
         self.debugging.setState_(self.app.is_debugging)
@@ -95,11 +98,8 @@ class QuoteFixPreferencesController(NSObject):
         self.customReplyAttribution.setStringValue_(self.app.custom_reply_attribution)
         self.useCustomForwardingAttribution.setState_(self.app.use_custom_forwarding_attribution)
         self.customForwardingAttribution.setStringValue_(self.app.custom_forwarding_attribution)
-        self.setCheckUpdateInterval()
-        self.setLastUpdateCheck()
-
-    def setCheckUpdateInterval(self):
         self.updateInterval.setSelectedSegment_(self.app.check_update_interval)
+        self.setLastUpdateCheck()
 
     def setLastUpdateCheck(self):
         date = self.app.last_update_check

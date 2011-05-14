@@ -8,7 +8,7 @@ if status != 0:
     # probably no hg installed or not building from a repository
     hgversion = "unknown"
 
-hgversion = "1.0"
+hgversion = "1.0.0"
 
 # define distutils setup structure
 setup(
@@ -46,8 +46,8 @@ setup(
                 '9049EF7D-5873-4F54-A447-51D722009310',
                 '1C58722D-AFBD-464E-81BB-0E05C108BE06'
             ],
-            # Settings for Sparkle
-            SUFeedURL = 'http://localhost:8000/quotefix.xml',
+            # settings for Sparkle
+            SUFeedURL = 'http://localhost:8000/appcast.xml',
             SUEnableAutomaticChecks = True,
             SUShowReleaseNotes = True,
             SUPublicDSAKeyFile = 'quotefix.sparkle.pub.pem'
