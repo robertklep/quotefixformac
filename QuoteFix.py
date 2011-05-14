@@ -9,6 +9,9 @@ class QuoteFix(MVMailBundle):
 
     @classmethod
     def initialize(cls):
+        # load updater class (early)
+        updater = Updater()
+
         # register ourselves
         MVMailBundle.registerBundle()
 
@@ -23,6 +26,9 @@ class QuoteFix(MVMailBundle):
         MailDocumentEditor.__init__(app)
         QuoteFixPreferencesController.__init__(app)
         Message.__init__(app)
+
+        # initialize updater
+        updater.set_app(app)
 
         # announce that we have loaded
         NSLog("QuoteFix Plugin (version %s) registered with Mail.app" % version)

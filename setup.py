@@ -1,4 +1,5 @@
-from    distutils.core import setup
+from    distutils.core  import setup
+from    glob            import glob
 import  py2app, sys, os, commands
 
 # determine version from latest revision
@@ -16,6 +17,7 @@ setup(
     options     = dict(py2app = dict(
         extension   = '.mailbundle',
         packages    = [ 'quotefix' ],
+        frameworks  = glob("frameworks/*.framework"),
         plist       = dict(
             NSPrincipalClass                    = 'QuoteFix',
             CFBundleIdentifier                  = 'name.klep.mail.QuoteFix',
