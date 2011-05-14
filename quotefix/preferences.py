@@ -13,6 +13,9 @@ class QuoteFixPreferencesController(NSObject):
     customReplyAttribution          = objc.IBOutlet()
     useCustomForwardingAttribution  = objc.IBOutlet()
     customForwardingAttribution     = objc.IBOutlet()
+    updateInterval                  = objc.IBOutlet()
+    lastUpdateCheck                 = objc.IBOutlet()
+    checkUpdateButton               = objc.IBOutlet()
     debugging                       = objc.IBOutlet()
     helpButton                      = objc.IBOutlet()
     _window                         = objc.IBOutlet()
@@ -66,6 +69,14 @@ class QuoteFixPreferencesController(NSObject):
         self.app.custom_forwarding_attribution = sender.stringValue()
 
     @objc.IBAction
+    def changeUpdateInterval_(self, sender):
+        self.app.check_update_interval = sender.selectedSegment()
+
+    @objc.IBAction
+    def performUpdateCheckNow_(self, sender):
+        self.app.check_for_updates()
+
+    @objc.IBAction
     def changeDebugging_(self, sender):
         self.app.is_debugging = sender.state()
 
@@ -84,6 +95,15 @@ class QuoteFixPreferencesController(NSObject):
         self.customReplyAttribution.setStringValue_(self.app.custom_reply_attribution)
         self.useCustomForwardingAttribution.setState_(self.app.use_custom_forwarding_attribution)
         self.customForwardingAttribution.setStringValue_(self.app.custom_forwarding_attribution)
+        self.setCheckUpdateInterval()
+        self.setLastUpdateCheck()
+
+    def setCheckUpdateInterval(self):
+        self.updateInterval.setSelectedSegment_(self.app.check_update_interval)
+
+    def setLastUpdateCheck(self):
+        date = self.app.last_update_check
+        self.lastUpdateCheck.setStringValue_(date and date.strftime("%c") or "Never")
 
     def window(self):
         """ Called by Alert() """

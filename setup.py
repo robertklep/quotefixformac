@@ -8,12 +8,14 @@ if status != 0:
     # probably no hg installed or not building from a repository
     hgversion = "unknown"
 
+hgversion = "1.0"
+
 # define distutils setup structure
 setup(
     plugin      = [ 'QuoteFix.py' ],
     version     = hgversion,
     description = "QuoteFix for Mac is a Mail.app plugin",
-    data_files  = [ 'QuoteFixPreferences.nib' ],
+    data_files  = [ 'QuoteFixPreferences.nib', 'quotefix.sparkle.pub.pem' ],
     options     = dict(py2app = dict(
         extension   = '.mailbundle',
         packages    = [ 'quotefix' ],
@@ -43,7 +45,12 @@ setup(
                 # 10.6.7
                 '9049EF7D-5873-4F54-A447-51D722009310',
                 '1C58722D-AFBD-464E-81BB-0E05C108BE06'
-            ]
+            ],
+            # Settings for Sparkle
+            SUFeedURL = 'http://localhost:8000/quotefix.xml',
+            SUEnableAutomaticChecks = True,
+            SUShowReleaseNotes = True,
+            SUPublicDSAKeyFile = 'quotefix.sparkle.pub.pem'
         )
     ))
 )

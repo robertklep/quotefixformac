@@ -7,9 +7,12 @@ import  logging, os
 
 class App(object):
 
-    def __init__(self, version):
+    def __init__(self, version, updater):
         # set version
         self.version = version
+
+        # set updater
+        self.updater = updater
 
         # read user defaults (preferences)
         self.prefs = prefs = NSUserDefaults.standardUserDefaults()
@@ -37,6 +40,9 @@ class App(object):
         # check for custom forwarding attribution
         self.use_custom_forwarding_attribution  = prefs.bool["QuoteFixUseCustomForwardingAttribution"] and True or False
         self.custom_forwarding_attribution      = prefs.string["QuoteFixCustomForwardingAttribution"] or ""
+
+        # check update interval
+        self.check_update_interval = prefs.int["QuoteFixCheckUpdateInterval"] or 0
 
         # inject menu
         self.menu = Menu.alloc().initWithApp_(self).inject()
@@ -205,6 +211,29 @@ If you run into any problems with regards to replying or forwarding mail, consid
         # store in preferences
         self.prefs.string["QuoteFixCustomForwardingAttribution"] = value
         self._custom_forwarding_attribution = value
+
+    # update-related properties
+    @property
+    def check_update_interval(self):
+        return self._check_update_interval
+
+    @check_update_interval.setter
+    def check_update_interval(self, value):
+        self._check_update_interval = value
+        # set updater
+        if   value == 0: interval = 0 # never
+        elif value == 1: interval = 7 * 24 * 60 * 60 # weekly
+        elif value == 2: interval = int(4.35 * 7 * 24 * 60 * 60) # monthly
+        else           : return
+        self.updater.check_update_interval = interval
+
+    @property
+    def last_update_check(self):
+        return self.updater.last_update_check
+
+    # check for updates
+    def check_for_updates(self):
+        self.updater.check_for_updates()
 
 # make NSUserDefaults a bit more Pythonic
 class NSUserDefaults(Category(lookUpClass('NSUserDefaults'))):
