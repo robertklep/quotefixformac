@@ -50,7 +50,8 @@ setup(
             SUFeedURL = 'http://localhost:8000/appcast.xml',
             SUEnableAutomaticChecks = True,
             SUShowReleaseNotes = True,
-            SUPublicDSAKeyFile = 'quotefix.sparkle.pub.pem'
+            SUPublicDSAKeyFile = 'quotefix.sparkle.pub.pem',
+            SUAllowsAutomaticUpdates = False,
         )
     ))
 )

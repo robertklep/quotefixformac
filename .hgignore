@@ -5,3 +5,6 @@ dist/*
 package
 build.sh
 build/*
+QuoteFix-*.tar.gz
+QuoteFix-*.zip
+tools/*

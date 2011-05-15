@@ -37,9 +37,13 @@ class Updater:
         return self.updateCheckInterval()
 
     @check_update_interval.setter
-    def check_update_interval(self, seconds):
-        self.setAutomaticallyChecksForUpdates_(seconds and True or False)
-        self.setUpdateCheckInterval_(seconds);
+    def check_update_interval(self, interval):
+        # only update when value changes (because changing it triggers
+        # a reset of the update cycle)
+        if self.check_update_interval == interval:
+            return
+        self.setAutomaticallyChecksForUpdates_(interval and True or False)
+        self.setUpdateCheckInterval_(interval);
 
 class UpdaterDelegate(NSObject):
 
