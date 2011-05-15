@@ -2,20 +2,20 @@ from    distutils.core  import setup
 from    glob            import glob
 import  py2app, sys, os, commands
 
-# determine version from latest revision
-status, hgversion = commands.getstatusoutput("hg log -l1 -r -2 --template '{tags}'")
+# determine version by latest tag
+status, hgtags = commands.getstatusoutput("hg log -r -2:0 --template '{tags} '")
 if status != 0:
     # probably no hg installed or not building from a repository
     hgversion = "unknown"
-
-hgversion = "1.0.0"
+else:
+    hgversion = hgtags.split()[0]
 
 # define distutils setup structure
 setup(
     plugin      = [ 'QuoteFix.py' ],
     version     = hgversion,
     description = "QuoteFix for Mac is a Mail.app plugin",
-    data_files  = [ 'QuoteFixPreferences.nib', 'quotefix.sparkle.pub.pem' ],
+    data_files  = [ 'QuoteFixPreferences.nib', 'updates/quotefix.sparkle.pub.pem' ],
     options     = dict(py2app = dict(
         extension   = '.mailbundle',
         packages    = [ 'quotefix' ],
