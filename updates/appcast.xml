@@ -13,10 +13,10 @@
 				<pubDate>Mon May 16 13:06:06 2011 CEST</pubDate>
 				<enclosure
 					url="http://quotefixformac.googlecode.com/files/QuoteFix-2.0.0.zip"
-					length="6929052"
+					length="6929067"
 					sparkle:version="2.0.0"
 					type="application/octet-stream"
-					sparkle:dsaSignature="MCwCFBDauoROmHK3uHsDCRB241elAKAFAhQdOV29YLSiulIKlH7Sh/tnmU2tIA==" />
+					sparkle:dsaSignature="MC0CFFNrkui7hgdt4BLYpG7FkjXhUQi2AhUAzVO0ZEQgOckyxvXRRbXBHcL0pwg=" />
 			</item>
    </channel>
 </rss>
