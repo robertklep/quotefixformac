@@ -1,7 +1,7 @@
 from    AppKit      import *
 from    Foundation  import *
 from    datetime    import datetime
-import  objc, os, os.path
+import  objc, os, os.path, logging
 
 # load Sparkle framework
 BUNDLE         = NSBundle.bundleWithIdentifier_('name.klep.mail.QuoteFix')
@@ -23,6 +23,7 @@ class Updater:
 
     # check for updates now
     def check_for_updates(self):
+        NSLog("checking for updates: %@", self.updater.feedURL())
         self.updater.checkForUpdatesInBackground()
 
     @property
@@ -50,3 +51,12 @@ class UpdaterDelegate(NSObject):
     # relaunch Mail instead of the plugin
     def pathToRelaunchForUpdater_(self, updater):
         return NSBundle.mainBundle().bundlePath()
+
+    def updater_didFinishLoadingAppcast_(self, updater, appcast):
+        logging.debug("Updater finished loading appcast.")
+
+    def updaterDidNotFindUpdate_(self, updater):
+        logging.debug("Updater did not find update.")
+
+    def updater_didFindValidUpdate_(self, updater, update):
+        logging.debug("Updater found valid update.")
