@@ -3,7 +3,7 @@ from    glob            import glob
 import  py2app, sys, os, commands
 
 # determine version by latest tag
-status, hgtags = commands.getstatusoutput("hg log -r -2:0 --template '{tags} '")
+status, hgtags = commands.getstatusoutput("hg tags | grep -v '^tip' | head -1")
 if status != 0:
     # probably no hg installed or not building from a repository
     hgversion = "unknown"
