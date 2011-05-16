@@ -19,17 +19,6 @@
 						type="application/octet-stream"
 						sparkle:dsaSignature="MCwCFG+qc2+GmXKXDuVY3PgbPHlzK8UkAhQYtBvKTa2TPdVySHZ8yGqYmZ8nGA==" />
 				</item>
-				<title>Version 2.0.0 (internal test!)</title>
-				<description><![CDATA[
-					<h2>TEST</h2>
-				]]></description>
-				<pubDate>Mon May 16 13:06:06 2011 CEST</pubDate>
-				<enclosure
-					url="http://quotefixformac.googlecode.com/files/QuoteFix-2.0.0.zip"
-					length="6929067"
-					sparkle:version="2.0.0"
-					type="application/octet-stream"
-					sparkle:dsaSignature="MC0CFFNrkui7hgdt4BLYpG7FkjXhUQi2AhUAzVO0ZEQgOckyxvXRRbXBHcL0pwg=" />
 			</item>
    </channel>
 </rss>
