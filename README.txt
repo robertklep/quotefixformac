@@ -15,6 +15,8 @@ e-mail:
 - it can (optionally) prune nested quotes from a specific level and
   above
 
+It also provides customized attributions for replies and forwards.
+
 Installing the plug-in
 ----------------------
 Before installing the plug-in, you'll need to make sure that Mail.app's
