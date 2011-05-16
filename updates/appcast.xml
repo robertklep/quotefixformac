@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle"  xmlns:dc="http://purl.org/dc/elements/1.1/">
+   <channel>
+      <title>QuoteFix Releases</title>
+			<link>http://quotefix.quotefixformac.googlecode.com/hg/quotefix/updates/appcast.xml</link>
+      <description>Most recent changes with links to updates.</description>
+      <language>en</language>
+			<item>
+				<title>Version 2.0.0 (internal test!)</title>
+				<description><![CDATA[
+					<h2>TEST</h2>
+				]]></description>
+				<pubDate>Mon May 16 13:06:06 2011 CEST</pubDate>
+				<enclosure
+					url="http://quotefixformac.googlecode.com/files/QuoteFix-2.0.0.zip"
+					length="6929052"
+					sparkle:version="2.0.0"
+					type="application/octet-stream"
+					sparkle:dsaSignature="MCwCFBDauoROmHK3uHsDCRB241elAKAFAhQdOV29YLSiulIKlH7Sh/tnmU2tIA==" />
+			</item>
+   </channel>
+</rss>
