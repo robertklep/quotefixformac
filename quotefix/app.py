@@ -219,8 +219,11 @@ If you run into any problems with regards to replying or forwarding mail, consid
 
     @check_update_interval.setter
     def check_update_interval(self, value):
+        # store in preferences
+        self.prefs.string["QuoteFixCheckUpdateInterval"] = value
         self._check_update_interval = value
-        # convert to interval
+
+        # convert to interval and pass to updater
         if   value == 0: interval = 0 # never
         elif value == 1: interval = 7 * 24 * 60 * 60 # weekly
         elif value == 2: interval = int(4.35 * 7 * 24 * 60 * 60) # monthly
