@@ -23,7 +23,7 @@ class Updater:
 
     # check for updates now
     def check_for_updates(self):
-        logging.debug("checking for updates (appcast = %@)", self.updater.feedURL())
+        logging.debug("checking for updates (URL = %s)" % self.updater.feedURL())
         self.updater.checkForUpdatesInBackground()
 
     @property
