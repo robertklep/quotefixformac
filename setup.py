@@ -2,13 +2,17 @@ from    distutils.core  import setup
 from    glob            import glob
 import  py2app, sys, os, commands
 
-# determine version by latest tag
-status, hgtags = commands.getstatusoutput("hg tags | grep -v '^tip' | head -1")
-if status != 0:
-    # probably no hg installed or not building from a repository
-    hgversion = "unknown"
+# overriding version?
+if 'QUOTEFIX_VERSION' in os.environ:
+    hgversion = os.environ['QUOTEFIX_VERSION']
 else:
-    hgversion = hgtags.split()[0]
+    # determine version by latest tag
+    status, hgtags = commands.getstatusoutput("hg tags | grep -v '^tip' | head -1")
+    if status != 0:
+        # probably no hg installed or not building from a repository
+        hgversion = "unknown"
+    else:
+        hgversion = hgtags.split()[0]
 
 # define distutils setup structure
 setup(
