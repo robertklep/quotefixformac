@@ -6,6 +6,22 @@
       <description>Most recent changes with links to updates.</description>
       <language>en</language>
 			<item>
+				<title>Version 2.0.4</title>
+				<description><![CDATA[
+					<h2>Bugfix</h2>
+					<ul>
+						<li>Fixed a bug in UpdaterDelegate</li>
+					</ul>
+				]]></description>
+				<pubDate>Mon May 16 19:37:58 2011 CEST</pubDate>
+				<enclosure
+					url="http://quotefixformac.googlecode.com/files/QuoteFix-2.0.4.zip"
+					length="6931064"
+					sparkle:version="2.0.4"
+					type="application/octet-stream"
+					sparkle:dsaSignature="MCwCFApDbYTH0r6C6IQM6eEWVlyrfzjHAhR/+VhXVSSruwPWdZ+B6+cT3zqXjg==" />
+			</item>
+			<item>
 				<title>Version 2.0.3</title>
 				<description><![CDATA[
 					<h2>An actual update!</h2>
