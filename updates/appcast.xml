@@ -6,6 +6,22 @@
       <description>Most recent changes with links to updates.</description>
       <language>en</language>
 			<item>
+				<title>Version 2.0.3</title>
+				<description><![CDATA[
+					<h2>An actual update!</h2>
+					<ul>
+						<li>Fixes a bug where update interval wasn't remembered between relaunches of Mail application</li>
+					</ul>
+				]]></description>
+				<pubDate>Mon May 16 18:19:06 2011 CEST</pubDate>
+				<enclosure
+					url="http://quotefixformac.googlecode.com/files/QuoteFix-2.0.3.zip"
+					length="6931065"
+					sparkle:version="2.0.3"
+					type="application/octet-stream"
+					sparkle:dsaSignature="MC4CFQDkWaEbDKW8aa8ug745VVHzLY/TMwIVAJj5O2C1SefqwBdJp6l4pP2zB2H5" />
+			</item>
+			<item>
 				<title>Version 2.0.2</title>
 				<description><![CDATA[
 					<h2>Another internal test</h2>
