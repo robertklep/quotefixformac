@@ -6,6 +6,21 @@
       <description>Most recent changes with links to updates.</description>
       <language>en</language>
 			<item>
+				<title>Version 2.1.0</title>
+				<description><![CDATA[
+					<h2>First official 2.x release!</h2>
+					<p>This is the first official release of the 2.x version of QuoteFix.</p>
+					<p>Since 2.0.4, nothing has changed, apart from the version number.</p>
+				]]></description>
+				<pubDate>Tue May 31 17:35:48 2011 CEST</pubDate>
+				<enclosure
+					url="http://quotefixformac.googlecode.com/files/QuoteFix-2.1.0.zip"
+					length="6932577"
+					sparkle:version="2.1.0"
+					type="application/octet-stream"
+					sparkle:dsaSignature="MC0CFQDF2gBvNJZwqcuUKe7K3rERFNTVNwIUJ/TP8QJW9T5tWCQDylfjYlAJHJ8=" />
+			</item>
+			<item>
 				<title>Version 2.0.4</title>
 				<description><![CDATA[
 					<h2>Bugfix</h2>
