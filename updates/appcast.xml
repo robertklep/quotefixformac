@@ -6,6 +6,35 @@
       <description>Most recent changes with links to updates.</description>
       <language>en</language>
 			<item>
+				<title>Version 2.1.1</title>
+				<description><![CDATA[
+					<h2>New attribution variables + bugfix</h2>
+					<ul>
+						<li>
+							Added new attribution variables:
+							<ul>
+								<li><b>${message.from}</b>: same as <em>${message.sender}</em></li>
+								<li><b>${message.from.name}</b>: name of sender (as set in From-header)</li>
+								<li><b>${message.from.email}</b>: e-mail address of sender</li>
+								<li><b>${response.from}</b></li>
+								<li><b>${response.from.name}</b></li>
+								<li><b>${response.from.email}</b></li>
+							</ul>
+						</li>
+						<li>Fixed bug in encoding of certain attribution parameters, which
+							caused <em>${message.sender}</em> not to show the e-mail address
+							but only the name of the sender (if any)</li>
+					</ul>
+				]]></description>
+				<pubDate>Thu Jun  2 13:58:10 2011 CEST</pubDate>
+				<enclosure
+					url="http://quotefixformac.googlecode.com/files/QuoteFix-2.1.1.zip"
+					length="7512752"
+					sparkle:version="2.1.1"
+					type="application/octet-stream"
+					sparkle:dsaSignature="MCwCFBsVNtNAykTGQq5tZFazd99SXMEUAhRxTxJZHa8GQ/uEODE59KFyXsAWkQ==" />
+			</item>
+			<item>
 				<title>Version 2.1.0</title>
 				<description><![CDATA[
 					<h2>First official 2.x release!</h2>
