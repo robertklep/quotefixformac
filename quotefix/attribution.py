@@ -1,8 +1,9 @@
-from    AppKit          import *
-from    objc            import Category, lookUpClass
-from    datetime        import datetime
-from    quotefix.utils  import swizzle, Template
-import  re
+from    AppKit              import *
+from    objc                import Category, lookUpClass
+from    datetime            import datetime
+from    quotefix.utils      import swizzle, Template
+from    xml.sax.saxutils    import escape
+import  re, email.utils
 
 # enable personalized attribution by rigging the Message class
 Message = lookUpClass('Message')
@@ -38,21 +39,37 @@ class Message(Category(Message)):
 
         # setup template parameters
         params = {
-            'message.sender'    : inreplyto.sender(),
-            'message.comment'   : inreplyto.senderAddressComment(),
-            'message.to'        : inreplyto.to(),
-            'message.subject'   : inreplyto.subject(),
-            'response.sender'   : self.sender(),
-            'response.comment'  : self.senderAddressComment(),
-            'response.to'       : self.to(),
-            'response.subject'  : self.subject(),
+            'message.from'          : inreplyto.sender(),
+            'message.from.name'     : '',
+            'message.from.email'    : '',
+            'message.sender'        : inreplyto.sender(),
+            'message.comment'       : inreplyto.senderAddressComment(),
+            'message.to'            : inreplyto.to(),
+            'message.subject'       : inreplyto.subject(),
+            'response.from'         : self.sender(),
+            'response.from.name'    : '',
+            'response.from.email'   : '',
+            'response.sender'       : self.sender(),
+            'response.comment'      : self.senderAddressComment(),
+            'response.to'           : self.to(),
+            'response.subject'      : self.subject(),
         }
         params.update(self.expand_nsdate(inreplyto.dateSent(),        'message.sent'))
         params.update(self.expand_nsdate(inreplyto.dateReceived(),    'message.received'))
         params.update(self.expand_datetime(datetime.now(),            'now'))
 
+        # try to split e-mail address from *.from
+        for k in [ 'message.from', 'response.from' ]:
+            try:    
+                params[k + '.name'], params[k + '.email'] = email.utils.parseaddr(params[k])
+            except:
+                pass
+
         # expand template
         attribution = Template(template).substitute(params).encode('utf-8')
+
+        # XML-encode attribution
+        attribution = escape(attribution)
 
         # convert newlines to HTML
         attribution = attribution.replace('\n', '<br>')
