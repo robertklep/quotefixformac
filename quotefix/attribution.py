@@ -29,7 +29,7 @@ class Message(Category(Message)):
         return original(cls, arg)
 
     # render a user-defined template to provide a customized attribution
-    def render_attribution(self, html, inreplyto, forward):
+    def render_attribution(self, text, inreplyto, forward):
         if forward:
             template    = self.app.custom_forwarding_attribution
             placeholder = "__CUSTOM_FORWARDING_ATTRIBUTION__"
@@ -68,14 +68,8 @@ class Message(Category(Message)):
         # expand template
         attribution = Template(template).substitute(params).encode('utf-8')
 
-        # XML-encode attribution
-        attribution = escape(attribution)
-
-        # convert newlines to HTML
-        attribution = attribution.replace('\n', '<br>')
-
         # replace placeholder with new attribution
-        return re.sub('^\s*' + placeholder, attribution, html)
+        return re.sub('^\s*' + placeholder, attribution, text)
 
     # expand an NSDate object to a dictionary
     def expand_nsdate(self, nsdate, prefix):

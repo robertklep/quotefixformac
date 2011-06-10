@@ -234,12 +234,35 @@ class MailDocumentEditor(Category(MailDocumentEditor)):
 
     # provide customize attribution
     def customize_attribution(self, dom, view, reply, inreplyto, forward):
-        root    = dom.documentElement()
-        node    = root.firstDescendantBlockQuote().parentNode()
-        if node:
-            # see quotefix.attribution
-            node.setInnerHTML_(reply.render_attribution(
-                html        = unicode(node.innerHTML()).encode('utf-8'),
+        # find parent of first quote
+        root = dom.documentElement()
+        node = root.firstDescendantBlockQuote().parentNode()
+        if not node:
+            return False
+
+        # check children for attribution placeholder
+        children = node.childNodes()
+        for i in range(children.length()):
+            child = children.item_(i)
+            if child.nodeType() != 3: # DOMNode.DOM_TEXT_NODE
+                continue
+
+            # get text contents and render attribution
+            text        = child.data()
+            rendered    = reply.render_attribution(
+                text        = text,
                 inreplyto   = inreplyto,
                 forward     = forward, 
-            ))
+            )
+
+            # nothing changes? probably not our node
+            if text == rendered:
+                continue
+
+            # replace placeholder node with newly rendered node
+            newnode = dom.createTextNode_(rendered)
+            node.replaceChild_oldChild_(newnode, child)
+            return True
+
+        # done nothing
+        return False
