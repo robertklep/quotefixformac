@@ -6,6 +6,22 @@
       <description>Most recent changes with links to updates.</description>
       <language>en</language>
 			<item>
+				<title>Version 2.1.2</title>
+				<description><![CDATA[
+					<h2>Bugfix</h2>
+					<ul>
+						<li>Fixed an issue with customized attribution when replying to rich text e-mails (issue #23)</li>
+					</ul>
+				]]></description>
+				<pubDate>Sat Jun 11 09:05:01 2011 CEST</pubDate>
+				<enclosure
+					url="http://quotefixformac.googlecode.com/files/QuoteFix-2.1.2.zip"
+					length="7511451"
+					sparkle:version="2.1.2"
+					type="application/octet-stream"
+					sparkle:dsaSignature="MC0CFG2pX9l90xxSgxrYGWqjDgMk9C5tAhUAi2N2+qDucNKyg1xLpMP4Wx6Qa+0=" />
+			</item>
+			<item>
 				<title>Version 2.1.1</title>
 				<description><![CDATA[
 					<h2>New attribution variables + bugfix</h2>
