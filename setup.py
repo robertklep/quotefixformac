@@ -48,7 +48,10 @@ setup(
                 '36555EB0-53A7-4B29-9B84-6C0C6BACFC23',
                 # 10.6.7
                 '9049EF7D-5873-4F54-A447-51D722009310',
-                '1C58722D-AFBD-464E-81BB-0E05C108BE06'
+                '1C58722D-AFBD-464E-81BB-0E05C108BE06',
+#                # Lion
+#                '2DE49D65-B49E-4303-A280-8448872EFE87',
+#                '1146A009-E373-4DB6-AB4D-47E59A7E50FD',
             ],
             # settings for Sparkle
             SUFeedURL = 'http://quotefix.quotefixformac.googlecode.com/hg/updates/appcast.xml',
