@@ -6,6 +6,22 @@
       <description>Most recent changes with links to updates.</description>
       <language>en</language>
 			<item>
+				<title>Version 2.1.3</title>
+				<description><![CDATA[
+					<h2>Bugfix</h2>
+					<ul>
+						<li>Fixed an issue where QuoteFix could crash Mail if other plugins are loaded that use the Sparkle framework as well (issue #24)<li>
+					</ul>
+				]]></description>
+				<pubDate>Wed Jun 15 12:45:36 2011 CEST</pubDate>
+				<enclosure
+					url="http://quotefixformac.googlecode.com/files/QuoteFix-2.1.3.zip"
+					length="7511932"
+					sparkle:version="2.1.3"
+					type="application/octet-stream"
+					sparkle:dsaSignature="MC0CFQDESonLb3SKnsjOufRlLHHPkeqkAQIUJyQOL68pWEHCRgLajQ7HbAi1HCY=" />
+			</item>
+			<item>
 				<title>Version 2.1.2</title>
 				<description><![CDATA[
 					<h2>Bugfix</h2>
