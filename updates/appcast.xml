@@ -10,7 +10,7 @@
 				<description><![CDATA[
 					<h2>Bugfix</h2>
 					<ul>
-						<li>Fixed an issue where QuoteFix could crash Mail if other plugins are loaded that use the Sparkle framework as well (issue #24)<li>
+						<li>Fixed an issue where QuoteFix could crash Mail if other plugins are loaded that use the Sparkle framework as well (issue #24)</li>
 					</ul>
 				]]></description>
 				<pubDate>Wed Jun 15 12:45:36 2011 CEST</pubDate>
