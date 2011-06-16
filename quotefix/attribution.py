@@ -2,7 +2,6 @@ from    AppKit              import *
 from    objc                import Category, lookUpClass
 from    datetime            import datetime
 from    quotefix.utils      import swizzle, Template
-from    xml.sax.saxutils    import escape
 import  re, email.utils
 
 # enable personalized attribution by rigging the Message class
