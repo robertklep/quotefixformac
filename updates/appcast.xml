@@ -6,6 +6,22 @@
       <description>Most recent changes with links to updates.</description>
       <language>en</language>
 			<item>
+				<title>Version 2.1.4</title>
+				<description><![CDATA[
+					<h2>Bugfix</h2>
+					<ul>
+						<li>Removed an unused import which was causing issues with some people</li>
+					</ul>
+				]]></description>
+				<pubDate>Thu Jun 16 09:17:59 2011 CEST</pubDate>
+				<enclosure
+					url="http://quotefixformac.googlecode.com/files/QuoteFix-2.1.4.zip"
+					length="7511917"
+					sparkle:version="2.1.4"
+					type="application/octet-stream"
+					sparkle:dsaSignature="MC0CFHoGCokMiXSMn9a6sR6nZaRvMgW7AhUAsvyv4UkRoEWDxCH+/alJyeAXX7M=" />
+			</item>
+			<item>
 				<title>Version 2.1.3</title>
 				<description><![CDATA[
 					<h2>Bugfix</h2>
