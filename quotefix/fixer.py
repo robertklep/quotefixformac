@@ -259,8 +259,15 @@ class MailDocumentEditor(Category(MailDocumentEditor)):
             if text == rendered:
                 continue
 
+            # encode entities
+            rendered = rendered.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;')
+
+            # replace newlines with hard linebreaks
+            rendered = rendered.replace('\n', '<br/>')
+
             # replace placeholder node with newly rendered node
-            newnode = dom.createTextNode_(rendered)
+            newnode = dom.createElement_("span")
+            newnode.setInnerHTML_(rendered)
             node.replaceChild_oldChild_(newnode, child)
             return True
 
