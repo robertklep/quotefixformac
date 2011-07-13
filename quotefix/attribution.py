@@ -17,15 +17,17 @@ class Message(Category(Message)):
     # render_attribution())
     @swizzle(Message, 'replyPrefixWithSpacer:')
     def replyPrefixWithSpacer(cls, original, arg):
+        cls.original_reply_attribution = original(cls, arg)
         if cls.app.use_custom_reply_attribution:
             return "__CUSTOM_REPLY_ATTRIBUTION__"
-        return original(cls, arg)
+        return cls.original_reply_attribution
 
     @swizzle(Message, 'forwardedMessagePrefixWithSpacer:')
     def forwardedMessagePrefixWithSpacer(cls, original, arg):
+        cls.original_forwarding_attribution = original(cls, arg)
         if cls.app.use_custom_forwarding_attribution:
             return "__CUSTOM_FORWARDING_ATTRIBUTION__"
-        return original(cls, arg)
+        return cls.original_forwarding_attribution
 
     # render a user-defined template to provide a customized attribution
     def render_attribution(self, text, inreplyto, forward):
@@ -53,6 +55,8 @@ class Message(Category(Message)):
             'response.to'           : self.to(),
             'response.subject'      : self.subject(),
         }
+
+        # add dates
         params.update(self.expand_nsdate(inreplyto.dateSent(),        'message.sent'))
         params.update(self.expand_nsdate(inreplyto.dateReceived(),    'message.received'))
         params.update(self.expand_datetime(datetime.now(),            'now'))
@@ -68,7 +72,7 @@ class Message(Category(Message)):
         attribution = Template(template).substitute(params).encode('utf-8')
 
         # replace placeholder with new attribution
-        return re.sub('^\s*' + placeholder, attribution, text)
+        return unicode( re.sub(u'^\s*' + placeholder, attribution, text.encode('utf-8')), 'utf-8' )
 
     # expand an NSDate object to a dictionary
     def expand_nsdate(self, nsdate, prefix):
