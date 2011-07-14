@@ -6,6 +6,25 @@
       <description>Most recent changes with links to updates.</description>
       <language>en</language>
 			<item>
+				<title>Version 2.1.5</title>
+				<description><![CDATA[
+					<h2>Bugfixes and a new feature</h2>
+					<ul>
+						<li>Fixed encoding problem with attribution handling</li>
+						<li>Fixed problem with attribution using integer-based values (like <i>.year</i>, <i>.month</i>, ...)</li>
+						<li>Fixed problem with linebreaks not being shown in attributions</li>
+						<li>The custom attribution textfields in the preferences now allow entering linebreaks without having to hold <i>Option</i></li>
+					</ul>
+				]]></description>
+				<pubDate>Thu Jul 14 08:31:12 2011 CEST</pubDate>
+				<enclosure
+					url="http://quotefixformac.googlecode.com/files/QuoteFix-2.1.5.zip"
+					length="7515260"
+					sparkle:version="2.1.5"
+					type="application/octet-stream"
+					sparkle:dsaSignature="MC0CFC3CaI6HHtBwh8Byi6JJd6UcMJafAhUAsCB1+ZQmZJaOkg1nD+c3LktH4Lo=" />
+			</item>
+			<item>
 				<title>Version 2.1.4</title>
 				<description><![CDATA[
 					<h2>Bugfix</h2>
