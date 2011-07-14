@@ -116,3 +116,9 @@ class QuoteFixPreferencesController(NSObject):
             self.changeCustomReplyAttribution_(obj)
         elif obj == self.customForwardingAttribution:
             self.changeCustomForwardingAttribution_(obj)
+
+    def control_textView_doCommandBySelector_(self, control, textview, selector):
+        if str(selector) == 'insertNewline:':
+            textview.insertNewlineIgnoringFieldEditor_(self)
+            return True
+        return False
