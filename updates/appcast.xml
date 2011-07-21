@@ -6,6 +6,22 @@
       <description>Most recent changes with links to updates.</description>
       <language>en</language>
 			<item>
+				<title>Version 2.2.0</title>
+				<description><![CDATA[
+					<h2>Lion Compatibility!</h2>
+					<ul>
+						<li>QuoteFix is now compatible with Mac OS X Lion</li>
+					</ul>
+				]]></description>
+				<pubDate>Thu Jul 21 19:35:26 2011 CEST</pubDate>
+				<enclosure
+					url="http://quotefixformac.googlecode.com/files/QuoteFix-2.2.0.zip"
+					length="7515829"
+					sparkle:version="2.2.0"
+					type="application/octet-stream"
+					sparkle:dsaSignature="MC4CFQC1VsMebKmejRPX1J1s9NpGpk8w9QIVANtRBd2HeZ3elvj3cIQyqmQrPPOt" />
+			</item>
+			<item>
 				<title>Version 2.1.5</title>
 				<description><![CDATA[
 					<h2>Bugfixes and a new feature</h2>
