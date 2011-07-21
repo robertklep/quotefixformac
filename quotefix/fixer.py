@@ -41,7 +41,11 @@ class MailDocumentEditor(Category(MailDocumentEditor)):
             
             # grab composeView instance (this is the WebView which contains the
             # message editor) and check for the right conditions
-            view = objc.getInstanceVariable(self, 'composeWebView')
+            try:
+                view = objc.getInstanceVariable(self, 'composeWebView')
+            except:
+                # was renamed in Lion
+                view = objc.getInstanceVariable(self, '_composeWebView')
 
             # move cursor to end of document
             view.moveToEndOfDocument_(self)
