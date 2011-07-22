@@ -6,6 +6,23 @@
       <description>Most recent changes with links to updates.</description>
       <language>en</language>
 			<item>
+				<title>Version 2.2.1</title>
+				<description><![CDATA[
+					<h2>Bugfixes/h2>
+					<ul>
+						<li>Fixed an issue with ${message.to} variables in customized attribution</li>
+						<li>${message.*.name} will now contain e-mail address if name is empty</li>
+					</ul>
+				]]></description>
+				<pubDate>Fri Jul 22 08:39:55 2011 CEST</pubDate>
+				<enclosure
+					url="http://quotefixformac.googlecode.com/files/QuoteFix-2.2.1.zip"
+					length="7516060"
+					sparkle:version="2.2.1"
+					type="application/octet-stream"
+					sparkle:dsaSignature="MC0CFAsPE47190HS7xVLT18W49W5JRQ+AhUAwIL0tJX4KjcShBNvSjXSl7LCHQA=" />
+			</item>
+			<item>
 				<title>Version 2.2.0</title>
 				<description><![CDATA[
 					<h2>Lion Compatibility!</h2>
