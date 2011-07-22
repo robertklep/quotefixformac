@@ -61,6 +61,11 @@ class Message(Category(Message)):
         params.update(self.expand_nsdate(inreplyto.dateReceived(),    'message.received'))
         params.update(self.expand_datetime(datetime.now(),            'now'))
 
+        # flatten NSArray-typed parameters
+        for k, v in params.items():
+            if isinstance(v, NSArray):
+                params[k] = v.componentsJoinedByString_(", ")
+
         # try to split e-mail address from *.from
         for k in [ 'message.from', 'response.from' ]:
             try:    
