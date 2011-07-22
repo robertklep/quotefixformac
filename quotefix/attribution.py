@@ -70,6 +70,9 @@ class Message(Category(Message)):
         for k in [ 'message.from', 'response.from' ]:
             try:    
                 params[k + '.name'], params[k + '.email'] = email.utils.parseaddr(params[k])
+                # if name is empty, fill it with '.email'
+                if not params[k + '.name']:
+                    params[k + '.name'] = params[k + '.email']
             except:
                 pass
 
