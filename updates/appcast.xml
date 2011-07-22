@@ -8,7 +8,7 @@
 			<item>
 				<title>Version 2.2.1</title>
 				<description><![CDATA[
-					<h2>Bugfixes/h2>
+					<h2>Bugfixes</h2>
 					<ul>
 						<li>Fixed an issue with ${message.to} variables in customized attribution</li>
 						<li>${message.*.name} will now contain e-mail address if name is empty</li>
