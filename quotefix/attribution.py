@@ -17,26 +17,30 @@ class Message(Category(Message)):
     # render_attribution())
     @swizzle(Message, 'replyPrefixWithSpacer:')
     def replyPrefixWithSpacer(cls, original, arg):
-        cls.original_reply_attribution = original(cls, arg)
-        if cls.app.use_custom_reply_attribution:
-            return "__CUSTOM_REPLY_ATTRIBUTION__"
-        return cls.original_reply_attribution
+        s = original(cls, arg)
+
+        # rewrite original attribution string to a regular expression
+        cls.original_reply_attribution = re.sub(r'%\d+\$\@', '.*?', s).strip()
+
+        # return original
+        return s
 
     @swizzle(Message, 'forwardedMessagePrefixWithSpacer:')
     def forwardedMessagePrefixWithSpacer(cls, original, arg):
-        cls.original_forwarding_attribution = original(cls, arg)
-        if cls.app.use_custom_forwarding_attribution:
-            return "__CUSTOM_FORWARDING_ATTRIBUTION__"
-        return cls.original_forwarding_attribution
+        s = original(cls, arg)
+
+        # rewrite original attribution string to a regular expression
+        cls.original_forwarding_attribution = re.sub(r'%\d+\$\@', '.*?', s).strip()
+
+        # return original
+        return s
 
     # render a user-defined template to provide a customized attribution
-    def render_attribution(self, text, inreplyto, forward):
-        if forward:
-            template    = self.app.custom_forwarding_attribution
-            placeholder = "__CUSTOM_FORWARDING_ATTRIBUTION__"
+    def render_attribution(self, inreplyto, is_forward):
+        if is_forward:
+            template = self.app.custom_forwarding_attribution
         else:
-            template    = self.app.custom_reply_attribution
-            placeholder = "__CUSTOM_REPLY_ATTRIBUTION__"
+            template = self.app.custom_reply_attribution
 
         # setup template parameters
         params = {
@@ -76,11 +80,8 @@ class Message(Category(Message)):
             except:
                 pass
 
-        # expand template
-        attribution = Template(template).substitute(params).encode('utf-8')
-
-        # replace placeholder with new attribution
-        return unicode( re.sub(u'^\s*' + placeholder, attribution, text.encode('utf-8')), 'utf-8' )
+        # expand template and return it
+        return Template(template).substitute(params).encode('utf-8')
 
     # expand an NSDate object to a dictionary
     def expand_nsdate(self, nsdate, prefix):

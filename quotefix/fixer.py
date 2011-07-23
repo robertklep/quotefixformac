@@ -38,7 +38,7 @@ class MailDocumentEditor(Category(MailDocumentEditor)):
             if self.messageType() not in SUPPORTED:
                 logging.debug('\t not in %s, bailing' % SUPPORTED)
                 return
-            
+
             # grab composeView instance (this is the WebView which contains the
             # message editor) and check for the right conditions
             try:
@@ -89,7 +89,7 @@ class MailDocumentEditor(Category(MailDocumentEditor)):
                     view        = view,
                     reply       = backend.message(),
                     inreplyto   = backend.originalMessage(),
-                    forward     = False
+                    is_forward  = False
                 )
             elif self.app.use_custom_forwarding_attribution and self.messageType() == FORWARD:
                 logging.debug("calling customize_attribution() for forwarding")
@@ -98,7 +98,7 @@ class MailDocumentEditor(Category(MailDocumentEditor)):
                     view        = view,
                     reply       = backend.message(),
                     inreplyto   = backend.originalMessage(),
-                    forward     = True
+                    is_forward  = True
                 )
 
             # move to beginning of line
@@ -237,42 +237,48 @@ class MailDocumentEditor(Category(MailDocumentEditor)):
         return True
 
     # provide customize attribution
-    def customize_attribution(self, dom, view, reply, inreplyto, forward):
+    def customize_attribution(self, dom, view, reply, inreplyto, is_forward):
+        if is_forward:
+            matcher = re.compile(reply.original_forwarding_attribution)
+        else:
+            matcher = re.compile(reply.original_reply_attribution)
+
         # find parent of first quote
         root = dom.documentElement()
         node = root.firstDescendantBlockQuote().parentNode()
         if not node:
             return False
 
-        # check children for attribution placeholder
+        # check children for attribution node
         children = node.childNodes()
         for i in range(children.length()):
             child = children.item_(i)
-            if child.nodeType() != 3: # DOMNode.DOM_TEXT_NODE
+            if child.nodeType() == 1 and not matcher.match(child.innerHTML()):
+                continue
+            elif child.nodeType() == 3 and not matcher.match(child.data()):
                 continue
 
-            # get text contents and render attribution
-            text        = child.data()
-            rendered    = reply.render_attribution(
-                text        = text,
+            # render attribution
+            attribution = reply.render_attribution(
                 inreplyto   = inreplyto,
-                forward     = forward, 
+                is_forward  = is_forward,
             )
 
-            # nothing changes? probably not our node
-            if text == rendered:
-                continue
-
             # encode entities
-            rendered = rendered.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;')
+            attribution = attribution.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;')
 
             # replace newlines with hard linebreaks
-            rendered = rendered.replace('\n', '<br/>')
+            attribution = attribution.replace('\n', '<br/>')
 
-            # replace placeholder node with newly rendered node
-            newnode = dom.createElement_("span")
-            newnode.setInnerHTML_(rendered)
-            node.replaceChild_oldChild_(newnode, child)
+            # replace old attribution with new
+            if child.nodeType() == 1:
+                child.setInnerHTML_(attribution)
+            else:
+                newnode = dom.createElement_("span")
+                newnode.setInnerHTML_(attribution)
+                node.replaceChild_oldChild_(newnode, child)
+
+            # done
             return True
 
         # done nothing
