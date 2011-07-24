@@ -1,7 +1,8 @@
-from    AppKit          import *
-from    quotefix.utils  import swizzle
-from    quotefix.alert  import Alert
-from    objc            import Category, lookUpClass
+from    AppKit                  import *
+from    quotefix.utils          import swizzle
+from    quotefix.alert          import Alert
+from    quotefix.attribution    import CustomizedAttribution
+from    objc                    import Category, lookUpClass
 import  logging, re
 
 # message types
@@ -82,24 +83,26 @@ class MailDocumentEditor(Category(MailDocumentEditor)):
                 backend.setHasChanges_(False)
 
             # provide custom attribution?
+            attributor = None
             if self.app.use_custom_reply_attribution and self.messageType() in [ REPLY, REPLY_ALL ]:
                 logging.debug("calling customize_attribution() for reply(-all)")
-                self.customize_attribution(
-                    dom         = htmldom,
-                    view        = view,
-                    reply       = backend.message(),
-                    inreplyto   = backend.originalMessage(),
-                    is_forward  = False
-                )
+                attributor = CustomizedAttribution.customize_reply
             elif self.app.use_custom_forwarding_attribution and self.messageType() == FORWARD:
                 logging.debug("calling customize_attribution() for forwarding")
-                self.customize_attribution(
-                    dom         = htmldom,
-                    view        = view,
-                    reply       = backend.message(),
-                    inreplyto   = backend.originalMessage(),
-                    is_forward  = True
-                )
+                attributor = CustomizedAttribution.customize_forward
+
+            if attributor:
+                try:
+                    attributor(
+                        app         = self.app,
+                        dom         = htmldom,
+                        reply       = backend.message(),
+                        inreplyto   = backend.originalMessage()
+                    )
+                except:
+                    # ignore when not debugging
+                    if self.app.is_debugging:
+                        raise
 
             # move to beginning of line
             logging.debug('calling view.moveToBeginningOfLine()')
@@ -235,51 +238,3 @@ class MailDocumentEditor(Category(MailDocumentEditor)):
                 node = blockquote.previousSibling()
 
         return True
-
-    # provide customize attribution
-    def customize_attribution(self, dom, view, reply, inreplyto, is_forward):
-        if is_forward:
-            matcher = re.compile(reply.original_forwarding_attribution)
-        else:
-            matcher = re.compile(reply.original_reply_attribution)
-
-        # find parent of first quote
-        root = dom.documentElement()
-        node = root.firstDescendantBlockQuote().parentNode()
-        if not node:
-            return False
-
-        # check children for attribution node
-        children = node.childNodes()
-        for i in range(children.length()):
-            child = children.item_(i)
-            if child.nodeType() == 1 and not matcher.match(child.innerHTML()):
-                continue
-            elif child.nodeType() == 3 and not matcher.match(child.data()):
-                continue
-
-            # render attribution
-            attribution = reply.render_attribution(
-                inreplyto   = inreplyto,
-                is_forward  = is_forward,
-            )
-
-            # encode entities
-            attribution = attribution.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;')
-
-            # replace newlines with hard linebreaks
-            attribution = attribution.replace('\n', '<br/>')
-
-            # replace old attribution with new
-            if child.nodeType() == 1:
-                child.setInnerHTML_(attribution)
-            else:
-                newnode = dom.createElement_("span")
-                newnode.setInnerHTML_(attribution)
-                node.replaceChild_oldChild_(newnode, child)
-
-            # done
-            return True
-
-        # done nothing
-        return False

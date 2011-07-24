@@ -4,44 +4,85 @@ from    datetime            import datetime
 from    quotefix.utils      import swizzle, Template
 import  re, email.utils
 
-# enable personalized attribution by rigging the Message class
 Message = lookUpClass('Message')
-class Message(Category(Message)):
+
+class CustomizedAttribution:
+    """ Provide customized reply/forward attributions """
 
     @classmethod
-    def __init__(cls, app):
-        cls.app = app
+    def customize_reply(cls, app, dom, reply, inreplyto):
+        return cls.customize_attribution(
+            # grab the original attribution string from the
+            # Message class, so we can replace it with a
+            # customized version of it.
+            original    = Message.replyPrefixWithSpacer_(False),
+            dom         = dom,
+            reply       = reply,
+            inreplyto   = inreplyto,
+            template    = app.custom_reply_attribution,
+            is_forward  = False
+        )
 
-    # replace Message (class-)methods with a version which inserts
-    # a placeholder (to be replaced with a user-defined template in
-    # render_attribution())
-    @swizzle(Message, 'replyPrefixWithSpacer:')
-    def replyPrefixWithSpacer(cls, original, arg):
-        s = original(cls, arg)
+    @classmethod
+    def customize_forward(cls, app, dom, reply, inreplyto):
+        return cls.customize_attribution(
+            original    = Message.forwardedMessagePrefixWithSpacer_(False),
+            dom         = dom,
+            reply       = reply,
+            inreplyto   = inreplyto,
+            template    = app.custom_forwarding_attribution,
+            is_forward  = True
+        )
 
-        # rewrite original attribution string to a regular expression
-        cls.original_reply_attribution = re.sub(r'%\d+\$\@', '.*?', s).strip()
+    @classmethod
+    def customize_attribution(cls, original, dom, reply, inreplyto, template, is_forward):
+        # create matcher for matching original attribution
+        matcher = re.compile(re.sub(r'%\d+\$\@', '.*?', original.strip()))
 
-        # return original
-        return s
+        # find parent of first quote
+        root = dom.documentElement()
+        node = root.firstDescendantBlockQuote().parentNode()
+        if not node:
+            return False
 
-    @swizzle(Message, 'forwardedMessagePrefixWithSpacer:')
-    def forwardedMessagePrefixWithSpacer(cls, original, arg):
-        s = original(cls, arg)
+        # check children for attribution node
+        children = node.childNodes()
+        for i in range(children.length()):
+            child = children.item_(i)
+            if child.nodeType() == 1 and not matcher.match(child.innerHTML()):
+                continue
+            elif child.nodeType() == 3 and not matcher.match(child.data()):
+                continue
 
-        # rewrite original attribution string to a regular expression
-        cls.original_forwarding_attribution = re.sub(r'%\d+\$\@', '.*?', s).strip()
+            # render attribution
+            attribution = cls.render_attribution(
+                reply       = reply,
+                inreplyto   = inreplyto,
+                template    = template,
+            )
 
-        # return original
-        return s
+            # encode (some) entities
+            attribution = attribution.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;')
 
-    # render a user-defined template to provide a customized attribution
-    def render_attribution(self, inreplyto, is_forward):
-        if is_forward:
-            template = self.app.custom_forwarding_attribution
-        else:
-            template = self.app.custom_reply_attribution
+            # replace newlines with hard linebreaks
+            attribution = attribution.replace('\n', '<br/>')
 
+            # replace old attribution with new, depending on node type
+            if child.nodeType() == 1:
+                child.setInnerHTML_(attribution)
+            else:
+                newnode = dom.createElement_("span")
+                newnode.setInnerHTML_(attribution)
+                node.replaceChild_oldChild_(newnode, child)
+
+            # done
+            return True
+
+        # done nothing
+        return False
+
+    @classmethod
+    def render_attribution(cls, reply, inreplyto, template):
         # setup template parameters
         params = {
             'message.from'          : inreplyto.sender(),
@@ -51,19 +92,19 @@ class Message(Category(Message)):
             'message.comment'       : inreplyto.senderAddressComment(),
             'message.to'            : inreplyto.to(),
             'message.subject'       : inreplyto.subject(),
-            'response.from'         : self.sender(),
+            'response.from'         : reply.sender(),
             'response.from.name'    : '',
             'response.from.email'   : '',
-            'response.sender'       : self.sender(),
-            'response.comment'      : self.senderAddressComment(),
-            'response.to'           : self.to(),
-            'response.subject'      : self.subject(),
+            'response.sender'       : reply.sender(),
+            'response.comment'      : reply.senderAddressComment(),
+            'response.to'           : reply.to(),
+            'response.subject'      : reply.subject(),
         }
 
         # add dates
-        params.update(self.expand_nsdate(inreplyto.dateSent(),        'message.sent'))
-        params.update(self.expand_nsdate(inreplyto.dateReceived(),    'message.received'))
-        params.update(self.expand_datetime(datetime.now(),            'now'))
+        params.update(cls.expand_nsdate(inreplyto.dateSent(),        'message.sent'))
+        params.update(cls.expand_nsdate(inreplyto.dateReceived(),    'message.received'))
+        params.update(cls.expand_datetime(datetime.now(),            'now'))
 
         # flatten NSArray-typed parameters
         for k, v in params.items():
@@ -84,11 +125,13 @@ class Message(Category(Message)):
         return Template(template).substitute(params).encode('utf-8')
 
     # expand an NSDate object to a dictionary
-    def expand_nsdate(self, nsdate, prefix):
+    @classmethod
+    def expand_nsdate(cls, nsdate, prefix):
         # convert NSDate to datetime
         date = datetime.strptime(nsdate.description()[:-6], "%Y-%m-%d %H:%M:%S")
-        return self.expand_datetime(date, prefix)
+        return cls.expand_datetime(date, prefix)
 
+    @classmethod
     def expand_datetime(self, date, prefix):
         # return dictionary with useful values
         return {
