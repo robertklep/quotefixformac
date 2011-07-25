@@ -122,13 +122,14 @@ class CustomizedAttribution:
                 pass
 
         # expand template and return it
-        return Template(template).substitute(params).encode('utf-8')
+        return Template(template).substitute(params)
 
     # expand an NSDate object to a dictionary
     @classmethod
     def expand_nsdate(cls, nsdate, prefix):
-        # convert NSDate to datetime
-        date = datetime.strptime(nsdate.description()[:-6], "%Y-%m-%d %H:%M:%S")
+        # convert NSDate to datetime (XXX: always converts to local timezone)
+        description = nsdate.descriptionWithCalendarFormat_timeZone_locale_("%Y-%m-%d %H:%M:%S", None, None)
+        date = datetime.strptime(description, "%Y-%m-%d %H:%M:%S")
         return cls.expand_datetime(date, prefix)
 
     @classmethod
@@ -136,14 +137,14 @@ class CustomizedAttribution:
         # return dictionary with useful values
         return {
             prefix                  : date.strftime("%c"),
-            prefix + '.year'        : unicode(date.year),
-            prefix + '.month'       : unicode(date.month),
-            prefix + '.day'         : unicode(date.day),
-            prefix + '.hour'        : unicode(date.hour),
+            prefix + '.year'        : date.strftime("%Y"),
+            prefix + '.month'       : date.strftime("%m"),
+            prefix + '.day'         : date.strftime("%d"),
+            prefix + '.hour'        : date.strftime("%H"),
             prefix + '.hour12'      : date.strftime("%I"),
             prefix + '.ampm'        : date.strftime("%p"),
-            prefix + '.minute'      : unicode(date.minute),
-            prefix + '.second'      : unicode(date.second),
+            prefix + '.minute'      : date.strftime("%M"),
+            prefix + '.second'      : date.strftime("%S"),
             prefix + '.weeknumber'  : date.strftime("%U"),
             prefix + '.monthshort'  : date.strftime("%b"),
             prefix + '.monthlong'   : date.strftime("%B"),
