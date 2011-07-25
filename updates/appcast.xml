@@ -6,6 +6,22 @@
       <description>Most recent changes with links to updates.</description>
       <language>en</language>
 			<item>
+				<title>Version 2.2.2</title>
+				<description><![CDATA[
+					<h2>Customized Attributions rewrite</h2>
+					<ul>
+						<li>The code which handles customized attributions has been rewritten to be much less error-prone, and at the same time play more nicely with other plugins</li>
+					</ul>
+				]]></description>
+				<pubDate>Mon Jul 25 11:47:22 2011 CEST</pubDate>
+				<enclosure
+					url="http://quotefixformac.googlecode.com/files/QuoteFix-2.2.2.zip"
+					length="7516215"
+					sparkle:version="2.2.2"
+					type="application/octet-stream"
+					sparkle:dsaSignature="MC0CFG20R8ogNyON85fZ6Gd5aVCiLjOQAhUAnDGLUXKF1CGEocmmvNjzcvLEl/I=" />
+			</item>
+			<item>
 				<title>Version 2.2.1</title>
 				<description><![CDATA[
 					<h2>Bugfixes</h2>
