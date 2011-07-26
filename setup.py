@@ -55,6 +55,7 @@ setup(
             ],
             # settings for Sparkle
             SUFeedURL = 'http://quotefix.quotefixformac.googlecode.com/hg/updates/appcast.xml',
+            #SUFeedURL = 'http://localhost:8000/appcast.xml',
             SUEnableAutomaticChecks = True,
             SUShowReleaseNotes = True,
             SUPublicDSAKeyFile = 'quotefix.sparkle.pub.pem',
