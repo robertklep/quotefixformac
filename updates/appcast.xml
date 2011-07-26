@@ -6,6 +6,23 @@
       <description>Most recent changes with links to updates.</description>
       <language>en</language>
 			<item>
+				<title>Version 2.2.3</title>
+				<description><![CDATA[
+					<h2>Bugfixes</h2>
+					<ul>
+						<li>Fixed encoding problem with customized attributions</li>
+						<li>Fixed formatting problems of date-related variables</li>
+					</ul>
+				]]></description>
+				<pubDate>Mon Jul 25 18:11:29 2011 CEST</pubDate>
+				<enclosure
+					url="http://quotefixformac.googlecode.com/files/QuoteFix-2.2.3.zip"
+					length="5473721"
+					sparkle:version="2.2.3"
+					type="application/octet-stream"
+					sparkle:dsaSignature="MC0CFQC9g+AgFO4lyr5m+42hb3obJZ5znQIUQlcMvWZb06uwOPS+IkqJDSv9UJ4=" />
+			</item>
+			<item>
 				<title>Version 2.2.2</title>
 				<description><![CDATA[
 					<h2>Customized Attributions rewrite</h2>

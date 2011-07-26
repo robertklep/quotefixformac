@@ -7,7 +7,7 @@ if 'QUOTEFIX_VERSION' in os.environ:
     hgversion = os.environ['QUOTEFIX_VERSION']
 else:
     # determine version by latest tag
-    status, hgtags = commands.getstatusoutput("hg tags | grep -v '^tip' | head -1")
+    status, hgtags = commands.getstatusoutput("env VERSIONER_PYTHON_VERSION= hg tags 2>/dev/null | grep -v '^tip' | head -1")
     if status != 0:
         # probably no hg installed or not building from a repository
         hgversion = "unknown"
