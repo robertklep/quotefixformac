@@ -13,6 +13,11 @@
 						<li>Fixed encoding problem with customized attributions</li>
 						<li>Fixed formatting problems of date-related variables</li>
 					</ul>
+					<h3>Notice for Snow Leopard users</h3>
+					<p>Because of changes in Lion, it seems that Snow Leopard users are getting signing errors when updating.</p>
+					<p>If this happens to you, the only remedy for now is to manually download and install QuoteFix.</p>
+					<p>Sorry about the inconvenience!</p>
+					<p><a href="http://quotefixformac.googlecode.com/files/QuoteFix-2.2.3.zip">Direct download link.</a></p>
 				]]></description>
 				<pubDate>Mon Jul 25 18:11:29 2011 CEST</pubDate>
 				<enclosure
