@@ -1,11 +1,10 @@
 from    AppKit          import *
 from    Foundation      import *
 from    quotefix        import *
+from    quotefix.utils  import swizzle
 import  objc
 
-MVMailBundle = objc.lookUpClass('MVMailBundle')
-
-class QuoteFix(MVMailBundle):
+class QuoteFix(objc.runtime.MVMailBundle):
 
     @classmethod
     def initialize(cls):
@@ -13,7 +12,7 @@ class QuoteFix(MVMailBundle):
         updater = Updater()
 
         # register ourselves
-        MVMailBundle.registerBundle()
+        objc.runtime.MVMailBundle.registerBundle()
 
         # extract plugin version from Info.plist
         bundle  = NSBundle.bundleWithIdentifier_('name.klep.mail.QuoteFix')

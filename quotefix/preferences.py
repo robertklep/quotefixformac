@@ -1,7 +1,35 @@
 from    AppKit          import *
 from    Foundation      import *
 from    quotefix.alert  import Alert
+from    quotefix.utils  import swizzle
 import  objc
+
+class QuoteFixPreferencesModule(NSPreferencesModule):
+
+    def init(self):
+        context = { NSNibTopLevelObjects : [] }
+        nib     = NSNib.alloc().initWithNibNamed_bundle_("QuoteFixPreferencesModule.nib", NSBundle.bundleWithIdentifier_('name.klep.mail.QuoteFix'))
+        inited  = nib.instantiateNibWithExternalNameTable_(context)
+        view    = filter(lambda _: isinstance(_, NSBox), context[NSNibTopLevelObjects])[0]
+        self.setMinSize_(view.boundsSize())
+        self.setPreferencesView_(view)
+        return self
+
+class QuoteFixPreferences(NSPreferences):
+
+    @classmethod
+    def injectPreferencesModule(cls, prefs):
+        titles = objc.getInstanceVariable(prefs, '_preferenceTitles')
+        if 'QuoteFix' not in titles:
+            prefs.addPreferenceNamed_owner_("QuoteFix", QuoteFixPreferencesModule.sharedInstance())
+            toolbar     = objc.getInstanceVariable(prefs, '_preferencesPanel').toolbar()
+            numitems    = len( toolbar.items() )
+            toolbar.insertItemWithItemIdentifier_atIndex_("QuoteFix", numitems)
+
+    @swizzle(NSPreferences, 'showPreferencesPanel')
+    def showPreferencesPanel(self, original):
+        QuoteFixPreferences.injectPreferencesModule(self)
+        original(self)
 
 # controller for NIB controls
 class QuoteFixPreferencesController(NSObject):
@@ -24,6 +52,10 @@ class QuoteFixPreferencesController(NSObject):
     @classmethod
     def __init__(cls, app):
         cls.app = app
+        # inject preferences module
+        prefs = NSPreferences.sharedPreferences()
+        if prefs:
+            QuoteFixPreferences.injectPreferencesModule(prefs)
 
     def set_remove_quotes_level(self):
         value = self.removeQuotesLevel.intValue()
