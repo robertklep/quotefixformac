@@ -1,7 +1,6 @@
 from    AppKit          import *
 from    Foundation      import *
 from    datetime        import datetime
-from    quotefix.alert  import Alert
 import  objc, os, os.path, logging
 
 # load Sparkle framework

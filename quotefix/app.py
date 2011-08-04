@@ -1,7 +1,5 @@
 from    AppKit          import *
 from    Foundation      import *
-from    quotefix.menu   import Menu
-from    quotefix.alert  import Alert
 from    objc            import Category, lookUpClass
 import  logging, os
 
@@ -44,9 +42,6 @@ class App(object):
         # check update interval
         self.check_update_interval = prefs.int["QuoteFixCheckUpdateInterval"] or 0
 
-        # inject menu
-        self.menu = Menu.alloc().initWithApp_(self).inject()
-
         # demand-load preferences
         self.preferences_loaded = False
 
@@ -58,33 +53,19 @@ class App(object):
         mailversion = infodict['CFBundleVersion']
         lastknown   = self.prefs.string["QuoteFixLastKnownBundleVersion"]
         if lastknown and lastknown != mailversion:
-            Alert.showAlert(self.menu,
+            NSRunAlertPanel(
                 'QuoteFix plug-in',
                 '''
 The QuoteFix plug-in detected a different Mail.app version (perhaps you updated?).
 
 If you run into any problems with regards to replying or forwarding mail, consider removing this plug-in (from ~/Library/Mail/Bundles/).
 
-(This alert is only displayed once for each new version of Mail.app)
-''', alert_style = NSInformationalAlertStyle)
-
-        self.prefs.string["QuoteFixLastKnownBundleVersion"] = mailversion
-
-    # show preferences window
-    def show_preferences(self):
-        # load preferences NIB for the first time
-        if not self.preferences_loaded:
-            resourcepath            = NSBundle.bundleWithIdentifier_('name.klep.mail.QuoteFix').resourcePath()
-            nibfile                 = os.path.join(resourcepath, "QuoteFixPreferences.nib")
-            context                 = { NSNibTopLevelObjects : [] }
-            NSBundle.loadNibFile_externalNameTable_withZone_(nibfile, context, None)
-
-            self.preferences_window = filter(lambda _: isinstance(_, NSWindow), context[NSNibTopLevelObjects])[0]
-            self.preferences_loaded = True
-
-        # show preferences window
-        if self.preferences_window:
-            self.preferences_window.makeKeyAndOrderFront_(self)
+(This alert is only displayed once for each new version of Mail.app)''',
+                    None,
+                    None,
+                    None
+            )
+            self.prefs.string["QuoteFixLastKnownBundleVersion"] = mailversion
 
     # used for debugging
     @property

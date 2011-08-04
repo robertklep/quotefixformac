@@ -1,9 +1,8 @@
 from    AppKit                  import *
 from    quotefix.utils          import swizzle
-from    quotefix.alert          import Alert
 from    quotefix.attribution    import CustomizedAttribution
 from    objc                    import Category, lookUpClass
-import  logging, re
+import  logging, re, traceback
 
 # message types
 REPLY       = 1
@@ -113,7 +112,13 @@ class MailDocumentEditor(Category(MailDocumentEditor)):
         except Exception, e:
             logging.exception(e)
             if self.app.is_debugging:
-                Alert.showException(self)
+                NSRunAlertPanel(
+                    'QuoteFix caught an exception',
+                    'The QuoteFix plug-in caught an exception:\n\n' +
+                    traceback.format_exc() +
+                    '\nPlease contact the developer quoting the contents of this alert.',
+                    None, None, None
+                )
 
     def remove_quotes(self, dom, level):
         # find all blockquotes

@@ -1,19 +1,24 @@
 from    AppKit          import *
 from    Foundation      import *
-from    quotefix.alert  import Alert
 from    quotefix.utils  import swizzle
 import  objc
 
 class QuoteFixPreferencesModule(NSPreferencesModule):
 
     def init(self):
-        context = { NSNibTopLevelObjects : [] }
-        nib     = NSNib.alloc().initWithNibNamed_bundle_("QuoteFixPreferencesModule.nib", NSBundle.bundleWithIdentifier_('name.klep.mail.QuoteFix'))
-        inited  = nib.instantiateNibWithExternalNameTable_(context)
-        view    = filter(lambda _: isinstance(_, NSBox), context[NSNibTopLevelObjects])[0]
-        self.setMinSize_(view.boundsSize())
-        self.setPreferencesView_(view)
+        context     = { NSNibTopLevelObjects : [] }
+        nib         = NSNib.alloc().initWithNibNamed_bundle_("QuoteFixPreferencesModule.nib", NSBundle.bundleWithIdentifier_('name.klep.mail.QuoteFix'))
+        inited      = nib.instantiateNibWithExternalNameTable_(context)
+        self.view   = filter(lambda _: isinstance(_, NSBox), context[NSNibTopLevelObjects])[0]
+        self.setMinSize_(self.view.boundsSize())
+        self.setPreferencesView_(self.view)
         return self
+
+    def minSize(self):
+        return self.view.boundsSize()
+
+    def isResizable(self):
+        return False
 
 class QuoteFixPreferences(NSPreferences):
 
@@ -33,6 +38,7 @@ class QuoteFixPreferences(NSPreferences):
 
 # controller for NIB controls
 class QuoteFixPreferencesController(NSObject):
+    enableDisableButton             = objc.IBOutlet()
     removeQuotes                    = objc.IBOutlet()
     removeQuotesLevel               = objc.IBOutlet()
     keepAttributionWhitespace       = objc.IBOutlet()
@@ -47,7 +53,6 @@ class QuoteFixPreferencesController(NSObject):
     checkUpdateButton               = objc.IBOutlet()
     debugging                       = objc.IBOutlet()
     helpButton                      = objc.IBOutlet()
-    _window                         = objc.IBOutlet()
 
     @classmethod
     def __init__(cls, app):
@@ -60,11 +65,20 @@ class QuoteFixPreferencesController(NSObject):
     def set_remove_quotes_level(self):
         value = self.removeQuotesLevel.intValue()
         if value < 1:
-            Alert.showAlert(self, "Invalid level", "Please enter a level of 1 or higher.")
+            self.removeQuotesLevel.setIntValue_(self.app.remove_quotes_level)
+            NSRunAlertPanel("Invalid level", "Please enter a level of 1 or higher.", None, None, None)
             return
         self.removeQuotes.setState_(1)
         self.app.remove_quotes          = True
         self.app.remove_quotes_level    = value
+
+    @objc.IBAction
+    def changeEnableDisable_(self, sender):
+        if sender.state():  # enable
+            self.app.is_active = True
+        else:               # disable
+            self.app.is_active = False
+#        sender.setTitle_("QuoteFix is %s" % (self.app.is_active and "enabled" or "disabled"))
 
     @objc.IBAction
     def changeRemoveQuotes_(self, sender):
@@ -121,6 +135,7 @@ class QuoteFixPreferencesController(NSObject):
 
     def awakeFromNib(self):
         self.currentVersion.setStringValue_(self.app.version)
+        self.enableDisableButton.setState_(self.app.is_active)
         self.keepAttributionWhitespace.setState_(self.app.keep_attribution_whitespace)
         self.removeTrailingWhitespace.setState_(self.app.remove_trailing_whitespace)
         self.debugging.setState_(self.app.is_debugging)
@@ -136,10 +151,6 @@ class QuoteFixPreferencesController(NSObject):
     def setLastUpdateCheck(self):
         date = self.app.last_update_check
         self.lastUpdateCheck.setStringValue_(date and date.strftime("%c") or "Never")
-
-    def window(self):
-        """ Called by Alert() """
-        return self._window
 
     # act as a delegate for text fields
     def controlTextDidChange_(self, notification):
