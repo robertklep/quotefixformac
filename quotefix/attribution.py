@@ -4,8 +4,6 @@ from    datetime            import datetime
 from    quotefix.utils      import swizzle, Template
 import  re, email.utils
 
-Message = lookUpClass('Message')
-
 class CustomizedAttribution:
     """ Provide customized reply/forward attributions """
 

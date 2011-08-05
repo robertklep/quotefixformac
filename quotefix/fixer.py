@@ -17,7 +17,7 @@ MailDocumentEditor = lookUpClass('MailDocumentEditor')
 class MailDocumentEditor(Category(MailDocumentEditor)):
 
     @classmethod
-    def __init__(cls, app):
+    def registerQuoteFixApplication(cls, app):
         cls.app = app
 
     @swizzle(MailDocumentEditor, 'finishLoadingEditor')

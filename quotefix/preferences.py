@@ -55,7 +55,7 @@ class QuoteFixPreferencesController(NSObject):
     helpButton                      = objc.IBOutlet()
 
     @classmethod
-    def __init__(cls, app):
+    def registerQuoteFixApplication(cls, app):
         cls.app = app
         # inject preferences module
         prefs = NSPreferences.sharedPreferences()
