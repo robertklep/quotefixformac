@@ -120,6 +120,10 @@ class CustomizedAttribution:
                 pass
 
         # expand template and return it
+        return cls.render_with_params(template, params)
+
+    @classmethod
+    def render_with_params(cls, template, params):
         return Template(template).substitute(params)
 
     # expand an NSDate object to a dictionary

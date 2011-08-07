@@ -1,7 +1,10 @@
-from    AppKit          import *
-from    Foundation      import *
-from    quotefix.utils  import swizzle
-import  objc
+# -*- coding:utf-8 -*-
+from    AppKit                  import *
+from    Foundation              import *
+from    quotefix.utils          import swizzle
+from    quotefix.attribution    import CustomizedAttribution
+from    datetime                import datetime, timedelta
+import  objc, random
 
 class QuoteFixPreferencesModule(NSPreferencesModule):
 
@@ -106,6 +109,7 @@ class QuoteFixPreferencesController(NSObject):
     @objc.IBAction
     def changeCustomReplyAttribution_(self, sender):
         self.app.custom_reply_attribution = sender.stringValue()
+        self.set_preview(sender)
 
     @objc.IBAction
     def changeUseCustomForwardingAttribution_(self, sender):
@@ -114,6 +118,7 @@ class QuoteFixPreferencesController(NSObject):
     @objc.IBAction
     def changeCustomForwardingAttribution_(self, sender):
         self.app.custom_forwarding_attribution = sender.stringValue()
+        self.set_preview(sender)
 
     @objc.IBAction
     def changeUpdateInterval_(self, sender):
@@ -143,8 +148,10 @@ class QuoteFixPreferencesController(NSObject):
         self.removeQuotesLevel.setIntValue_(self.app.remove_quotes_level)
         self.useCustomReplyAttribution.setState_(self.app.use_custom_reply_attribution)
         self.customReplyAttribution.setStringValue_(self.app.custom_reply_attribution)
+        self.set_preview(self.customReplyAttribution)
         self.useCustomForwardingAttribution.setState_(self.app.use_custom_forwarding_attribution)
         self.customForwardingAttribution.setStringValue_(self.app.custom_forwarding_attribution)
+        self.set_preview(self.customForwardingAttribution)
         self.updateInterval.setSelectedSegment_(self.app.check_update_interval)
         self.setLastUpdateCheck()
 
@@ -165,3 +172,37 @@ class QuoteFixPreferencesController(NSObject):
             textview.insertNewlineIgnoringFieldEditor_(self)
             return True
         return False
+
+    def set_preview(self, sender):
+        preview = CustomizedAttribution.render_with_params(
+            sender.stringValue(),
+            PREVIEW_MESSAGE
+        )
+        # make newlines visible
+        preview = preview.replace('\n', u'⤦\n')
+        sender.setToolTip_(preview)
+
+# 'fake' message to preview custom reply/forward attribution
+PREVIEW_MESSAGE = {
+    'message.from'          : 'Original Sender <original@sender.dom>',
+    'message.from.name'     : 'Original Sender',
+    'message.from.email'    : 'original@sender.dom',
+    'message.sender'        : 'Original Sender <original@sender.dom>',
+    'message.comment'       : 'Original Sender',
+    'message.to'            : 'Original Receiver',
+    'message.subject'       : 'Original Subject',
+    'response.from'         : 'Your Name <you@some.dom>',
+    'response.from.name'    : 'Your Name',
+    'response.from.email'   : 'you@some.dom',
+    'response.sender'       : 'Your Name <you@some.dom>',
+    'response.comment'      : 'Your Name',
+    'response.to'           : 'New Receiver <new@receiver.dom>',
+    'response.subject'      : 'New Subject'
+}
+dt = datetime.now() - timedelta(seconds = random.randint(3, 7) * random.randint(86000, 87000))
+PREVIEW_MESSAGE.update(CustomizedAttribution.expand_datetime(dt, 'message.sent'))
+dt = datetime.now() - timedelta(seconds = random.randint(1, 3) * random.randint(86000, 87000))
+PREVIEW_MESSAGE.update(CustomizedAttribution.expand_datetime(dt, 'message.received'))
+dt = datetime.now()
+PREVIEW_MESSAGE.update(CustomizedAttribution.expand_datetime(dt, 'now'))
+
