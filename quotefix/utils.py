@@ -1,3 +1,4 @@
+from    new     import classobj, instance
 import  objc, re
 
 # Method Swizzler: exchange an existing Objective-C method with a new
@@ -17,13 +18,19 @@ def swizzle(cls, SEL):
     return decorator
 
 # string.Template-like string interpolation
-class Template:
+class SimpleTemplate:
 
     def __init__(self, template):
         self.template = template
 
     def _substitute_param(self, param, params):
-        return params.get(param, "${%s}" % param)
+        tokens  = param.split('.')
+        node    = params.get(tokens.pop(0))
+        while node and tokens:
+            node = getattr(node, tokens.pop(0), None)
+        if node == None:
+            return '${%s}' % param
+        return unicode(node)
 
     def _substitute(self, params):
         expanded = self.template

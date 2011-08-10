@@ -1,8 +1,10 @@
-from    AppKit              import *
-from    objc                import Category, lookUpClass
-from    datetime            import datetime
-from    quotefix.utils      import swizzle, Template
-import  re, email.utils
+from    AppKit                      import *
+from    objc                        import Category, lookUpClass
+from    datetime                    import datetime
+from    quotefix.utils              import swizzle, SimpleTemplate
+from    quotefix.pyratemp           import Template
+from    quotefix.attributionclasses import *
+import  re
 
 class CustomizedAttribution:
     """ Provide customized reply/forward attributions """
@@ -81,77 +83,30 @@ class CustomizedAttribution:
 
     @classmethod
     def render_attribution(cls, reply, inreplyto, template):
-        # setup template parameters
-        params = {
-            'message.from'          : inreplyto.sender(),
-            'message.from.name'     : '',
-            'message.from.email'    : '',
-            'message.sender'        : inreplyto.sender(),
-            'message.comment'       : inreplyto.senderAddressComment(),
-            'message.to'            : inreplyto.to(),
-            'message.subject'       : inreplyto.subject(),
-            'response.from'         : reply.sender(),
-            'response.from.name'    : '',
-            'response.from.email'   : '',
-            'response.sender'       : reply.sender(),
-            'response.comment'      : reply.senderAddressComment(),
-            'response.to'           : reply.to(),
-            'response.subject'      : reply.subject(),
-        }
-
-        # add dates
-        params.update(cls.expand_nsdate(inreplyto.dateSent(),        'message.sent'))
-        params.update(cls.expand_nsdate(inreplyto.dateReceived(),    'message.received'))
-        params.update(cls.expand_datetime(datetime.now(),            'now'))
-
-        # flatten NSArray-typed parameters
-        for k, v in params.items():
-            if isinstance(v, NSArray):
-                params[k] = v.componentsJoinedByString_(", ")
-
-        # try to split e-mail address from *.from
-        for k in [ 'message.from', 'response.from' ]:
-            try:    
-                params[k + '.name'], params[k + '.email'] = email.utils.parseaddr(params[k])
-                # if name is empty, fill it with '.email'
-                if not params[k + '.name']:
-                    params[k + '.name'] = params[k + '.email']
-            except:
-                pass
-
         # expand template and return it
-        return cls.render_with_params(template, params)
+        return cls.render_with_params(
+            template, 
+            cls.setup_params(reply, inreplyto)
+        )
 
     @classmethod
     def render_with_params(cls, template, params):
-        return Template(template).substitute(params)
+        # hmm...
+        template = template.replace('message.from', 'message.From')
+        template = template.replace('response.from', 'response.From')
 
-    # expand an NSDate object to a dictionary
-    @classmethod
-    def expand_nsdate(cls, nsdate, prefix):
-        # convert NSDate to datetime (XXX: always converts to local timezone)
-        description = nsdate.descriptionWithCalendarFormat_timeZone_locale_("%Y-%m-%d %H:%M:%S", None, None)
-        date = datetime.strptime(description, "%Y-%m-%d %H:%M:%S")
-        return cls.expand_datetime(date, prefix)
+        # try to expand a complex template first; if that fails, try a
+        # simple one
+        try:
+            return Template(string = template, data = params)()
+        except Exception, e:
+            NSLog("exception raised: %s" % e)
+            return SimpleTemplate(template).substitute(params)
 
     @classmethod
-    def expand_datetime(self, date, prefix):
-        # return dictionary with useful values
+    def setup_params(cls, reply, inreplyto):
         return {
-            prefix                  : date.strftime("%c"),
-            prefix + '.year'        : date.strftime("%Y"),
-            prefix + '.month'       : date.strftime("%m"),
-            prefix + '.day'         : date.strftime("%d"),
-            prefix + '.hour'        : date.strftime("%H"),
-            prefix + '.hour12'      : date.strftime("%I"),
-            prefix + '.ampm'        : date.strftime("%p"),
-            prefix + '.minute'      : date.strftime("%M"),
-            prefix + '.second'      : date.strftime("%S"),
-            prefix + '.weeknumber'  : date.strftime("%U"),
-            prefix + '.monthshort'  : date.strftime("%b"),
-            prefix + '.monthlong'   : date.strftime("%B"),
-            prefix + '.dayshort'    : date.strftime("%a"),
-            prefix + '.daylong'     : date.strftime("%A"),
-            prefix + '.date'        : date.strftime("%x"),
-            prefix + '.time'        : date.strftime("%X"),
+            'message'   : QFMessage(inreplyto),
+            'response'  : QFMessage(reply),
+            # 'now'?
         }
