@@ -3,6 +3,7 @@ from    AppKit                  import *
 from    Foundation              import *
 from    quotefix.utils          import swizzle
 from    quotefix.attribution    import CustomizedAttribution
+from    quotefix.preview        import preview_message
 from    datetime                import datetime, timedelta
 import  objc, random
 
@@ -174,37 +175,10 @@ class QuoteFixPreferencesController(NSObject):
         return False
 
     def set_preview(self, sender):
-        return
-
         preview = CustomizedAttribution.render_with_params(
             sender.stringValue(),
-            PREVIEW_MESSAGE
+            preview_message
         )
         # make newlines visible
         preview = preview.replace('\n', u'⤦\n')
         sender.setToolTip_(preview)
-
-# 'fake' message to preview custom reply/forward attribution
-#PREVIEW_MESSAGE = {
-#    'message.from'          : 'Original Sender <original@sender.dom>',
-#    'message.from.name'     : 'Original Sender',
-#    'message.from.email'    : 'original@sender.dom',
-#    'message.sender'        : 'Original Sender <original@sender.dom>',
-#    'message.comment'       : 'Original Sender',
-#    'message.to'            : 'Original Receiver',
-#    'message.subject'       : 'Original Subject',
-#    'response.from'         : 'Your Name <you@some.dom>',
-#    'response.from.name'    : 'Your Name',
-#    'response.from.email'   : 'you@some.dom',
-#    'response.sender'       : 'Your Name <you@some.dom>',
-#    'response.comment'      : 'Your Name',
-#    'response.to'           : 'New Receiver <new@receiver.dom>',
-#    'response.subject'      : 'New Subject'
-#}
-#dt = datetime.now() - timedelta(seconds = random.randint(3, 7) * random.randint(86000, 87000))
-#PREVIEW_MESSAGE.update(CustomizedAttribution.expand_datetime(dt, 'message.sent'))
-#dt = datetime.now() - timedelta(seconds = random.randint(1, 3) * random.randint(86000, 87000))
-#PREVIEW_MESSAGE.update(CustomizedAttribution.expand_datetime(dt, 'message.received'))
-#dt = datetime.now()
-#PREVIEW_MESSAGE.update(CustomizedAttribution.expand_datetime(dt, 'now'))
-

@@ -100,7 +100,7 @@ class CustomizedAttribution:
         try:
             return Template(string = template, data = params)()
         except Exception, e:
-            NSLog("exception raised: %s" % e)
+            # NSLog("exception raised: %s" % e)
             return SimpleTemplate(template).substitute(params)
 
     @classmethod
