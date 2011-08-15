@@ -42,22 +42,10 @@ class QuoteFixPreferences(NSPreferences):
 
 # controller for NIB controls
 class QuoteFixPreferencesController(NSObject):
-    enableDisableButton                 = objc.IBOutlet()
-    removeQuotes                        = objc.IBOutlet()
-    removeQuotesLevel                   = objc.IBOutlet()
-    keepAttributionWhitespace           = objc.IBOutlet()
-    removeTrailingWhitespace            = objc.IBOutlet()
-    useCustomReplyAttribution           = objc.IBOutlet()
-    customReplyAttribution              = objc.IBOutlet()
-    customReplyIncreaseQuoteLevel       = objc.IBOutlet()
-    useCustomForwardingAttribution      = objc.IBOutlet()
-    customForwardingAttribution         = objc.IBOutlet()
-    customForwardingIncreaseQuoteLevel  = objc.IBOutlet()
     updateInterval                      = objc.IBOutlet()
     lastUpdateCheck                     = objc.IBOutlet()
     currentVersion                      = objc.IBOutlet()
     checkUpdateButton                   = objc.IBOutlet()
-    debugging                           = objc.IBOutlet()
     helpButton                          = objc.IBOutlet()
 
     @classmethod
@@ -79,59 +67,6 @@ class QuoteFixPreferencesController(NSObject):
         self.app.remove_quotes_level    = value
 
     @objc.IBAction
-    def changeEnableDisable_(self, sender):
-        if sender.state():  # enable
-            self.app.is_active = True
-        else:               # disable
-            self.app.is_active = False
-#        sender.setTitle_("QuoteFix is %s" % (self.app.is_active and "enabled" or "disabled"))
-
-    @objc.IBAction
-    def changeRemoveQuotes_(self, sender):
-        if sender.state():  # enable
-            self.set_remove_quotes_level()
-        else:               # disable
-            self.app.remove_quotes = False
-
-    @objc.IBAction
-    def changeRemoveQuotesLevel_(self, sender):
-        self.set_remove_quotes_level()
-
-    @objc.IBAction
-    def changeRemoveTrailingWhitespace_(self, sender):
-        self.app.remove_trailing_whitespace = sender.state()
-
-    @objc.IBAction
-    def changeKeepAttributionWhitespace_(self, sender):
-        self.app.keep_attribution_whitespace = sender.state()
-
-    @objc.IBAction
-    def changeUseCustomReplyAttribution_(self, sender):
-        self.app.use_custom_reply_attribution = sender.state()
-
-    @objc.IBAction
-    def changeCustomReplyAttribution_(self, sender):
-        self.app.custom_reply_attribution = sender.stringValue()
-        self.set_preview(sender)
-
-    @objc.IBAction
-    def changeCustomReplyIncreaseQuoteLevel_(self, sender):
-        self.app.custom_reply_increase_quotelevel = sender.state()
-
-    @objc.IBAction
-    def changeUseCustomForwardingAttribution_(self, sender):
-        self.app.use_custom_forwarding_attribution = sender.state()
-
-    @objc.IBAction
-    def changeCustomForwardingAttribution_(self, sender):
-        self.app.custom_forwarding_attribution = sender.stringValue()
-        self.set_preview(sender)
-
-    @objc.IBAction
-    def changeCustomForwardingIncreaseQuoteLevel_(self, sender):
-        self.app.custom_forwarding_increase_quotelevel = sender.state()
-
-    @objc.IBAction
     def changeUpdateInterval_(self, sender):
         self.app.check_update_interval = sender.selectedSegment()
 
@@ -141,30 +76,12 @@ class QuoteFixPreferencesController(NSObject):
         self.setLastUpdateCheck()
 
     @objc.IBAction
-    def changeDebugging_(self, sender):
-        self.app.is_debugging = sender.state()
-
-    @objc.IBAction
     def helpButtonPressed_(self, sender):
         # open help url
         NSWorkspace.sharedWorkspace().openURL_(NSURL.URLWithString_("http://code.google.com/p/quotefixformac/wiki/CustomAttribution"))
 
     def awakeFromNib(self):
         self.currentVersion.setStringValue_(self.app.version)
-        self.enableDisableButton.setState_(self.app.is_active)
-        self.keepAttributionWhitespace.setState_(self.app.keep_attribution_whitespace)
-        self.removeTrailingWhitespace.setState_(self.app.remove_trailing_whitespace)
-        self.debugging.setState_(self.app.is_debugging)
-        self.removeQuotes.setState_(self.app.remove_quotes)
-        self.removeQuotesLevel.setIntValue_(self.app.remove_quotes_level)
-        self.useCustomReplyAttribution.setState_(self.app.use_custom_reply_attribution)
-        self.customReplyAttribution.setStringValue_(self.app.custom_reply_attribution)
-        self.customReplyIncreaseQuoteLevel.setState_(self.app.custom_reply_increase_quotelevel)
-        self.set_preview(self.customReplyAttribution)
-        self.useCustomForwardingAttribution.setState_(self.app.use_custom_forwarding_attribution)
-        self.customForwardingAttribution.setStringValue_(self.app.custom_forwarding_attribution)
-        self.customForwardingIncreaseQuoteLevel.setState_(self.app.custom_forwarding_increase_quotelevel)
-        self.set_preview(self.customForwardingAttribution)
         self.updateInterval.setSelectedSegment_(self.app.check_update_interval)
         self.setLastUpdateCheck()
 
@@ -175,10 +92,9 @@ class QuoteFixPreferencesController(NSObject):
     # act as a delegate for text fields
     def controlTextDidChange_(self, notification):
         obj = notification.object()
-        if obj == self.customReplyAttribution:
-            self.changeCustomReplyAttribution_(obj)
-        elif obj == self.customForwardingAttribution:
-            self.changeCustomForwardingAttribution_(obj)
+        # update previews when customized attribution fields change
+        if obj.tag() in [ 31, 32 ]:
+            self.set_preview(obj)
 
     def control_textView_doCommandBySelector_(self, control, textview, selector):
         if str(selector) == 'insertNewline:':
@@ -186,6 +102,7 @@ class QuoteFixPreferencesController(NSObject):
             return True
         return False
 
+    # render a preview message for customized attributions
     def set_preview(self, sender):
         preview = CustomizedAttribution.render_with_params(
             sender.stringValue(),

@@ -13,39 +13,10 @@ class App(object):
         self.updater = updater
 
         # read user defaults (preferences)
-        self.prefs = prefs = NSUserDefaults.standardUserDefaults()
-
-        # check if quotefixing should be turned on
-        self.is_active = not prefs.bool["QuoteFixDisabled"]
-
-        # check if debugging should be turned on
-        self.is_debugging = prefs.bool["QuoteFixEnableDebugging"] and True or False
-
-        # check if 'keep whitespace after attribution' is turned on
-        self.keep_attribution_whitespace = prefs.bool["QuoteFixKeepAttributionWhitespace"] and True or False
-
-        # check if 'remove trailing whitespace' is turned on
-        self.remove_trailing_whitespace = prefs.bool["QuoteFixRemoveTrailingWhitespace"] and True or False
-
-        # check for remove-quotes
-        self.remove_quotes          = prefs.bool["QuoteFixRemoveQuotes"] and True or False
-        self.remove_quotes_level    = prefs.int["QuoteFixRemoveQuotesLevel"] or 5
-
-        # check for custom reply attribution
-        self.use_custom_reply_attribution       = prefs.bool["QuoteFixUseCustomReplyAttribution"] and True or False
-        self.custom_reply_attribution           = prefs.string["QuoteFixCustomReplyAttribution"] or ""
-        self.custom_reply_increase_quotelevel   = prefs.bool["QuoteFixCustomReplyIncreaseQuoteLevel"] and True or False
-
-        # check for custom forwarding attribution
-        self.use_custom_forwarding_attribution      = prefs.bool["QuoteFixUseCustomForwardingAttribution"] and True or False
-        self.custom_forwarding_attribution          = prefs.string["QuoteFixCustomForwardingAttribution"] or ""
-        self.custom_forwarding_increase_quotelevel  = prefs.bool["QuoteFixCustomForwardingIncreaseQuoteLevel"] and True or False
+        self.prefs = NSUserDefaults.standardUserDefaults()
 
         # check update interval
-        self.check_update_interval = prefs.int["QuoteFixCheckUpdateInterval"] or 0
-
-        # demand-load preferences
-        self.preferences_loaded = False
+        self.check_update_interval = self.prefs.int["QuoteFixCheckUpdateInterval"] or 0
 
         # check if we're running in a different Mail version as before
         self.check_version()
@@ -85,137 +56,71 @@ If you run into any problems with regards to replying or forwarding mail, consid
     # 'is plugin active?'
     @property
     def is_active(self):
-        return self._is_active
-
-    @is_active.setter
-    def is_active(self, active):
-        # store in preferences
-        self.prefs.bool["QuoteFixDisabled"] = not active
-        self._is_active = active
+        return not self.prefs.bool["QuoteFixDisabled"]
 
     # debugging
     @property
     def is_debugging(self):
-        return self._is_debugging
+        return self.prefs.bool['QuoteFixEnableDebugging']
 
-    @is_debugging.setter
-    def is_debugging(self, debugging):
-        # store in preferences
-        self.prefs.bool["QuoteFixEnableDebugging"] = debugging
-        self._is_debugging = debugging
-        # set logger level
-        logging.getLogger('').setLevel(self._is_debugging and logging.DEBUG or logging.WARNING)
-        logging.debug('debug logging active')
+#    @is_debugging.setter
+#    def is_debugging(self, debugging):
+#        # store in preferences
+#        self.prefs.bool["QuoteFixEnableDebugging"] = debugging
+#        self._is_debugging = debugging
+#        # set logger level
+#        logging.getLogger('').setLevel(self._is_debugging and logging.DEBUG or logging.WARNING)
+#        logging.debug('debug logging active')
 
     # 'keep whitespace after attribution'
     @property
     def keep_attribution_whitespace(self):
-        return self._keep_attribution_whitespace
-
-    @keep_attribution_whitespace.setter
-    def keep_attribution_whitespace(self, keep):
-        # store in preferences
-        self.prefs.bool["QuoteFixKeepAttributionWhitespace"] = keep
-        self._keep_attribution_whitespace = keep
+        return self.prefs.bool["QuoteFixKeepAttributionWhitespace"]
 
     # 'remove trailing whitespace'
     @property
     def remove_trailing_whitespace(self):
-        return self._remove_trailing_whitespace
-
-    @remove_trailing_whitespace.setter
-    def remove_trailing_whitespace(self, remove):
-        # store in preferences
-        self.prefs.bool["QuoteFixRemoveTrailingWhitespace"] = remove
-        self._remove_trailing_whitespace = remove
-
-    # 'remove quotes from level'
-    @property
-    def remove_quotes_level(self):
-        return self._remove_quotes_level
-
-    @remove_quotes_level.setter
-    def remove_quotes_level(self, level):
-        # store in preferences
-        self.prefs.int["QuoteFixRemoveQuotesLevel"] = level
-        self._remove_quotes_level = level
+        return self.prefs.bool["QuoteFixRemoveTrailingWhitespace"]
 
     # 'remove quotes from level'
     @property
     def remove_quotes(self):
-        return self._remove_quotes
+        return self.prefs.bool["QuoteFixRemoveQuotes"]
 
-    @remove_quotes.setter
-    def remove_quotes(self, remove):
-        # store in preferences
-        self.prefs.bool["QuoteFixRemoveQuotes"] = remove
-        self._remove_quotes = remove
+    # 'remove quotes from level'
+    @property
+    def remove_quotes_level(self):
+        return self.prefs.int["QuoteFixRemoveQuotesLevel"]
 
     # 'use custom reply attribution'
     @property
     def use_custom_reply_attribution(self):
-        return self.is_active and self._use_custom_reply_attribution or False
-
-    @use_custom_reply_attribution.setter
-    def use_custom_reply_attribution(self, use):
-        # store in preferences
-        self.prefs.bool["QuoteFixUseCustomReplyAttribution"] = use
-        self._use_custom_reply_attribution = use
+        return self.is_active and self.prefs.bool["QuoteFixUseCustomReplyAttribution"] or False
 
     # 'custom reply attribution'
     @property
     def custom_reply_attribution(self):
-        return self._custom_reply_attribution
-
-    @custom_reply_attribution.setter
-    def custom_reply_attribution(self, value):
-        # store in preferences
-        self.prefs.string["QuoteFixCustomReplyAttribution"] = value
-        self._custom_reply_attribution = value
+        return self.prefs.string["QuoteFixCustomReplyAttribution"] or ""
 
     # 'increase quotelevel with custom reply'
     @property
     def custom_reply_increase_quotelevel(self):
-        return self.is_active and self._custom_reply_increase_quotelevel or False
-
-    @custom_reply_increase_quotelevel.setter
-    def custom_reply_increase_quotelevel(self, value):
-        # store in preferences
-        self.prefs.string["QuoteFixCustomReplyIncreaseQuoteLevel"] = value
-        self._custom_reply_increase_quotelevel = value
+        return self.prefs.bool["QuoteFixCustomReplyIncreaseQuoteLevel"] or False
 
     # 'use custom forwarding attribution'
     @property
     def use_custom_forwarding_attribution(self):
-        return self.is_active and self._use_custom_forwarding_attribution or False
-
-    @use_custom_forwarding_attribution.setter
-    def use_custom_forwarding_attribution(self, use):
-        # store in preferences
-        self.prefs.bool["QuoteFixUseCustomForwardingAttribution"] = use
-        self._use_custom_forwarding_attribution = use
+        return self.is_active and self.prefs.bool["QuoteFixUseCustomForwardingAttribution"] or False
 
     # 'custom forwarding attribution'
     @property
     def custom_forwarding_attribution(self):
-        return self._custom_forwarding_attribution
-
-    @custom_forwarding_attribution.setter
-    def custom_forwarding_attribution(self, value):
-        # store in preferences
-        self.prefs.string["QuoteFixCustomForwardingAttribution"] = value
-        self._custom_forwarding_attribution = value
+        return self.prefs.string["QuoteFixCustomForwardingAttribution"] or ""
 
     # 'increase quotelevel with custom reply'
     @property
     def custom_forwarding_increase_quotelevel(self):
-        return self.is_active and self._custom_forwarding_increase_quotelevel or False
-
-    @custom_forwarding_increase_quotelevel.setter
-    def custom_forwarding_increase_quotelevel(self, value):
-        # store in preferences
-        self.prefs.string["QuoteFixCustomForwardingIncreaseQuoteLevel"] = value
-        self._custom_forwarding_increase_quotelevel = value
+        return self.prefs.bool["QuoteFixCustomForwardingIncreaseQuoteLevel"] or False
 
     # update-related properties
     @property

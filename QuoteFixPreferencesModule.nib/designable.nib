@@ -12,7 +12,7 @@
     </object>
     <object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
       <bool key="EncodedWithXMLCoder">YES</bool>
-      <integer value="205"/>
+      <integer value="166"/>
     </object>
     <object class="NSArray" key="IBDocument.PluginDependencies">
       <bool key="EncodedWithXMLCoder">YES</bool>
@@ -42,6 +42,21 @@
         <string key="NSClassName">QuoteFixPreferencesController</string>
       </object>
       <object class="NSUserDefaultsController" id="512304363">
+        <object class="NSMutableArray" key="NSDeclaredKeys">
+          <bool key="EncodedWithXMLCoder">YES</bool>
+          <string>QuoteFixUseCustomReplyAttribution</string>
+          <string>QuoteFixCustomReplyIncreaseQuoteLevel</string>
+          <string>QuoteFixUseCustomForwardingAttribution</string>
+          <string>QuoteFixCustomForwardingIncreaseQuoteLevel</string>
+          <string>QuoteFixCustomReplyAttribution</string>
+          <string>QuoteFixCustomForwardingAttribution</string>
+          <string>QuoteFixEnableDebugging</string>
+          <string>QuoteFixDisabled</string>
+          <string>QuoteFixKeepAttributionWhitespace</string>
+          <string>QuoteFixRemoveTrailingWhitespace</string>
+          <string>QuoteFixRemoveQuotes</string>
+          <string>QuoteFixRemoveQuotesLevel</string>
+        </object>
         <bool key="NSSharedInstance">YES</bool>
       </object>
       <object class="NSBox" id="929681542">
@@ -136,7 +151,7 @@
                   <object class="NSTabViewItem" id="686734452">
                     <string key="NSIdentifier">1</string>
                     <object class="NSView" key="NSView" id="314793740">
-                      <nil key="NSNextResponder"/>
+                      <reference key="NSNextResponder" ref="80307545"/>
                       <int key="NSvFlags">256</int>
                       <object class="NSMutableArray" key="NSSubviews">
                         <bool key="EncodedWithXMLCoder">YES</bool>
@@ -385,6 +400,7 @@
                         </object>
                       </object>
                       <string key="NSFrame">{{10, 33}, {682, 338}}</string>
+                      <reference key="NSSuperview" ref="80307545"/>
                       <string key="NSReuseIdentifierKey">_NS:561</string>
                     </object>
                     <string key="NSLabel">Quotefixing</string>
@@ -394,7 +410,7 @@
                   <object class="NSTabViewItem" id="109353579">
                     <string key="NSIdentifier">2</string>
                     <object class="NSView" key="NSView" id="487297559">
-                      <reference key="NSNextResponder" ref="80307545"/>
+                      <nil key="NSNextResponder"/>
                       <int key="NSvFlags">256</int>
                       <object class="NSMutableArray" key="NSSubviews">
                         <bool key="EncodedWithXMLCoder">YES</bool>
@@ -423,6 +439,7 @@
                                           <int key="NSvFlags">268</int>
                                           <string key="NSFrame">{{18, 36}, {632, 90}}</string>
                                           <reference key="NSSuperview" ref="922415586"/>
+                                          <int key="NSTag">31</int>
                                           <bool key="NSEnabled">YES</bool>
                                           <object class="NSTextFieldCell" key="NSCell" id="662835239">
                                             <int key="NSCellFlags">-1803944383</int>
@@ -571,6 +588,7 @@
                                           <int key="NSvFlags">268</int>
                                           <string key="NSFrame">{{18, 36}, {632, 90}}</string>
                                           <reference key="NSSuperview" ref="755341354"/>
+                                          <int key="NSTag">32</int>
                                           <bool key="NSEnabled">YES</bool>
                                           <object class="NSTextFieldCell" key="NSCell" id="955355707">
                                             <int key="NSCellFlags">-1803944383</int>
@@ -662,7 +680,6 @@
                         </object>
                       </object>
                       <string key="NSFrame">{{10, 33}, {682, 338}}</string>
-                      <reference key="NSSuperview" ref="80307545"/>
                       <string key="NSReuseIdentifierKey">_NS:571</string>
                     </object>
                     <string key="NSLabel">Customized Attributions</string>
@@ -1003,14 +1020,14 @@ ZS5nb29nbGUuY29tL3AvcXVvdGVmaXhmb3JtYWM</string>
                     <reference key="NSTabView" ref="80307545"/>
                   </object>
                 </object>
-                <reference key="NSSelectedTabViewItem" ref="109353579"/>
+                <reference key="NSSelectedTabViewItem" ref="686734452"/>
                 <reference key="NSFont" ref="819029157"/>
                 <int key="NSTvFlags">0</int>
                 <bool key="NSAllowTruncatedLabels">YES</bool>
                 <bool key="NSDrawsBackground">YES</bool>
                 <object class="NSMutableArray" key="NSSubviews">
                   <bool key="EncodedWithXMLCoder">YES</bool>
-                  <reference ref="487297559"/>
+                  <reference ref="314793740"/>
                 </object>
               </object>
             </object>
@@ -1044,166 +1061,6 @@ ZS5nb29nbGUuY29tL3AvcXVvdGVmaXhmb3JtYWM</string>
     <object class="IBObjectContainer" key="IBDocument.Objects">
       <object class="NSMutableArray" key="connectionRecords">
         <bool key="EncodedWithXMLCoder">YES</bool>
-        <object class="IBConnectionRecord">
-          <object class="IBOutletConnection" key="connection">
-            <string key="label">removeQuotes</string>
-            <reference key="source" ref="844267535"/>
-            <reference key="destination" ref="833444860"/>
-          </object>
-          <int key="connectionID">31</int>
-        </object>
-        <object class="IBConnectionRecord">
-          <object class="IBActionConnection" key="connection">
-            <string key="label">changeRemoveQuotes:</string>
-            <reference key="source" ref="844267535"/>
-            <reference key="destination" ref="833444860"/>
-          </object>
-          <int key="connectionID">34</int>
-        </object>
-        <object class="IBConnectionRecord">
-          <object class="IBOutletConnection" key="connection">
-            <string key="label">debugging</string>
-            <reference key="source" ref="844267535"/>
-            <reference key="destination" ref="567301734"/>
-          </object>
-          <int key="connectionID">42</int>
-        </object>
-        <object class="IBConnectionRecord">
-          <object class="IBActionConnection" key="connection">
-            <string key="label">changeDebugging:</string>
-            <reference key="source" ref="844267535"/>
-            <reference key="destination" ref="567301734"/>
-          </object>
-          <int key="connectionID">43</int>
-        </object>
-        <object class="IBConnectionRecord">
-          <object class="IBActionConnection" key="connection">
-            <string key="label">changeKeepAttributionWhitespace:</string>
-            <reference key="source" ref="844267535"/>
-            <reference key="destination" ref="427822748"/>
-          </object>
-          <int key="connectionID">44</int>
-        </object>
-        <object class="IBConnectionRecord">
-          <object class="IBOutletConnection" key="connection">
-            <string key="label">keepAttributionWhitespace</string>
-            <reference key="source" ref="844267535"/>
-            <reference key="destination" ref="427822748"/>
-          </object>
-          <int key="connectionID">45</int>
-        </object>
-        <object class="IBConnectionRecord">
-          <object class="IBActionConnection" key="connection">
-            <string key="label">changeRemoveQuotesLevel:</string>
-            <reference key="source" ref="844267535"/>
-            <reference key="destination" ref="263515805"/>
-          </object>
-          <int key="connectionID">46</int>
-        </object>
-        <object class="IBConnectionRecord">
-          <object class="IBOutletConnection" key="connection">
-            <string key="label">removeQuotesLevel</string>
-            <reference key="source" ref="844267535"/>
-            <reference key="destination" ref="263515805"/>
-          </object>
-          <int key="connectionID">47</int>
-        </object>
-        <object class="IBConnectionRecord">
-          <object class="IBBindingConnection" key="connection">
-            <string key="label">enabled: values.QuoteFixRemoveQuotes</string>
-            <reference key="source" ref="263515805"/>
-            <reference key="destination" ref="512304363"/>
-            <object class="NSNibBindingConnector" key="connector">
-              <reference key="NSSource" ref="263515805"/>
-              <reference key="NSDestination" ref="512304363"/>
-              <string key="NSLabel">enabled: values.QuoteFixRemoveQuotes</string>
-              <string key="NSBinding">enabled</string>
-              <string key="NSKeyPath">values.QuoteFixRemoveQuotes</string>
-              <int key="NSNibBindingConnectorVersion">2</int>
-            </object>
-          </object>
-          <int key="connectionID">57</int>
-        </object>
-        <object class="IBConnectionRecord">
-          <object class="IBActionConnection" key="connection">
-            <string key="label">changeRemoveTrailingWhitespace:</string>
-            <reference key="source" ref="844267535"/>
-            <reference key="destination" ref="345684891"/>
-          </object>
-          <int key="connectionID">63</int>
-        </object>
-        <object class="IBConnectionRecord">
-          <object class="IBOutletConnection" key="connection">
-            <string key="label">removeTrailingWhitespace</string>
-            <reference key="source" ref="844267535"/>
-            <reference key="destination" ref="345684891"/>
-          </object>
-          <int key="connectionID">64</int>
-        </object>
-        <object class="IBConnectionRecord">
-          <object class="IBOutletConnection" key="connection">
-            <string key="label">useCustomReplyAttribution</string>
-            <reference key="source" ref="844267535"/>
-            <reference key="destination" ref="677110182"/>
-          </object>
-          <int key="connectionID">85</int>
-        </object>
-        <object class="IBConnectionRecord">
-          <object class="IBOutletConnection" key="connection">
-            <string key="label">useCustomForwardingAttribution</string>
-            <reference key="source" ref="844267535"/>
-            <reference key="destination" ref="837285491"/>
-          </object>
-          <int key="connectionID">86</int>
-        </object>
-        <object class="IBConnectionRecord">
-          <object class="IBActionConnection" key="connection">
-            <string key="label">changeUseCustomReplyAttribution:</string>
-            <reference key="source" ref="844267535"/>
-            <reference key="destination" ref="677110182"/>
-          </object>
-          <int key="connectionID">89</int>
-        </object>
-        <object class="IBConnectionRecord">
-          <object class="IBActionConnection" key="connection">
-            <string key="label">changeUseCustomForwardingAttribution:</string>
-            <reference key="source" ref="844267535"/>
-            <reference key="destination" ref="837285491"/>
-          </object>
-          <int key="connectionID">91</int>
-        </object>
-        <object class="IBConnectionRecord">
-          <object class="IBOutletConnection" key="connection">
-            <string key="label">customForwardingAttribution</string>
-            <reference key="source" ref="844267535"/>
-            <reference key="destination" ref="215826771"/>
-          </object>
-          <int key="connectionID">108</int>
-        </object>
-        <object class="IBConnectionRecord">
-          <object class="IBOutletConnection" key="connection">
-            <string key="label">customReplyAttribution</string>
-            <reference key="source" ref="844267535"/>
-            <reference key="destination" ref="742030531"/>
-          </object>
-          <int key="connectionID">109</int>
-        </object>
-        <object class="IBConnectionRecord">
-          <object class="IBActionConnection" key="connection">
-            <string key="label">changeCustomReplyAttribution:</string>
-            <reference key="source" ref="844267535"/>
-            <reference key="destination" ref="742030531"/>
-          </object>
-          <int key="connectionID">110</int>
-        </object>
-        <object class="IBConnectionRecord">
-          <object class="IBActionConnection" key="connection">
-            <string key="label">changeCustomForwardingAttribution:</string>
-            <reference key="source" ref="844267535"/>
-            <reference key="destination" ref="215826771"/>
-          </object>
-          <int key="connectionID">111</int>
-        </object>
         <object class="IBConnectionRecord">
           <object class="IBActionConnection" key="connection">
             <string key="label">helpButtonPressed:</string>
@@ -1277,52 +1134,234 @@ ZS5nb29nbGUuY29tL3AvcXVvdGVmaXhmb3JtYWM</string>
           <int key="connectionID">161</int>
         </object>
         <object class="IBConnectionRecord">
-          <object class="IBOutletConnection" key="connection">
-            <string key="label">enableDisableButton</string>
-            <reference key="source" ref="844267535"/>
-            <reference key="destination" ref="29758873"/>
+          <object class="IBBindingConnection" key="connection">
+            <string key="label">value: values.QuoteFixCustomReplyIncreaseQuoteLevel</string>
+            <reference key="source" ref="55791016"/>
+            <reference key="destination" ref="512304363"/>
+            <object class="NSNibBindingConnector" key="connector">
+              <reference key="NSSource" ref="55791016"/>
+              <reference key="NSDestination" ref="512304363"/>
+              <string key="NSLabel">value: values.QuoteFixCustomReplyIncreaseQuoteLevel</string>
+              <string key="NSBinding">value</string>
+              <string key="NSKeyPath">values.QuoteFixCustomReplyIncreaseQuoteLevel</string>
+              <int key="NSNibBindingConnectorVersion">2</int>
+            </object>
           </object>
-          <int key="connectionID">178</int>
+          <int key="connectionID">216</int>
         </object>
         <object class="IBConnectionRecord">
-          <object class="IBActionConnection" key="connection">
-            <string key="label">changeEnableDisable:</string>
-            <reference key="source" ref="844267535"/>
-            <reference key="destination" ref="29758873"/>
+          <object class="IBBindingConnection" key="connection">
+            <string key="label">value: values.QuoteFixUseCustomForwardingAttribution</string>
+            <reference key="source" ref="837285491"/>
+            <reference key="destination" ref="512304363"/>
+            <object class="NSNibBindingConnector" key="connector">
+              <reference key="NSSource" ref="837285491"/>
+              <reference key="NSDestination" ref="512304363"/>
+              <string key="NSLabel">value: values.QuoteFixUseCustomForwardingAttribution</string>
+              <string key="NSBinding">value</string>
+              <string key="NSKeyPath">values.QuoteFixUseCustomForwardingAttribution</string>
+              <int key="NSNibBindingConnectorVersion">2</int>
+            </object>
           </object>
-          <int key="connectionID">179</int>
+          <int key="connectionID">218</int>
         </object>
         <object class="IBConnectionRecord">
-          <object class="IBOutletConnection" key="connection">
-            <string key="label">customForwardingIncreaseQuoteLevel</string>
-            <reference key="source" ref="844267535"/>
-            <reference key="destination" ref="237086093"/>
+          <object class="IBBindingConnection" key="connection">
+            <string key="label">value: values.QuoteFixCustomForwardingIncreaseQuoteLevel</string>
+            <reference key="source" ref="237086093"/>
+            <reference key="destination" ref="512304363"/>
+            <object class="NSNibBindingConnector" key="connector">
+              <reference key="NSSource" ref="237086093"/>
+              <reference key="NSDestination" ref="512304363"/>
+              <string key="NSLabel">value: values.QuoteFixCustomForwardingIncreaseQuoteLevel</string>
+              <string key="NSBinding">value</string>
+              <string key="NSKeyPath">values.QuoteFixCustomForwardingIncreaseQuoteLevel</string>
+              <int key="NSNibBindingConnectorVersion">2</int>
+            </object>
           </object>
-          <int key="connectionID">208</int>
+          <int key="connectionID">220</int>
         </object>
         <object class="IBConnectionRecord">
-          <object class="IBOutletConnection" key="connection">
-            <string key="label">customReplyIncreaseQuoteLevel</string>
-            <reference key="source" ref="844267535"/>
-            <reference key="destination" ref="55791016"/>
+          <object class="IBBindingConnection" key="connection">
+            <string key="label">value: values.QuoteFixUseCustomReplyAttribution</string>
+            <reference key="source" ref="677110182"/>
+            <reference key="destination" ref="512304363"/>
+            <object class="NSNibBindingConnector" key="connector">
+              <reference key="NSSource" ref="677110182"/>
+              <reference key="NSDestination" ref="512304363"/>
+              <string key="NSLabel">value: values.QuoteFixUseCustomReplyAttribution</string>
+              <string key="NSBinding">value</string>
+              <string key="NSKeyPath">values.QuoteFixUseCustomReplyAttribution</string>
+              <int key="NSNibBindingConnectorVersion">2</int>
+            </object>
           </object>
-          <int key="connectionID">209</int>
+          <int key="connectionID">222</int>
         </object>
         <object class="IBConnectionRecord">
-          <object class="IBActionConnection" key="connection">
-            <string key="label">changeCustomForwardingIncreaseQuoteLevel:</string>
-            <reference key="source" ref="844267535"/>
-            <reference key="destination" ref="237086093"/>
+          <object class="IBBindingConnection" key="connection">
+            <string key="label">value: values.QuoteFixCustomForwardingAttribution</string>
+            <reference key="source" ref="215826771"/>
+            <reference key="destination" ref="512304363"/>
+            <object class="NSNibBindingConnector" key="connector">
+              <reference key="NSSource" ref="215826771"/>
+              <reference key="NSDestination" ref="512304363"/>
+              <string key="NSLabel">value: values.QuoteFixCustomForwardingAttribution</string>
+              <string key="NSBinding">value</string>
+              <string key="NSKeyPath">values.QuoteFixCustomForwardingAttribution</string>
+              <object class="NSDictionary" key="NSOptions">
+                <string key="NS.key.0">NSContinuouslyUpdatesValue</string>
+                <boolean value="YES" key="NS.object.0"/>
+              </object>
+              <int key="NSNibBindingConnectorVersion">2</int>
+            </object>
           </object>
-          <int key="connectionID">210</int>
+          <int key="connectionID">227</int>
         </object>
         <object class="IBConnectionRecord">
-          <object class="IBActionConnection" key="connection">
-            <string key="label">changeCustomReplyIncreaseQuoteLevel:</string>
-            <reference key="source" ref="844267535"/>
-            <reference key="destination" ref="55791016"/>
+          <object class="IBBindingConnection" key="connection">
+            <string key="label">value: values.QuoteFixCustomReplyAttribution</string>
+            <reference key="source" ref="742030531"/>
+            <reference key="destination" ref="512304363"/>
+            <object class="NSNibBindingConnector" key="connector">
+              <reference key="NSSource" ref="742030531"/>
+              <reference key="NSDestination" ref="512304363"/>
+              <string key="NSLabel">value: values.QuoteFixCustomReplyAttribution</string>
+              <string key="NSBinding">value</string>
+              <string key="NSKeyPath">values.QuoteFixCustomReplyAttribution</string>
+              <object class="NSDictionary" key="NSOptions">
+                <string key="NS.key.0">NSContinuouslyUpdatesValue</string>
+                <boolean value="YES" key="NS.object.0"/>
+              </object>
+              <int key="NSNibBindingConnectorVersion">2</int>
+            </object>
           </object>
-          <int key="connectionID">211</int>
+          <int key="connectionID">228</int>
+        </object>
+        <object class="IBConnectionRecord">
+          <object class="IBBindingConnection" key="connection">
+            <string key="label">value: values.QuoteFixEnableDebugging</string>
+            <reference key="source" ref="567301734"/>
+            <reference key="destination" ref="512304363"/>
+            <object class="NSNibBindingConnector" key="connector">
+              <reference key="NSSource" ref="567301734"/>
+              <reference key="NSDestination" ref="512304363"/>
+              <string key="NSLabel">value: values.QuoteFixEnableDebugging</string>
+              <string key="NSBinding">value</string>
+              <string key="NSKeyPath">values.QuoteFixEnableDebugging</string>
+              <object class="NSDictionary" key="NSOptions">
+                <bool key="EncodedWithXMLCoder">YES</bool>
+                <object class="NSArray" key="dict.sortedKeys">
+                  <bool key="EncodedWithXMLCoder">YES</bool>
+                  <string>NSNotApplicablePlaceholder</string>
+                  <string>NSNullPlaceholder</string>
+                </object>
+                <object class="NSMutableArray" key="dict.values">
+                  <bool key="EncodedWithXMLCoder">YES</bool>
+                  <integer value="0"/>
+                  <integer value="0"/>
+                </object>
+              </object>
+              <int key="NSNibBindingConnectorVersion">2</int>
+            </object>
+          </object>
+          <int key="connectionID">232</int>
+        </object>
+        <object class="IBConnectionRecord">
+          <object class="IBBindingConnection" key="connection">
+            <string key="label">value: values.QuoteFixKeepAttributionWhitespace</string>
+            <reference key="source" ref="427822748"/>
+            <reference key="destination" ref="512304363"/>
+            <object class="NSNibBindingConnector" key="connector">
+              <reference key="NSSource" ref="427822748"/>
+              <reference key="NSDestination" ref="512304363"/>
+              <string key="NSLabel">value: values.QuoteFixKeepAttributionWhitespace</string>
+              <string key="NSBinding">value</string>
+              <string key="NSKeyPath">values.QuoteFixKeepAttributionWhitespace</string>
+              <int key="NSNibBindingConnectorVersion">2</int>
+            </object>
+          </object>
+          <int key="connectionID">236</int>
+        </object>
+        <object class="IBConnectionRecord">
+          <object class="IBBindingConnection" key="connection">
+            <string key="label">value: values.QuoteFixRemoveTrailingWhitespace</string>
+            <reference key="source" ref="345684891"/>
+            <reference key="destination" ref="512304363"/>
+            <object class="NSNibBindingConnector" key="connector">
+              <reference key="NSSource" ref="345684891"/>
+              <reference key="NSDestination" ref="512304363"/>
+              <string key="NSLabel">value: values.QuoteFixRemoveTrailingWhitespace</string>
+              <string key="NSBinding">value</string>
+              <string key="NSKeyPath">values.QuoteFixRemoveTrailingWhitespace</string>
+              <int key="NSNibBindingConnectorVersion">2</int>
+            </object>
+          </object>
+          <int key="connectionID">238</int>
+        </object>
+        <object class="IBConnectionRecord">
+          <object class="IBBindingConnection" key="connection">
+            <string key="label">value: values.QuoteFixRemoveQuotes</string>
+            <reference key="source" ref="833444860"/>
+            <reference key="destination" ref="512304363"/>
+            <object class="NSNibBindingConnector" key="connector">
+              <reference key="NSSource" ref="833444860"/>
+              <reference key="NSDestination" ref="512304363"/>
+              <string key="NSLabel">value: values.QuoteFixRemoveQuotes</string>
+              <string key="NSBinding">value</string>
+              <string key="NSKeyPath">values.QuoteFixRemoveQuotes</string>
+              <int key="NSNibBindingConnectorVersion">2</int>
+            </object>
+          </object>
+          <int key="connectionID">240</int>
+        </object>
+        <object class="IBConnectionRecord">
+          <object class="IBBindingConnection" key="connection">
+            <string key="label">value: values.QuoteFixRemoveQuotesLevel</string>
+            <reference key="source" ref="263515805"/>
+            <reference key="destination" ref="512304363"/>
+            <object class="NSNibBindingConnector" key="connector">
+              <reference key="NSSource" ref="263515805"/>
+              <reference key="NSDestination" ref="512304363"/>
+              <string key="NSLabel">value: values.QuoteFixRemoveQuotesLevel</string>
+              <string key="NSBinding">value</string>
+              <string key="NSKeyPath">values.QuoteFixRemoveQuotesLevel</string>
+              <object class="NSDictionary" key="NSOptions">
+                <bool key="EncodedWithXMLCoder">YES</bool>
+                <object class="NSArray" key="dict.sortedKeys">
+                  <bool key="EncodedWithXMLCoder">YES</bool>
+                  <string>NSNotApplicablePlaceholder</string>
+                  <string>NSNullPlaceholder</string>
+                </object>
+                <object class="NSMutableArray" key="dict.values">
+                  <bool key="EncodedWithXMLCoder">YES</bool>
+                  <string>5</string>
+                  <string>5</string>
+                </object>
+              </object>
+              <int key="NSNibBindingConnectorVersion">2</int>
+            </object>
+          </object>
+          <int key="connectionID">244</int>
+        </object>
+        <object class="IBConnectionRecord">
+          <object class="IBBindingConnection" key="connection">
+            <string key="label">value: values.QuoteFixDisabled</string>
+            <reference key="source" ref="29758873"/>
+            <reference key="destination" ref="512304363"/>
+            <object class="NSNibBindingConnector" key="connector">
+              <reference key="NSSource" ref="29758873"/>
+              <reference key="NSDestination" ref="512304363"/>
+              <string key="NSLabel">value: values.QuoteFixDisabled</string>
+              <string key="NSBinding">value</string>
+              <string key="NSKeyPath">values.QuoteFixDisabled</string>
+              <object class="NSDictionary" key="NSOptions">
+                <string key="NS.key.0">NSValueTransformerName</string>
+                <string key="NS.object.0">NSNegateBoolean</string>
+              </object>
+              <int key="NSNibBindingConnectorVersion">2</int>
+            </object>
+          </object>
+          <int key="connectionID">245</int>
         </object>
       </object>
       <object class="IBMutableOrderedSet" key="objectRecords">
@@ -1759,9 +1798,9 @@ ZS5nb29nbGUuY29tL3AvcXVvdGVmaXhmb3JtYWM</string>
             <object class="NSMutableArray" key="children">
               <bool key="EncodedWithXMLCoder">YES</bool>
               <reference ref="742030531"/>
-              <reference ref="55791016"/>
               <reference ref="677110182"/>
               <reference ref="313054074"/>
+              <reference ref="55791016"/>
             </object>
             <reference key="parent" ref="667211241"/>
           </object>
@@ -1814,8 +1853,8 @@ ZS5nb29nbGUuY29tL3AvcXVvdGVmaXhmb3JtYWM</string>
             <object class="NSMutableArray" key="children">
               <bool key="EncodedWithXMLCoder">YES</bool>
               <reference ref="837285491"/>
-              <reference ref="215826771"/>
               <reference ref="237086093"/>
+              <reference ref="215826771"/>
             </object>
             <reference key="parent" ref="667211241"/>
           </object>
@@ -2109,7 +2148,7 @@ ZS5nb29nbGUuY29tL3AvcXVvdGVmaXhmb3JtYWM</string>
           </object>
           <string>com.apple.InterfaceBuilder.CocoaPlugin</string>
           <object class="NSAffineTransform">
-            <bytes key="NSTransformStruct">P4AAAL+AAABDuQAAw4KAAA</bytes>
+            <bytes key="NSTransformStruct">P4AAAL+AAABBcAAAweAAAA</bytes>
           </object>
           <object class="NSMutableDictionary">
             <bool key="EncodedWithXMLCoder">YES</bool>
@@ -2189,7 +2228,7 @@ ZS5nb29nbGUuY29tL3AvcXVvdGVmaXhmb3JtYWM</string>
           <string>com.apple.InterfaceBuilder.CocoaPlugin</string>
           <string>com.apple.InterfaceBuilder.CocoaPlugin</string>
           <object class="NSAffineTransform">
-            <bytes key="NSTransformStruct">P4AAAL+AAABBkAAAw2AAAA</bytes>
+            <bytes key="NSTransformStruct">P4AAAL+AAABBkAAAwvgAAA</bytes>
           </object>
           <string>com.apple.InterfaceBuilder.CocoaPlugin</string>
         </object>
@@ -2210,7 +2249,7 @@ ZS5nb29nbGUuY29tL3AvcXVvdGVmaXhmb3JtYWM</string>
         </object>
       </object>
       <nil key="sourceID"/>
-      <int key="maxID">211</int>
+      <int key="maxID">245</int>
     </object>
     <object class="IBClassDescriber" key="IBDocument.Classes">
       <object class="NSMutableArray" key="referencedPartialClassDescriptionsV3.1+">
