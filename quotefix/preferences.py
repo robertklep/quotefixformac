@@ -5,7 +5,7 @@ from    quotefix.utils          import swizzle
 from    quotefix.attribution    import CustomizedAttribution
 from    quotefix.preview        import preview_message
 from    datetime                import datetime, timedelta
-import  objc, random
+import  objc, random, logging
 
 class QuoteFixPreferencesModule(NSPreferencesModule):
 
@@ -56,15 +56,12 @@ class QuoteFixPreferencesController(NSObject):
         if prefs:
             QuoteFixPreferences.injectPreferencesModule(prefs)
 
-    def set_remove_quotes_level(self):
-        value = self.removeQuotesLevel.intValue()
-        if value < 1:
-            self.removeQuotesLevel.setIntValue_(self.app.remove_quotes_level)
-            NSRunAlertPanel("Invalid level", "Please enter a level of 1 or higher.", None, None, None)
-            return
-        self.removeQuotes.setState_(1)
-        self.app.remove_quotes          = True
-        self.app.remove_quotes_level    = value
+    @objc.IBAction
+    def changeDebugging_(self, sender):
+        is_debugging = sender.state()
+        logging.getLogger('').setLevel(is_debugging and logging.DEBUG or logging.WARNING)
+        if is_debugging:
+            logging.debug('debug logging active')
 
     @objc.IBAction
     def changeUpdateInterval_(self, sender):
@@ -92,8 +89,9 @@ class QuoteFixPreferencesController(NSObject):
     # act as a delegate for text fields
     def controlTextDidChange_(self, notification):
         obj = notification.object()
+        tag = obj.tag()
         # update previews when customized attribution fields change
-        if obj.tag() in [ 31, 32 ]:
+        if tag in [ 31, 32 ]:
             self.set_preview(obj)
 
     def control_textView_doCommandBySelector_(self, control, textview, selector):

@@ -44,18 +44,7 @@
       <object class="NSUserDefaultsController" id="512304363">
         <object class="NSMutableArray" key="NSDeclaredKeys">
           <bool key="EncodedWithXMLCoder">YES</bool>
-          <string>QuoteFixUseCustomReplyAttribution</string>
-          <string>QuoteFixCustomReplyIncreaseQuoteLevel</string>
-          <string>QuoteFixUseCustomForwardingAttribution</string>
-          <string>QuoteFixCustomForwardingIncreaseQuoteLevel</string>
-          <string>QuoteFixCustomReplyAttribution</string>
-          <string>QuoteFixCustomForwardingAttribution</string>
-          <string>QuoteFixEnableDebugging</string>
-          <string>QuoteFixDisabled</string>
-          <string>QuoteFixKeepAttributionWhitespace</string>
-          <string>QuoteFixRemoveTrailingWhitespace</string>
-          <string>QuoteFixRemoveQuotes</string>
-          <string>QuoteFixRemoveQuotesLevel</string>
+          <string>QuoteFixSelectedPreferenceTab</string>
         </object>
         <bool key="NSSharedInstance">YES</bool>
       </object>
@@ -151,7 +140,7 @@
                   <object class="NSTabViewItem" id="686734452">
                     <string key="NSIdentifier">1</string>
                     <object class="NSView" key="NSView" id="314793740">
-                      <reference key="NSNextResponder" ref="80307545"/>
+                      <nil key="NSNextResponder"/>
                       <int key="NSvFlags">256</int>
                       <object class="NSMutableArray" key="NSSubviews">
                         <bool key="EncodedWithXMLCoder">YES</bool>
@@ -238,11 +227,12 @@
                                   <reference key="NSSuperview" ref="158350890"/>
                                   <bool key="NSEnabled">YES</bool>
                                   <object class="NSComboBoxCell" key="NSCell" id="35722950">
-                                    <int key="NSCellFlags">343014976</int>
+                                    <int key="NSCellFlags">72482368</int>
                                     <int key="NSCellFlags2">272630784</int>
                                     <string key="NSContents"/>
                                     <reference key="NSSupport" ref="819029157"/>
                                     <reference key="NSControlView" ref="263515805"/>
+                                    <int key="NSTag">33</int>
                                     <bool key="NSDrawsBackground">YES</bool>
                                     <object class="NSColor" key="NSBackgroundColor" id="71118749">
                                       <int key="NSColorSpace">6</int>
@@ -266,30 +256,30 @@
                                     <bool key="NSHasVerticalScroller">YES</bool>
                                     <object class="NSMutableArray" key="NSPopUpListData">
                                       <bool key="EncodedWithXMLCoder">YES</bool>
-                                      <string>1</string>
                                       <string>2</string>
                                       <string>3</string>
                                       <string>4</string>
                                       <string>5</string>
                                       <string>6</string>
                                       <string>7</string>
-                                      <string>7</string>
                                       <string>8</string>
+                                      <string>9</string>
                                       <string>10</string>
                                     </object>
                                     <reference key="NSDelegate" ref="263515805"/>
                                     <object class="NSComboTableView" key="NSTableView" id="107341255">
                                       <reference key="NSNextResponder"/>
                                       <int key="NSvFlags">274</int>
-                                      <string key="NSFrameSize">{13, 210}</string>
+                                      <string key="NSFrameSize">{25, 210}</string>
                                       <reference key="NSSuperview"/>
                                       <reference key="NSWindow"/>
+                                      <reference key="NSNextKeyView"/>
                                       <bool key="NSEnabled">YES</bool>
                                       <object class="NSMutableArray" key="NSTableColumns">
                                         <bool key="EncodedWithXMLCoder">YES</bool>
                                         <object class="NSTableColumn">
                                           <integer value="0" key="NSIdentifier"/>
-                                          <double key="NSWidth">10</double>
+                                          <double key="NSWidth">22</double>
                                           <double key="NSMinWidth">10</double>
                                           <double key="NSMaxWidth">1000</double>
                                           <object class="NSTableHeaderCell" key="NSHeaderCell">
@@ -310,6 +300,7 @@
                                           <object class="NSTextFieldCell" key="NSDataCell">
                                             <int key="NSCellFlags">338820672</int>
                                             <int key="NSCellFlags2">1024</int>
+                                            <string key="NSContents">7</string>
                                             <reference key="NSSupport" ref="819029157"/>
                                             <reference key="NSControlView" ref="107341255"/>
                                             <bool key="NSDrawsBackground">YES</bool>
@@ -340,7 +331,7 @@
                                       </object>
                                       <double key="NSRowHeight">19</double>
                                       <string key="NSAction">tableViewAction:</string>
-                                      <int key="NSTvFlags">-765427712</int>
+                                      <int key="NSTvFlags">-767524864</int>
                                       <reference key="NSDelegate" ref="35722950"/>
                                       <reference key="NSDataSource" ref="35722950"/>
                                       <reference key="NSTarget" ref="35722950"/>
@@ -400,7 +391,6 @@
                         </object>
                       </object>
                       <string key="NSFrame">{{10, 33}, {682, 338}}</string>
-                      <reference key="NSSuperview" ref="80307545"/>
                       <string key="NSReuseIdentifierKey">_NS:561</string>
                     </object>
                     <string key="NSLabel">Quotefixing</string>
@@ -689,7 +679,7 @@
                   <object class="NSTabViewItem" id="552387052">
                     <string key="NSIdentifier">Item 2</string>
                     <object class="NSView" key="NSView" id="397552279">
-                      <nil key="NSNextResponder"/>
+                      <reference key="NSNextResponder" ref="80307545"/>
                       <int key="NSvFlags">256</int>
                       <object class="NSMutableArray" key="NSSubviews">
                         <bool key="EncodedWithXMLCoder">YES</bool>
@@ -708,6 +698,7 @@
                                   <int key="NSvFlags">268</int>
                                   <string key="NSFrame">{{16, 12}, {92, 18}}</string>
                                   <reference key="NSSuperview" ref="551550875"/>
+                                  <int key="NSTag">34</int>
                                   <bool key="NSEnabled">YES</bool>
                                   <object class="NSButtonCell" key="NSCell" id="454632623">
                                     <int key="NSCellFlags">67239424</int>
@@ -752,6 +743,7 @@
                         </object>
                       </object>
                       <string key="NSFrame">{{10, 33}, {682, 338}}</string>
+                      <reference key="NSSuperview" ref="80307545"/>
                     </object>
                     <string key="NSLabel">Advanced</string>
                     <reference key="NSColor" ref="600795121"/>
@@ -1020,14 +1012,14 @@ ZS5nb29nbGUuY29tL3AvcXVvdGVmaXhmb3JtYWM</string>
                     <reference key="NSTabView" ref="80307545"/>
                   </object>
                 </object>
-                <reference key="NSSelectedTabViewItem" ref="686734452"/>
+                <reference key="NSSelectedTabViewItem" ref="552387052"/>
                 <reference key="NSFont" ref="819029157"/>
                 <int key="NSTvFlags">0</int>
                 <bool key="NSAllowTruncatedLabels">YES</bool>
                 <bool key="NSDrawsBackground">YES</bool>
                 <object class="NSMutableArray" key="NSSubviews">
                   <bool key="EncodedWithXMLCoder">YES</bool>
-                  <reference ref="314793740"/>
+                  <reference ref="397552279"/>
                 </object>
               </object>
             </object>
@@ -1362,6 +1354,30 @@ ZS5nb29nbGUuY29tL3AvcXVvdGVmaXhmb3JtYWM</string>
             </object>
           </object>
           <int key="connectionID">245</int>
+        </object>
+        <object class="IBConnectionRecord">
+          <object class="IBActionConnection" key="connection">
+            <string key="label">changeDebugging:</string>
+            <reference key="source" ref="844267535"/>
+            <reference key="destination" ref="567301734"/>
+          </object>
+          <int key="connectionID">246</int>
+        </object>
+        <object class="IBConnectionRecord">
+          <object class="IBBindingConnection" key="connection">
+            <string key="label">selectedIndex: values.QuoteFixSelectedPreferenceTab</string>
+            <reference key="source" ref="80307545"/>
+            <reference key="destination" ref="512304363"/>
+            <object class="NSNibBindingConnector" key="connector">
+              <reference key="NSSource" ref="80307545"/>
+              <reference key="NSDestination" ref="512304363"/>
+              <string key="NSLabel">selectedIndex: values.QuoteFixSelectedPreferenceTab</string>
+              <string key="NSBinding">selectedIndex</string>
+              <string key="NSKeyPath">values.QuoteFixSelectedPreferenceTab</string>
+              <int key="NSNibBindingConnectorVersion">2</int>
+            </object>
+          </object>
+          <int key="connectionID">248</int>
         </object>
       </object>
       <object class="IBMutableOrderedSet" key="objectRecords">
@@ -2249,7 +2265,7 @@ ZS5nb29nbGUuY29tL3AvcXVvdGVmaXhmb3JtYWM</string>
         </object>
       </object>
       <nil key="sourceID"/>
-      <int key="maxID">245</int>
+      <int key="maxID">248</int>
     </object>
     <object class="IBClassDescriber" key="IBDocument.Classes">
       <object class="NSMutableArray" key="referencedPartialClassDescriptionsV3.1+">
@@ -2261,35 +2277,13 @@ ZS5nb29nbGUuY29tL3AvcXVvdGVmaXhmb3JtYWM</string>
             <bool key="EncodedWithXMLCoder">YES</bool>
             <object class="NSArray" key="dict.sortedKeys">
               <bool key="EncodedWithXMLCoder">YES</bool>
-              <string>changeCustomForwardingAttribution:</string>
-              <string>changeCustomForwardingIncreaseQuoteLevel:</string>
-              <string>changeCustomReplyAttribution:</string>
-              <string>changeCustomReplyIncreaseQuoteLevel:</string>
               <string>changeDebugging:</string>
-              <string>changeEnableDisable:</string>
-              <string>changeKeepAttributionWhitespace:</string>
-              <string>changeRemoveQuotes:</string>
-              <string>changeRemoveQuotesLevel:</string>
-              <string>changeRemoveTrailingWhitespace:</string>
               <string>changeUpdateInterval:</string>
-              <string>changeUseCustomForwardingAttribution:</string>
-              <string>changeUseCustomReplyAttribution:</string>
               <string>helpButtonPressed:</string>
               <string>performUpdateCheckNow:</string>
             </object>
             <object class="NSMutableArray" key="dict.values">
               <bool key="EncodedWithXMLCoder">YES</bool>
-              <string>id</string>
-              <string>id</string>
-              <string>id</string>
-              <string>id</string>
-              <string>id</string>
-              <string>id</string>
-              <string>id</string>
-              <string>id</string>
-              <string>id</string>
-              <string>id</string>
-              <string>id</string>
               <string>id</string>
               <string>id</string>
               <string>id</string>
@@ -2300,74 +2294,19 @@ ZS5nb29nbGUuY29tL3AvcXVvdGVmaXhmb3JtYWM</string>
             <bool key="EncodedWithXMLCoder">YES</bool>
             <object class="NSArray" key="dict.sortedKeys">
               <bool key="EncodedWithXMLCoder">YES</bool>
-              <string>changeCustomForwardingAttribution:</string>
-              <string>changeCustomForwardingIncreaseQuoteLevel:</string>
-              <string>changeCustomReplyAttribution:</string>
-              <string>changeCustomReplyIncreaseQuoteLevel:</string>
               <string>changeDebugging:</string>
-              <string>changeEnableDisable:</string>
-              <string>changeKeepAttributionWhitespace:</string>
-              <string>changeRemoveQuotes:</string>
-              <string>changeRemoveQuotesLevel:</string>
-              <string>changeRemoveTrailingWhitespace:</string>
               <string>changeUpdateInterval:</string>
-              <string>changeUseCustomForwardingAttribution:</string>
-              <string>changeUseCustomReplyAttribution:</string>
               <string>helpButtonPressed:</string>
               <string>performUpdateCheckNow:</string>
             </object>
             <object class="NSMutableArray" key="dict.values">
               <bool key="EncodedWithXMLCoder">YES</bool>
               <object class="IBActionInfo">
-                <string key="name">changeCustomForwardingAttribution:</string>
-                <string key="candidateClassName">id</string>
-              </object>
-              <object class="IBActionInfo">
-                <string key="name">changeCustomForwardingIncreaseQuoteLevel:</string>
-                <string key="candidateClassName">id</string>
-              </object>
-              <object class="IBActionInfo">
-                <string key="name">changeCustomReplyAttribution:</string>
-                <string key="candidateClassName">id</string>
-              </object>
-              <object class="IBActionInfo">
-                <string key="name">changeCustomReplyIncreaseQuoteLevel:</string>
-                <string key="candidateClassName">id</string>
-              </object>
-              <object class="IBActionInfo">
                 <string key="name">changeDebugging:</string>
                 <string key="candidateClassName">id</string>
               </object>
               <object class="IBActionInfo">
-                <string key="name">changeEnableDisable:</string>
-                <string key="candidateClassName">id</string>
-              </object>
-              <object class="IBActionInfo">
-                <string key="name">changeKeepAttributionWhitespace:</string>
-                <string key="candidateClassName">id</string>
-              </object>
-              <object class="IBActionInfo">
-                <string key="name">changeRemoveQuotes:</string>
-                <string key="candidateClassName">id</string>
-              </object>
-              <object class="IBActionInfo">
-                <string key="name">changeRemoveQuotesLevel:</string>
-                <string key="candidateClassName">id</string>
-              </object>
-              <object class="IBActionInfo">
-                <string key="name">changeRemoveTrailingWhitespace:</string>
-                <string key="candidateClassName">id</string>
-              </object>
-              <object class="IBActionInfo">
                 <string key="name">changeUpdateInterval:</string>
-                <string key="candidateClassName">id</string>
-              </object>
-              <object class="IBActionInfo">
-                <string key="name">changeUseCustomForwardingAttribution:</string>
-                <string key="candidateClassName">id</string>
-              </object>
-              <object class="IBActionInfo">
-                <string key="name">changeUseCustomReplyAttribution:</string>
                 <string key="candidateClassName">id</string>
               </object>
               <object class="IBActionInfo">
@@ -2386,36 +2325,12 @@ ZS5nb29nbGUuY29tL3AvcXVvdGVmaXhmb3JtYWM</string>
               <bool key="EncodedWithXMLCoder">YES</bool>
               <string>checkUpdateButton</string>
               <string>currentVersion</string>
-              <string>customForwardingAttribution</string>
-              <string>customForwardingIncreaseQuoteLevel</string>
-              <string>customReplyAttribution</string>
-              <string>customReplyIncreaseQuoteLevel</string>
-              <string>debugging</string>
-              <string>enableDisableButton</string>
               <string>helpButton</string>
-              <string>keepAttributionWhitespace</string>
               <string>lastUpdateCheck</string>
-              <string>removeQuotes</string>
-              <string>removeQuotesLevel</string>
-              <string>removeTrailingWhitespace</string>
               <string>updateInterval</string>
-              <string>useCustomForwardingAttribution</string>
-              <string>useCustomReplyAttribution</string>
             </object>
             <object class="NSMutableArray" key="dict.values">
               <bool key="EncodedWithXMLCoder">YES</bool>
-              <string>id</string>
-              <string>id</string>
-              <string>id</string>
-              <string>id</string>
-              <string>id</string>
-              <string>id</string>
-              <string>id</string>
-              <string>id</string>
-              <string>id</string>
-              <string>id</string>
-              <string>id</string>
-              <string>id</string>
               <string>id</string>
               <string>id</string>
               <string>id</string>
@@ -2429,21 +2344,9 @@ ZS5nb29nbGUuY29tL3AvcXVvdGVmaXhmb3JtYWM</string>
               <bool key="EncodedWithXMLCoder">YES</bool>
               <string>checkUpdateButton</string>
               <string>currentVersion</string>
-              <string>customForwardingAttribution</string>
-              <string>customForwardingIncreaseQuoteLevel</string>
-              <string>customReplyAttribution</string>
-              <string>customReplyIncreaseQuoteLevel</string>
-              <string>debugging</string>
-              <string>enableDisableButton</string>
               <string>helpButton</string>
-              <string>keepAttributionWhitespace</string>
               <string>lastUpdateCheck</string>
-              <string>removeQuotes</string>
-              <string>removeQuotesLevel</string>
-              <string>removeTrailingWhitespace</string>
               <string>updateInterval</string>
-              <string>useCustomForwardingAttribution</string>
-              <string>useCustomReplyAttribution</string>
             </object>
             <object class="NSMutableArray" key="dict.values">
               <bool key="EncodedWithXMLCoder">YES</bool>
@@ -2456,35 +2359,7 @@ ZS5nb29nbGUuY29tL3AvcXVvdGVmaXhmb3JtYWM</string>
                 <string key="candidateClassName">id</string>
               </object>
               <object class="IBToOneOutletInfo">
-                <string key="name">customForwardingAttribution</string>
-                <string key="candidateClassName">id</string>
-              </object>
-              <object class="IBToOneOutletInfo">
-                <string key="name">customForwardingIncreaseQuoteLevel</string>
-                <string key="candidateClassName">id</string>
-              </object>
-              <object class="IBToOneOutletInfo">
-                <string key="name">customReplyAttribution</string>
-                <string key="candidateClassName">id</string>
-              </object>
-              <object class="IBToOneOutletInfo">
-                <string key="name">customReplyIncreaseQuoteLevel</string>
-                <string key="candidateClassName">id</string>
-              </object>
-              <object class="IBToOneOutletInfo">
-                <string key="name">debugging</string>
-                <string key="candidateClassName">id</string>
-              </object>
-              <object class="IBToOneOutletInfo">
-                <string key="name">enableDisableButton</string>
-                <string key="candidateClassName">id</string>
-              </object>
-              <object class="IBToOneOutletInfo">
                 <string key="name">helpButton</string>
-                <string key="candidateClassName">id</string>
-              </object>
-              <object class="IBToOneOutletInfo">
-                <string key="name">keepAttributionWhitespace</string>
                 <string key="candidateClassName">id</string>
               </object>
               <object class="IBToOneOutletInfo">
@@ -2492,27 +2367,7 @@ ZS5nb29nbGUuY29tL3AvcXVvdGVmaXhmb3JtYWM</string>
                 <string key="candidateClassName">id</string>
               </object>
               <object class="IBToOneOutletInfo">
-                <string key="name">removeQuotes</string>
-                <string key="candidateClassName">id</string>
-              </object>
-              <object class="IBToOneOutletInfo">
-                <string key="name">removeQuotesLevel</string>
-                <string key="candidateClassName">id</string>
-              </object>
-              <object class="IBToOneOutletInfo">
-                <string key="name">removeTrailingWhitespace</string>
-                <string key="candidateClassName">id</string>
-              </object>
-              <object class="IBToOneOutletInfo">
                 <string key="name">updateInterval</string>
-                <string key="candidateClassName">id</string>
-              </object>
-              <object class="IBToOneOutletInfo">
-                <string key="name">useCustomForwardingAttribution</string>
-                <string key="candidateClassName">id</string>
-              </object>
-              <object class="IBToOneOutletInfo">
-                <string key="name">useCustomReplyAttribution</string>
                 <string key="candidateClassName">id</string>
               </object>
             </object>

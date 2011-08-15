@@ -15,6 +15,11 @@ class App(object):
         # read user defaults (preferences)
         self.prefs = NSUserDefaults.standardUserDefaults()
 
+        # set log level
+        logging.getLogger('').setLevel(self.is_debugging and logging.DEBUG or logging.WARNING)
+        if self.is_debugging:
+            logging.debug('debug logging active')
+
         # check update interval
         self.check_update_interval = self.prefs.int["QuoteFixCheckUpdateInterval"] or 0
 
@@ -62,15 +67,6 @@ If you run into any problems with regards to replying or forwarding mail, consid
     @property
     def is_debugging(self):
         return self.prefs.bool['QuoteFixEnableDebugging']
-
-#    @is_debugging.setter
-#    def is_debugging(self, debugging):
-#        # store in preferences
-#        self.prefs.bool["QuoteFixEnableDebugging"] = debugging
-#        self._is_debugging = debugging
-#        # set logger level
-#        logging.getLogger('').setLevel(self._is_debugging and logging.DEBUG or logging.WARNING)
-#        logging.debug('debug logging active')
 
     # 'keep whitespace after attribution'
     @property
