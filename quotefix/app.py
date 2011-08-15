@@ -32,12 +32,14 @@ class App(object):
         self.remove_quotes_level    = prefs.int["QuoteFixRemoveQuotesLevel"] or 5
 
         # check for custom reply attribution
-        self.use_custom_reply_attribution   = prefs.bool["QuoteFixUseCustomReplyAttribution"] and True or False
-        self.custom_reply_attribution       = prefs.string["QuoteFixCustomReplyAttribution"] or ""
+        self.use_custom_reply_attribution       = prefs.bool["QuoteFixUseCustomReplyAttribution"] and True or False
+        self.custom_reply_attribution           = prefs.string["QuoteFixCustomReplyAttribution"] or ""
+        self.custom_reply_increase_quotelevel   = prefs.bool["QuoteFixCustomReplyIncreaseQuoteLevel"] and True or False
 
         # check for custom forwarding attribution
-        self.use_custom_forwarding_attribution  = prefs.bool["QuoteFixUseCustomForwardingAttribution"] and True or False
-        self.custom_forwarding_attribution      = prefs.string["QuoteFixCustomForwardingAttribution"] or ""
+        self.use_custom_forwarding_attribution      = prefs.bool["QuoteFixUseCustomForwardingAttribution"] and True or False
+        self.custom_forwarding_attribution          = prefs.string["QuoteFixCustomForwardingAttribution"] or ""
+        self.custom_forwarding_increase_quotelevel  = prefs.bool["QuoteFixCustomForwardingIncreaseQuoteLevel"] and True or False
 
         # check update interval
         self.check_update_interval = prefs.int["QuoteFixCheckUpdateInterval"] or 0
@@ -171,6 +173,17 @@ If you run into any problems with regards to replying or forwarding mail, consid
         self.prefs.string["QuoteFixCustomReplyAttribution"] = value
         self._custom_reply_attribution = value
 
+    # 'increase quotelevel with custom reply'
+    @property
+    def custom_reply_increase_quotelevel(self):
+        return self.is_active and self._custom_reply_increase_quotelevel or False
+
+    @custom_reply_increase_quotelevel.setter
+    def custom_reply_increase_quotelevel(self, value):
+        # store in preferences
+        self.prefs.string["QuoteFixCustomReplyIncreaseQuoteLevel"] = value
+        self._custom_reply_increase_quotelevel = value
+
     # 'use custom forwarding attribution'
     @property
     def use_custom_forwarding_attribution(self):
@@ -192,6 +205,17 @@ If you run into any problems with regards to replying or forwarding mail, consid
         # store in preferences
         self.prefs.string["QuoteFixCustomForwardingAttribution"] = value
         self._custom_forwarding_attribution = value
+
+    # 'increase quotelevel with custom reply'
+    @property
+    def custom_forwarding_increase_quotelevel(self):
+        return self.is_active and self._custom_forwarding_increase_quotelevel or False
+
+    @custom_forwarding_increase_quotelevel.setter
+    def custom_forwarding_increase_quotelevel(self, value):
+        # store in preferences
+        self.prefs.string["QuoteFixCustomForwardingIncreaseQuoteLevel"] = value
+        self._custom_forwarding_increase_quotelevel = value
 
     # update-related properties
     @property

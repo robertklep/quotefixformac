@@ -10,6 +10,10 @@ class CustomizedAttribution:
     """ Provide customized reply/forward attributions """
 
     @classmethod
+    def registerQuoteFixApplication(cls, app):
+        cls.app = app
+
+    @classmethod
     def customize_reply(cls, app, dom, reply, inreplyto):
         return cls.customize_attribution(
             # grab the original attribution string from the
@@ -70,10 +74,19 @@ class CustomizedAttribution:
             # replace old attribution with new, depending on node type
             if child.nodeType() == 1:
                 child.setInnerHTML_(attribution)
+                copynode = child
             else:
                 newnode = dom.createElement_("span")
                 newnode.setInnerHTML_(attribution)
                 node.replaceChild_oldChild_(newnode, child)
+                copynode = newnode
+
+            # increase quote level of attribution?
+            if (is_forward and cls.app.custom_forwarding_increase_quotelevel) or (not is_forward and cls.app.custom_reply_increase_quotelevel):
+                copy = copynode.cloneNode_(True)
+                copynode.parentNode().removeChild_(copynode)
+                blockquote = root.firstDescendantBlockQuote()
+                blockquote.insertBefore_refChild_(copy, blockquote.childNodes().item_(0))
 
             # done
             return True

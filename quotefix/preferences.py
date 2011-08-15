@@ -42,21 +42,23 @@ class QuoteFixPreferences(NSPreferences):
 
 # controller for NIB controls
 class QuoteFixPreferencesController(NSObject):
-    enableDisableButton             = objc.IBOutlet()
-    removeQuotes                    = objc.IBOutlet()
-    removeQuotesLevel               = objc.IBOutlet()
-    keepAttributionWhitespace       = objc.IBOutlet()
-    removeTrailingWhitespace        = objc.IBOutlet()
-    useCustomReplyAttribution       = objc.IBOutlet()
-    customReplyAttribution          = objc.IBOutlet()
-    useCustomForwardingAttribution  = objc.IBOutlet()
-    customForwardingAttribution     = objc.IBOutlet()
-    updateInterval                  = objc.IBOutlet()
-    lastUpdateCheck                 = objc.IBOutlet()
-    currentVersion                  = objc.IBOutlet()
-    checkUpdateButton               = objc.IBOutlet()
-    debugging                       = objc.IBOutlet()
-    helpButton                      = objc.IBOutlet()
+    enableDisableButton                 = objc.IBOutlet()
+    removeQuotes                        = objc.IBOutlet()
+    removeQuotesLevel                   = objc.IBOutlet()
+    keepAttributionWhitespace           = objc.IBOutlet()
+    removeTrailingWhitespace            = objc.IBOutlet()
+    useCustomReplyAttribution           = objc.IBOutlet()
+    customReplyAttribution              = objc.IBOutlet()
+    customReplyIncreaseQuoteLevel       = objc.IBOutlet()
+    useCustomForwardingAttribution      = objc.IBOutlet()
+    customForwardingAttribution         = objc.IBOutlet()
+    customForwardingIncreaseQuoteLevel  = objc.IBOutlet()
+    updateInterval                      = objc.IBOutlet()
+    lastUpdateCheck                     = objc.IBOutlet()
+    currentVersion                      = objc.IBOutlet()
+    checkUpdateButton                   = objc.IBOutlet()
+    debugging                           = objc.IBOutlet()
+    helpButton                          = objc.IBOutlet()
 
     @classmethod
     def registerQuoteFixApplication(cls, app):
@@ -113,6 +115,10 @@ class QuoteFixPreferencesController(NSObject):
         self.set_preview(sender)
 
     @objc.IBAction
+    def changeCustomReplyIncreaseQuoteLevel_(self, sender):
+        self.app.custom_reply_increase_quotelevel = sender.state()
+
+    @objc.IBAction
     def changeUseCustomForwardingAttribution_(self, sender):
         self.app.use_custom_forwarding_attribution = sender.state()
 
@@ -120,6 +126,10 @@ class QuoteFixPreferencesController(NSObject):
     def changeCustomForwardingAttribution_(self, sender):
         self.app.custom_forwarding_attribution = sender.stringValue()
         self.set_preview(sender)
+
+    @objc.IBAction
+    def changeCustomForwardingIncreaseQuoteLevel_(self, sender):
+        self.app.custom_forwarding_increase_quotelevel = sender.state()
 
     @objc.IBAction
     def changeUpdateInterval_(self, sender):
@@ -149,9 +159,11 @@ class QuoteFixPreferencesController(NSObject):
         self.removeQuotesLevel.setIntValue_(self.app.remove_quotes_level)
         self.useCustomReplyAttribution.setState_(self.app.use_custom_reply_attribution)
         self.customReplyAttribution.setStringValue_(self.app.custom_reply_attribution)
+        self.customReplyIncreaseQuoteLevel.setState_(self.app.custom_reply_increase_quotelevel)
         self.set_preview(self.customReplyAttribution)
         self.useCustomForwardingAttribution.setState_(self.app.use_custom_forwarding_attribution)
         self.customForwardingAttribution.setStringValue_(self.app.custom_forwarding_attribution)
+        self.customForwardingIncreaseQuoteLevel.setState_(self.app.custom_forwarding_increase_quotelevel)
         self.set_preview(self.customForwardingAttribution)
         self.updateInterval.setSelectedSegment_(self.app.check_update_interval)
         self.setLastUpdateCheck()

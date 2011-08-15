@@ -24,6 +24,7 @@ class QuoteFix(objc.runtime.MVMailBundle):
         # initialize our posing classes with app instance
         MailDocumentEditor.registerQuoteFixApplication(app)
         QuoteFixPreferencesController.registerQuoteFixApplication(app)
+        CustomizedAttribution.registerQuoteFixApplication(app)
 
         # announce that we have loaded
         NSLog("QuoteFix Plugin (version %s) registered with Mail.app" % version)

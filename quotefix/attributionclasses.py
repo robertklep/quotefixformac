@@ -11,6 +11,10 @@ class QFMessage:
         self.sender     = message.sender()
         self.comment    = message.senderAddressComment()
         self.to         = self.expand_nsarray( message.to() )
+        try:
+            self.cc     = self.expand_nsarray( message.ccRecipients() )
+        except:
+            self.cc     = ""
         self.subject    = message.subject()
         self.sent       = QFDateTime(message.dateSent())
         self.received   = QFDateTime(message.dateReceived())
