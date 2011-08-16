@@ -7,17 +7,30 @@ class QFMessage:
     """ wraps a message """
 
     def __init__(self, message):
-        self.From       = QFAddressee(message.sender())
-        self.sender     = message.sender()
-        self.comment    = message.senderAddressComment()
-        self.to         = QFAddresseeList( message.to() )
-        try:
-            self.cc     = QFAddresseeList( message.ccRecipients() )
-        except:
-            self.cc     = ""
-        self.subject    = message.subject()
-        self.sent       = QFDateTime(message.dateSent())
-        self.received   = QFDateTime(message.dateReceived())
+        self.From           = QFAddressee(message.sender())
+        self.sender         = message.sender()
+        self.comment        = message.senderAddressComment()
+        self.to             = QFAddressee( message.to() )
+        self.recipients     = QFRecipients(
+            All     = message.recipients(),
+            to      = message.toRecipients(),
+            cc      = message.ccRecipients(),
+            bcc     = message.bccRecipients(),
+        )
+        self.subject        = message.subject()
+        self.sent           = QFDateTime(message.dateSent())
+        self.received       = QFDateTime(message.dateReceived())
+
+class QFRecipients:
+
+    def __init__(self, All, to, cc, bcc):
+        self.All    = QFAddresseeList(All)
+        self.to     = QFAddresseeList(to)
+        self.cc     = QFAddresseeList(cc)
+        self.bcc    = QFAddresseeList(bcc)
+
+    def __unicode__(self):
+        return unicode(self.All)
 
 class QFAddresseeList:
 

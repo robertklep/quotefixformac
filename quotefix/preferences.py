@@ -102,6 +102,7 @@ class QuoteFixPreferencesController(NSObject):
 
     # render a preview message for customized attributions
     def set_preview(self, sender):
+        return
         preview = CustomizedAttribution.render_with_params(
             sender.stringValue(),
             preview_message

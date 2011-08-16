@@ -102,8 +102,9 @@ class CustomizedAttribution:
     @classmethod
     def render_with_params(cls, template, params):
         # hmm...
-        template = template.replace('message.from', 'message.From')
-        template = template.replace('response.from', 'response.From')
+        template = template.replace('message.from',     'message.From')
+        template = template.replace('response.from',    'response.From')
+        template = template.replace('recipients.all',   'recipients.All')
 
         # templating enabled?
         if cls.app.custom_attribution_allow_templating:
