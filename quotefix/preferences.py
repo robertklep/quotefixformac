@@ -1,7 +1,7 @@
 # -*- coding:utf-8 -*-
 from    AppKit                  import *
 from    Foundation              import *
-from    quotefix.utils          import swizzle
+from    quotefix.utils          import swizzle, htmlunescape
 from    quotefix.attribution    import CustomizedAttribution
 from    quotefix.preview        import preview_message
 from    datetime                import datetime, timedelta
@@ -102,11 +102,10 @@ class QuoteFixPreferencesController(NSObject):
 
     # render a preview message for customized attributions
     def set_preview(self, sender):
-        return
         preview = CustomizedAttribution.render_with_params(
             sender.stringValue(),
             preview_message
         )
         # make newlines visible
         preview = preview.replace('\n', u'⤦\n')
-        sender.setToolTip_(preview)
+        sender.setToolTip_(htmlunescape(preview))

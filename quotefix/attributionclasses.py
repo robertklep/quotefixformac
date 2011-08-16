@@ -10,7 +10,7 @@ class QFMessage:
         self.From           = QFAddressee(message.sender())
         self.sender         = message.sender()
         self.comment        = message.senderAddressComment()
-        self.to             = QFAddressee( message.to() )
+        self.to             = QFAddresseeList( message.to() )
         self.recipients     = QFRecipients(
             All     = message.recipients(),
             to      = message.toRecipients(),

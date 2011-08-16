@@ -9,6 +9,10 @@ class PreviewMessage:
     subject                 = lambda s: "This is the original subject"
     dateSent                = lambda s: datetime.now() - timedelta(seconds = 3600)
     dateReceived            = lambda s: datetime.now() - timedelta(seconds = 1800)
+    toRecipients            = lambda s: [ "Original Receiver <original@sender.dom>" ]
+    ccRecipients            = lambda s: [ "CC Recip 1 <cc1@test>", "CC Recip 2 <cc2@test>" ]
+    recipients              = lambda s: s.toRecipients() + s.ccRecipients()
+    bccRecipients           = lambda s: []
 
 class PreviewResponse:
 
@@ -18,9 +22,13 @@ class PreviewResponse:
     subject                 = lambda s: "This is the *new* subject"
     dateSent                = lambda s: datetime.now()
     dateReceived            = lambda s: datetime.now()
+    recipients              = lambda s: []
+    toRecipients            = lambda s: []
+    ccRecipients            = lambda s: []
+    bccRecipients           = lambda s: []
 
 # 'fake' message to preview custom reply/forward attribution
 preview_message = {
-#    'message'   : QFMessage(PreviewMessage()),
-#    'response'  : QFMessage(PreviewResponse())
+    'message'   : QFMessage(PreviewMessage()),
+    'response'  : QFMessage(PreviewResponse())
 }
