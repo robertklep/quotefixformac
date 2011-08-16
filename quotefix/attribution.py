@@ -108,12 +108,15 @@ class CustomizedAttribution:
         template = template.replace('message.from', 'message.From')
         template = template.replace('response.from', 'response.From')
 
-        # try to expand a complex template first; if that fails, try a
-        # simple one
-        try:
-            return Template(string = template, data = params)()
-        except Exception, e:
-            # NSLog("exception raised: %s" % e)
+        # templating enabled?
+        if cls.app.custom_attribution_allow_templating:
+            # try to expand a complex template first; if that fails, try a
+            # simple one
+            try:
+                return Template(string = template, data = params)()
+            except Exception, e:
+                return SimpleTemplate(template).substitute(params)
+        else:
             return SimpleTemplate(template).substitute(params)
 
     @classmethod
