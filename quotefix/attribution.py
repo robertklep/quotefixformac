@@ -65,9 +65,6 @@ class CustomizedAttribution:
                 template    = template,
             )
 
-            # encode (some) entities
-            attribution = attribution.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;')
-
             # replace newlines with hard linebreaks
             attribution = attribution.replace('\n', '<br/>')
 
@@ -110,14 +107,17 @@ class CustomizedAttribution:
 
         # templating enabled?
         if cls.app.custom_attribution_allow_templating:
-            # try to expand a complex template first; if that fails, try a
-            # simple one
+            # try to expand a complex template first
             try:
                 return Template(string = template, data = params)()
             except Exception, e:
-                return SimpleTemplate(template).substitute(params)
-        else:
-            return SimpleTemplate(template).substitute(params)
+                pass
+
+        # simple template
+        attribution = SimpleTemplate(template).substitute(params)
+
+        # encode (some) entities
+        return attribution.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;')
 
     @classmethod
     def setup_params(cls, reply, inreplyto):

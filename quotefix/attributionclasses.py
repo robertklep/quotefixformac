@@ -7,30 +7,52 @@ class QFMessage:
     """ wraps a message """
 
     def __init__(self, message):
-        self.From       = QFEmailAddress(message.sender())
+        self.From       = QFAddressee(message.sender())
         self.sender     = message.sender()
         self.comment    = message.senderAddressComment()
-        self.to         = self.expand_nsarray( message.to() )
+        self.to         = QFAddresseeList( message.to() )
         try:
-            self.cc     = self.expand_nsarray( message.ccRecipients() )
+            self.cc     = QFAddresseeList( message.ccRecipients() )
         except:
             self.cc     = ""
         self.subject    = message.subject()
         self.sent       = QFDateTime(message.dateSent())
         self.received   = QFDateTime(message.dateReceived())
 
-    def expand_nsarray(self, obj, separator = ", "):
-        if isinstance(obj, NSArray):
-            return obj.componentsJoinedByString_(separator)
-        return obj
+class QFAddresseeList:
 
-class QFEmailAddress:
-    """ wrap an e-mail address """
+    def __init__(self, addresseelist):
+        # convert to list if passed parameter is a string
+        if isinstance(addresseelist, basestring):
+            addresseelist = [ addresseelist ]
+
+        # make a list of QFAddressee's
+        self.addressees = []
+        for addressee in list(addresseelist):
+            # expand MessageAddressee instances
+            if isinstance(addressee, MessageAddressee):
+                addressee = "%s <%s>" % (addressee.displayName(), addressee.address())
+            self.addressees.append( QFAddressee(addressee) )
+
+    def join(self, separator = ", ", field = 'address'):
+        if field not in [ 'address', 'name', 'email' ]:
+            field = 'address'
+        return separator.join([ unicode(getattr(a, field)) for a in self.addressees ])
+
+    def __unicode__(self):
+        return self.join(", ")
+
+class QFAddressee:
+    """ wrap a message addressee """
 
     def __init__(self, address):
-        name, emailaddr = email.utils.parseaddr(address)
-        self.email      = emailaddr
-        self.name       = name or emailaddr
+        self.address        = address
+        name, emailaddr     = email.utils.parseaddr(address)
+        self.email          = emailaddr
+        self.name           = name or emailaddr
+
+    def __unicode__(self):
+        return self.address
 
 class QFDateTime(str):
     """ wraps a datetime object """
