@@ -29,6 +29,9 @@ class QFRecipients:
         self.cc     = QFAddresseeList(cc)
         self.bcc    = QFAddresseeList(bcc)
 
+    def __len__(self):
+        return len(self.All)
+
     def __unicode__(self):
         return unicode(self.All)
 
@@ -46,6 +49,9 @@ class QFAddresseeList:
             if isinstance(addressee, MessageAddressee):
                 addressee = "%s <%s>" % (addressee.displayName(), addressee.address())
             self.addressees.append( QFAddressee(addressee) )
+
+    def __len__(self):
+        return len(self.addressees)
 
     def join(self, separator = ", ", field = 'address'):
         if field not in [ 'address', 'name', 'email' ]:
