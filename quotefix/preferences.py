@@ -46,6 +46,8 @@ class QuoteFixPreferencesController(NSObject):
     lastUpdateCheck                     = objc.IBOutlet()
     currentVersion                      = objc.IBOutlet()
     checkUpdateButton                   = objc.IBOutlet()
+    customReplyAttribution              = objc.IBOutlet()
+    customForwardingAttribution         = objc.IBOutlet()
     helpButton                          = objc.IBOutlet()
 
     @classmethod
@@ -81,6 +83,8 @@ class QuoteFixPreferencesController(NSObject):
         self.currentVersion.setStringValue_(self.app.version)
         self.updateInterval.setSelectedSegment_(self.app.check_update_interval)
         self.setLastUpdateCheck()
+        self.set_preview(self.customReplyAttribution)
+        self.set_preview(self.customForwardingAttribution)
 
     def setLastUpdateCheck(self):
         date = self.app.last_update_check
@@ -102,10 +106,19 @@ class QuoteFixPreferencesController(NSObject):
 
     # render a preview message for customized attributions
     def set_preview(self, sender):
-        preview = CustomizedAttribution.render_with_params(
-            sender.stringValue(),
-            preview_message
+        viewers = MessageViewer.allMessageViewers()
+        if not viewers:
+            return
+        messages = viewers[0].selectedMessages()
+        if not messages:
+            return
+
+        preview = CustomizedAttribution.render_attribution(
+            messages[0],
+            messages[0],
+            sender.stringValue()
         )
+
         # make newlines visible
         preview = preview.replace('\n', u'⤦\n')
         sender.setToolTip_(htmlunescape(preview))

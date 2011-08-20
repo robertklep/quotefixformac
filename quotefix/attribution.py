@@ -112,7 +112,7 @@ class CustomizedAttribution:
             try:
                 return Template(string = template, data = params)()
             except Exception, e:
-                pass
+                return "<i>&lt;A templating error occured, please check your template for errors&gt;</i>"
 
         # simple template
         attribution = SimpleTemplate(template).substitute(params)

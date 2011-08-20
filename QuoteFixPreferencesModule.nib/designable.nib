@@ -2,7 +2,7 @@
 <archive type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="7.10">
   <data>
     <int key="IBDocument.SystemTarget">1050</int>
-    <string key="IBDocument.SystemVersion">11A511</string>
+    <string key="IBDocument.SystemVersion">11B26</string>
     <string key="IBDocument.InterfaceBuilderVersion">851</string>
     <string key="IBDocument.AppKitVersion">1138</string>
     <string key="IBDocument.HIToolboxVersion">566.00</string>
@@ -12,7 +12,7 @@
     </object>
     <object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
       <bool key="EncodedWithXMLCoder">YES</bool>
-      <integer value="190"/>
+      <integer value="184"/>
     </object>
     <object class="NSArray" key="IBDocument.PluginDependencies">
       <bool key="EncodedWithXMLCoder">YES</bool>
@@ -42,10 +42,6 @@
         <string key="NSClassName">QuoteFixPreferencesController</string>
       </object>
       <object class="NSUserDefaultsController" id="512304363">
-        <object class="NSMutableArray" key="NSDeclaredKeys">
-          <bool key="EncodedWithXMLCoder">YES</bool>
-          <string>QuoteFixCustomAttributionAllowTemplating</string>
-        </object>
         <bool key="NSSharedInstance">YES</bool>
       </object>
       <object class="NSBox" id="929681542">
@@ -399,7 +395,7 @@
                   <object class="NSTabViewItem" id="109353579">
                     <string key="NSIdentifier">2</string>
                     <object class="NSView" key="NSView" id="487297559">
-                      <nil key="NSNextResponder"/>
+                      <reference key="NSNextResponder" ref="80307545"/>
                       <int key="NSvFlags">256</int>
                       <object class="NSMutableArray" key="NSSubviews">
                         <bool key="EncodedWithXMLCoder">YES</bool>
@@ -669,6 +665,7 @@
                         </object>
                       </object>
                       <string key="NSFrame">{{10, 33}, {682, 338}}</string>
+                      <reference key="NSSuperview" ref="80307545"/>
                       <string key="NSReuseIdentifierKey">_NS:571</string>
                     </object>
                     <string key="NSLabel">Customized Attributions</string>
@@ -678,7 +675,7 @@
                   <object class="NSTabViewItem" id="552387052">
                     <string key="NSIdentifier">Item 2</string>
                     <object class="NSView" key="NSView" id="397552279">
-                      <reference key="NSNextResponder" ref="80307545"/>
+                      <nil key="NSNextResponder"/>
                       <int key="NSvFlags">256</int>
                       <object class="NSMutableArray" key="NSSubviews">
                         <bool key="EncodedWithXMLCoder">YES</bool>
@@ -765,7 +762,6 @@
                         </object>
                       </object>
                       <string key="NSFrame">{{10, 33}, {682, 338}}</string>
-                      <reference key="NSSuperview" ref="80307545"/>
                     </object>
                     <string key="NSLabel">Advanced</string>
                     <reference key="NSColor" ref="600795121"/>
@@ -1034,14 +1030,14 @@ ZS5nb29nbGUuY29tL3AvcXVvdGVmaXhmb3JtYWM</string>
                     <reference key="NSTabView" ref="80307545"/>
                   </object>
                 </object>
-                <reference key="NSSelectedTabViewItem" ref="552387052"/>
+                <reference key="NSSelectedTabViewItem" ref="109353579"/>
                 <reference key="NSFont" ref="819029157"/>
                 <int key="NSTvFlags">0</int>
                 <bool key="NSAllowTruncatedLabels">YES</bool>
                 <bool key="NSDrawsBackground">YES</bool>
                 <object class="NSMutableArray" key="NSSubviews">
                   <bool key="EncodedWithXMLCoder">YES</bool>
-                  <reference ref="397552279"/>
+                  <reference ref="487297559"/>
                 </object>
               </object>
             </object>
@@ -1437,6 +1433,22 @@ ZS5nb29nbGUuY29tL3AvcXVvdGVmaXhmb3JtYWM</string>
             </object>
           </object>
           <int key="connectionID">253</int>
+        </object>
+        <object class="IBConnectionRecord">
+          <object class="IBOutletConnection" key="connection">
+            <string key="label">customReplyAttribution</string>
+            <reference key="source" ref="844267535"/>
+            <reference key="destination" ref="742030531"/>
+          </object>
+          <int key="connectionID">254</int>
+        </object>
+        <object class="IBConnectionRecord">
+          <object class="IBOutletConnection" key="connection">
+            <string key="label">customForwardingAttribution</string>
+            <reference key="source" ref="844267535"/>
+            <reference key="destination" ref="215826771"/>
+          </object>
+          <int key="connectionID">255</int>
         </object>
       </object>
       <object class="IBMutableOrderedSet" key="objectRecords">
@@ -2356,7 +2368,7 @@ ZS5nb29nbGUuY29tL3AvcXVvdGVmaXhmb3JtYWM</string>
         </object>
       </object>
       <nil key="sourceID"/>
-      <int key="maxID">253</int>
+      <int key="maxID">255</int>
     </object>
     <object class="IBClassDescriber" key="IBDocument.Classes">
       <object class="NSMutableArray" key="referencedPartialClassDescriptionsV3.1+">
@@ -2416,12 +2428,16 @@ ZS5nb29nbGUuY29tL3AvcXVvdGVmaXhmb3JtYWM</string>
               <bool key="EncodedWithXMLCoder">YES</bool>
               <string>checkUpdateButton</string>
               <string>currentVersion</string>
+              <string>customForwardingAttribution</string>
+              <string>customReplyAttribution</string>
               <string>helpButton</string>
               <string>lastUpdateCheck</string>
               <string>updateInterval</string>
             </object>
             <object class="NSMutableArray" key="dict.values">
               <bool key="EncodedWithXMLCoder">YES</bool>
+              <string>id</string>
+              <string>id</string>
               <string>id</string>
               <string>id</string>
               <string>id</string>
@@ -2435,6 +2451,8 @@ ZS5nb29nbGUuY29tL3AvcXVvdGVmaXhmb3JtYWM</string>
               <bool key="EncodedWithXMLCoder">YES</bool>
               <string>checkUpdateButton</string>
               <string>currentVersion</string>
+              <string>customForwardingAttribution</string>
+              <string>customReplyAttribution</string>
               <string>helpButton</string>
               <string>lastUpdateCheck</string>
               <string>updateInterval</string>
@@ -2447,6 +2465,14 @@ ZS5nb29nbGUuY29tL3AvcXVvdGVmaXhmb3JtYWM</string>
               </object>
               <object class="IBToOneOutletInfo">
                 <string key="name">currentVersion</string>
+                <string key="candidateClassName">id</string>
+              </object>
+              <object class="IBToOneOutletInfo">
+                <string key="name">customForwardingAttribution</string>
+                <string key="candidateClassName">id</string>
+              </object>
+              <object class="IBToOneOutletInfo">
+                <string key="name">customReplyAttribution</string>
                 <string key="candidateClassName">id</string>
               </object>
               <object class="IBToOneOutletInfo">
