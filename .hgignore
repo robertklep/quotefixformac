@@ -8,3 +8,4 @@ build/*
 QuoteFix-*.tar.gz
 QuoteFix-*.zip
 tools/*
+testing/*
