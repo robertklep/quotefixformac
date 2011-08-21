@@ -68,6 +68,11 @@ If you run into any problems with regards to replying or forwarding mail, consid
     def is_debugging(self):
         return self.prefs.bool['QuoteFixEnableDebugging']
 
+    # 'is quotefixing enabled?'
+    @property
+    def is_quotefixing(self):
+        return not self.prefs.bool["QuoteFixQuoteFixingDisabled"]
+
     # 'keep whitespace after attribution'
     @property
     def keep_attribution_whitespace(self):

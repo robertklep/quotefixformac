@@ -47,9 +47,6 @@ class MailDocumentEditor(Category(MailDocumentEditor)):
                 # was renamed in Lion
                 view = objc.getInstanceVariable(self, '_composeWebView')
 
-            # move cursor to end of document
-            view.moveToEndOfDocument_(self)
-
             # grab some other variables we need to perform our business
             backend     = self.backEnd()
             htmldom     = view.mainFrame().DOMDocument()
@@ -58,28 +55,35 @@ class MailDocumentEditor(Category(MailDocumentEditor)):
             # send original HTML to menu for debugging
             self.app.html = htmlroot.innerHTML()
 
-            # remove quotes?
-            if self.app.remove_quotes:
-                logging.debug('calling remove_quotes()')
-                self.remove_quotes(htmldom, self.app.remove_quotes_level)
-                backend.setHasChanges_(False)
-
-            # remove signature from sender
-            logging.debug('calling remove_old_signature()')
-            if self.remove_old_signature(htmldom, view):
-                backend.setHasChanges_(False)
-
-            # place cursor above own signature (if any)
-            logging.debug('calling move_above_new_signature()')
-            if self.move_above_new_signature(htmldom, view):
-                backend.setHasChanges_(False)
+            # should we be quotefixing?
+            if not self.app.is_quotefixing:
+                logging.debug('quotefixing turned off in preferences, skipping that part')
             else:
-                view.insertNewline_(self)
+                # move cursor to end of document
+                view.moveToEndOfDocument_(self)
 
-            # perform some general cleanups
-            logging.debug('calling cleanup_layout()')
-            if self.cleanup_layout(htmlroot):
-                backend.setHasChanges_(False)
+                # remove quotes?
+                if self.app.remove_quotes:
+                    logging.debug('calling remove_quotes()')
+                    self.remove_quotes(htmldom, self.app.remove_quotes_level)
+                    backend.setHasChanges_(False)
+
+                # remove signature from sender
+                logging.debug('calling remove_old_signature()')
+                if self.remove_old_signature(htmldom, view):
+                    backend.setHasChanges_(False)
+
+                # place cursor above own signature (if any)
+                logging.debug('calling move_above_new_signature()')
+                if self.move_above_new_signature(htmldom, view):
+                    backend.setHasChanges_(False)
+                else:
+                    view.insertNewline_(self)
+
+                # perform some general cleanups
+                logging.debug('calling cleanup_layout()')
+                if self.cleanup_layout(htmlroot):
+                    backend.setHasChanges_(False)
 
             # provide custom attribution?
             attributor = None

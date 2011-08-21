@@ -4,13 +4,14 @@
 		<style type="text/css">
 			body, html
 			{
-				margin	: 0;
-				padding	: 0;
-				background: #e5e5e5;
-				color		: black;
+				margin			: 0;
+				padding			: 0;
+				background	: #e5e5e5;
+				color				: black;
 				font-family	: Palatino, Georgia, serif;
         font-size   : 14px;
 				line-height	: 145%;
+				text-align	: justify;
 			}
 
 			.container
@@ -96,7 +97,7 @@
 				margin	: 0.5em auto;
 			}
 
-			code { background: #ccc }
+			code { background: #ccc; font-size: 12px }
 
 			.pre
 			{
@@ -124,6 +125,7 @@
 			table tr td:first-child
 			{
 				font-family	: monospace;
+				font-size		: 12px;
 				background	: #ccc;
 			}
 
@@ -138,7 +140,6 @@
 				<li><a href="#installing">installing the plug-in</a></li>
 				<li><a href="#using">using the plug-in</a></li>
 				<li><a href="#attribution">customized attributions</a></li>
-				<li><a href="#beta">2.3.0 beta notes</a></li>
 				<li><a href="#licence">licence &amp; copyright</a></li>
 			</ul>
 			<h2><a name="what">What is it?</a></h2>
@@ -286,7 +287,8 @@
 							<code>ampm</code>, <code>minute</code>, <code>second</code>,
 							<code>weeknumber</code>, <code>monthshort</code>,
 							<code>monthlong</code>, <code>dayshort</code>,
-							<code>daylong</code>, <code>date</code>, <code>time</code>.
+							<code>daylong</code>, <code>date</code>, <code>time</code>.<br/>
+							Use these like so: <code>${message.sent.year}</code>.
 						</td>
 					</tr>
 				</table>
@@ -294,7 +296,7 @@
 			<p>
 				If you want even more freedom in formatting attribution lines,
 				there's an experimental feature (which can be enabled in the
-				<i>Advanced preferences</i>) which enables conditional statements,
+				<i>Advanced</i> preferences) which enables conditional statements,
 				string/date formatting, and much more. This is based on a modified
 				version of the <i>pyratemp</i> templating library for Python
 				written by Roland Koebler.
@@ -312,6 +314,14 @@
 					Subject: ${message.subject.lower()}<br/>
 					Sent-Date: ${message.sent.strftime("%d-%m-%Y")}<br/>
 				</code>
+			</p>
+			<p>
+				If your reply is in <i>Rich Text</i> format, you can even use HTML to
+				format your custom attributions. For this to work, the message
+				format should be set before you hit the Reply/Forward button, so
+				either always reply in Rich Text format, or at least enable <i>Use
+					the same message format as the original message</i>. Both these
+				settings can be enabled in the <i>Composing</i> preferences.
 			</p>
 			<p>
 				When you're editing your customized attribution, QuoteFix will

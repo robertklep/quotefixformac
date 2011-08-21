@@ -48,7 +48,6 @@ class QuoteFixPreferencesController(NSObject):
     checkUpdateButton                   = objc.IBOutlet()
     customReplyAttribution              = objc.IBOutlet()
     customForwardingAttribution         = objc.IBOutlet()
-    documentationView                   = objc.IBOutlet()
     helpButton                          = objc.IBOutlet()
 
     @classmethod
@@ -88,13 +87,6 @@ class QuoteFixPreferencesController(NSObject):
         # set attribution previews
         self.set_preview(self.customReplyAttribution)
         self.set_preview(self.customForwardingAttribution)
-
-        # load README into documentation frame
-        bundle = NSBundle.bundleWithIdentifier_('name.klep.mail.QuoteFix')
-        readme = "file://%s/README.html" % bundle.resourcePath()
-        self.documentationView.mainFrame().loadRequest_(
-            NSURLRequest.requestWithURL_(NSURL.URLWithString_(readme))
-        )
 
     def setLastUpdateCheck(self):
         date = self.app.last_update_check
