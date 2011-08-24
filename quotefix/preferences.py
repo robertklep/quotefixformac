@@ -5,7 +5,7 @@ from    quotefix.utils          import swizzle, htmlunescape
 from    quotefix.attribution    import CustomizedAttribution
 from    quotefix.preview        import preview_message
 from    datetime                import datetime, timedelta
-import  objc, random, logging
+import  objc, random, logging, re
 
 class QuoteFixPreferencesModule(NSPreferencesModule):
 
@@ -49,6 +49,8 @@ class QuoteFixPreferencesController(NSObject):
     checkUpdateButton                   = objc.IBOutlet()
     customReplyAttribution              = objc.IBOutlet()
     customForwardingAttribution         = objc.IBOutlet()
+    customSignatureMatcher              = objc.IBOutlet()
+    customSignatureMatcherFeedback      = objc.IBOutlet()
     helpButton                          = objc.IBOutlet()
 
     @classmethod
@@ -101,6 +103,17 @@ class QuoteFixPreferencesController(NSObject):
         # update previews when customized attribution fields change
         if tag in [ 31, 32 ]:
             self.set_preview(obj)
+        # check custom signature matcher and provide feedback
+        elif tag in [ 50 ]:
+            regex       = obj.stringValue()
+            feedback    = self.customSignatureMatcherFeedback
+            try:
+                re.compile(regex)
+                feedback.setColor_(NSColor.greenColor())
+                feedback.setToolTip_("")
+            except re.error, e:
+                feedback.setColor_(NSColor.redColor())
+                feedback.setToolTip_(str(e))
 
     def control_textView_doCommandBySelector_(self, control, textview, selector):
         if str(selector) == 'insertNewline:':

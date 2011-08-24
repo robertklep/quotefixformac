@@ -54,6 +54,7 @@ class MailDocumentEditor(Category(MailDocumentEditor)):
 
             # send original HTML to menu for debugging
             self.app.html = htmlroot.innerHTML()
+            #open("/tmp/x.html", "wc").write(htmlroot.innerHTML().encode('utf-8'))
 
             # should we be quotefixing?
             if not self.app.is_quotefixing:
@@ -134,7 +135,6 @@ class MailDocumentEditor(Category(MailDocumentEditor)):
                 blockquote.parentNode().removeChild_(blockquote)
 
     # try to find, and remove, signature of sender
-    SIGSEP = re.compile(r'--(?:&nbsp;| |\xa0)|^--$', re.M|re.S|re.I)
     def remove_old_signature(self, dom, view):
         signature   = None
         root        = dom.documentElement()
@@ -144,12 +144,16 @@ class MailDocumentEditor(Category(MailDocumentEditor)):
         if not blockquote:
             return False
 
+        # get matcher
+        matcher = self.app.signature_matcher
+
         # find nodes which might contain senders signature
         possibles = [
             #"body > div > blockquote > div > br",
-            "body > div > blockquote br",
-            "body > blockquote br",
-            "body > blockquote > div",
+            #"body > div > blockquote br",
+            #"body > blockquote br",
+            #"body > blockquote > div",
+            "div", "br"
         ]
 
         nodes = []
@@ -163,28 +167,40 @@ class MailDocumentEditor(Category(MailDocumentEditor)):
             if node.quoteLevel() != 1:
                 continue
 
+#            if node.nodeName().lower() == 'div':
+#                NSLog("div: %r" % unicode( node.innerHTML() ))
+#            elif node.nodeName().lower() == 'br':
+#                nextnode = node.nextSibling()
+#                if isinstance(nextnode, DOMText):
+#                    NSLog("br, nextnode = text: %r" % unicode( nextnode.data() ))
+#                else:
+#                    NSLog("br, nextnode: %r" % unicode( nextnode) )
+
             # BR's are empty, so treat them differently
             if node.nodeName().lower() == 'br':
-                next = node.nextSibling()
-                if isinstance(next, DOMText) and self.SIGSEP.match(next.data()):
+                nextnode = node.nextSibling()
+                if isinstance(nextnode, DOMText) and matcher.search(nextnode.data()):
                     signature = node
                     break
-            elif node.nodeName().lower() == 'div' and self.SIGSEP.match(node.innerHTML()):
+            elif node.nodeName().lower() == 'div' and matcher.search(node.innerHTML()):
                 signature = node
                 break
 
         # if we found a signature, remove it
         if signature:
             # remove all siblings following signature, except for attachments
+            node    = signature
             parent  = signature.parentNode()
-            node    = signature.nextSibling()
             while node:
                 if node.nodeName().lower() == 'object':
                     node = node.nextSibling()
                 else:
-                    next = node.nextSibling()
+                    nextnode = node.nextSibling()
                     parent.removeChild_(node)
-                    node = next
+                    node = nextnode
+                while not node and parent != blockquote:
+                    node    = parent.nextSibling()
+                    parent  = parent.parentNode()
 
             # move down a line
             view.moveDown_(self)

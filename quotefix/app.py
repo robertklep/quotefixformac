@@ -1,7 +1,7 @@
 from    AppKit          import *
 from    Foundation      import *
 from    objc            import Category, lookUpClass
-import  logging, os
+import  logging, os, re
 
 class App(object):
 
@@ -127,6 +127,30 @@ If you run into any problems with regards to replying or forwarding mail, consid
     @property
     def custom_attribution_allow_templating(self):
         return self.prefs.bool["QuoteFixCustomAttributionAllowTemplating"] or False
+
+    # signature matcher
+    @property
+    def signature_matcher(self):
+        defaultmatcher = r'(?i)--(?:&nbsp;|\s+|\xa0)?$'
+
+        # use custom matcher?
+        if self.prefs.bool["QuoteFixUseCustomSignatureMatcher"]:
+            matcher = self.prefs.string["QuoteFixCustomSignatureMatcher"]
+        else:
+            matcher = defaultmatcher
+
+        # try to compile regular expression to catch errors early
+        try:
+            re.compile(matcher)
+        except re.error, e:
+            matcher = defaultmatcher
+            NSRunAlertPanel(
+                'QuoteFix plug-in',
+                'The supplied custom signature matcher contains an invalid regular expression (error: "%s").\n\nI will revert back to the default matcher until the problem is fixed in the preferences.' % str(e),
+                None, None, None)
+
+        # return compiled regex
+        return re.compile(matcher)
 
     # update-related properties
     @property
