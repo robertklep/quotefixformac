@@ -51,6 +51,7 @@ class QuoteFixPreferencesController(NSObject):
     customForwardingAttribution         = objc.IBOutlet()
     customSignatureMatcher              = objc.IBOutlet()
     customSignatureMatcherFeedback      = objc.IBOutlet()
+    customSignatureMatcherDefault       = objc.IBOutlet()
     helpButton                          = objc.IBOutlet()
 
     @classmethod
@@ -88,6 +89,10 @@ class QuoteFixPreferencesController(NSObject):
         self.updateInterval.setSelectedSegment_(self.app.check_update_interval)
         self.setLastUpdateCheck()
 
+        # check custom signature matcher
+        self.check_signature_matcher(self.customSignatureMatcher)
+        self.customSignatureMatcherDefault.setStringValue_(self.app.default_signature_matcher)
+
         # set attribution previews
         self.set_preview(self.customReplyAttribution)
         self.set_preview(self.customForwardingAttribution)
@@ -105,21 +110,25 @@ class QuoteFixPreferencesController(NSObject):
             self.set_preview(obj)
         # check custom signature matcher and provide feedback
         elif tag in [ 50 ]:
-            regex       = obj.stringValue()
-            feedback    = self.customSignatureMatcherFeedback
-            try:
-                re.compile(regex)
-                feedback.setColor_(NSColor.greenColor())
-                feedback.setToolTip_("")
-            except re.error, e:
-                feedback.setColor_(NSColor.redColor())
-                feedback.setToolTip_(str(e))
+            self.check_signature_matcher(obj)
 
     def control_textView_doCommandBySelector_(self, control, textview, selector):
         if str(selector) == 'insertNewline:':
             textview.insertNewlineIgnoringFieldEditor_(self)
             return True
         return False
+
+    # check custom signature for a valid regular expression
+    def check_signature_matcher(self, obj):
+        regex       = obj.stringValue()
+        feedback    = self.customSignatureMatcherFeedback
+        try:
+            re.compile(regex)
+            feedback.setColor_(NSColor.greenColor())
+            feedback.setToolTip_("")
+        except re.error, e:
+            feedback.setColor_(NSColor.redColor())
+            feedback.setToolTip_(str(e))
 
     # render a preview message for customized attributions
     def set_preview(self, sender):

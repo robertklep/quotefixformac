@@ -131,19 +131,17 @@ If you run into any problems with regards to replying or forwarding mail, consid
     # signature matcher
     @property
     def signature_matcher(self):
-        defaultmatcher = r'(?i)--(?:&nbsp;|\s+|\xa0)?$'
-
         # use custom matcher?
         if self.prefs.bool["QuoteFixUseCustomSignatureMatcher"]:
             matcher = self.prefs.string["QuoteFixCustomSignatureMatcher"]
         else:
-            matcher = defaultmatcher
+            matcher = self.default_signature_matcher
 
         # try to compile regular expression to catch errors early
         try:
             re.compile(matcher)
         except re.error, e:
-            matcher = defaultmatcher
+            matcher = self.default_signature_matcher
             NSRunAlertPanel(
                 'QuoteFix plug-in',
                 'The supplied custom signature matcher contains an invalid regular expression (error: "%s").\n\nI will revert back to the default matcher until the problem is fixed in the preferences.' % str(e),
@@ -151,6 +149,10 @@ If you run into any problems with regards to replying or forwarding mail, consid
 
         # return compiled regex
         return re.compile(matcher)
+
+    @property
+    def default_signature_matcher(self):
+        return r'(?i)--(?:&nbsp;|\s+|\xa0)?$'
 
     # update-related properties
     @property

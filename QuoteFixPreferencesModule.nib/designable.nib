@@ -12,7 +12,7 @@
     </object>
     <object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
       <bool key="EncodedWithXMLCoder">YES</bool>
-      <integer value="166"/>
+      <integer value="84"/>
     </object>
     <object class="NSArray" key="IBDocument.PluginDependencies">
       <bool key="EncodedWithXMLCoder">YES</bool>
@@ -852,9 +852,9 @@
                                   <string key="NSReuseIdentifierKey">_NS:4068</string>
                                   <bool key="NSEnabled">YES</bool>
                                   <object class="NSTextFieldCell" key="NSCell" id="743080076">
-                                    <int key="NSCellFlags">68288064</int>
+                                    <int key="NSCellFlags">70385217</int>
                                     <int key="NSCellFlags2">272630784</int>
-                                    <string key="NSContents">(?i)--(?:&amp;nbsp;|\s+|\xa0)?$</string>
+                                    <string key="NSContents"/>
                                     <object class="NSFont" key="NSSupport">
                                       <string key="NSName">LucidaConsole</string>
                                       <double key="NSSize">10</double>
@@ -1683,6 +1683,14 @@ ZS5nb29nbGUuY29tL3AvcXVvdGVmaXhmb3JtYWM</string>
             <reference key="destination" ref="844267535"/>
           </object>
           <int key="connectionID">292</int>
+        </object>
+        <object class="IBConnectionRecord">
+          <object class="IBOutletConnection" key="connection">
+            <string key="label">customSignatureMatcherDefault</string>
+            <reference key="source" ref="844267535"/>
+            <reference key="destination" ref="345134602"/>
+          </object>
+          <int key="connectionID">299</int>
         </object>
       </object>
       <object class="IBMutableOrderedSet" key="objectRecords">
@@ -2753,7 +2761,7 @@ ZS5nb29nbGUuY29tL3AvcXVvdGVmaXhmb3JtYWM</string>
         </object>
       </object>
       <nil key="sourceID"/>
-      <int key="maxID">298</int>
+      <int key="maxID">299</int>
     </object>
     <object class="IBClassDescriber" key="IBDocument.Classes">
       <object class="NSMutableArray" key="referencedPartialClassDescriptionsV3.1+">
@@ -2817,6 +2825,7 @@ ZS5nb29nbGUuY29tL3AvcXVvdGVmaXhmb3JtYWM</string>
               <string>customForwardingAttribution</string>
               <string>customReplyAttribution</string>
               <string>customSignatureMatcher</string>
+              <string>customSignatureMatcherDefault</string>
               <string>customSignatureMatcherFeedback</string>
               <string>helpButton</string>
               <string>lastUpdateCheck</string>
@@ -2824,6 +2833,7 @@ ZS5nb29nbGUuY29tL3AvcXVvdGVmaXhmb3JtYWM</string>
             </object>
             <object class="NSMutableArray" key="dict.values">
               <bool key="EncodedWithXMLCoder">YES</bool>
+              <string>id</string>
               <string>id</string>
               <string>id</string>
               <string>id</string>
@@ -2846,6 +2856,7 @@ ZS5nb29nbGUuY29tL3AvcXVvdGVmaXhmb3JtYWM</string>
               <string>customForwardingAttribution</string>
               <string>customReplyAttribution</string>
               <string>customSignatureMatcher</string>
+              <string>customSignatureMatcherDefault</string>
               <string>customSignatureMatcherFeedback</string>
               <string>helpButton</string>
               <string>lastUpdateCheck</string>
@@ -2875,6 +2886,10 @@ ZS5nb29nbGUuY29tL3AvcXVvdGVmaXhmb3JtYWM</string>
               </object>
               <object class="IBToOneOutletInfo">
                 <string key="name">customSignatureMatcher</string>
+                <string key="candidateClassName">id</string>
+              </object>
+              <object class="IBToOneOutletInfo">
+                <string key="name">customSignatureMatcherDefault</string>
                 <string key="candidateClassName">id</string>
               </object>
               <object class="IBToOneOutletInfo">
