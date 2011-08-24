@@ -142,7 +142,8 @@ class QuoteFixPreferencesController(NSObject):
         preview = CustomizedAttribution.render_attribution(
             messages[0],
             messages[0],
-            sender.stringValue()
+            sender.stringValue(),
+            False
         )
 
         # make newlines visible

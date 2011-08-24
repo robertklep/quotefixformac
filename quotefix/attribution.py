@@ -58,11 +58,19 @@ class CustomizedAttribution:
             elif child.nodeType() == 3 and not matcher.match(child.data()):
                 continue
 
+            # should attribution be treated as HTML?
+            is_html = False
+            if is_forward and cls.app.custom_forwarding_is_html:
+                is_html = True
+            elif not is_html and cls.app.custom_reply_is_html:
+                is_html = True
+
             # render attribution
             attribution = cls.render_attribution(
                 reply       = reply,
                 inreplyto   = inreplyto,
                 template    = template,
+                is_html     = is_html,
             )
 
             # replace newlines with hard linebreaks
@@ -92,19 +100,24 @@ class CustomizedAttribution:
         return False
 
     @classmethod
-    def render_attribution(cls, reply, inreplyto, template):
+    def render_attribution(cls, reply, inreplyto, template, is_html):
         # expand template and return it
         return cls.render_with_params(
             template, 
-            cls.setup_params(reply, inreplyto)
+            cls.setup_params(reply, inreplyto),
+            is_html
         )
 
     @classmethod
-    def render_with_params(cls, template, params):
+    def render_with_params(cls, template, params, is_html):
         # hmm...
         template = template.replace('message.from',     'message.From')
         template = template.replace('response.from',    'response.From')
         template = template.replace('recipients.all',   'recipients.All')
+
+        # escape some characters when not using HTML-mode
+        if not is_html:
+            template = template.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;')
 
         # templating enabled?
         if cls.app.custom_attribution_allow_templating:
@@ -115,10 +128,7 @@ class CustomizedAttribution:
                 return "<i>&lt;A templating error occured, please check your template for errors&gt;</i>"
 
         # simple template
-        attribution = SimpleTemplate(template).substitute(params)
-
-        # encode (some) entities
-        return attribution.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;')
+        return SimpleTemplate(template).substitute(params)
 
     @classmethod
     def setup_params(cls, reply, inreplyto):

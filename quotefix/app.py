@@ -108,6 +108,11 @@ If you run into any problems with regards to replying or forwarding mail, consid
     def custom_reply_increase_quotelevel(self):
         return self.prefs.bool["QuoteFixCustomReplyIncreaseQuoteLevel"] or False
 
+    # 'custom reply is HTML code'
+    @property
+    def custom_reply_is_html(self):
+        return self.prefs.bool["QuoteFixCustomReplyIsHTML"] or False
+
     # 'use custom forwarding attribution'
     @property
     def use_custom_forwarding_attribution(self):
@@ -118,10 +123,15 @@ If you run into any problems with regards to replying or forwarding mail, consid
     def custom_forwarding_attribution(self):
         return self.prefs.string["QuoteFixCustomForwardingAttribution"] or ""
 
-    # 'increase quotelevel with custom reply'
+    # 'increase quotelevel with custom forwarding'
     @property
     def custom_forwarding_increase_quotelevel(self):
         return self.prefs.bool["QuoteFixCustomForwardingIncreaseQuoteLevel"] or False
+
+    # 'custom forwarding is HTML code'
+    @property
+    def custom_forwarding_is_html(self):
+        return self.prefs.bool["QuoteFixCustomForwardingIsHTML"] or False
 
     # 'enable templating in customized attributions'
     @property
