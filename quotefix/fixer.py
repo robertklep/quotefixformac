@@ -99,6 +99,7 @@ class MailDocumentEditor(Category(MailDocumentEditor)):
                 try:
                     attributor(
                         app         = self.app,
+                        editor      = self,
                         dom         = htmldom,
                         reply       = backend.message(),
                         inreplyto   = backend.originalMessage()

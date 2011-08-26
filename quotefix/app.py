@@ -113,6 +113,11 @@ If you run into any problems with regards to replying or forwarding mail, consid
     def custom_reply_is_html(self):
         return self.prefs.bool["QuoteFixCustomReplyIsHTML"] or False
 
+    # 'convert reply to rich text when needed?'
+    @property
+    def custom_reply_convert_to_rich(self):
+        return self.prefs.bool['QuoteFixCustomReplyConvertToRichText'] or False
+
     # 'use custom forwarding attribution'
     @property
     def use_custom_forwarding_attribution(self):
@@ -132,6 +137,11 @@ If you run into any problems with regards to replying or forwarding mail, consid
     @property
     def custom_forwarding_is_html(self):
         return self.prefs.bool["QuoteFixCustomForwardingIsHTML"] or False
+
+    # 'convert forwarded message to rich text when needed?'
+    @property
+    def custom_forwarding_convert_to_rich(self):
+        return self.prefs.bool['QuoteFixCustomForwardingConvertToRichText'] or False
 
     # 'enable templating in customized attributions'
     @property

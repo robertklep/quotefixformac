@@ -14,12 +14,13 @@ class CustomizedAttribution:
         cls.app = app
 
     @classmethod
-    def customize_reply(cls, app, dom, reply, inreplyto):
+    def customize_reply(cls, app, editor, dom, reply, inreplyto):
         return cls.customize_attribution(
             # grab the original attribution string from the
             # Message class, so we can replace it with a
             # customized version of it.
             original    = Message.replyPrefixWithSpacer_(False),
+            editor      = editor,
             dom         = dom,
             reply       = reply,
             inreplyto   = inreplyto,
@@ -28,9 +29,10 @@ class CustomizedAttribution:
         )
 
     @classmethod
-    def customize_forward(cls, app, dom, reply, inreplyto):
+    def customize_forward(cls, app, editor, dom, reply, inreplyto):
         return cls.customize_attribution(
             original    = Message.forwardedMessagePrefixWithSpacer_(False),
+            editor      = editor,
             dom         = dom,
             reply       = reply,
             inreplyto   = inreplyto,
@@ -39,7 +41,7 @@ class CustomizedAttribution:
         )
 
     @classmethod
-    def customize_attribution(cls, original, dom, reply, inreplyto, template, is_forward):
+    def customize_attribution(cls, original, editor, dom, reply, inreplyto, template, is_forward):
         # create matcher for matching original attribution
         matcher = re.compile(re.sub(r'%\d+\$\@', '.*?', original.strip()))
 
@@ -71,12 +73,16 @@ class CustomizedAttribution:
                 body_is_rich    = body.isRich()
                 body_is_html    = body.isHTML()
                 if not body_is_html and not body_is_rich:
-                    NSRunAlertPanel(
-                        'QuoteFix warning',
-                        'You are using an HTML-attribution, but the current message format is plain text.\n\n' +
-                        'Unless you convert to rich text, the HTML-formatting will be lost when sending the message.',
-                        None, None, None
-                    )
+                    if (is_forward and cls.app.custom_forwarding_convert_to_rich) or \
+                       (not is_forward and cls.app.custom_reply_convert_to_rich):
+                        editor.makeRichText_(editor)
+                    else:
+                        NSRunAlertPanel(
+                            'QuoteFix warning',
+                            'You are using an HTML-attribution, but the current message format is plain text.\n\n' +
+                            'Unless you convert to rich text, the HTML-formatting will be lost when sending the message.',
+                            None, None, None
+                        )
 
             # render attribution
             attribution = cls.render_attribution(
