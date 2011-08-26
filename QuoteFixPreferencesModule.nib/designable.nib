@@ -538,24 +538,24 @@
                                             <int key="NSPeriodicInterval">25</int>
                                           </object>
                                         </object>
-                                        <object class="NSButton" id="700689949">
+                                        <object class="NSButton" id="124060379">
                                           <reference key="NSNextResponder" ref="922415586"/>
                                           <int key="NSvFlags">268</int>
                                           <string key="NSFrame">{{15, 12}, {113, 18}}</string>
                                           <reference key="NSSuperview" ref="922415586"/>
                                           <string key="NSReuseIdentifierKey">_NS:682</string>
                                           <bool key="NSEnabled">YES</bool>
-                                          <object class="NSButtonCell" key="NSCell" id="792365325">
+                                          <object class="NSButtonCell" key="NSCell" id="102949151">
                                             <int key="NSCellFlags">67239424</int>
                                             <int key="NSCellFlags2">131072</int>
                                             <string key="NSContents">Treat as HTML</string>
-                                            <object class="NSFont" key="NSSupport" id="592985238">
+                                            <object class="NSFont" key="NSSupport" id="28025662">
                                               <string key="NSName">LucidaGrande</string>
                                               <double key="NSSize">11</double>
                                               <int key="NSfFlags">16</int>
                                             </object>
                                             <string key="NSCellIdentifier">_NS:682</string>
-                                            <reference key="NSControlView" ref="700689949"/>
+                                            <reference key="NSControlView" ref="124060379"/>
                                             <int key="NSButtonFlags">1211912703</int>
                                             <int key="NSButtonFlags2">2</int>
                                             <reference key="NSNormalImage" ref="697075880"/>
@@ -668,20 +668,20 @@
                                             <int key="NSPeriodicInterval">25</int>
                                           </object>
                                         </object>
-                                        <object class="NSButton" id="186048300">
+                                        <object class="NSButton" id="860934401">
                                           <reference key="NSNextResponder" ref="755341354"/>
                                           <int key="NSvFlags">268</int>
                                           <string key="NSFrame">{{15, 12}, {113, 18}}</string>
                                           <reference key="NSSuperview" ref="755341354"/>
                                           <string key="NSReuseIdentifierKey">_NS:682</string>
                                           <bool key="NSEnabled">YES</bool>
-                                          <object class="NSButtonCell" key="NSCell" id="177147287">
+                                          <object class="NSButtonCell" key="NSCell" id="747016592">
                                             <int key="NSCellFlags">67239424</int>
                                             <int key="NSCellFlags2">131072</int>
                                             <string key="NSContents">Treat as HTML</string>
-                                            <reference key="NSSupport" ref="592985238"/>
+                                            <reference key="NSSupport" ref="28025662"/>
                                             <string key="NSCellIdentifier">_NS:682</string>
-                                            <reference key="NSControlView" ref="186048300"/>
+                                            <reference key="NSControlView" ref="860934401"/>
                                             <int key="NSButtonFlags">1211912703</int>
                                             <int key="NSButtonFlags2">2</int>
                                             <reference key="NSNormalImage" ref="697075880"/>
@@ -891,7 +891,7 @@
                                     <int key="NSCellFlags">68288064</int>
                                     <int key="NSCellFlags2">272630784</int>
                                     <string key="NSContents">The default regular expression QuoteFix uses is</string>
-                                    <reference key="NSSupport" ref="592985238"/>
+                                    <reference key="NSSupport" ref="28025662"/>
                                     <string key="NSCellIdentifier">_NS:4068</string>
                                     <reference key="NSControlView" ref="685164015"/>
                                     <reference key="NSBackgroundColor" ref="600795121"/>
@@ -1748,10 +1748,10 @@ ZS5nb29nbGUuY29tL3AvcXVvdGVmaXhmb3JtYWM</string>
         <object class="IBConnectionRecord">
           <object class="IBBindingConnection" key="connection">
             <string key="label">value: values.QuoteFixCustomReplyIsHTML</string>
-            <reference key="source" ref="700689949"/>
+            <reference key="source" ref="124060379"/>
             <reference key="destination" ref="512304363"/>
             <object class="NSNibBindingConnector" key="connector">
-              <reference key="NSSource" ref="700689949"/>
+              <reference key="NSSource" ref="124060379"/>
               <reference key="NSDestination" ref="512304363"/>
               <string key="NSLabel">value: values.QuoteFixCustomReplyIsHTML</string>
               <string key="NSBinding">value</string>
@@ -1764,10 +1764,10 @@ ZS5nb29nbGUuY29tL3AvcXVvdGVmaXhmb3JtYWM</string>
         <object class="IBConnectionRecord">
           <object class="IBBindingConnection" key="connection">
             <string key="label">value: values.QuoteFixCustomForwardingIsHTML</string>
-            <reference key="source" ref="186048300"/>
+            <reference key="source" ref="860934401"/>
             <reference key="destination" ref="512304363"/>
             <object class="NSNibBindingConnector" key="connector">
-              <reference key="NSSource" ref="186048300"/>
+              <reference key="NSSource" ref="860934401"/>
               <reference key="NSDestination" ref="512304363"/>
               <string key="NSLabel">value: values.QuoteFixCustomForwardingIsHTML</string>
               <string key="NSBinding">value</string>
@@ -2223,7 +2223,7 @@ ZS5nb29nbGUuY29tL3AvcXVvdGVmaXhmb3JtYWM</string>
               <reference ref="677110182"/>
               <reference ref="313054074"/>
               <reference ref="55791016"/>
-              <reference ref="700689949"/>
+              <reference ref="124060379"/>
             </object>
             <reference key="parent" ref="667211241"/>
           </object>
@@ -2278,7 +2278,7 @@ ZS5nb29nbGUuY29tL3AvcXVvdGVmaXhmb3JtYWM</string>
               <reference ref="837285491"/>
               <reference ref="237086093"/>
               <reference ref="215826771"/>
-              <reference ref="186048300"/>
+              <reference ref="860934401"/>
             </object>
             <reference key="parent" ref="667211241"/>
           </object>
@@ -2444,31 +2444,31 @@ ZS5nb29nbGUuY29tL3AvcXVvdGVmaXhmb3JtYWM</string>
           </object>
           <object class="IBObjectRecord">
             <int key="objectID">300</int>
-            <reference key="object" ref="700689949"/>
+            <reference key="object" ref="124060379"/>
             <object class="NSMutableArray" key="children">
               <bool key="EncodedWithXMLCoder">YES</bool>
-              <reference ref="792365325"/>
+              <reference ref="102949151"/>
             </object>
             <reference key="parent" ref="904678365"/>
           </object>
           <object class="IBObjectRecord">
             <int key="objectID">301</int>
-            <reference key="object" ref="792365325"/>
-            <reference key="parent" ref="700689949"/>
+            <reference key="object" ref="102949151"/>
+            <reference key="parent" ref="124060379"/>
           </object>
           <object class="IBObjectRecord">
             <int key="objectID">304</int>
-            <reference key="object" ref="186048300"/>
+            <reference key="object" ref="860934401"/>
             <object class="NSMutableArray" key="children">
               <bool key="EncodedWithXMLCoder">YES</bool>
-              <reference ref="177147287"/>
+              <reference ref="747016592"/>
             </object>
             <reference key="parent" ref="646853082"/>
           </object>
           <object class="IBObjectRecord">
             <int key="objectID">305</int>
-            <reference key="object" ref="177147287"/>
-            <reference key="parent" ref="186048300"/>
+            <reference key="object" ref="747016592"/>
+            <reference key="parent" ref="860934401"/>
           </object>
         </object>
       </object>
@@ -2828,7 +2828,7 @@ ZS5nb29nbGUuY29tL3AvcXVvdGVmaXhmb3JtYWM</string>
             <string key="NS.key.0">ToolTip</string>
             <object class="IBToolTipAttribute" key="NS.object.0">
               <string key="name">ToolTip</string>
-              <reference key="object" ref="700689949"/>
+              <reference key="object" ref="124060379"/>
               <string key="toolTip">When enabled, the attribution is treated as HTML. This means special characters like '&lt;', '&gt;' and '&amp;' won't be escaped.</string>
             </object>
           </object>
@@ -2841,7 +2841,7 @@ ZS5nb29nbGUuY29tL3AvcXVvdGVmaXhmb3JtYWM</string>
             <string key="NS.key.0">ToolTip</string>
             <object class="IBToolTipAttribute" key="NS.object.0">
               <string key="name">ToolTip</string>
-              <reference key="object" ref="186048300"/>
+              <reference key="object" ref="860934401"/>
               <string key="toolTip">When enabled, the attribution is treated as HTML. This means special characters like '&lt;', '&gt;' and '&amp;' won't be escaped.</string>
             </object>
           </object>

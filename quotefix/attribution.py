@@ -65,6 +65,19 @@ class CustomizedAttribution:
             elif not is_html and cls.app.custom_reply_is_html:
                 is_html = True
 
+            # check if message is rich text with HTML-attribution
+            if is_html:
+                body            = reply.messageBody()
+                body_is_rich    = body.isRich()
+                body_is_html    = body.isHTML()
+                if not body_is_html and not body_is_rich:
+                    NSRunAlertPanel(
+                        'QuoteFix warning',
+                        'You are using an HTML-attribution, but the current message format is plain text.\n\n' +
+                        'Unless you convert to rich text, the HTML-formatting will be lost when sending the message.',
+                        None, None, None
+                    )
+
             # render attribution
             attribution = cls.render_attribution(
                 reply       = reply,
