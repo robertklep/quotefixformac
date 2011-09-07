@@ -93,6 +93,11 @@ If you run into any problems with regards to replying or forwarding mail, consid
     def remove_quotes_level(self):
         return self.prefs.int["QuoteFixRemoveQuotesLevel"]
 
+    # 'don't add extra line of whitespace below first-level quote'
+    @property
+    def no_whitespace_below_quote(self):
+        return self.prefs.bool["QuoteFixNoWhitespaceBelowQuote"]
+
     # 'use custom reply attribution'
     @property
     def use_custom_reply_attribution(self):

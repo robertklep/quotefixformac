@@ -234,8 +234,9 @@ class MailDocumentEditor(Category(MailDocumentEditor)):
         # move up (positions cursor above signature)
         view.moveUp_(self)
 
-        # and insert a paragraph break
-        view.insertParagraphSeparator_(self)
+        # insert a paragraph break?
+        if not self.app.no_whitespace_below_quote:
+            view.insertParagraphSeparator_(self)
 
         # signal that we moved
         return True
