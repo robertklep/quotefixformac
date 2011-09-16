@@ -70,9 +70,10 @@ class MailDocumentEditor(Category(MailDocumentEditor)):
                     backend.setHasChanges_(False)
 
                 # remove signature from sender
-                logging.debug('calling remove_old_signature()')
-                if self.remove_old_signature(htmldom, view):
-                    backend.setHasChanges_(False)
+                if not self.app.keep_sender_signature:
+                    logging.debug('calling remove_old_signature()')
+                    if self.remove_old_signature(htmldom, view):
+                        backend.setHasChanges_(False)
 
                 # place cursor above own signature (if any)
                 logging.debug('calling move_above_new_signature()')

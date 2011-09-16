@@ -12,7 +12,7 @@
     </object>
     <object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
       <bool key="EncodedWithXMLCoder">YES</bool>
-      <integer value="184"/>
+      <integer value="188"/>
     </object>
     <object class="NSArray" key="IBDocument.PluginDependencies">
       <bool key="EncodedWithXMLCoder">YES</bool>
@@ -42,10 +42,6 @@
         <string key="NSClassName">QuoteFixPreferencesController</string>
       </object>
       <object class="NSUserDefaultsController" id="512304363">
-        <object class="NSMutableArray" key="NSDeclaredKeys">
-          <bool key="EncodedWithXMLCoder">YES</bool>
-          <string>QuoteFixNoWhitespaceBelowQuote</string>
-        </object>
         <bool key="NSSharedInstance">YES</bool>
       </object>
       <object class="NSBox" id="929681542">
@@ -160,7 +156,7 @@
                                 <object class="NSButton" id="833444860">
                                   <reference key="NSNextResponder" ref="158350890"/>
                                   <int key="NSvFlags">268</int>
-                                  <string key="NSFrame">{{16, 75}, {324, 18}}</string>
+                                  <string key="NSFrame">{{16, 95}, {324, 18}}</string>
                                   <reference key="NSSuperview" ref="158350890"/>
                                   <int key="NSViewLayerContentsRedrawPolicy">2</int>
                                   <bool key="NSEnabled">YES</bool>
@@ -183,7 +179,7 @@
                                 <object class="NSButton" id="427822748">
                                   <reference key="NSNextResponder" ref="158350890"/>
                                   <int key="NSvFlags">268</int>
-                                  <string key="NSFrame">{{16, 32}, {391, 18}}</string>
+                                  <string key="NSFrame">{{16, 52}, {391, 18}}</string>
                                   <reference key="NSSuperview" ref="158350890"/>
                                   <int key="NSViewLayerContentsRedrawPolicy">2</int>
                                   <bool key="NSEnabled">YES</bool>
@@ -206,7 +202,7 @@
                                 <object class="NSButton" id="345684891">
                                   <reference key="NSNextResponder" ref="158350890"/>
                                   <int key="NSvFlags">268</int>
-                                  <string key="NSFrame">{{16, 52}, {391, 18}}</string>
+                                  <string key="NSFrame">{{16, 72}, {391, 18}}</string>
                                   <reference key="NSSuperview" ref="158350890"/>
                                   <int key="NSViewLayerContentsRedrawPolicy">2</int>
                                   <bool key="NSEnabled">YES</bool>
@@ -229,7 +225,7 @@
                                 <object class="NSComboBox" id="263515805">
                                   <reference key="NSNextResponder" ref="158350890"/>
                                   <int key="NSvFlags">268</int>
-                                  <string key="NSFrame">{{189, 72}, {47, 26}}</string>
+                                  <string key="NSFrame">{{189, 92}, {47, 26}}</string>
                                   <reference key="NSSuperview" ref="158350890"/>
                                   <int key="NSViewLayerContentsRedrawPolicy">2</int>
                                   <bool key="NSEnabled">YES</bool>
@@ -353,7 +349,7 @@
                                 <object class="NSButton" id="667260023">
                                   <reference key="NSNextResponder" ref="158350890"/>
                                   <int key="NSvFlags">268</int>
-                                  <string key="NSFrame">{{16, 12}, {405, 18}}</string>
+                                  <string key="NSFrame">{{16, 32}, {405, 18}}</string>
                                   <reference key="NSSuperview" ref="158350890"/>
                                   <string key="NSReuseIdentifierKey">_NS:682</string>
                                   <bool key="NSEnabled">YES</bool>
@@ -374,13 +370,37 @@
                                     <int key="NSPeriodicInterval">25</int>
                                   </object>
                                 </object>
+                                <object class="NSButton" id="554063000">
+                                  <reference key="NSNextResponder" ref="158350890"/>
+                                  <int key="NSvFlags">268</int>
+                                  <string key="NSFrame">{{16, 12}, {224, 18}}</string>
+                                  <reference key="NSSuperview" ref="158350890"/>
+                                  <string key="NSReuseIdentifierKey">_NS:682</string>
+                                  <bool key="NSEnabled">YES</bool>
+                                  <object class="NSButtonCell" key="NSCell" id="782359619">
+                                    <int key="NSCellFlags">67239424</int>
+                                    <int key="NSCellFlags2">0</int>
+                                    <string key="NSContents">Don't remove senders signature</string>
+                                    <reference key="NSSupport" ref="819029157"/>
+                                    <string key="NSCellIdentifier">_NS:682</string>
+                                    <reference key="NSControlView" ref="554063000"/>
+                                    <int key="NSButtonFlags">1211912703</int>
+                                    <int key="NSButtonFlags2">2</int>
+                                    <reference key="NSNormalImage" ref="697075880"/>
+                                    <reference key="NSAlternateImage" ref="748518385"/>
+                                    <string key="NSAlternateContents"/>
+                                    <string key="NSKeyEquivalent"/>
+                                    <int key="NSPeriodicDelay">200</int>
+                                    <int key="NSPeriodicInterval">25</int>
+                                  </object>
+                                </object>
                               </object>
-                              <string key="NSFrame">{{1, 1}, {668, 106}}</string>
+                              <string key="NSFrame">{{1, 1}, {668, 126}}</string>
                               <reference key="NSSuperview" ref="391622878"/>
                               <int key="NSViewLayerContentsRedrawPolicy">2</int>
                             </object>
                           </object>
-                          <string key="NSFrame">{{0, 247}, {670, 108}}</string>
+                          <string key="NSFrame">{{0, 227}, {670, 128}}</string>
                           <reference key="NSSuperview" ref="314793740"/>
                           <int key="NSViewLayerContentsRedrawPolicy">2</int>
                           <string key="NSOffsets">{0, 0}</string>
@@ -2234,6 +2254,22 @@ ZS5nb29nbGUuY29tL3AvcXVvdGVmaXhmb3JtYWM</string>
           </object>
           <int key="connectionID">368</int>
         </object>
+        <object class="IBConnectionRecord">
+          <object class="IBBindingConnection" key="connection">
+            <string key="label">value: values.QuoteFixKeepSenderSignature</string>
+            <reference key="source" ref="554063000"/>
+            <reference key="destination" ref="512304363"/>
+            <object class="NSNibBindingConnector" key="connector">
+              <reference key="NSSource" ref="554063000"/>
+              <reference key="NSDestination" ref="512304363"/>
+              <string key="NSLabel">value: values.QuoteFixKeepSenderSignature</string>
+              <string key="NSBinding">value</string>
+              <string key="NSKeyPath">values.QuoteFixKeepSenderSignature</string>
+              <int key="NSNibBindingConnectorVersion">2</int>
+            </object>
+          </object>
+          <int key="connectionID">374</int>
+        </object>
       </object>
       <object class="IBMutableOrderedSet" key="objectRecords">
         <object class="NSArray" key="orderedObjects">
@@ -2369,8 +2405,9 @@ ZS5nb29nbGUuY29tL3AvcXVvdGVmaXhmb3JtYWM</string>
               <reference ref="833444860"/>
               <reference ref="263515805"/>
               <reference ref="345684891"/>
-              <reference ref="427822748"/>
               <reference ref="667260023"/>
+              <reference ref="554063000"/>
+              <reference ref="427822748"/>
             </object>
             <reference key="parent" ref="314793740"/>
           </object>
@@ -2957,6 +2994,20 @@ ZS5nb29nbGUuY29tL3AvcXVvdGVmaXhmb3JtYWM</string>
             <reference key="object" ref="212991573"/>
             <reference key="parent" ref="667260023"/>
           </object>
+          <object class="IBObjectRecord">
+            <int key="objectID">369</int>
+            <reference key="object" ref="554063000"/>
+            <object class="NSMutableArray" key="children">
+              <bool key="EncodedWithXMLCoder">YES</bool>
+              <reference ref="782359619"/>
+            </object>
+            <reference key="parent" ref="391622878"/>
+          </object>
+          <object class="IBObjectRecord">
+            <int key="objectID">370</int>
+            <reference key="object" ref="782359619"/>
+            <reference key="parent" ref="554063000"/>
+          </object>
         </object>
       </object>
       <object class="NSMutableDictionary" key="flattenedProperties">
@@ -3081,8 +3132,11 @@ ZS5nb29nbGUuY29tL3AvcXVvdGVmaXhmb3JtYWM</string>
           <string>365.IBPluginDependency</string>
           <string>365.IBViewBoundsToFrameTransform</string>
           <string>366.IBPluginDependency</string>
+          <string>369.IBAttributePlaceholdersKey</string>
+          <string>369.IBPluginDependency</string>
           <string>37.IBPluginDependency</string>
           <string>37.IBViewBoundsToFrameTransform</string>
+          <string>370.IBPluginDependency</string>
           <string>38.IBPluginDependency</string>
           <string>58.IBPluginDependency</string>
           <string>58.IBViewBoundsToFrameTransform</string>
@@ -3168,7 +3222,7 @@ ZS5nb29nbGUuY29tL3AvcXVvdGVmaXhmb3JtYWM</string>
           </object>
           <string>com.apple.InterfaceBuilder.CocoaPlugin</string>
           <object class="NSAffineTransform">
-            <bytes key="NSTransformStruct">P4AAAL+AAABBgAAAwtQAAA</bytes>
+            <bytes key="NSTransformStruct">P4AAAL+AAABBgAAAwtoAAA</bytes>
           </object>
           <string>com.apple.InterfaceBuilder.CocoaPlugin</string>
           <object class="NSAffineTransform">
@@ -3395,10 +3449,20 @@ ZS5nb29nbGUuY29tL3AvcXVvdGVmaXhmb3JtYWM</string>
             <bytes key="NSTransformStruct">P4AAAL+AAABBgAAAwqwAAA</bytes>
           </object>
           <string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+          <object class="NSMutableDictionary">
+            <string key="NS.key.0">ToolTip</string>
+            <object class="IBToolTipAttribute" key="NS.object.0">
+              <string key="name">ToolTip</string>
+              <reference key="object" ref="554063000"/>
+              <string key="toolTip">With this enabled, the signature of the sender is kept intact. This means that QuoteFix will only just place the cursor below the reply instead of above it.</string>
+            </object>
+          </object>
+          <string>com.apple.InterfaceBuilder.CocoaPlugin</string>
           <string>com.apple.InterfaceBuilder.CocoaPlugin</string>
           <object class="NSAffineTransform">
             <bytes key="NSTransformStruct">P4AAAL+AAABBgAAAwwAAAA</bytes>
           </object>
+          <string>com.apple.InterfaceBuilder.CocoaPlugin</string>
           <string>com.apple.InterfaceBuilder.CocoaPlugin</string>
           <string>com.apple.InterfaceBuilder.CocoaPlugin</string>
           <object class="NSAffineTransform">
@@ -3417,7 +3481,7 @@ ZS5nb29nbGUuY29tL3AvcXVvdGVmaXhmb3JtYWM</string>
           <string>com.apple.InterfaceBuilder.CocoaPlugin</string>
           <string>com.apple.InterfaceBuilder.CocoaPlugin</string>
           <object class="NSAffineTransform">
-            <bytes key="NSTransformStruct">AQAAAABCmAAAA</bytes>
+            <bytes key="NSTransformStruct">AQAAAABDdwAAA</bytes>
           </object>
           <real value="9"/>
           <reference ref="898660825"/>
@@ -3459,7 +3523,7 @@ ZS5nb29nbGUuY29tL3AvcXVvdGVmaXhmb3JtYWM</string>
         </object>
       </object>
       <nil key="sourceID"/>
-      <int key="maxID">368</int>
+      <int key="maxID">374</int>
     </object>
     <object class="IBClassDescriber" key="IBDocument.Classes">
       <object class="NSMutableArray" key="referencedPartialClassDescriptionsV3.1+">

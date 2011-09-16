@@ -153,6 +153,11 @@ If you run into any problems with regards to replying or forwarding mail, consid
     def custom_attribution_allow_templating(self):
         return self.prefs.bool["QuoteFixCustomAttributionAllowTemplating"] or False
 
+    # 'keep senders signature'
+    @property
+    def keep_sender_signature(self):
+        return self.prefs.bool["QuoteFixKeepSenderSignature"] or False
+
     # signature matcher
     @property
     def signature_matcher(self):
