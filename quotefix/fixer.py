@@ -256,7 +256,8 @@ class MailDocumentEditor(Category(MailDocumentEditor)):
 
     def cleanup_layout(self, root):
         # clean up stray linefeeds
-        root.getElementsByTagName_("body").item_(0)._removeStrayLinefeedsAtBeginning()
+        if not self.app.keep_leading_whitespace:
+            root.getElementsByTagName_("body").item_(0)._removeStrayLinefeedsAtBeginning()
 
         # remove trailing whitespace on first blockquote?
         if self.app.remove_trailing_whitespace:

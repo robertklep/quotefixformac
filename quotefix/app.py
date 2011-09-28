@@ -83,6 +83,11 @@ If you run into any problems with regards to replying or forwarding mail, consid
     def remove_trailing_whitespace(self):
         return self.prefs.bool["QuoteFixRemoveTrailingWhitespace"]
 
+    # 'keep leading whitespace'
+    @property
+    def keep_leading_whitespace(self):
+        return self.prefs.bool['QuoteFixKeepLeadingWhitespace']
+
     # 'remove quotes from level'
     @property
     def remove_quotes(self):
