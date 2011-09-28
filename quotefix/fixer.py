@@ -97,12 +97,24 @@ class MailDocumentEditor(Category(MailDocumentEditor)):
                 attributor = CustomizedAttribution.customize_forward
 
             if attributor:
+                # play nice with Attachment Tamer
+                try:
+                    message = backend.draftMessage()
+                except:
+                    message = backend._makeMessageWithContents_isDraft_shouldSign_shouldEncrypt_shouldSkipSignature_shouldBePlainText_(
+                        backend.copyOfContentsForDraft_shouldBePlainText_isOkayToForceRichText_(True, False, True),
+                        True,
+                        False,
+                        False,
+                        False,
+                        False
+                    )
                 try:
                     attributor(
                         app         = self.app,
                         editor      = self,
                         dom         = htmldom,
-                        reply       = backend.message(),
+                        reply       = message,
                         inreplyto   = backend.originalMessage()
                     )
                 except:
