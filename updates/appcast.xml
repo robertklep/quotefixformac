@@ -5,24 +5,44 @@
 			<link>http://quotefix.quotefixformac.googlecode.com/hg/quotefix/updates/appcast.xml</link>
       <description>Most recent changes with links to updates.</description>
       <language>en</language>
-			<!--
 			<item>
 				<title>Version 2.3.0</title>
 				<description><![CDATA[
-					<h2>New Features</h2>
+					<h2>Major update</h2>
+					<p>
+						This is a major update of QuoteFix. In short, it adds a proper
+						preference pane, advanced templating for attributions, and
+						customized signature matching.
+					</p>
+					<h3>Changes</h3>
+					<h4>General</h4>
 					<ul>
-						<li>...</li>
+						<li>the preferences for QuoteFix have been moved from the <i>Mail</i> menu to the Mail.app preferences window</li>
+					</ul>
+					<h4>Quotefixing</h4>
+					<ul>
+						<li>customized signature matching: you can now define a regular expression which is used to match signature separators</li>
+						<li><b>new option:</b> increase quote level of attribution lines</li>
+						<li><b>new option:</b> don't include a line of whitespace below the first-level quote</li>
+						<li><b>new option:</b> "keep senders signature"</li>
+						<li><b>new option:</b> "keep leading whitespace"</li>
+						<li>better compatibility with Attachment Tamer</li>
+					</ul>
+					<h4>Customized attributions</h4>
+					<ul>
+						<li>previewing your customized attributions</li>
+						<li>advanced templating (should be explicitely enabled in the <i>Advanced</i> preferences)</li>
+						<li>use HTML to style your attributions</li>
 					</ul>
 				]]></description>
-				<pubDate>Wed Oct 12 22:03:11 2011 CEST</pubDate>
+				<pubDate>Sat Oct 29 13:03:15 2011 CEST</pubDate>
 				<enclosure
 					url="http://quotefixformac.googlecode.com/files/QuoteFix-2.3.0.zip"
-					length="5481237"
+					length="5482064"
 					sparkle:version="2.3.0"
 					type="application/octet-stream"
-					sparkle:dsaSignature="MC0CFQDLZ+mwe6glSyoplJsTdj8HgI6UEwIUJEwICWZf/6CRirXr1BgVmahYk9k=" />
+					sparkle:dsaSignature="MCwCFC2zofhGQ1Y2UaTjMIgXaalMaqkRAhRbRjC00IfhbQ3OmqsQYy3G9QoUrA==" />
 			</item>
-			-->
 			<item>
 				<title>Version 2.2.4</title>
 				<description><![CDATA[
