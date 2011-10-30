@@ -1,16 +1,9 @@
 from    AppKit                  import *
 from    quotefix.utils          import swizzle
 from    quotefix.attribution    import CustomizedAttribution
+from    quotefix.messagetypes   import *
 from    objc                    import Category, lookUpClass
 import  logging, re, traceback
-
-# message types
-REPLY       = 1
-REPLY_ALL   = 2
-FORWARD     = 3
-DRAFT       = 4
-NEW         = 5
-SUPPORTED   = [ REPLY, REPLY_ALL, FORWARD ]
 
 # our own MailDocumentEditor implementation
 MailDocumentEditor = lookUpClass('MailDocumentEditor')
@@ -35,8 +28,8 @@ class MailDocumentEditor(Category(MailDocumentEditor)):
 
             # check for supported messagetype
             logging.debug('message type is %s' % self.messageType())
-            if self.messageType() not in SUPPORTED:
-                logging.debug('\t not in %s, bailing' % SUPPORTED)
+            if self.messageType() not in self.app.message_types_to_quotefix:
+                logging.debug('\t not in %s, bailing' % self.app.message_types_to_quotefix)
                 return
 
             # grab composeView instance (this is the WebView which contains the

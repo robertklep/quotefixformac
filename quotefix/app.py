@@ -1,6 +1,7 @@
-from    AppKit          import *
-from    Foundation      import *
-from    objc            import Category, lookUpClass
+from    AppKit                  import *
+from    Foundation              import *
+from    quotefix.messagetypes   import *
+from    objc                    import Category, lookUpClass
 import  logging, os, re
 
 class App(object):
@@ -14,6 +15,15 @@ class App(object):
 
         # read user defaults (preferences)
         self.prefs = NSUserDefaults.standardUserDefaults()
+
+        # register some default values
+        self.prefs.registerDefaults_(dict(
+            QuoteFixFixReply        = True,
+            QuoteFixFixReplyAll     = True,
+            QuoteFixFixForward      = True,
+            QuoteFixFixDraft        = False,
+            QuoteFixFixNewMessage   = False,
+        ))
 
         # set log level
         logging.getLogger('').setLevel(self.is_debugging and logging.DEBUG or logging.WARNING)
@@ -97,6 +107,17 @@ If you run into any problems with regards to replying or forwarding mail, consid
     @property
     def remove_quotes_level(self):
         return self.prefs.int["QuoteFixRemoveQuotesLevel"]
+
+    # message types to perform quotefixing on
+    @property
+    def message_types_to_quotefix(self):
+        types = []
+        if self.prefs.bool["QuoteFixFixReply"]:         types.append(REPLY)
+        if self.prefs.bool["QuoteFixFixReplyAll"]:      types.append(REPLY_ALL)
+        if self.prefs.bool["QuoteFixFixForward"]:       types.append(FORWARD)
+        if self.prefs.bool["QuoteFixFixDraft"]:         types.append(DRAFT)
+        if self.prefs.bool["QuoteFixFixNewMessage"]:    types.append(NEW)
+        return types
 
     # 'don't add extra line of whitespace below first-level quote'
     @property
