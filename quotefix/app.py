@@ -1,6 +1,7 @@
 from    AppKit                  import *
 from    Foundation              import *
 from    quotefix.messagetypes   import *
+from    quotefix.menu           import Menu
 from    objc                    import Category, lookUpClass
 import  logging, os, re
 
@@ -29,6 +30,9 @@ class App(object):
         logging.getLogger('').setLevel(self.is_debugging and logging.DEBUG or logging.WARNING)
         if self.is_debugging:
             logging.debug('debug logging active')
+
+        # add menu item for quick enable/disable
+        Menu.alloc().initWithApp_(self).inject()
 
         # check update interval
         self.check_update_interval = self.prefs.int["QuoteFixCheckUpdateInterval"] or 0
@@ -72,6 +76,10 @@ If you run into any problems with regards to replying or forwarding mail, consid
     @property
     def is_active(self):
         return not self.prefs.bool["QuoteFixDisabled"]
+
+    @is_active.setter
+    def is_active(self, value):
+        self.prefs.bool["QuoteFixDisabled"] = value
 
     # debugging
     @property
