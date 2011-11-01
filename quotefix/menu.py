@@ -21,16 +21,26 @@ class Menu(NSObject):
             appmenu = NSApplication.sharedApplication().mainMenu().itemAtIndex_(0).submenu()
 
             # make a new menu item
-            item = NSMenuItem.alloc().initWithTitle_action_keyEquivalent_(
+            self.item = NSMenuItem.alloc().initWithTitle_action_keyEquivalent_(
                 "QuoteFix",
                 "toggleState:",
                 "")
-            self.set_state_and_title(item)
-            item.setTarget_(self)
+            self.item.setToolTip_("Quickly enable or disable the QuoteFix plug-in with this menu item.\n\nFor more preferences, open the Mail preferences window.")
+            self.set_state_and_title(self.item)
+            self.item.setTarget_(self)
 
             # add separator and new item
             appmenu.insertItem_atIndex_(NSMenuItem.separatorItem(), 1)
-            appmenu.insertItem_atIndex_(item, 2)
+            appmenu.insertItem_atIndex_(self.item, 2)
+
+            # observe changes for active state
+            defaults = NSUserDefaultsController.sharedUserDefaultsController()
+            defaults.addObserver_forKeyPath_options_context_(
+                self,
+                "values.QuoteFixDisabled",
+                NSKeyValueObservingOptionNew,
+                None
+            )
 
         except Exception, e:
             raise e
@@ -47,3 +57,7 @@ class Menu(NSObject):
 
     def window(self):
         return self.mainwindow
+
+    # update active state when it changes
+    def observeValueForKeyPath_ofObject_change_context_(self, keyPath, obj, change, context):
+        self.set_state_and_title(self.item)
