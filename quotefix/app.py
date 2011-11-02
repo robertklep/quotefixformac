@@ -32,7 +32,7 @@ class App(object):
             logging.debug('debug logging active')
 
         # add menu item for quick enable/disable
-        self.menu = Menu.alloc().initWithApp_(self).inject()
+        Menu.alloc().initWithApp_(self).inject()
 
         # check update interval
         self.check_update_interval = self.prefs.int["QuoteFixCheckUpdateInterval"] or 0

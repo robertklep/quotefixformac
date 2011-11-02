@@ -34,8 +34,7 @@ class Menu(NSObject):
             appmenu.insertItem_atIndex_(self.item, 2)
 
             # observe changes for active state
-            defaults = NSUserDefaultsController.sharedUserDefaultsController()
-            defaults.addObserver_forKeyPath_options_context_(
+            NSUserDefaultsController.sharedUserDefaultsController().addObserver_forKeyPath_options_context_(
                 self,
                 "values.QuoteFixDisabled",
                 NSKeyValueObservingOptionNew,
@@ -58,6 +57,6 @@ class Menu(NSObject):
     def window(self):
         return self.mainwindow
 
-    # update active state when it changes
+    # update menu item when active state of plug-in changes
     def observeValueForKeyPath_ofObject_change_context_(self, keyPath, obj, change, context):
         self.set_state_and_title(self.item)
