@@ -53,6 +53,7 @@ class QuoteFixPreferencesController(NSObject):
     customSignatureMatcherFeedback      = objc.IBOutlet()
     customSignatureMatcherDefault       = objc.IBOutlet()
     helpButton                          = objc.IBOutlet()
+    donateButton                        = objc.IBOutlet()
 
     @classmethod
     def registerQuoteFixApplication(cls, app):
@@ -79,6 +80,10 @@ class QuoteFixPreferencesController(NSObject):
         self.setLastUpdateCheck()
 
     @objc.IBAction
+    def donateButtonPressed_(self, sender):
+        NSWorkspace.sharedWorkspace().openURL_(NSURL.URLWithString_("https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=4UF2KB2BTW6AC"))
+
+    @objc.IBAction
     def helpButtonPressed_(self, sender):
         # open help url
         NSWorkspace.sharedWorkspace().openURL_(NSURL.URLWithString_("http://code.google.com/p/quotefixformac/wiki/CustomAttribution"))
@@ -88,6 +93,12 @@ class QuoteFixPreferencesController(NSObject):
         self.currentVersionUpdater.setStringValue_(self.app.version)
         self.updateInterval.setSelectedSegment_(self.app.check_update_interval)
         self.setLastUpdateCheck()
+
+        # set donate image
+        bundle  = NSBundle.bundleWithIdentifier_('name.klep.mail.QuoteFix')
+        path    = bundle.pathForResource_ofType_("donate", "gif")
+        image   = NSImage.alloc().initByReferencingFile_(path)
+        self.donateButton.setImage_(image)
 
         # check custom signature matcher
         self.check_signature_matcher(self.customSignatureMatcher)
