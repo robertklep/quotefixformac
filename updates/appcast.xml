@@ -6,6 +6,23 @@
       <description>Most recent changes with links to updates.</description>
       <language>en</language>
 			<item>
+				<title>Version 2.3.1</title>
+				<description><![CDATA[
+					<h2>New Features</h2>
+					<ul>
+						<li>Added a menu item in the <em>Mail</em> menu to enable/disable QuoteFix. See README.html for more information.</li>
+						<li>You can now configure on what types of message quotefixing is performed.</li>
+					</ul>
+				]]></description>
+				<pubDate>Thu Nov  3 08:34:48 2011 CET</pubDate>
+				<enclosure
+					url="http://quotefixformac.googlecode.com/files/QuoteFix-2.3.1.zip"
+					length="5487248"
+					sparkle:version="2.3.1"
+					type="application/octet-stream"
+					sparkle:dsaSignature="MC4CFQCOig0pjmUkqKj1+7uo4Rn5xz808QIVAJBgqO775trKh9/bbjWD05la7zbM" />
+			</item>
+			<item>
 				<title>Version 2.3.0</title>
 				<description><![CDATA[
 					<h2>Major update</h2>
