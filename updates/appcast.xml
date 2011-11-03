@@ -10,7 +10,7 @@
 				<description><![CDATA[
 					<h2>New Features</h2>
 					<ul>
-						<li>Added a menu item in the <em>Mail</em> menu to enable/disable QuoteFix. See README.html for more information.</li>
+						<li>Added a menu item in the <em>Mail</em> menu to enable/disable QuoteFix.</li>
 						<li>You can now configure on what types of message quotefixing is performed.</li>
 					</ul>
 				]]></description>
