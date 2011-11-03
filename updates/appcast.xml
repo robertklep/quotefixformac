@@ -6,6 +6,23 @@
       <description>Most recent changes with links to updates.</description>
       <language>en</language>
 			<item>
+				<title>Version 2.3.2</title>
+				<description><![CDATA[
+					<h2>Bugfix and new "feature"</h2>
+					<ul>
+						<li>This version fixes a bug in displaying the last update time (which was always UTC, it should now be converted to your local timezone)</li>
+						<li>Added a <em>Donate</em> button to the preferences pane for those of you inclined to give me money ;-)</li>
+					</ul>
+				]]></description>
+				<pubDate>Thu Nov  3 11:40:53 2011 CET</pubDate>
+				<enclosure
+					url="http://quotefixformac.googlecode.com/files/QuoteFix-2.3.2.zip"
+					length="5489478"
+					sparkle:version="2.3.2"
+					type="application/octet-stream"
+					sparkle:dsaSignature="MCwCFQDlH1INuLNbIPWdaGDuW4jehdKmngITFVm5hvI2F9DMbeuQ45W3ss8KVw==" />
+			</item>
+			<item>
 				<title>Version 2.3.1</title>
 				<description><![CDATA[
 					<h2>New Features</h2>
