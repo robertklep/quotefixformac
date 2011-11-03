@@ -43,7 +43,9 @@ class Updater:
             return None
         nsdate = self.updater.lastUpdateCheckDate()
         if nsdate:
-            return datetime.strptime(nsdate.description()[:-6], "%Y-%m-%d %H:%M:%S")
+            # convert to local first, datetime next
+            nsdate = nsdate.descriptionWithCalendarFormat_timeZone_locale_(None, None, None)
+            return datetime.strptime(nsdate[:-6], "%Y-%m-%d %H:%M:%S")
         return None
 
     @property
