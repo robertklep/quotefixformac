@@ -110,7 +110,14 @@ class QuoteFixPreferencesController(NSObject):
 
     def setLastUpdateCheck(self):
         date = self.app.last_update_check
-        self.lastUpdateCheck.setStringValue_(date and date.strftime("%c") or "Never")
+        if date:
+            formatter = NSDateFormatter.alloc().init()
+            formatter.setLocale_(NSLocale.alloc().initWithLocaleIdentifier_("en_US"))
+            formatter.setDateFormat_("EEE MMM dd yyyy HH:mm:ss")
+            date = formatter.stringFromDate_(date)
+        else:
+            date = "Never"
+        self.lastUpdateCheck.setStringValue_(date)
 
     # act as a delegate for text fields
     def controlTextDidChange_(self, notification):

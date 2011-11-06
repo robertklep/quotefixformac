@@ -41,12 +41,7 @@ class Updater:
     def last_update_check(self):
         if not self.enabled:
             return None
-        nsdate = self.updater.lastUpdateCheckDate()
-        if nsdate:
-            # convert to local first, datetime next
-            nsdate = nsdate.descriptionWithCalendarFormat_timeZone_locale_(None, None, None)
-            return datetime.strptime(nsdate[:-6], "%Y-%m-%d %H:%M:%S")
-        return None
+        return self.updater.lastUpdateCheckDate()
 
     @property
     def check_update_interval(self):

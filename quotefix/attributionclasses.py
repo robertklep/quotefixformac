@@ -75,6 +75,7 @@ class QFAddressee:
 
 class QFDateTime(str):
     """ wraps a datetime object """
+    formatter           = NSDateFormatter.alloc().init()
     STRFTIME_TO_UNICODE = {
         '%Y'    : 'YYYY',
         '%m'    : 'MM',
@@ -95,13 +96,11 @@ class QFDateTime(str):
     }
 
     def __new__(cls, nsdate):
-        formatter       = NSDateFormatter.alloc().init()
-        formatter.setDateFormat_("EEE MMM dd yyyy HH:mm:ss")
+        cls.formatter.setDateFormat_("EEE MMM dd yyyy HH:mm:ss")
         self            = super(QFDateTime, cls).__new__(
             cls,
-            formatter.stringFromDate_(nsdate)
+            cls.formatter.stringFromDate_(nsdate)
         )
-        self.formatter  = formatter
         self.nsdate     = nsdate
         
         # set date/time attributes
@@ -125,8 +124,8 @@ class QFDateTime(str):
         )
 
         for attribute, format in attributes.items():
-            formatter.setDateFormat_(format)
-            setattr(self, attribute, formatter.stringFromDate_(nsdate))
+            self.formatter.setDateFormat_(format)
+            setattr(self, attribute, self.formatter.stringFromDate_(nsdate))
 
         return self
 
