@@ -147,6 +147,9 @@ class QFDateTime(str):
             self.formatter.setLocale_(NSLocale.alloc().initWithLocaleIdentifier_(locale))
         return self.formatter.stringFromDate_(self.nsdate)
 
+    def locale(self, locale):
+        return self.format("EEE MMM dd yyyy HH:mm:ss", locale)
+
     @classmethod
     def nsdate_to_datetime(cls, nsdate):
         # convert NSDate to datetime (XXX: always converts to local timezone)
