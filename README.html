@@ -140,6 +140,7 @@
 				<li><a href="#installing">installing the plug-in</a></li>
 				<li><a href="#using">using the plug-in</a></li>
 				<li><a href="#attribution">customized attributions</a></li>
+				<li><a href="#datetimeformatting">advanced date/time formatting</a></li>
 				<li><a href="#licence">licence &amp; copyright</a></li>
 			</ul>
 			<h2><a name="what">What is it?</a></h2>
@@ -295,6 +296,8 @@
 							<code>monthlong</code>, <code>dayshort</code>,
 							<code>daylong</code>, <code>date</code>, <code>time</code>.<br/>
 							Use these like so: <code>${message.sent.year}</code>.
+							<p><a href="#datetimeformatting">See below for more advanced date/time formatting
+								options.</a></p>
 						</td>
 					</tr>
 				</table>
@@ -332,6 +335,70 @@
 				When you're editing your customized attribution, QuoteFix will
 				generate an approximate preview as tooltip of the text field you're
 				entering the attribution in.
+			</p>
+			<h2><a name="datetimeformatting">Advanced date/time formatting</a></h2>
+			<p>
+				If you want even more finegrained control over the formatting of
+				dates and times, you can enable "advanced templating" in the
+				<i>Advanced</i> preferences, after which date/time variables like
+				<code>message.sent</code> and <code>message.received</code> will
+				have <code>.format</code> and <code>.strftime</code> methods with
+				which you can format the output of the objects.
+			</p>
+			<p>
+				Functionally, these two methods perform the same operation &mdash;
+				namely formatting date/time objects &mdash; the difference is in
+				the formatting strings used:
+				<ul>
+					<li>
+						<code>.strftime</code> uses the common <i>Unix</i> function with
+						the same name for formatting. <a
+							href="http://docs.python.org/library/time.html#time.strftime">Look
+							here for more information</a>.
+					</li>
+					<li>
+						<code>.format</code> uses the <i>Unicode</i> date format patterns.
+						<a
+							href="http://unicode.org/reports/tr35/tr35-10.html#Date_Format_Patterns">
+							Look here for more information</a>.
+					</li>
+				</ul>
+			</p>
+			<p>
+				An example:
+			</p>
+			<p>
+				<code>${message.sent.format("EEE MMM dd yyyy HH:mm:ss")}</code>
+			</p>
+			<p>
+				This will output: <code>Sun Nov 06 2011 10:19:34</code>
+			</p>
+			<p>
+				<b>However: the output will be generated in the current locale,
+					which means that it will be formatted according to your local
+					language settings. See below on how to use a different locale.
+				</b>
+			</p>
+			<p>
+				Similarly, with <code>.strftime</code>:
+				<br/>
+				<code>${message.sent.strftime("%a %b %d %Y %H:%M:%S")}</code>
+			</p>
+			<p>
+				Both methods accept a second argument: a locale identifier. You can
+				use it to convert the output to a certain locale, instead of the
+				default locale (which can be changed in the <i>System
+					Preferences</i> of Mac OS X: <i>Language &amp; Text</i> &gt;
+				<i>Formats</i>).
+			</p>
+			<p>
+				The same example as above, but with a different locale:
+			</p>
+			<p>
+				<code>${message.sent.format("EEE MMM dd yyyy HH:mm:ss", 'fr_FR')}</code>
+			</p>
+			<p>
+				The output: <code>dim. nov. 06 2011 10:19:34</code>
 			</p>
 			<h2><a name="licence">Licence &amp; copyright</a></h2>
 			<p>
@@ -372,6 +439,11 @@
 			</p>
 			<p>
 				See also <a href="http://sparkle.andymatuschak.org/">http://sparkle.andymatuschak.org/</a>
+			</p>
+			<h2>Like Quotefix?</h2>
+			<p>
+				Consider making a donation:
+				<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=4UF2KB2BTW6AC"><img style="vertical-align:middle" src="https://www.paypalobjects.com/en_GB/i/btn/btn_donate_SM.gif"></a>
 			</p>
 		</div>
 	</body>

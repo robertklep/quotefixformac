@@ -1,7 +1,7 @@
 from    AppKit      import *
 from    Foundation  import *
 from    datetime    import datetime
-import  email.utils
+import  email.utils, re
 
 class QFMessage:
     """ wraps a message """
@@ -75,31 +75,77 @@ class QFAddressee:
 
 class QFDateTime(str):
     """ wraps a datetime object """
+    STRFTIME_TO_UNICODE = {
+        '%Y'    : 'YYYY',
+        '%m'    : 'MM',
+        '%d'    : 'dd',
+        '%H'    : 'HH',
+        '%I'    : 'hh',
+        '%p'    : 'a',
+        '%M'    : 'mm',
+        '%S'    : 'ss',
+        '%U'    : 'w',
+        '%b'    : 'MMM',
+        '%B'    : 'MMMM',
+        '%a'    : 'E',
+        '%A'    : 'EEEE',
+        '%x'    : 'EEE MMM dd yyyy',
+        '%X'    : 'HH:mm:ss',
+        '%z'    : 'Z',
+    }
 
-    def __new__(cls, dt):
-        if isinstance(dt, NSDate):
-            dt = cls.nsdate_to_datetime(dt)
-        self            = super(QFDateTime, cls).__new__(cls, dt.strftime("%a %b %d %Y %H:%M:%S"))
-        self.datetime   = dt
-        self.year	    = dt.strftime("%Y")
-        self.month	    = dt.strftime("%m")
-        self.day	    = dt.strftime("%d")
-        self.hour	    = dt.strftime("%H")
-        self.hour12	    = dt.strftime("%I")
-        self.ampm	    = dt.strftime("%p")
-        self.minute	    = dt.strftime("%M")
-        self.second	    = dt.strftime("%S")
-        self.weeknumber = dt.strftime("%U")
-        self.monthshort = dt.strftime("%b")
-        self.monthlong  = dt.strftime("%B")
-        self.dayshort   = dt.strftime("%a")
-        self.daylong	= dt.strftime("%A")
-        self.date	    = dt.strftime("%x")
-        self.time	    = dt.strftime("%X")
+    def __new__(cls, nsdate):
+        formatter       = NSDateFormatter.alloc().init()
+        formatter.setDateFormat_("EEE MMM dd yyyy HH:mm:ss")
+        self            = super(QFDateTime, cls).__new__(
+            cls,
+            formatter.stringFromDate_(nsdate)
+        )
+        self.formatter  = formatter
+        self.nsdate     = nsdate
+        
+        # set date/time attributes
+        attributes      = dict(
+            year        = "YYYY",
+            month       = "MM",
+            day         = "dd",
+            hour        = "HH",
+            hour12      = "hh",
+            ampm        = "a",
+            minute      = "mm",
+            second      = "ss",
+            weeknumber  = "w",
+            monthshort  = "MMM",
+            monthlong   = "MMMM",
+            dayshort    = "E",
+            daylong     = "EEEE",
+            date        = "EEE MMM dd yyyy",
+            time        = "HH:mm:ss",
+            timezone    = "Z",
+        )
+
+        for attribute, format in attributes.items():
+            formatter.setDateFormat_(format)
+            setattr(self, attribute, formatter.stringFromDate_(nsdate))
+
         return self
 
-    def strftime(self, fmt):
-        return self.datetime.strftime(fmt)
+    def strftime_to_unicode(self, fmt):
+        """ convert strftime formatting character to Unicode formatting string """
+        return re.sub(
+            r'(%[a-zA-Z])',
+            lambda m: self.STRFTIME_TO_UNICODE.get(m.group(1), m.group(1)),
+            fmt
+        )
+
+    def strftime(self, fmt, locale = None):
+        return self.format(self.strftime_to_unicode(fmt), locale)
+
+    def format(self, fmt, locale = None):
+        self.formatter.setDateFormat_(fmt)
+        if locale:
+            self.formatter.setLocale_(NSLocale.alloc().initWithLocaleIdentifier_(locale))
+        return self.formatter.stringFromDate_(self.nsdate)
 
     @classmethod
     def nsdate_to_datetime(cls, nsdate):
