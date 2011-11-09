@@ -19,7 +19,12 @@ setup(
     plugin      = [ 'QuoteFix.py' ],
     version     = hgversion,
     description = "QuoteFix for Mac is a Mail.app plugin",
-    data_files  = [ 'QuoteFixPreferencesModule.nib', 'updates/quotefix.sparkle.pub.pem', 'resources/donate.gif' ],
+    data_files  = [ 
+        'English.lproj', 
+        'Dutch.lproj', 
+        'updates/quotefix.sparkle.pub.pem', 
+        'resources/donate.gif'
+    ],
     options     = dict(py2app = dict(
         extension   = '.mailbundle',
         packages    = [ 'quotefix' ],
