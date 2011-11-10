@@ -106,6 +106,11 @@ If you run into any problems with regards to replying or forwarding mail, consid
     def keep_leading_whitespace(self):
         return self.prefs.bool['QuoteFixKeepLeadingWhitespace']
 
+    # 'make selectable quotes'
+    @property
+    def selectable_quotes(self):
+        return self.prefs.bool['QuoteFixMakeSelectableQuotes']
+
     # 'remove quotes from level'
     @property
     def remove_quotes(self):

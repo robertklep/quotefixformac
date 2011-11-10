@@ -47,7 +47,6 @@ class MailDocumentEditor(Category(MailDocumentEditor)):
 
             # send original HTML to menu for debugging
             self.app.html = htmlroot.innerHTML()
-            #open("/tmp/x.html", "wc").write(htmlroot.innerHTML().encode('utf-8'))
 
             # should we be quotefixing?
             if not self.app.is_quotefixing:
@@ -60,6 +59,12 @@ class MailDocumentEditor(Category(MailDocumentEditor)):
                 if self.app.remove_quotes:
                     logging.debug('calling remove_quotes()')
                     self.remove_quotes(htmldom, self.app.remove_quotes_level)
+                    backend.setHasChanges_(False)
+
+                # make quotes selectable?
+                if self.app.selectable_quotes:
+                    logging.debug('calling make_selectable_quotes()')
+                    self.make_selectable_quotes(htmldom)
                     backend.setHasChanges_(False)
 
                 # remove signature from sender
@@ -140,6 +145,43 @@ class MailDocumentEditor(Category(MailDocumentEditor)):
             # check quotelevel against maximum allowed level
             if blockquote.quoteLevel() >= level:
                 blockquote.parentNode().removeChild_(blockquote)
+
+    def make_selectable_quotes(self, dom):
+        # find all blockquotes
+        blockquotes = dom.querySelectorAll_("blockquote")
+        for i in range(blockquotes.length()):
+            blockquote = blockquotes.item_(i)
+            # don't fix top-level blockquote
+            if blockquote.quoteLevel() > 1:
+                # get parent node
+                parent = blockquote.parentNode()
+
+                # check for DIV
+                if isinstance(parent, DOMElement) and parent.nodeName().lower() == 'div':
+                    # replace parent-container with a new (selectable) BLOCKQUOTE
+                    newblockquote = dom.createElement_("blockquote")
+                    newblockquote.setAttribute_value_("style", "background:rgba(255,255,255,0.1);padding:0!important;margin:0!important")
+                    newblockquote.setInnerHTML_(parent.innerHTML())
+                    grandparent = parent.parentNode()
+                    grandparent.replaceChild_oldChild_(newblockquote, parent)
+
+#                # get current computed style
+#                style = dom.getComputedStyle_pseudoElement_(blockquote, None).cssText()
+#
+#                # remove text-color-related stuff (so it will be inherited)
+#                style = re.sub(r'\scolor.*?:.*?;', '', style)
+#                style = re.sub(r'\soutline-color.*?:.*?;', '', style)
+#                style = re.sub(r'\s-webkit-text-emphasis-color.*?:.*?;', '', style)
+#                style = re.sub(r'\s-webkit-text-fill-color.*?:.*?;', '', style)
+#                style = re.sub(r'\s-webkit-text-stroke-color.*?:.*?;', '', style)
+#                style = re.sub(r'\sflood-color.*?:.*?;', '', style)
+#                style = re.sub(r'\slighting-color.*?:.*?;', '', style)
+#
+#                # remove 'type' attribute
+#                blockquote.removeAttribute_("type")
+#
+#                # and set style attribute to match original style
+#                blockquote.setAttribute_value_("style", style)
 
     # try to find, and remove, signature of sender
     def remove_old_signature(self, dom, view):
