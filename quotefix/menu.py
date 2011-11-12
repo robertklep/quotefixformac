@@ -10,6 +10,7 @@ class Menu(NSObject):
             return None
         self.app        = app
         self.mainwindow = NSApplication.sharedApplication().mainWindow()
+        self.bundle     = NSBundle.bundleWithIdentifier_('name.klep.mail.QuoteFix')
         return self
 
     def inject(self):
@@ -25,7 +26,7 @@ class Menu(NSObject):
                 "QuoteFix",
                 "toggleState:",
                 "")
-            self.item.setToolTip_("Quickly enable or disable the QuoteFix plug-in with this menu item.\n\nFor more preferences, open the Mail preferences window.")
+            self.item.setToolTip_(self.get_string("QUOTEFIX_TOOLTIP", ""))
             self.set_state_and_title(self.item)
             self.item.setTarget_(self)
 
@@ -47,8 +48,15 @@ class Menu(NSObject):
 
     def set_state_and_title(self, item):
         item.setState_(self.app.is_active)
-        item.setTitle_("QuoteFix is %s" % (self.app.is_active and "enabled" or "disabled"))
+        item.setTitle_(self.get_string(
+            self.app.is_active and "QuoteFix is enabled" or "QuoteFix is disabled"
+        ))
         item.setState_(self.app.is_active)
+
+    def get_string(self, key, fallback = None):
+        if fallback is None:
+            fallback = key
+        return self.bundle.localizedStringForKey_value_table_(key, fallback, None)
 
     def toggleState_(self, sender):
         self.app.is_active = sender.state()
