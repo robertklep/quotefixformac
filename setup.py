@@ -22,7 +22,7 @@ setup(
     data_files  = [ 
         'English.lproj', 
         'Dutch.lproj', 
-        'French.lproj', 
+#        'French.lproj', 
         'updates/quotefix.sparkle.pub.pem', 
         'resources/donate.gif'
     ],

@@ -42,11 +42,6 @@
         <string key="NSClassName">QuoteFixPreferencesController</string>
       </object>
       <object class="NSUserDefaultsController" id="512304363">
-        <object class="NSMutableArray" key="NSDeclaredKeys">
-          <bool key="EncodedWithXMLCoder">YES</bool>
-          <string>QuoteFixMakeSelectableQuotes</string>
-          <string>QuoteFixQuoteFixingDisabled</string>
-        </object>
         <bool key="NSSharedInstance">YES</bool>
       </object>
       <object class="NSBox" id="929681542">
@@ -604,7 +599,7 @@
                                 </object>
                                 <object class="NSButton" id="828464480">
                                   <reference key="NSNextResponder" ref="158350890"/>
-                                  <int key="NSvFlags">268</int>
+                                  <int key="NSvFlags">-2147483380</int>
                                   <string key="NSFrame">{{8, 123}, {644, 18}}</string>
                                   <reference key="NSSuperview" ref="158350890"/>
                                   <string key="NSReuseIdentifierKey">_NS:682</string>
