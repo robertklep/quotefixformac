@@ -17,6 +17,14 @@ class MailDocumentEditor(Category(MailDocumentEditor)):
     def finishLoadingEditor(self, original):
         logging.debug('MailDocumentEditor finishLoadingEditor')
 
+        # check for modified keys (used to temporarily disable parts of
+        # QuoteFix)
+        event           = NSApp.currentEvent()
+        control_pressed = event.modifierFlags() & NSControlKeyMask
+        command_pressed = event.modifierFlags() & NSCommandKeyMask
+        option_pressed  = event.modifierFlags() & NSAlternateKeyMask
+        shift_pressed   = event.modifierFlags() & NSShiftKeyMask
+
         # execute original finishLoadingEditor()
         original(self)
 
@@ -24,6 +32,11 @@ class MailDocumentEditor(Category(MailDocumentEditor)):
             # check if we can proceed
             if not self.app.is_active:
                 logging.debug("QuoteFix is not active, so no QuoteFixing for you!")
+                return
+
+            # check for shift key
+            if shift_pressed:
+                logging.debug("You're holding down the Shift key, so I'll assume you want to skip QuoteFixing this message.")
                 return
 
             # check for supported messagetype
