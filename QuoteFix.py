@@ -1,3 +1,9 @@
+import  sys, os.path
+
+path    = os.path.dirname(__file__)
+libdir  = "lib/python" + sys.version[:3]
+sys.path.insert(0, os.path.join(path, libdir))
+
 from    AppKit          import *
 from    Foundation      import *
 from    quotefix        import *

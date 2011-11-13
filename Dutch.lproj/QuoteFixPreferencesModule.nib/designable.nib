@@ -12,7 +12,7 @@
     </object>
     <object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
       <bool key="EncodedWithXMLCoder">YES</bool>
-      <integer value="82"/>
+      <integer value="166"/>
     </object>
     <object class="NSArray" key="IBDocument.PluginDependencies">
       <bool key="EncodedWithXMLCoder">YES</bool>
@@ -64,7 +64,7 @@
                 <object class="NSButtonCell" key="NSCell" id="915760593">
                   <int key="NSCellFlags">-2080244224</int>
                   <int key="NSCellFlags2">0</int>
-                  <string key="NSContents">QuoteFix is ingeschakeld</string>
+                  <string key="NSContents">Activeer QuoteFix</string>
                   <object class="NSFont" key="NSSupport" id="819029157">
                     <string key="NSName">LucidaGrande</string>
                     <double key="NSSize">13</double>
@@ -3810,6 +3810,7 @@ Z29vZ2xlLmNvbS9wL3F1b3RlZml4Zm9ybWFjA</string>
           <string>166.IBEditorWindowLastContentRect</string>
           <string>166.IBPluginDependency</string>
           <string>166.IBUserGuides</string>
+          <string>169.IBAttributePlaceholdersKey</string>
           <string>169.IBPluginDependency</string>
           <string>170.IBPluginDependency</string>
           <string>175.IBPluginDependency</string>
@@ -4006,10 +4007,18 @@ Z29vZ2xlLmNvbS9wL3F1b3RlZml4Zm9ybWFjA</string>
           </object>
           <string>com.apple.InterfaceBuilder.CocoaPlugin</string>
           <string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-          <string>{{388, 292}, {723, 485}}</string>
+          <string>{{331, 247}, {723, 485}}</string>
           <string>com.apple.InterfaceBuilder.CocoaPlugin</string>
           <object class="NSMutableArray">
             <bool key="EncodedWithXMLCoder">YES</bool>
+          </object>
+          <object class="NSMutableDictionary">
+            <string key="NS.key.0">ToolTip</string>
+            <object class="IBToolTipAttribute" key="NS.object.0">
+              <string key="name">ToolTip</string>
+              <reference key="object" ref="29758873"/>
+              <string key="toolTip">Met deze optie kun je de QuoteFix plug-in aan- of uitzetten.</string>
+            </object>
           </object>
           <string>com.apple.InterfaceBuilder.CocoaPlugin</string>
           <string>com.apple.InterfaceBuilder.CocoaPlugin</string>

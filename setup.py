@@ -19,18 +19,19 @@ setup(
     plugin      = [ 'QuoteFix.py' ],
     version     = hgversion,
     description = "QuoteFix for Mac is a Mail.app plugin",
-    data_files  = [ 
-        'English.lproj', 
-        'Dutch.lproj', 
-#        'French.lproj', 
-        'updates/quotefix.sparkle.pub.pem', 
+    data_files  = [
+        'English.lproj',
+        'Dutch.lproj',
+        'French.lproj',
+        'updates/quotefix.sparkle.pub.pem',
         'resources/donate.gif'
     ],
     options     = dict(py2app = dict(
-        extension   = '.mailbundle',
-        packages    = [ 'quotefix' ],
-        frameworks  = glob("frameworks/*.framework"),
-        plist       = dict(
+        extension       = '.mailbundle',
+        semi_standalone = False,
+        packages        = [ 'quotefix' ],
+        frameworks      = glob("frameworks/*.framework"),
+        plist           = dict(
             NSPrincipalClass                    = 'QuoteFix',
             CFBundleIdentifier                  = 'name.klep.mail.QuoteFix',
             NSHumanReadableCopyright            = '(c) 2009, 2010, 2011 Robert Klep, robert@klep.name',

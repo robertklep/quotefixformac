@@ -9,3 +9,4 @@ QuoteFix-*.tar.gz
 QuoteFix-*.zip
 tools/*
 testing/*
+frameworks/Python.framework/*
