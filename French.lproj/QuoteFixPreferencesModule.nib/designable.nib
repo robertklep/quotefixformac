@@ -1362,7 +1362,7 @@
                                           <object class="NSTextFieldCell" key="NSCell" id="942988157">
                                             <int key="NSCellFlags">68288064</int>
                                             <int key="NSCellFlags2">272630784</int>
-                                            <string key="NSContents">Label</string>
+                                            <string key="NSContents">Jamais</string>
                                             <reference key="NSSupport" ref="819029157"/>
                                             <reference key="NSControlView" ref="450949705"/>
                                             <reference key="NSBackgroundColor" ref="600795121"/>
@@ -3799,6 +3799,7 @@ Zml4Zm9ybWFjA</string>
           <string>166.IBEditorWindowLastContentRect</string>
           <string>166.IBPluginDependency</string>
           <string>166.IBUserGuides</string>
+          <string>169.IBAttributePlaceholdersKey</string>
           <string>169.IBPluginDependency</string>
           <string>170.IBPluginDependency</string>
           <string>175.IBPluginDependency</string>
@@ -3964,6 +3965,14 @@ Zml4Zm9ybWFjA</string>
           <string>com.apple.InterfaceBuilder.CocoaPlugin</string>
           <object class="NSMutableArray">
             <bool key="EncodedWithXMLCoder">YES</bool>
+          </object>
+          <object class="NSMutableDictionary">
+            <string key="NS.key.0">ToolTip</string>
+            <object class="IBToolTipAttribute" key="NS.object.0">
+              <string key="name">ToolTip</string>
+              <reference key="object" ref="29758873"/>
+              <string key="toolTip">Avec cette option, pour pouvez activer/désactiver le module QuoteFix.</string>
+            </object>
           </object>
           <string>com.apple.InterfaceBuilder.CocoaPlugin</string>
           <string>com.apple.InterfaceBuilder.CocoaPlugin</string>

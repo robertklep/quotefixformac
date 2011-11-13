@@ -1,3 +1,3 @@
 "QuoteFix is disabled"  = "QuoteFix est désactivé";
-"QuoteFix is enabled"  	= "QuoteFix est activé";
+"QuoteFix is enabled"   = "QuoteFix est activé";
 "QUOTEFIX_TOOLTIP"      = "Activer ou désactiver rapidement le module QuoteFix via ce menu.\n\nPour plus de réglages, ouvrir les préférences Mail.";
