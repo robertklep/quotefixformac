@@ -12,7 +12,7 @@
     </object>
     <object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
       <bool key="EncodedWithXMLCoder">YES</bool>
-      <integer value="166"/>
+      <integer value="84"/>
     </object>
     <object class="NSArray" key="IBDocument.PluginDependencies">
       <bool key="EncodedWithXMLCoder">YES</bool>
@@ -134,7 +134,7 @@
                   <object class="NSTabViewItem" id="686734452">
                     <string key="NSIdentifier">1</string>
                     <object class="NSView" key="NSView" id="314793740">
-                      <reference key="NSNextResponder" ref="80307545"/>
+                      <nil key="NSNextResponder"/>
                       <int key="NSvFlags">256</int>
                       <object class="NSMutableArray" key="NSSubviews">
                         <bool key="EncodedWithXMLCoder">YES</bool>
@@ -377,7 +377,7 @@
                                   <object class="NSButtonCell" key="NSCell" id="782359619">
                                     <int key="NSCellFlags">67239424</int>
                                     <int key="NSCellFlags2">0</int>
-                                    <string key="NSContents">Laat signature van verzender staan</string>
+                                    <string key="NSContents">Laat handtekening van verzender staan</string>
                                     <reference key="NSSupport" ref="819029157"/>
                                     <reference key="NSControlView" ref="554063000"/>
                                     <int key="NSButtonFlags">1211912703</int>
@@ -666,7 +666,6 @@
                         </object>
                       </object>
                       <string key="NSFrame">{{10, 33}, {682, 378}}</string>
-                      <reference key="NSSuperview" ref="80307545"/>
                       <reference key="NSNextKeyView" ref="841000380"/>
                       <int key="NSViewLayerContentsRedrawPolicy">2</int>
                     </object>
@@ -1041,7 +1040,7 @@
                   <object class="NSTabViewItem" id="552387052">
                     <string key="NSIdentifier">Item 2</string>
                     <object class="NSView" key="NSView" id="397552279">
-                      <nil key="NSNextResponder"/>
+                      <reference key="NSNextResponder" ref="80307545"/>
                       <int key="NSvFlags">256</int>
                       <object class="NSMutableArray" key="NSSubviews">
                         <bool key="EncodedWithXMLCoder">YES</bool>
@@ -1110,7 +1109,7 @@
                                   <object class="NSButtonCell" key="NSCell" id="777134747">
                                     <int key="NSCellFlags">67239424</int>
                                     <int key="NSCellFlags2">0</int>
-                                    <string key="NSContents">Gebruik een aangepaste (Python) reguliere expressie voor het zoeken naar signature-overgangen:</string>
+                                    <string key="NSContents">Gebruik een aangepaste reguliere expressie voor het zoeken naar handtekeningovergangen:</string>
                                     <reference key="NSSupport" ref="819029157"/>
                                     <reference key="NSControlView" ref="424773514"/>
                                     <int key="NSButtonFlags">1211912703</int>
@@ -1223,6 +1222,7 @@
                         </object>
                       </object>
                       <string key="NSFrame">{{10, 33}, {682, 378}}</string>
+                      <reference key="NSSuperview" ref="80307545"/>
                     </object>
                     <string key="NSLabel">Geavanceerd</string>
                     <reference key="NSColor" ref="600795121"/>
@@ -1501,14 +1501,14 @@ Z29vZ2xlLmNvbS9wL3F1b3RlZml4Zm9ybWFjA</string>
                     <reference key="NSTabView" ref="80307545"/>
                   </object>
                 </object>
-                <reference key="NSSelectedTabViewItem" ref="686734452"/>
+                <reference key="NSSelectedTabViewItem" ref="552387052"/>
                 <reference key="NSFont" ref="819029157"/>
                 <int key="NSTvFlags">0</int>
                 <bool key="NSAllowTruncatedLabels">YES</bool>
                 <bool key="NSDrawsBackground">YES</bool>
                 <object class="NSMutableArray" key="NSSubviews">
                   <bool key="EncodedWithXMLCoder">YES</bool>
-                  <reference ref="314793740"/>
+                  <reference ref="397552279"/>
                 </object>
               </object>
               <object class="NSTextField" id="237332959">
@@ -4126,7 +4126,7 @@ Z29vZ2xlLmNvbS9wL3F1b3RlZml4Zm9ybWFjA</string>
             <object class="IBToolTipAttribute" key="NS.object.0">
               <string key="name">ToolTip</string>
               <reference key="object" ref="424773514"/>
-              <string key="toolTip">Activeer deze optie als je je eigen reguliere expressie wilt gebruiken voor het zoeken naar signature-overgangen. Zorg ervoor dat je ankerpunten zoals ^ en $ gebruikt als je het begin of eind van teksten wilt matchen.</string>
+              <string key="toolTip">Activeer deze optie als je je eigen Python reguliere expressie wilt gebruiken voor het zoeken naar handtekeningovergangen. Zorg ervoor dat je ankerpunten zoals ^ en $ gebruikt als je het begin of eind van teksten wilt matchen.</string>
             </object>
           </object>
           <string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -4209,7 +4209,7 @@ Z29vZ2xlLmNvbS9wL3F1b3RlZml4Zm9ybWFjA</string>
             <object class="IBToolTipAttribute" key="NS.object.0">
               <string key="name">ToolTip</string>
               <reference key="object" ref="554063000"/>
-              <string key="toolTip">Als deze optie actief is zal de signature van de verstuurder niet verwijderd worden. Dit houdt in dat QuoteFix alleen de cursor onderaan zal zetten, in plaats van bovenaan.</string>
+              <string key="toolTip">Als deze optie actief is zal de handtekening van de verzender niet verwijderd worden. Dit houdt in dat QuoteFix alleen de cursor onderaan zal zetten, in plaats van bovenaan.</string>
             </object>
           </object>
           <string>com.apple.InterfaceBuilder.CocoaPlugin</string>

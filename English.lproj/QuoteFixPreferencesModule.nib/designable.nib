@@ -12,7 +12,7 @@
     </object>
     <object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
       <bool key="EncodedWithXMLCoder">YES</bool>
-      <integer value="166"/>
+      <integer value="84"/>
     </object>
     <object class="NSArray" key="IBDocument.PluginDependencies">
       <bool key="EncodedWithXMLCoder">YES</bool>
@@ -139,7 +139,7 @@
                   <object class="NSTabViewItem" id="686734452">
                     <string key="NSIdentifier">1</string>
                     <object class="NSView" key="NSView" id="314793740">
-                      <reference key="NSNextResponder" ref="80307545"/>
+                      <nil key="NSNextResponder"/>
                       <int key="NSvFlags">256</int>
                       <object class="NSMutableArray" key="NSSubviews">
                         <bool key="EncodedWithXMLCoder">YES</bool>
@@ -675,7 +675,6 @@
                         </object>
                       </object>
                       <string key="NSFrame">{{10, 33}, {682, 378}}</string>
-                      <reference key="NSSuperview" ref="80307545"/>
                       <int key="NSViewLayerContentsRedrawPolicy">2</int>
                       <string key="NSReuseIdentifierKey">_NS:561</string>
                     </object>
@@ -1065,7 +1064,7 @@
                   <object class="NSTabViewItem" id="552387052">
                     <string key="NSIdentifier">Item 2</string>
                     <object class="NSView" key="NSView" id="397552279">
-                      <nil key="NSNextResponder"/>
+                      <reference key="NSNextResponder" ref="80307545"/>
                       <int key="NSvFlags">256</int>
                       <object class="NSMutableArray" key="NSSubviews">
                         <bool key="EncodedWithXMLCoder">YES</bool>
@@ -1135,7 +1134,7 @@
                                   <object class="NSButtonCell" key="NSCell" id="777134747">
                                     <int key="NSCellFlags">67239424</int>
                                     <int key="NSCellFlags2">0</int>
-                                    <string key="NSContents">Use custom (Python) regular expression for matching signature separators:</string>
+                                    <string key="NSContents">Use custom regular expression for matching signature separators:</string>
                                     <reference key="NSSupport" ref="819029157"/>
                                     <string key="NSCellIdentifier">_NS:682</string>
                                     <reference key="NSControlView" ref="424773514"/>
@@ -1256,6 +1255,7 @@
                         </object>
                       </object>
                       <string key="NSFrame">{{10, 33}, {682, 378}}</string>
+                      <reference key="NSSuperview" ref="80307545"/>
                     </object>
                     <string key="NSLabel">Advanced</string>
                     <reference key="NSColor" ref="600795121"/>
@@ -1524,14 +1524,14 @@ ZS5nb29nbGUuY29tL3AvcXVvdGVmaXhmb3JtYWM</string>
                     <reference key="NSTabView" ref="80307545"/>
                   </object>
                 </object>
-                <reference key="NSSelectedTabViewItem" ref="686734452"/>
+                <reference key="NSSelectedTabViewItem" ref="552387052"/>
                 <reference key="NSFont" ref="819029157"/>
                 <int key="NSTvFlags">0</int>
                 <bool key="NSAllowTruncatedLabels">YES</bool>
                 <bool key="NSDrawsBackground">YES</bool>
                 <object class="NSMutableArray" key="NSSubviews">
                   <bool key="EncodedWithXMLCoder">YES</bool>
-                  <reference ref="314793740"/>
+                  <reference ref="397552279"/>
                 </object>
               </object>
               <object class="NSTextField" id="237332959">
