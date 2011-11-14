@@ -42,8 +42,9 @@ class CustomizedAttribution:
 
     @classmethod
     def customize_attribution(cls, original, editor, dom, reply, inreplyto, template, is_forward):
-        # create matcher for matching original attribution
-        matcher = re.compile(re.sub(r'%\d+\$\@', '.*?', original.strip()))
+        # create matcher for matching original attribution (and replace
+        # nsbp's with normal spaces)
+        matcher = re.compile(re.sub(r'%\d+\$\@', '.*?', original.replace(u'\xa0', ' ').strip()))
 
         # find parent of first quote
         root = dom.documentElement()
@@ -55,10 +56,14 @@ class CustomizedAttribution:
         children = node.childNodes()
         for i in range(children.length()):
             child = children.item_(i)
-            if child.nodeType() == 1 and not matcher.match(child.innerHTML()):
-                continue
-            elif child.nodeType() == 3 and not matcher.match(child.data()):
-                continue
+            if child.nodeType() == 1:
+                html = child.innerHTML()
+                if not matcher.match(html):
+                    continue
+            elif child.nodeType() == 3:
+                text = child.data()
+                if not matcher.match(text):
+                    continue
 
             # should attribution be treated as HTML?
             is_html = False

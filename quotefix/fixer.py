@@ -15,24 +15,25 @@ class MailApp(Category(MailApp)):
     @swizzle(MailApp, 'sendEvent:')
     def sendEvent(self, original, event):
         self.app.toggle_key_active = False
-        # check for reply/reply-all with Option as extra modifier (XXX:
-        # doesn't work when you have set another key equivalent for these!)
-        if event.type() == NSKeyDown and \
-                event.modifierFlags() & NSAlternateKeyMask and \
-                event.charactersIgnoringModifiers().lower() == 'r':
+        # keep track of an active option key
+        if event.modifierFlags() & NSAlternateKeyMask:
             self.app.toggle_key_active = True
-            event = NSEvent.keyEventWithType_location_modifierFlags_timestamp_windowNumber_context_characters_charactersIgnoringModifiers_isARepeat_keyCode_(
-                event.type(),
-                event.locationInWindow(),
-                event.modifierFlags() & ~NSAlternateKeyMask,
-                event.timestamp(),
-                event.windowNumber(),
-                event.context(),
-                event.characters(),
-                event.charactersIgnoringModifiers(),
-                event.isARepeat(),
-                event.keyCode()
-            )
+            # handle reply/reply-all (XXX: won't work if you have assigned
+            # a different shortcut key to these actions!)
+            if event.type() == NSKeyDown and event.charactersIgnoringModifiers().lower() == 'r':
+                # strip the Option-key from the event
+                event = NSEvent.keyEventWithType_location_modifierFlags_timestamp_windowNumber_context_characters_charactersIgnoringModifiers_isARepeat_keyCode_(
+                    event.type(),
+                    event.locationInWindow(),
+                    event.modifierFlags() & ~NSAlternateKeyMask,
+                    event.timestamp(),
+                    event.windowNumber(),
+                    event.context(),
+                    event.characters(),
+                    event.charactersIgnoringModifiers(),
+                    event.isARepeat(),
+                    event.keyCode()
+                )
         original(self, event)
 
 # our own MailDocumentEditor implementation
