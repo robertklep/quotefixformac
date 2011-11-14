@@ -5,6 +5,36 @@ from    quotefix.messagetypes   import *
 from    objc                    import Category, lookUpClass
 import  logging, re, traceback
 
+MailApp = lookUpClass('MailApp')
+class MailApp(Category(MailApp)):
+
+    @classmethod
+    def registerQuoteFixApplication(cls, app):
+        cls.app = app
+
+    @swizzle(MailApp, 'sendEvent:')
+    def sendEvent(self, original, event):
+        self.app.toggle_key_active = False
+        # check for reply/reply-all with Option as extra modifier (XXX:
+        # doesn't work when you have set another key equivalent for these!)
+        if event.type() == NSKeyDown and \
+                event.modifierFlags() & NSAlternateKeyMask and \
+                event.charactersIgnoringModifiers().lower() == 'r':
+            self.app.toggle_key_active = True
+            event = NSEvent.keyEventWithType_location_modifierFlags_timestamp_windowNumber_context_characters_charactersIgnoringModifiers_isARepeat_keyCode_(
+                event.type(),
+                event.locationInWindow(),
+                event.modifierFlags() & ~NSAlternateKeyMask,
+                event.timestamp(),
+                event.windowNumber(),
+                event.context(),
+                event.characters(),
+                event.charactersIgnoringModifiers(),
+                event.isARepeat(),
+                event.keyCode()
+            )
+        original(self, event)
+
 # our own MailDocumentEditor implementation
 MailDocumentEditor = lookUpClass('MailDocumentEditor')
 class MailDocumentEditor(Category(MailDocumentEditor)):
@@ -17,26 +47,16 @@ class MailDocumentEditor(Category(MailDocumentEditor)):
     def finishLoadingEditor(self, original):
         logging.debug('MailDocumentEditor finishLoadingEditor')
 
-        # check for modified keys (used to temporarily disable parts of
-        # QuoteFix)
-        event           = NSApp.currentEvent()
-        control_pressed = event.modifierFlags() & NSControlKeyMask
-        command_pressed = event.modifierFlags() & NSCommandKeyMask
-        option_pressed  = event.modifierFlags() & NSAlternateKeyMask
-        shift_pressed   = event.modifierFlags() & NSShiftKeyMask
-
         # execute original finishLoadingEditor()
         original(self)
 
         try:
-            # check if we can proceed
-            if not self.app.is_active:
-                logging.debug("QuoteFix is not active, so no QuoteFixing for you!")
-                return
+            # if toggle key is active, temporarily switch the active state
+            is_active = self.app.toggle_key_active ^ self.app.is_active
 
-            # check for shift key
-            if shift_pressed:
-                logging.debug("You're holding down the Shift key, so I'll assume you want to skip QuoteFixing this message.")
+            # check if we can proceed
+            if not is_active:
+                logging.debug("QuoteFix is not active, so no QuoteFixing for you!")
                 return
 
             # check for supported messagetype

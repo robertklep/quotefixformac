@@ -14,6 +14,9 @@ class App(object):
         # set updater
         self.updater = updater
 
+        # keep state of 'toggle key'
+        self.toggle_key_active = False
+
         # read user defaults (preferences)
         self.prefs = NSUserDefaults.standardUserDefaults()
 
