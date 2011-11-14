@@ -44,7 +44,6 @@ class QuoteFixPreferences(NSPreferences):
 class QuoteFixPreferencesController(NSObject):
     updateInterval                      = objc.IBOutlet()
     lastUpdateCheck                     = objc.IBOutlet()
-    currentVersion                      = objc.IBOutlet()
     currentVersionUpdater               = objc.IBOutlet()
     checkUpdateButton                   = objc.IBOutlet()
     customReplyAttribution              = objc.IBOutlet()
@@ -89,7 +88,6 @@ class QuoteFixPreferencesController(NSObject):
         NSWorkspace.sharedWorkspace().openURL_(NSURL.URLWithString_("http://code.google.com/p/quotefixformac/wiki/CustomAttribution"))
 
     def awakeFromNib(self):
-        self.currentVersion.setStringValue_(self.app.version)
         self.currentVersionUpdater.setStringValue_(self.app.version)
         self.updateInterval.setSelectedSegment_(self.app.check_update_interval)
         self.setLastUpdateCheck()
