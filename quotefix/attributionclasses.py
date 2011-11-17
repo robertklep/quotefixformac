@@ -99,7 +99,7 @@ class QFDateTime(str):
         cls.formatter.setDateFormat_("EEE MMM dd yyyy HH:mm:ss")
         self            = super(QFDateTime, cls).__new__(
             cls,
-            cls.formatter.stringFromDate_(nsdate)
+            cls.formatter.stringFromDate_(nsdate).encode('utf-8')
         )
         self.nsdate     = nsdate
         
@@ -125,7 +125,7 @@ class QFDateTime(str):
 
         for attribute, format in attributes.items():
             self.formatter.setDateFormat_(format)
-            setattr(self, attribute, self.formatter.stringFromDate_(nsdate))
+            setattr(self, attribute, self.formatter.stringFromDate_(nsdate).encode('utf-8'))
 
         return self
 
@@ -144,7 +144,7 @@ class QFDateTime(str):
         self.formatter.setDateFormat_(fmt)
         if locale:
             self.formatter.setLocale_(NSLocale.alloc().initWithLocaleIdentifier_(locale))
-        return self.formatter.stringFromDate_(self.nsdate)
+        return self.formatter.stringFromDate_(self.nsdate).encode('utf-8')
 
     def locale(self, locale):
         return self.format("EEE MMM dd yyyy HH:mm:ss", locale)
