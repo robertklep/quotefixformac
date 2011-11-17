@@ -1,4 +1,3 @@
-from    new     import classobj, instance
 import  objc, re, htmlentitydefs
 
 # Method Swizzler: exchange an existing Objective-C method with a new
