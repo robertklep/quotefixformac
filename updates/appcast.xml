@@ -5,6 +5,7 @@
 			<link>http://quotefix.quotefixformac.googlecode.com/hg/quotefix/updates/appcast.xml</link>
       <description>Most recent changes with links to updates.</description>
       <language>en</language>
+			<!--
 			<item>
 				<title>Version 2.4.0</title>
 				<description><![CDATA[
@@ -38,6 +39,7 @@
 					type="application/octet-stream"
 					sparkle:dsaSignature="MCwCFHHMVYWSBz+IIr0G6ZJAqK0jP8NIAhRoIIqMdfWPHi2thtgYN0WN4pcrcw==" />
 			</item>
+			-->
 			<item>
 				<title>Version 2.3.2</title>
 				<description><![CDATA[
