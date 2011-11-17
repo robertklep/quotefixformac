@@ -5,6 +5,22 @@
 			<link>http://quotefix.quotefixformac.googlecode.com/hg/quotefix/updates/appcast.xml</link>
       <description>Most recent changes with links to updates.</description>
       <language>en</language>
+			<item>
+				<title>Version 2.4.1</title>
+				<description><![CDATA[
+					<h2>Bugfix</h2>
+					<ul>
+						<li>Should fix a bug in 2.4.0 which occurs when certain international date/time formats are used in Mac OS X (thanks to Adam Nohejl for reporting this)</li>
+					</ul>
+				]]></description>
+				<pubDate>Thu Nov 17 13:21:17 2011 CET</pubDate>
+				<enclosure
+					url="http://quotefixformac.googlecode.com/files/QuoteFix-2.4.1.zip"
+					length="5588280"
+					sparkle:version="2.4.1"
+					type="application/octet-stream"
+					sparkle:dsaSignature="MCwCFH8bEnRk5toeppV5hjk07EYdPpbIAhQbDdgTCwfDQm/riQ6WpvUW9ScdfQ==" />
+			</item>
 			<!--
 			<item>
 				<title>Version 2.4.0</title>
@@ -12,7 +28,7 @@
 					<h2>New Features</h2>
 					<ul>
 						<li>Localization: QuoteFix is now localized for English, Dutch and French users. Big thanks to Yann Ricquebourg for providing the French localization!</li>
-						<li>rewrote date/time formatting in customized attributions (NB: 
+						<li>rewrote date/time formatting in customized attributions (NB:
 							date/timestamps will now be formatted in the local language; if
 							this is unwanted <a
 								href="http://klep.name/quotefixformac/#datetimeformatting">look
