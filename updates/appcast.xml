@@ -6,6 +6,39 @@
       <description>Most recent changes with links to updates.</description>
       <language>en</language>
 			<item>
+				<title>Version 2.4.0</title>
+				<description><![CDATA[
+					<h2>New Features</h2>
+					<ul>
+						<li>Localization: QuoteFix is now localized for English, Dutch and French users. Big thanks to Yann Ricquebourg for providing the French localization!</li>
+						<li>rewrote date/time formatting in customized attributions (NB: 
+							date/timestamps will now be formatted in the local language; if
+							this is unwanted <a
+								href="http://klep.name/quotefixformac/#datetimeformatting">look
+								here</a> for information on how to use other languages)
+						</li>
+						<li>
+							the enable/disable setting of QuoteFix can now temporarily (on
+							a per-message basis) toggled by keeping the Opt/Alt key pressed
+							when initiating a Reply/Forward action
+						</li>
+						<li>
+							fixed some issues related to the Sparkle framework
+						</li>
+						<li>fixed issue with customized attributions not working in certain cases (for
+							example, when using French localization)
+						</li>
+					</ul>
+				]]></description>
+				<pubDate>Thu Nov 17 07:18:39 2011 CET</pubDate>
+				<enclosure
+					url="http://quotefixformac.googlecode.com/files/QuoteFix-2.4.0.zip"
+					length="5588023"
+					sparkle:version="2.4.0"
+					type="application/octet-stream"
+					sparkle:dsaSignature="MCwCFHHMVYWSBz+IIr0G6ZJAqK0jP8NIAhRoIIqMdfWPHi2thtgYN0WN4pcrcw==" />
+			</item>
+			<item>
 				<title>Version 2.3.2</title>
 				<description><![CDATA[
 					<h2>Bugfix and new "feature"</h2>
