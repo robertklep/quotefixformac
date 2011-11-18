@@ -14,6 +14,9 @@ class MailApp(Category(MailApp)):
 
     @swizzle(MailApp, 'sendEvent:')
     def sendEvent(self, original, event):
+        if not hasattr(self, 'app'):
+            original(self, event)
+            return
         self.app.toggle_key_active = False
         # keep track of an active option key
         if event.modifierFlags() & NSAlternateKeyMask:
