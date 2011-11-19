@@ -5,6 +5,22 @@
 			<link>http://quotefix.quotefixformac.googlecode.com/hg/quotefix/updates/appcast.xml</link>
       <description>Most recent changes with links to updates.</description>
       <language>en</language>
+		<item>
+			<title>Version 2.4.2</title>
+			<description><![CDATA[
+				<h2>Bugfix</h2>
+				<ul>
+					<li>Fixed a bug which, in rare occassions, could crash Mail. Thanks to @otterbook for reporting!</li>
+				</ul>
+			]]></description>
+			<pubDate>Sat Nov 19 07:47:46 2011 CET</pubDate>
+			<enclosure
+				url="http://quotefixformac.googlecode.com/files/QuoteFix-2.4.2.zip"
+				length="5587162"
+				sparkle:version="2.4.2"
+				type="application/octet-stream"
+				sparkle:dsaSignature="MCwCFFheQqh6x2H4xLLHLrnyBbKATB1UAhRdpEiNUy6Oyry7mumerI297U2kXw==" />
+		</item>
 			<item>
 				<title>Version 2.4.1</title>
 				<description><![CDATA[
