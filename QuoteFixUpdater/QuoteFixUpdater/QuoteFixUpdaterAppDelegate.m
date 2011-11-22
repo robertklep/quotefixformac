@@ -1,10 +1,8 @@
-//
 //  QuoteFixUpdaterAppDelegate.m
 //  QuoteFixUpdater
 //
 //  Created by Robert Klep on 21-11-11.
 //  Copyright 2011 Robert Klep. All rights reserved.
-//
 
 #import "QuoteFixUpdaterAppDelegate.h"
 
@@ -27,12 +25,36 @@
 }
 
 - (BOOL) initializeForBundle:(NSBundle *)bundle relaunchPath:(NSString *)path {
+	NSLog(@"QuoteFixUpdater initializing...");
+	[self startMailObserver];
     updatebundle = [bundle retain];
     relaunchpath = [path retain];
     updater = [[SUUpdater updaterForBundle:updatebundle] retain];
     [updater setDelegate:self];
     [updater resetUpdateCycle];
     return YES;
+}
+
+- (void) handleTerminateApplicationNotification:(NSNotification *) notification {
+	NSDictionary 			*userInfo  	= [notification userInfo];
+	NSRunningApplication	*app		= (NSRunningApplication *) [userInfo objectForKey:NSWorkspaceApplicationKey];
+	NSString				*bundleid	= [app bundleIdentifier];
+
+	if ([bundleid isEqualToString:@"com.apple.mail"])
+	{
+		NSLog(@"QuoteFixUpdater: Mail has quit, so we'll quit too.");
+		[self quit];
+	}
+}
+
+- (void) startMailObserver {
+	NSLog(@"QuoteFixUpdater: starting Mail observer");
+	[[[NSWorkspace sharedWorkspace] notificationCenter]
+		addObserver	: self
+		   selector : @selector(handleTerminateApplicationNotification:)
+			   name : NSWorkspaceDidTerminateApplicationNotification
+			 object : nil
+	];
 }
 
 - (NSDate *) lastUpdateCheckDate {
@@ -69,12 +91,13 @@
 }
 
 - (void) quit {
-    NSLog(@"QuoteFixUpdater received quit message");
+    NSLog(@"QuoteFixUpdater quiting");
     [connection invalidate];
     [NSApp terminate:self];
 }
 
--(void)dealloc {
+-(void) dealloc {
+	[[[NSWorkspace sharedWorkspace] notificationCenter] removeObserver:self];
     [connection release];
     [updatebundle release];
     [relaunchpath release];

@@ -6,6 +6,9 @@ import  objc, os, os.path, logging, atexit
 class Updater:
 
     def __init__(self):
+#        self.enabled = False
+#        return
+
         # find and start updater
         bundle  = NSBundle.bundleWithIdentifier_("name.klep.mail.QuoteFix")
         app     = NSWorkspace.sharedWorkspace().launchApplicationAtURL_options_configuration_error_(

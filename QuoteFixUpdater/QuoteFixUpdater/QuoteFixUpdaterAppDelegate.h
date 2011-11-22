@@ -18,6 +18,8 @@
 }
 - (void) startProxy;
 - (BOOL) initializeForBundle:(NSBundle *)bundle relaunchPath:(NSString *)path;
+- (void) handleTerminateApplicationNotification:(NSNotification *) notification;
+- (void) startMailObserver;
 - (NSDate *) lastUpdateCheckDate;
 - (void) checkForUpdatesInBackground;
 - (BOOL) updateInProgress;
