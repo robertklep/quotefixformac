@@ -61,6 +61,14 @@
     return [updater lastUpdateCheckDate];
 }
 
+- (NSTimeInterval) updateCheckInterval {
+    return [updater updateCheckInterval];
+}
+
+- (void) setUpdateCheckInterval:(NSTimeInterval) interval {
+    return [updater setUpdateCheckInterval:interval];
+}
+
 - (void) checkForUpdatesInBackground {
     NSLog(@"QuoteFixUpdater going to check for updates, url = %@", [[updater feedURL] absoluteString]);
     [updater checkForUpdatesInBackground];
@@ -68,6 +76,10 @@
 
 - (BOOL) updateInProgress {
     return [updater updateInProgress];
+}
+
+- (void) setAutomaticallyChecksForUpdates:(BOOL) automaticallyChecks {
+    [updater setAutomaticallyChecksForUpdates:automaticallyChecks];
 }
 
 - (void) updater:(SUUpdater *)updater didFinishLoadingAppcast:(SUAppcast *)appcast {

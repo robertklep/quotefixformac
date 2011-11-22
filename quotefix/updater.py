@@ -6,9 +6,9 @@ import  objc, os, os.path, logging, atexit
 class Updater:
 
     def __init__(self):
-#        self.enabled = False
-#        return
+        self.start_updater_app()
 
+    def start_updater_app(self):
         # find and start updater
         bundle  = NSBundle.bundleWithIdentifier_("name.klep.mail.QuoteFix")
         app     = NSWorkspace.sharedWorkspace().launchApplicationAtURL_options_configuration_error_(
@@ -22,10 +22,19 @@ class Updater:
 
     @property
     def updater(self):
+        # don't bother if we're not enabled
         if not self.enabled:
             return None
+
+        # seem to have a valid connection to the updater
         if self._updater:
-            return self._updater
+            # check if connection is still valid before we return it
+            if self._updater.connectionForProxy().isValid():
+                return self._updater
+            # try to start updater app again
+            self.start_updater_app()
+
+        # try to connect to updater process
         failcount = 0
         while not self._updater:
             # create connection with quotefix updater process
@@ -56,11 +65,6 @@ class Updater:
             )
         return self._updater
 
-    def __dealloc__(self):
-        NSLog("dealloc: cleaning up")
-        if self.enabled:
-            self.updater.quit()
-
     # check for updates now
     def check_for_updates(self):
         if not self.enabled:
@@ -77,7 +81,7 @@ class Updater:
     def check_update_interval(self):
         if not self.enabled:
             return None
-        return self.updateCheckInterval()
+        return self.updater.updateCheckInterval()
 
     @check_update_interval.setter
     def check_update_interval(self, interval):
@@ -87,5 +91,5 @@ class Updater:
         # a reset of the update cycle)
         if self.check_update_interval == interval:
             return
-        self.setAutomaticallyChecksForUpdates_(interval and True or False)
-        self.setUpdateCheckInterval_(interval);
+        self.updater.setAutomaticallyChecksForUpdates_(interval and True or False)
+        self.updater.setUpdateCheckInterval_(interval);
