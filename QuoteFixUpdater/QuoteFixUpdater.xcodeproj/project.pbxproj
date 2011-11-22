@@ -1,0 +1,312 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		E1439270147BE23E001FC152 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E143926F147BE23E001FC152 /* Sparkle.framework */; };
+		E1439273147BE25F001FC152 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = E1439272147BE25F001FC152 /* Sparkle.framework */; };
+		E1F306B3147A6A280064D072 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1F306B2147A6A280064D072 /* Cocoa.framework */; };
+		E1F306BD147A6A280064D072 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E1F306BB147A6A280064D072 /* InfoPlist.strings */; };
+		E1F306BF147A6A280064D072 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E1F306BE147A6A280064D072 /* main.m */; };
+		E1F306C3147A6A280064D072 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = E1F306C1147A6A280064D072 /* Credits.rtf */; };
+		E1F306C6147A6A280064D072 /* QuoteFixUpdaterAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E1F306C5147A6A280064D072 /* QuoteFixUpdaterAppDelegate.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		E1439271147BE24A001FC152 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				E1439273147BE25F001FC152 /* Sparkle.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		E143926F147BE23E001FC152 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = ../frameworks/Sparkle.framework; sourceTree = "<group>"; };
+		E1439272147BE25F001FC152 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
+		E1F306AE147A6A280064D072 /* QuoteFixUpdater.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuoteFixUpdater.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E1F306B2147A6A280064D072 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		E1F306B5147A6A280064D072 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		E1F306B6147A6A280064D072 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		E1F306B7147A6A280064D072 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		E1F306BA147A6A280064D072 /* QuoteFixUpdater-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "QuoteFixUpdater-Info.plist"; sourceTree = "<group>"; };
+		E1F306BC147A6A280064D072 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		E1F306BE147A6A280064D072 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		E1F306C0147A6A280064D072 /* QuoteFixUpdater-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "QuoteFixUpdater-Prefix.pch"; sourceTree = "<group>"; };
+		E1F306C2147A6A280064D072 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		E1F306C4147A6A280064D072 /* QuoteFixUpdaterAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QuoteFixUpdaterAppDelegate.h; sourceTree = "<group>"; };
+		E1F306C5147A6A280064D072 /* QuoteFixUpdaterAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QuoteFixUpdaterAppDelegate.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E1F306AB147A6A280064D072 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E1F306B3147A6A280064D072 /* Cocoa.framework in Frameworks */,
+				E1439270147BE23E001FC152 /* Sparkle.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		E1F306A3147A6A270064D072 = {
+			isa = PBXGroup;
+			children = (
+				E1439272147BE25F001FC152 /* Sparkle.framework */,
+				E1F306B8147A6A280064D072 /* QuoteFixUpdater */,
+				E1F306B1147A6A280064D072 /* Frameworks */,
+				E1F306AF147A6A280064D072 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		E1F306AF147A6A280064D072 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E1F306AE147A6A280064D072 /* QuoteFixUpdater.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E1F306B1147A6A280064D072 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E1F306B2147A6A280064D072 /* Cocoa.framework */,
+				E1F306B4147A6A280064D072 /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E1F306B4147A6A280064D072 /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E143926F147BE23E001FC152 /* Sparkle.framework */,
+				E1F306B5147A6A280064D072 /* AppKit.framework */,
+				E1F306B6147A6A280064D072 /* CoreData.framework */,
+				E1F306B7147A6A280064D072 /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		E1F306B8147A6A280064D072 /* QuoteFixUpdater */ = {
+			isa = PBXGroup;
+			children = (
+				E1F306C4147A6A280064D072 /* QuoteFixUpdaterAppDelegate.h */,
+				E1F306C5147A6A280064D072 /* QuoteFixUpdaterAppDelegate.m */,
+				E1F306B9147A6A280064D072 /* Supporting Files */,
+			);
+			path = QuoteFixUpdater;
+			sourceTree = "<group>";
+		};
+		E1F306B9147A6A280064D072 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E1F306BA147A6A280064D072 /* QuoteFixUpdater-Info.plist */,
+				E1F306BB147A6A280064D072 /* InfoPlist.strings */,
+				E1F306BE147A6A280064D072 /* main.m */,
+				E1F306C0147A6A280064D072 /* QuoteFixUpdater-Prefix.pch */,
+				E1F306C1147A6A280064D072 /* Credits.rtf */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		E1F306AD147A6A280064D072 /* QuoteFixUpdater */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E1F306CC147A6A280064D072 /* Build configuration list for PBXNativeTarget "QuoteFixUpdater" */;
+			buildPhases = (
+				E1F306AA147A6A280064D072 /* Sources */,
+				E1F306AB147A6A280064D072 /* Frameworks */,
+				E1F306AC147A6A280064D072 /* Resources */,
+				E1439271147BE24A001FC152 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = QuoteFixUpdater;
+			productName = QuoteFixUpdater;
+			productReference = E1F306AE147A6A280064D072 /* QuoteFixUpdater.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E1F306A5147A6A270064D072 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = E1F306A8147A6A270064D072 /* Build configuration list for PBXProject "QuoteFixUpdater" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = E1F306A3147A6A270064D072;
+			productRefGroup = E1F306AF147A6A280064D072 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E1F306AD147A6A280064D072 /* QuoteFixUpdater */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E1F306AC147A6A280064D072 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E1F306BD147A6A280064D072 /* InfoPlist.strings in Resources */,
+				E1F306C3147A6A280064D072 /* Credits.rtf in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E1F306AA147A6A280064D072 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E1F306BF147A6A280064D072 /* main.m in Sources */,
+				E1F306C6147A6A280064D072 /* QuoteFixUpdaterAppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		E1F306BB147A6A280064D072 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E1F306BC147A6A280064D072 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		E1F306C1147A6A280064D072 /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E1F306C2147A6A280064D072 /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		E1F306CA147A6A280064D072 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		E1F306CB147A6A280064D072 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		E1F306CD147A6A280064D072 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../Mail/QuoteFix/frameworks\"",
+					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/../frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "QuoteFixUpdater/QuoteFixUpdater-Prefix.pch";
+				INFOPLIST_FILE = "QuoteFixUpdater/QuoteFixUpdater-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		E1F306CE147A6A280064D072 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../Mail/QuoteFix/frameworks\"",
+					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/../frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "QuoteFixUpdater/QuoteFixUpdater-Prefix.pch";
+				INFOPLIST_FILE = "QuoteFixUpdater/QuoteFixUpdater-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E1F306A8147A6A270064D072 /* Build configuration list for PBXProject "QuoteFixUpdater" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E1F306CA147A6A280064D072 /* Debug */,
+				E1F306CB147A6A280064D072 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E1F306CC147A6A280064D072 /* Build configuration list for PBXNativeTarget "QuoteFixUpdater" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E1F306CD147A6A280064D072 /* Debug */,
+				E1F306CE147A6A280064D072 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = E1F306A5147A6A270064D072 /* Project object */;
+}

@@ -30,7 +30,6 @@ setup(
         extension       = '.mailbundle',
         semi_standalone = False,
         packages        = [ 'quotefix' ],
-        frameworks      = glob("frameworks/*.framework"),
         plist           = dict(
             NSPrincipalClass                    = 'QuoteFix',
             CFBundleIdentifier                  = 'name.klep.mail.QuoteFix',
