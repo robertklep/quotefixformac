@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		E1439270147BE23E001FC152 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E143926F147BE23E001FC152 /* Sparkle.framework */; };
 		E1439273147BE25F001FC152 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = E1439272147BE25F001FC152 /* Sparkle.framework */; };
+		E199DCB8147C37680076BA92 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = E199DCB7147C37680076BA92 /* icon.png */; };
 		E1F306B3147A6A280064D072 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1F306B2147A6A280064D072 /* Cocoa.framework */; };
 		E1F306BD147A6A280064D072 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E1F306BB147A6A280064D072 /* InfoPlist.strings */; };
 		E1F306BF147A6A280064D072 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E1F306BE147A6A280064D072 /* main.m */; };
@@ -32,6 +33,7 @@
 /* Begin PBXFileReference section */
 		E143926F147BE23E001FC152 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = ../frameworks/Sparkle.framework; sourceTree = "<group>"; };
 		E1439272147BE25F001FC152 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
+		E199DCB7147C37680076BA92 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		E1F306AE147A6A280064D072 /* QuoteFixUpdater.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuoteFixUpdater.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1F306B2147A6A280064D072 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		E1F306B5147A6A280064D072 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -110,6 +112,7 @@
 		E1F306B9147A6A280064D072 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E199DCB7147C37680076BA92 /* icon.png */,
 				E1F306BA147A6A280064D072 /* QuoteFixUpdater-Info.plist */,
 				E1F306BB147A6A280064D072 /* InfoPlist.strings */,
 				E1F306BE147A6A280064D072 /* main.m */,
@@ -169,6 +172,7 @@
 			files = (
 				E1F306BD147A6A280064D072 /* InfoPlist.strings in Resources */,
 				E1F306C3147A6A280064D072 /* Credits.rtf in Resources */,
+				E199DCB8147C37680076BA92 /* icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -210,7 +214,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -228,7 +232,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = macosx;
+				SDKROOT = macosx10.6;
 			};
 			name = Debug;
 		};
@@ -236,7 +240,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -247,7 +251,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
-				SDKROOT = macosx;
+				SDKROOT = macosx10.6;
 			};
 			name = Release;
 		};
