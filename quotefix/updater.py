@@ -9,11 +9,18 @@ class Updater:
         self.start_updater_app()
 
     def start_updater_app(self):
+        self.enabled  = False
+        return
+
+        # clean environment
+        if 'PYOBJC_BUNDLE_ADDRESS' in os.environ:
+            os.environ.pop('PYOBJC_BUNDLE_ADDRESS')
+
         # find and start updater
         bundle  = NSBundle.bundleWithIdentifier_("name.klep.mail.QuoteFix")
         app     = NSWorkspace.sharedWorkspace().launchApplicationAtURL_options_configuration_error_(
             bundle.URLForResource_withExtension_("QuoteFixUpdater", "app"),
-            0,
+            NSWorkspaceLaunchWithoutAddingToRecents | NSWorkspaceLaunchAsync,
             {},
             None
         )
