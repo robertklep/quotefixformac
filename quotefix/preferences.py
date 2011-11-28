@@ -113,6 +113,8 @@ class QuoteFixPreferencesController(NSObject):
             formatter.setLocale_(NSLocale.alloc().initWithLocaleIdentifier_("en_US"))
             formatter.setDateFormat_("EEE MMM dd yyyy HH:mm:ss")
             date = formatter.stringFromDate_(date)
+        else:
+            date = 'Unknown'
         self.lastUpdateCheck.setStringValue_(date)
 
     # act as a delegate for text fields

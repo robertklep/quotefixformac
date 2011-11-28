@@ -9,23 +9,18 @@ class Updater:
         self.start_updater_app()
 
     def start_updater_app(self):
-        self.enabled  = False
-        return
-
-        # clean environment
-        if 'PYOBJC_BUNDLE_ADDRESS' in os.environ:
-            os.environ.pop('PYOBJC_BUNDLE_ADDRESS')
-
+        NSLog("QuoteFix plug-in starting updater process")
         # find and start updater
         bundle  = NSBundle.bundleWithIdentifier_("name.klep.mail.QuoteFix")
         app     = NSWorkspace.sharedWorkspace().launchApplicationAtURL_options_configuration_error_(
             bundle.URLForResource_withExtension_("QuoteFixUpdater", "app"),
-            NSWorkspaceLaunchWithoutAddingToRecents | NSWorkspaceLaunchAsync,
+            0, # NSWorkspaceLaunchWithoutAddingToRecents | NSWorkspaceLaunchAsync,
             {},
             None
         )
-        self._updater = None
-        self.enabled  = True
+        self._updater       = None
+        self.updater_failed = False
+        self.enabled        = True
 
     @property
     def updater(self):
@@ -33,13 +28,17 @@ class Updater:
         if not self.enabled:
             return None
 
-        # seem to have a valid connection to the updater
-        if self._updater:
+        # seem to have a connection to the updater
+        if self._updater and not self.updater_failed:
             # check if connection is still valid before we return it
             if self._updater.connectionForProxy().isValid():
                 return self._updater
-            # try to start updater app again
+            self.updater_failed = True
+
+        # try to start updater app again
+        if self.updater_failed:
             self.start_updater_app()
+            self.updater_failed = False
 
         # try to connect to updater process
         failcount = 0
@@ -50,6 +49,10 @@ class Updater:
                 None
             )
             if self._updater:
+                # set timeouts
+                connection = self._updater.connectionForProxy()
+                connection.setRequestTimeout_(3)
+                connection.setReplyTimeout_(3)
                 # initialize updater
                 self._updater.initializeForBundle_relaunchPath_(
                     NSBundle.bundleWithIdentifier_('name.klep.mail.QuoteFix'),
@@ -68,7 +71,7 @@ class Updater:
             # sleep a second and try again
             NSRunLoop.currentRunLoop().runMode_beforeDate_(
                 NSDefaultRunLoopMode,
-                NSDate.date().dateByAddingTimeInterval_(1)
+                NSDate.dateWithTimeIntervalSinceNow_(1)
             )
         return self._updater
 
@@ -76,19 +79,32 @@ class Updater:
     def check_for_updates(self):
         if not self.enabled:
             return
-        self.updater.checkForUpdatesInBackground()
+        try:
+            self.updater.checkForUpdatesInBackground()
+        except:
+            self.updater_failed = True
 
     @property
     def last_update_check(self):
         if not self.enabled:
+            NSLog("last update check: not enabled")
             return None
-        return self.updater.lastUpdateCheckDate()
+        try:
+            return self.updater.lastUpdateCheckDate()
+        except:
+            NSLog("last update check: failed")
+            self.updater_failed = True
+            return None
 
     @property
     def check_update_interval(self):
         if not self.enabled:
             return None
-        return self.updater.updateCheckInterval()
+        try:
+            return self.updater.updateCheckInterval()
+        except:
+            self.updater_failed = True
+            return None
 
     @check_update_interval.setter
     def check_update_interval(self, interval):
@@ -98,5 +114,8 @@ class Updater:
         # a reset of the update cycle)
         if self.check_update_interval == interval:
             return
-        self.updater.setAutomaticallyChecksForUpdates_(interval and True or False)
-        self.updater.setUpdateCheckInterval_(interval);
+        try:
+            self.updater.setAutomaticallyChecksForUpdates_(interval and True or False)
+            self.updater.setUpdateCheckInterval_(interval);
+        except:
+            self.updater_failed = True

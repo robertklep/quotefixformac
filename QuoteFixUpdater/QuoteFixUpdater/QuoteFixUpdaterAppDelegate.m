@@ -10,8 +10,9 @@
 
 @synthesize window;
 
-- (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
+- (void) applicationDidFinishLaunching:(NSNotification *)aNotification {
     NSLog(@"QuoteFixUpdater starting");
+	[self startMailObserver];
     [self startProxy];
 }
 
@@ -26,7 +27,6 @@
 
 - (BOOL) initializeForBundle:(NSBundle *)bundle relaunchPath:(NSString *)path {
 	NSLog(@"QuoteFixUpdater initializing...");
-	[self startMailObserver];
     updatebundle = [bundle retain];
     relaunchpath = [path retain];
     updater = [[SUUpdater updaterForBundle:updatebundle] retain];
