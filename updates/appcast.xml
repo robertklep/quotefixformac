@@ -5,22 +5,38 @@
 			<link>http://quotefix.quotefixformac.googlecode.com/hg/quotefix/updates/appcast.xml</link>
       <description>Most recent changes with links to updates.</description>
       <language>en</language>
-		<item>
-			<title>Version 2.4.2</title>
-			<description><![CDATA[
-				<h2>Bugfix</h2>
-				<ul>
-					<li>Fixed a bug which, in rare occassions, could crash Mail. Thanks to @otterbook for reporting!</li>
-				</ul>
-			]]></description>
-			<pubDate>Sat Nov 19 07:47:46 2011 CET</pubDate>
-			<enclosure
-				url="http://quotefixformac.googlecode.com/files/QuoteFix-2.4.2.zip"
-				length="5587162"
-				sparkle:version="2.4.2"
-				type="application/octet-stream"
-				sparkle:dsaSignature="MCwCFFheQqh6x2H4xLLHLrnyBbKATB1UAhRdpEiNUy6Oyry7mumerI297U2kXw==" />
-		</item>
+			<item>
+				<title>Version 2.4.3</title>
+				<description><![CDATA[
+					<h2>10.7.3 compatibility</h2>
+					<ul>
+						<li>This version should be compatible with Mac OS X 10.7.3</li>
+					</ul>
+				]]></description>
+				<pubDate>Tue Dec  6 07:13:39 2011 CET</pubDate>
+				<enclosure
+					url="http://quotefixformac.googlecode.com/files/QuoteFix-2.4.3.zip"
+					length="5587779"
+					sparkle:version="2.4.3"
+					type="application/octet-stream"
+					sparkle:dsaSignature="MC4CFQDYwLytU+aNeATDADGDxzOPV9jK2AIVANg6ME908WGOQopW4mH5OSJSFdGr" />
+			</item>
+			<item>
+				<title>Version 2.4.2</title>
+				<description><![CDATA[
+					<h2>Bugfix</h2>
+					<ul>
+						<li>Fixed a bug which, in rare occassions, could crash Mail. Thanks to @otterbook for reporting!</li>
+					</ul>
+				]]></description>
+				<pubDate>Sat Nov 19 07:47:46 2011 CET</pubDate>
+				<enclosure
+					url="http://quotefixformac.googlecode.com/files/QuoteFix-2.4.2.zip"
+					length="5587162"
+					sparkle:version="2.4.2"
+					type="application/octet-stream"
+					sparkle:dsaSignature="MCwCFFheQqh6x2H4xLLHLrnyBbKATB1UAhRdpEiNUy6Oyry7mumerI297U2kXw==" />
+			</item>
 			<item>
 				<title>Version 2.4.1</title>
 				<description><![CDATA[
