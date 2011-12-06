@@ -62,6 +62,8 @@ setup(
                 # 10.7.2
                 '6E7970A3-E5F1-4C41-A904-B18D3D8FAA7D',
                 'EF59EC5E-EFCD-4EA7-B617-6C5708397D24',
+                # 10.7.3
+                '4C286C70-7F18-4839-B903-6F2D58FA4C71',
             ],
             # settings for Sparkle
             SUFeedURL = 'http://quotefix.quotefixformac.googlecode.com/hg/updates/appcast.xml',
