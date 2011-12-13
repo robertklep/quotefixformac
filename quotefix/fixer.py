@@ -85,6 +85,8 @@ class MailDocumentEditor(Category(MailDocumentEditor)):
             # send original HTML to menu for debugging
             self.app.html = htmlroot.innerHTML()
 
+#            open("/tmp/message.html", "wc").write(self.app.html.encode('utf-8'))
+
             # should we be quotefixing?
             if not self.app.is_quotefixing:
                 logging.debug('quotefixing turned off in preferences, skipping that part')
@@ -242,7 +244,7 @@ class MailDocumentEditor(Category(MailDocumentEditor)):
             #"body > div > blockquote br",
             #"body > blockquote br",
             #"body > blockquote > div",
-            "div", "br"
+            "div", "br", "span"
         ]
 
         nodes = []
@@ -258,6 +260,8 @@ class MailDocumentEditor(Category(MailDocumentEditor)):
 
 #            if node.nodeName().lower() == 'div':
 #                NSLog("div: %r" % unicode( node.innerHTML() ))
+#            elif node.nodeName().lower() == 'span':
+#                NSLog("span: %r" % unicode( node.innerHTML() ))
 #            elif node.nodeName().lower() == 'br':
 #                nextnode = node.nextSibling()
 #                if isinstance(nextnode, DOMText):
@@ -271,7 +275,7 @@ class MailDocumentEditor(Category(MailDocumentEditor)):
                 if isinstance(nextnode, DOMText) and matcher.search(nextnode.data()):
                     signature = node
                     break
-            elif node.nodeName().lower() == 'div' and matcher.search(node.innerHTML()):
+            elif node.nodeName().lower() in [ 'div', 'span' ] and matcher.search(node.innerHTML()):
                 signature = node
                 break
 
