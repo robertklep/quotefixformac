@@ -99,6 +99,11 @@ If you run into any problems with regards to replying or forwarding mail, consid
     def keep_attribution_whitespace(self):
         return self.prefs.bool["QuoteFixKeepAttributionWhitespace"]
 
+    # 'remove from last occurrance of possible signature match'
+    @property
+    def remove_from_last_signature_match(self):
+        return self.prefs.bool["QuoteFixRemoveSignatureFromLastMatch"]
+
     # 'remove trailing whitespace'
     @property
     def remove_trailing_whitespace(self):
