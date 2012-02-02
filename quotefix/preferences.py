@@ -110,7 +110,8 @@ class QuoteFixPreferencesController(NSObject):
         date = self.app.last_update_check
         if date:
             formatter = NSDateFormatter.alloc().init()
-            formatter.setLocale_(NSLocale.alloc().initWithLocaleIdentifier_("en_US"))
+            # use current user locale for 'last update' timestamp
+            formatter.setLocale_(NSLocale.currentLocale())
             formatter.setDateFormat_("EEE MMM dd yyyy HH:mm:ss")
             date = formatter.stringFromDate_(date)
         self.lastUpdateCheck.setStringValue_(date)
