@@ -74,10 +74,8 @@ class CustomizedAttribution:
 
             # check if message is rich text with HTML-attribution
             if is_html:
-                body            = reply.messageBody()
-                body_is_rich    = body.isRich()
-                body_is_html    = body.isHTML()
-                if not body_is_html and not body_is_rich:
+                body_is_rich    = editor.backEnd().containsRichText()
+                if not body_is_rich:
                     if (is_forward and cls.app.custom_forwarding_convert_to_rich) or \
                        (not is_forward and cls.app.custom_reply_convert_to_rich):
                         editor.makeRichText_(editor)
