@@ -81,13 +81,17 @@ class CustomizedAttribution:
                     if (is_forward and cls.app.custom_forwarding_convert_to_rich) or \
                        (not is_forward and cls.app.custom_reply_convert_to_rich):
                         editor.makeRichText_(editor)
-                    else:
-                        NSRunAlertPanel(
-                            'QuoteFix warning',
-                            'You are using an HTML-attribution, but the current message format is plain text.\n\n' +
-                            'Unless you convert to rich text, the HTML-formatting will be lost when sending the message.',
-                            None, None, None
+                    elif not cls.app.dont_show_html_attribution_warning:
+                        idx = NSRunAlertPanel(
+                            "QuoteFix warning",
+                            "You are using an HTML-attribution, but the current message format is plain text.\n\n" +
+                            "Unless you convert to rich text, the HTML-formatting will be lost when sending the message.",
+                            "OK",
+                            "Don't show this warning again",
+                            None
                         )
+                        if idx == 0:
+                            cls.app.dont_show_html_attribution_warning = True
 
             # render attribution
             attribution = cls.render_attribution(

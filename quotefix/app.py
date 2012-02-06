@@ -231,6 +231,15 @@ If you run into any problems with regards to replying or forwarding mail, consid
     def default_signature_matcher(self):
         return r'(?i)--(?:&nbsp;|\s+|\xa0)?$'
 
+    # handle warning message generated with customized attributions
+    @property
+    def dont_show_html_attribution_warning(self):
+        return self.prefs.string["QuoteFixDontShowHTMLAttributionWarning"]
+
+    @dont_show_html_attribution_warning.setter
+    def dont_show_html_attribution_warning(self, value):
+        self.prefs.string["QuoteFixDontShowHTMLAttributionWarning"] = value
+
     # update-related properties
     @property
     def check_update_interval(self):
