@@ -2,10 +2,10 @@
 <archive type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="7.10">
   <data>
     <int key="IBDocument.SystemTarget">1060</int>
-    <string key="IBDocument.SystemVersion">11C74</string>
+    <string key="IBDocument.SystemVersion">11D50</string>
     <string key="IBDocument.InterfaceBuilderVersion">851</string>
-    <string key="IBDocument.AppKitVersion">1138.23</string>
-    <string key="IBDocument.HIToolboxVersion">567.00</string>
+    <string key="IBDocument.AppKitVersion">1138.32</string>
+    <string key="IBDocument.HIToolboxVersion">568.00</string>
     <object class="NSMutableDictionary" key="IBDocument.PluginVersions">
       <string key="NS.key.0">com.apple.InterfaceBuilder.CocoaPlugin</string>
       <string key="NS.object.0">851</string>
@@ -42,11 +42,6 @@
         <string key="NSClassName">QuoteFixPreferencesController</string>
       </object>
       <object class="NSUserDefaultsController" id="512304363">
-        <object class="NSMutableArray" key="NSDeclaredKeys">
-          <bool key="EncodedWithXMLCoder">YES</bool>
-          <string>QuoteFixRemoveSignatureFromLastOccurrance</string>
-          <string>QuoteFixRemoveSignatureFromLastMatch</string>
-        </object>
         <bool key="NSSharedInstance">YES</bool>
       </object>
       <object class="NSBox" id="929681542">
@@ -198,7 +193,7 @@
                                   <object class="NSButtonCell" key="NSCell" id="177923181">
                                     <int key="NSCellFlags">67239424</int>
                                     <int key="NSCellFlags2">0</int>
-                                    <string key="NSContents">Remove from last occurrance of possible signature separator match, instead of first</string>
+                                    <string key="NSContents">Remove from last occurrence of possible signature separator match, instead of first</string>
                                     <reference key="NSSupport" ref="819029157"/>
                                     <reference key="NSControlView" ref="93806166"/>
                                     <int key="NSButtonFlags">1211912703</int>
@@ -372,7 +367,7 @@
                                   <object class="NSButtonCell" key="NSCell" id="782359619">
                                     <int key="NSCellFlags">67239424</int>
                                     <int key="NSCellFlags2">0</int>
-                                    <string key="NSContents">Don't remove senders signature</string>
+                                    <string key="NSContents">Don't remove sender's signature</string>
                                     <reference key="NSSupport" ref="819029157"/>
                                     <string key="NSCellIdentifier">_NS:682</string>
                                     <reference key="NSControlView" ref="554063000"/>
