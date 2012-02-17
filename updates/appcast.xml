@@ -6,6 +6,27 @@
       <description>Most recent changes with links to updates.</description>
       <language>en</language>
 			<item>
+				<title>Version 2.4.4</title>
+				<description><![CDATA[
+					<h2>Changes</h2>
+					<ul>
+						<li>Fixed check for rich-text reply</li>
+						<li>Added option to not show warning again when using HTML attribution on 
+							non-HTML/rich-text e-mail</li>
+						<li>Using current locale for <i>last update</i> timestamp</li>
+						<li>Added option to remove signatures from last occurrence of signature separator match, instead of first</li>
+						<li>Minor changes to signature separator matching</li>
+					</ul>
+				]]></description>
+				<pubDate>Thu Feb 16 08:17:31 2012 CET</pubDate>
+				<enclosure
+					url="http://quotefixformac.googlecode.com/files/QuoteFix-2.4.4.zip"
+					length="5599834"
+					sparkle:version="2.4.4"
+					type="application/octet-stream"
+					sparkle:dsaSignature="MC0CFQDT8SEBzorNOpo9wIj9qmHS+ygDJAIUFPdAK0Qt8DQt+qn03kNKYpdACzA=" />
+			</item>
+			<item>
 				<title>Version 2.4.3</title>
 				<description><![CDATA[
 					<h2>10.7.3 compatibility</h2>
