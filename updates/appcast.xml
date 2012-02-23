@@ -6,12 +6,29 @@
       <description>Most recent changes with links to updates.</description>
       <language>en</language>
 			<item>
+				<title>Version 2.4.5</title>
+				<description><![CDATA[
+					<h2>Preliminary Mountain Lion support</h2>
+					<ul>
+						<li>Support was added for Mountain Lion PR1. QuoteFix wasn't extensively tested on it, but it mostly seems to work okay</li>
+						<li>Fixed some typos here and there</li>
+					</ul>
+				]]></description>
+				<pubDate>Thu Feb 23 08:55:53 2012 CET</pubDate>
+				<enclosure
+					url="http://quotefixformac.googlecode.com/files/QuoteFix-2.4.5.zip"
+					length="5599665"
+					sparkle:version="2.4.5"
+					type="application/octet-stream"
+					sparkle:dsaSignature="MCwCFAcYGDJ8rxcpqYpY1NBmEPqfMIfOAhQpkknD0osjYCbEVADQgiM3742DNg==" />
+			</item>
+			<item>
 				<title>Version 2.4.4</title>
 				<description><![CDATA[
 					<h2>Changes</h2>
 					<ul>
 						<li>Fixed check for rich-text reply</li>
-						<li>Added option to not show warning again when using HTML attribution on 
+						<li>Added option to not show warning again when using HTML attribution on
 							non-HTML/rich-text e-mail</li>
 						<li>Using current locale for <i>last update</i> timestamp</li>
 						<li>Added option to remove signatures from last occurrence of signature separator match, instead of first</li>
