@@ -65,7 +65,7 @@ setup(
                 # 10.7.3
                 '4C286C70-7F18-4839-B903-6F2D58FA4C71',
                 # Mountain Lion 10.8 12A128p
-                '608CE00F-4576–4CAD-B362-F3CCB7DE8D67',
+                '608CE00F-4576-4CAD-B362-F3CCB7DE8D67',
             ],
             # settings for Sparkle
             SUFeedURL = 'http://quotefix.quotefixformac.googlecode.com/hg/updates/appcast.xml',
