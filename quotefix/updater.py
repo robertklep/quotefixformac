@@ -43,22 +43,21 @@ class Updater:
             return None
         return self.updater.lastUpdateCheckDate()
 
-    @property
-    def check_update_interval(self):
-        if not self.enabled:
-            return None
-        return self.updateCheckInterval()
-
-    @check_update_interval.setter
-    def check_update_interval(self, interval):
+    def set_update_interval(self, interval):
         if not self.enabled:
             return
+        
+        # disable check if interval == 0
+        if interval == 0:
+            self.updater.setAutomaticallyChecksForUpdates_(False)
+            return
+
         # only update when value changes (because changing it triggers
         # a reset of the update cycle)
-        if self.check_update_interval == interval:
+        if self.updater.updateCheckInterval() == interval:
             return
-        self.setAutomaticallyChecksForUpdates_(interval and True or False)
-        self.setUpdateCheckInterval_(interval);
+        self.updater.setAutomaticallyChecksForUpdates_(True)
+        self.updater.setUpdateCheckInterval_(interval);
 
 class UpdaterDelegate(NSObject):
 

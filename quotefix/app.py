@@ -256,7 +256,7 @@ If you run into any problems with regards to replying or forwarding mail, consid
         elif value == 1: interval = 7 * 24 * 60 * 60 # weekly
         elif value == 2: interval = int(4.35 * 7 * 24 * 60 * 60) # monthly
         else           : return
-        self.updater.check_update_interval = interval
+        self.updater.set_update_interval(interval)
 
     @property
     def last_update_check(self):
