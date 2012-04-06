@@ -47,8 +47,11 @@ class CustomizedAttribution:
         matcher = re.compile(re.sub(r'%\d+\$\@', '.*?', original.replace(u'\xa0', ' ').strip()))
 
         # find parent of first quote
-        root = dom.documentElement()
-        node = root.firstDescendantBlockQuote().parentNode()
+        root        = dom.documentElement()
+        blockquote  = root.firstDescendantBlockQuote()
+        if not blockquote:
+            return False
+        node        = blockquote.parentNode()
         if not node:
             return False
 
