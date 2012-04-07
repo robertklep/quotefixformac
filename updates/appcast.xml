@@ -6,6 +6,23 @@
       <description>Most recent changes with links to updates.</description>
       <language>en</language>
 			<item>
+				<title>Version 2.4.6</title>
+				<description><![CDATA[
+					<h2>Two bugfixes</h2>
+					<ul>
+						<li>Setting the updater to <i>Never</i> would still cause it to check for updates</li>
+						<li>The customized attributions code would cause a crash of the plug-in on rare occasions</li>
+					</ul>
+				]]></description>
+				<pubDate>Sat Apr  7 07:40:54 2012 CEST</pubDate>
+				<enclosure
+					url="http://quotefixformac.googlecode.com/files/QuoteFix-2.4.6.zip"
+					length="5600123"
+					sparkle:version="2.4.6"
+					type="application/octet-stream"
+					sparkle:dsaSignature="MC4CFQC1WfOWxs1ZQkzT70CTWTQTAYWcmQIVAJYkegeD5WKl7vQh/EczV8o2aXt8" />
+			</item>
+			<item>
 				<title>Version 2.4.5</title>
 				<description><![CDATA[
 					<h2>Preliminary Mountain Lion support</h2>
