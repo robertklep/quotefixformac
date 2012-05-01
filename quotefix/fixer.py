@@ -19,7 +19,8 @@ class MailApp(Category(MailApp)):
             return
         self.app.toggle_key_active = False
         # keep track of an active option key
-        if event.modifierFlags() & NSAlternateKeyMask:
+        flags = event.modifierFlags()
+        if (flags & NSAlternateKeyMask) and not (flags & NSControlKeyMask):
             self.app.toggle_key_active = True
             # handle reply/reply-all (XXX: won't work if you have assigned
             # a different shortcut key to these actions!)
