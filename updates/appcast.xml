@@ -6,6 +6,22 @@
       <description>Most recent changes with links to updates.</description>
       <language>en</language>
 			<item>
+				<title>Version 2.4.7</title>
+				<description><![CDATA[
+					<h2>Bugfix</h2>
+					<ul>
+						<li>Fixes a bug in cases where the user created a keyboard shortcut containing both <i>Cmd</i> and <i>R</i> keys.</li>
+					</ul>
+				]]></description>
+				<pubDate>Wed May  2 07:16:17 2012 CEST</pubDate>
+				<enclosure
+					url="http://quotefixformac.googlecode.com/files/QuoteFix-2.4.7.zip"
+					length="5576564"
+					sparkle:version="2.4.7"
+					type="application/octet-stream"
+					sparkle:dsaSignature="MC0CFCJx+lA067JOzCL0FWwXsIlQwPgdAhUA30pkv5I8d4sZaJEZVB6MJociZf0=" />
+			</item>
+			<item>
 				<title>Version 2.4.6</title>
 				<description><![CDATA[
 					<h2>Two bugfixes</h2>
