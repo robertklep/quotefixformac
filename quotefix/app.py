@@ -145,6 +145,11 @@ If you run into any problems with regards to replying or forwarding mail, consid
     def no_whitespace_below_quote(self):
         return self.prefs.bool["QuoteFixNoWhitespaceBelowQuote"]
 
+    # 'move cursor to top of document after quotefixing'
+    @property
+    def move_cursor_to_top(self):
+        return self.prefs.bool["QuoteFixMoveCursorToTop"]
+
     # 'use custom reply attribution'
     @property
     def use_custom_reply_attribution(self):
