@@ -46,14 +46,12 @@ class CustomizedAttribution:
         # nsbp's with normal spaces)
         matcher = re.compile(re.sub(r'%\d+\$\@', '.*?', original.replace(u'\xa0', ' ').strip()))
 
-        # find parent of first quote
-        root        = dom.documentElement()
-        blockquote  = root.firstDescendantBlockQuote()
-        if not blockquote:
+        # find first DIV node of document
+        root = dom.documentElement()
+        divs = root.getElementsByTagName_('div')
+        if not divs.length():
             return False
-        node        = blockquote.parentNode()
-        if not node:
-            return False
+        node = divs.item_(0)
 
         # check children for attribution node
         children = node.childNodes()
