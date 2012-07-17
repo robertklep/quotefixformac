@@ -125,6 +125,10 @@ class MailDocumentEditor(Category(MailDocumentEditor)):
                 if self.cleanup_layout(htmlroot):
                     backend.setHasChanges_(False)
 
+                # move cursor to end of document
+                if self.app.move_cursor_to_top:
+                    view.moveToBeginningOfDocument_(self)
+
             # provide custom attribution?
             attributor = None
             if self.app.use_custom_reply_attribution and self.messageType() in [ REPLY, REPLY_ALL ]:
