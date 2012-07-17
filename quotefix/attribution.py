@@ -48,7 +48,7 @@ class CustomizedAttribution:
 
         # find first DIV node of document
         root = dom.documentElement()
-        divs = root.getElementsByTagName_('div')
+        divs = root.getElementsByClassName_('AppleOriginalContents')
         if not divs.length():
             return False
         node = divs.item_(0)
