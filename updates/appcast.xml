@@ -6,6 +6,23 @@
       <description>Most recent changes with links to updates.</description>
       <language>en</language>
 			<item>
+				<title>Version 2.4.8</title>
+				<description><![CDATA[
+					<h2>Bugfix and new feature</h2>
+					<ul>
+						<li>Bugfix: QF now works when the Mail option <i>Increase quote level</i> is disabled</li>
+						<li>New feature: option to move the cursor to the top of the e-mail when QF is done</li>
+					</ul>
+				]]></description>
+				<pubDate>Wed Jul 18 07:16:41 2012 CEST</pubDate>
+				<enclosure
+					url="http://quotefixformac.googlecode.com/files/QuoteFix-2.4.8.zip"
+					length="5578351"
+					sparkle:version="2.4.8"
+					type="application/octet-stream"
+					sparkle:dsaSignature="MC0CFGfIt24+L/AsQhxxhqIZr27V/V+LAhUAiFeAcPxHHu3XF82Uq+PB2lZC/Kc=" />
+			</item>
+			<item>
 				<title>Version 2.4.7</title>
 				<description><![CDATA[
 					<h2>Bugfix</h2>
