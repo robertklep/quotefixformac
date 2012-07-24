@@ -46,12 +46,14 @@ class CustomizedAttribution:
         # nsbp's with normal spaces)
         matcher = re.compile(re.sub(r'%\d+\$\@', '.*?', original.replace(u'\xa0', ' ').strip()))
 
-        # find first DIV node of document
-        root = dom.documentElement()
-        divs = root.getElementsByClassName_('AppleOriginalContents')
-        if not divs.length():
-            return False
-        node = divs.item_(0)
+        # find possible nodes which can contain attribution
+        root    = dom.documentElement()
+        nodes   = root.getElementsByClassName_('AppleOriginalContents')
+        if not nodes.length():
+            nodes = root.getElementsByClassName_('ApplePlainTextBody')
+            if not nodes.length():
+                return False
+        node = nodes.item_(0)
 
         # check children for attribution node
         children = node.childNodes()
