@@ -5,29 +5,6 @@ from    quotefix.messagetypes   import *
 from    objc                    import Category, lookUpClass
 import  logging, re, traceback
 
-WebMessageController = lookUpClass('WebMessageController')
-class WebMessageController(Category(WebMessageController)):
-
-    @swizzle(WebMessageController, 'webView:didFinishLoadForFrame:')
-    def webView_didFinishLoadForFrame_(self, original, view, frame):
-        original(self, view, frame)
-        htmldom     = frame.DOMDocument()
-        htmlroot    = htmldom.documentElement()
-        head	    = htmlroot.getElementsByTagName_('head').item_(0)
-        head.setInnerHTML_(head.innerHTML() + """
-        <style>
-        body
-        {
-            width: 60em;
-            border-right: 2px solid #ccc;
-        }
-        blockquote
-        {
-            background: rgba(200, 200, 200, 0.5);
-        }
-        </style>
-        """)
-
 MailApp = lookUpClass('MailApp')
 class MailApp(Category(MailApp)):
 

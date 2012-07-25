@@ -53,6 +53,7 @@ class QuoteFixPreferencesController(NSObject):
     customSignatureMatcherDefault       = objc.IBOutlet()
     helpButton                          = objc.IBOutlet()
     donateButton                        = objc.IBOutlet()
+    cssFileBrowserButton	            = objc.IBOutlet()
 
     @classmethod
     def registerQuoteFixApplication(cls, app):
@@ -81,6 +82,20 @@ class QuoteFixPreferencesController(NSObject):
     @objc.IBAction
     def donateButtonPressed_(self, sender):
         NSWorkspace.sharedWorkspace().openURL_(NSURL.URLWithString_("https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=4UF2KB2BTW6AC"))
+
+    @objc.IBAction
+    def cssFileBrowserButtonPressed_(self, sender):
+        openPanel = NSOpenPanel.openPanel()
+
+        def openPanelDidClose_(result):
+            if result == NSFileHandlingPanelOKButton:
+                openPanel.orderOut_(self)
+                self.app.custom_css_file = openPanel.filename()
+
+        openPanel.beginSheetModalForWindow_completionHandler_(
+            self.app.window(),
+            objc.selector(openPanelDidClose_, argumentTypes='l')
+        )
 
     @objc.IBAction
     def helpButtonPressed_(self, sender):

@@ -150,6 +150,20 @@ If you run into any problems with regards to replying or forwarding mail, consid
     def move_cursor_to_top(self):
         return self.prefs.bool["QuoteFixMoveCursorToTop"]
 
+    # 'use custom CSS file for viewing'
+    @property
+    def use_custom_css_for_viewing(self):
+        return self.prefs.bool["QuoteFixUseCustomCSSForViewing"]
+
+    @property
+    def custom_css_file(self):
+        return self.prefs.string["QuoteFixCustomCSSFile"]
+
+    @custom_css_file.setter
+    def custom_css_file(self, filename):
+        NSLog("set file to %@", filename)
+        self.prefs.string["QuoteFixCustomCSSFile"] = filename
+
     # 'use custom reply attribution'
     @property
     def use_custom_reply_attribution(self):
