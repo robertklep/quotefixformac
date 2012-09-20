@@ -5,6 +5,19 @@
 			<link>http://quotefix.quotefixformac.googlecode.com/hg/quotefix/updates/appcast.xml</link>
       <description>Most recent changes with links to updates.</description>
       <language>en</language>
+      <item>
+        <title>Version 2.4.11</title>
+        <description><![CDATA[
+          <h2>Support for 10.6.8 and 10.7.5</h2>
+        ]]></description>
+        <pubDate>Thu Sep 20 21:24:33 2012 CEST</pubDate>
+        <enclosure
+          url="http://quotefixformac.googlecode.com/files/QuoteFix-2.4.11.zip"
+          length="6370150"
+          sparkle:version="2.4.11"
+          type="application/octet-stream"
+          sparkle:dsaSignature="MC0CFQCzKAvuCOJQ1HZrL5kGnrB0BPjehAIUBv/RJL483b6UcrVENK0E6liH9AY=" />
+      </item>
 			<item>
 				<title>Version 2.4.9</title>
 				<description><![CDATA[
