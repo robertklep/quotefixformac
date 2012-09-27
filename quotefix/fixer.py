@@ -96,8 +96,12 @@ class MailDocumentEditor(Category(MailDocumentEditor)):
                 if self.app.remove_attachment_placeholders:
                     attachments = backend.originalMessage().attachmentNamesIfAvailable()
                     if attachments:
-                        html    = htmlroot.innerHTML()
-                        matches = "|".join([ r'\&lt;%s\&gt;' % name for name in attachments ])
+                        html        = htmlroot.innerHTML()
+                        matchnames  = []
+                        for attachment in attachments:
+                            attachment = attachment.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;')
+                            matchnames.append(re.escape('&lt;%s&gt;' % attachment))
+                        matches = "|".join(matchnames)
                         html    = re.sub(matches, '', html)
                         htmlroot.setInnerHTML_(html)
 
