@@ -119,6 +119,11 @@ If you run into any problems with regards to replying or forwarding mail, consid
     def selectable_quotes(self):
         return self.prefs.bool['QuoteFixMakeSelectableQuotes']
 
+    # 'remove attachment placeholders'
+    @property
+    def remove_attachment_placeholders(self):
+        return self.prefs.bool["QuoteFixRemoveAttachmentPlaceholders"]
+
     # 'remove quotes from level'
     @property
     def remove_quotes(self):

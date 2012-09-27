@@ -92,6 +92,15 @@ class MailDocumentEditor(Category(MailDocumentEditor)):
             if not self.app.is_quotefixing:
                 logging.debug('quotefixing turned off in preferences, skipping that part')
             else:
+                # remove attachment placeholders?
+                if self.app.remove_attachment_placeholders:
+                    attachments = backend.originalMessage().attachmentNamesIfAvailable()
+                    if attachments:
+                        html    = htmlroot.innerHTML()
+                        matches = "|".join([ r'\&lt;%s\&gt;' % name for name in attachments ])
+                        html    = re.sub(matches, '', html)
+                        htmlroot.setInnerHTML_(html)
+
                 # move cursor to end of document
                 view.moveToEndOfDocument_(self)
 
@@ -122,7 +131,7 @@ class MailDocumentEditor(Category(MailDocumentEditor)):
 
                 # perform some general cleanups
                 logging.debug('calling cleanup_layout()')
-                if self.cleanup_layout(htmlroot):
+                if self.cleanup_layout(htmlroot, backend):
                     backend.setHasChanges_(False)
 
                 # move cursor to end of document
@@ -339,7 +348,7 @@ class MailDocumentEditor(Category(MailDocumentEditor)):
         # signal that we moved
         return True
 
-    def cleanup_layout(self, root):
+    def cleanup_layout(self, root, backend):
         # clean up stray linefeeds
         if not self.app.keep_leading_whitespace:
             root.getElementsByTagName_("body").item_(0)._removeStrayLinefeedsAtBeginning()
