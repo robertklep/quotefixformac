@@ -186,16 +186,26 @@ class MailDocumentEditor(Category(MailDocumentEditor)):
                 )
 
     def remove_attachment_placeholders(self, backend, htmlroot):
-        attachments = backend.originalMessage().attachmentNamesIfAvailable()
-        if attachments:
-            html        = htmlroot.innerHTML()
-            matchnames  = []
-            for attachment in attachments:
-                attachment = attachment.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;')
-                matchnames.append(re.escape('&lt;%s&gt;' % attachment))
-            matches = "|".join(matchnames)
-            html    = re.sub(matches, '', html)
-            htmlroot.setInnerHTML_(html)
+        messagebody = backend.originalMessage().messageBody()
+        if not messagebody:
+            return
+        attachments = messagebody.attachmentFilenames()
+#        NSLog('att: %@', attachments)
+        if not attachments:
+            return
+        html        = htmlroot.innerHTML()
+#        NSLog('html:\n%@\n', html)
+        matchnames  = []
+        for attachment in attachments:
+            attachment  = attachment.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;')
+            escaped     = re.escape('&lt;%s&gt;' % attachment)
+            escaped     = escaped.replace(r'\ ', r'(?: |\&nbsp;)')
+            escaped     = escaped.replace(r'\:', '[:_]')
+            matchnames.append(escaped)
+        matches = "|".join(matchnames)
+#        NSLog('matches: %@', matches)
+        html    = re.sub(matches, '', html)
+        htmlroot.setInnerHTML_(html)
 
     def remove_quotes(self, dom, level):
         # find all blockquotes
