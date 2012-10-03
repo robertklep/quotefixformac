@@ -94,16 +94,7 @@ class MailDocumentEditor(Category(MailDocumentEditor)):
             else:
                 # remove attachment placeholders?
                 if self.app.remove_attachment_placeholders:
-                    attachments = backend.originalMessage().attachmentNamesIfAvailable()
-                    if attachments:
-                        html        = htmlroot.innerHTML()
-                        matchnames  = []
-                        for attachment in attachments:
-                            attachment = attachment.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;')
-                            matchnames.append(re.escape('&lt;%s&gt;' % attachment))
-                        matches = "|".join(matchnames)
-                        html    = re.sub(matches, '', html)
-                        htmlroot.setInnerHTML_(html)
+                    self.remove_attachment_placeholders(backend, htmlroot)
 
                 # move cursor to end of document
                 view.moveToEndOfDocument_(self)
@@ -193,6 +184,18 @@ class MailDocumentEditor(Category(MailDocumentEditor)):
                     '\nPlease contact the developer quoting the contents of this alert.',
                     None, None, None
                 )
+
+    def remove_attachment_placeholders(self, backend, htmlroot):
+        attachments = backend.originalMessage().attachmentNamesIfAvailable()
+        if attachments:
+            html        = htmlroot.innerHTML()
+            matchnames  = []
+            for attachment in attachments:
+                attachment = attachment.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;')
+                matchnames.append(re.escape('&lt;%s&gt;' % attachment))
+            matches = "|".join(matchnames)
+            html    = re.sub(matches, '', html)
+            htmlroot.setInnerHTML_(html)
 
     def remove_quotes(self, dom, level):
         # find all blockquotes
