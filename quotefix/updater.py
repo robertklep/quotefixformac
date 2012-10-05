@@ -46,7 +46,7 @@ class Updater:
     def set_update_interval(self, interval):
         if not self.enabled:
             return
-        
+
         # disable check if interval == 0
         if interval == 0:
             self.updater.setAutomaticallyChecksForUpdates_(False)
