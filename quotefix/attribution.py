@@ -6,6 +6,9 @@ from    quotefix.pyratemp           import Template
 from    quotefix.attributionclasses import *
 import  re
 
+# dictionary of localized headers, used in customize_attribution
+LocalizedHeaders = lookUpClass('MessageHeaders').localizedHeaders()
+
 class CustomizedAttribution:
     """ Provide customized reply/forward attributions """
 
@@ -77,7 +80,7 @@ class CustomizedAttribution:
 
             # check if message is rich text with HTML-attribution
             if is_html:
-                body_is_rich    = editor.backEnd().containsRichText()
+                body_is_rich = editor.backEnd().containsRichText()
                 if not body_is_rich:
                     if (is_forward and cls.app.custom_forwarding_convert_to_rich) or \
                        (not is_forward and cls.app.custom_reply_convert_to_rich):
@@ -114,6 +117,21 @@ class CustomizedAttribution:
                 newnode.setInnerHTML_(attribution)
                 node.replaceChild_oldChild_(newnode, child)
                 copynode = newnode
+
+            # remove Mail-inserted forwarding attribution?
+            if is_forward:
+                nodes       = dom.querySelectorAll_("body > div > blockquote > div > span > b")
+                removeNodes = []
+                for i in range(nodes.length()):
+                    node    = nodes.item_(i)
+                    key     = node.innerText().strip(' \v\t\n\r:')
+                    if key in LocalizedHeaders:
+                        removeNodes.append(node)
+                for node in removeNodes:
+                    SPAN        = node.parentNode()
+                    DIV         = SPAN.parentNode()
+                    BLOCKQUOTE  = DIV.parentNode()
+                    BLOCKQUOTE.removeChild_(DIV)
 
             # increase quote level of attribution?
             if (is_forward and cls.app.custom_forwarding_increase_quotelevel) or (not is_forward and cls.app.custom_reply_increase_quotelevel):
