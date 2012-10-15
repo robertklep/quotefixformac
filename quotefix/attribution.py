@@ -6,8 +6,19 @@ from    quotefix.pyratemp           import Template
 from    quotefix.attributionclasses import *
 import  re
 
-# dictionary of localized headers, used in customize_attribution
-LocalizedHeaders = lookUpClass('MessageHeaders').localizedHeaders()
+# patch MessageHeaders class to return empty attributions with forwards
+MessageHeaders = lookUpClass('MessageHeaders')
+class MessageHeaders(Category(MessageHeaders)):
+
+    @classmethod
+    def registerQuoteFixApplication(cls, app):
+        cls.app = app
+
+    @swizzle(MessageHeaders, 'htmlStringShowingHeaderDetailLevel:useBold:useGray:')
+    def htmlStringShowingHeaderDetailLevel_useBold_useGray_(self, original, level, bold, gray):
+        if self.app.use_custom_forwarding_attribution:
+            return ''
+        return original(self, level, bold, gray)
 
 class CustomizedAttribution:
     """ Provide customized reply/forward attributions """
@@ -59,7 +70,8 @@ class CustomizedAttribution:
         node = nodes.item_(0)
 
         # check children for attribution node
-        children = node.childNodes()
+        is_rich     = editor.backEnd().containsRichText()
+        children    = node.childNodes()
         for i in range(children.length()):
             child = children.item_(i)
             if child.nodeType() == 1:
@@ -79,23 +91,21 @@ class CustomizedAttribution:
                 is_html = True
 
             # check if message is rich text with HTML-attribution
-            if is_html:
-                body_is_rich = editor.backEnd().containsRichText()
-                if not body_is_rich:
-                    if (is_forward and cls.app.custom_forwarding_convert_to_rich) or \
-                       (not is_forward and cls.app.custom_reply_convert_to_rich):
-                        editor.makeRichText_(editor)
-                    elif not cls.app.dont_show_html_attribution_warning:
-                        idx = NSRunAlertPanel(
-                            "QuoteFix warning",
-                            "You are using an HTML-attribution, but the current message format is plain text.\n\n" +
-                            "Unless you convert to rich text, the HTML-formatting will be lost when sending the message.",
-                            "OK",
-                            "Don't show this warning again",
-                            None
-                        )
-                        if idx == 0:
-                            cls.app.dont_show_html_attribution_warning = True
+            if is_html and not is_rich:
+                if (is_forward and cls.app.custom_forwarding_convert_to_rich) or \
+                    (not is_forward and cls.app.custom_reply_convert_to_rich):
+                    editor.makeRichText_(editor)
+                elif not cls.app.dont_show_html_attribution_warning:
+                    idx = NSRunAlertPanel(
+                        "QuoteFix warning",
+                        "You are using an HTML-attribution, but the current message format is plain text.\n\n" +
+                        "Unless you convert to rich text, the HTML-formatting will be lost when sending the message.",
+                        "OK",
+                        "Don't show this warning again",
+                        None
+                    )
+                    if idx == 0:
+                        cls.app.dont_show_html_attribution_warning = True
 
             # render attribution
             attribution = cls.render_attribution(
@@ -117,21 +127,6 @@ class CustomizedAttribution:
                 newnode.setInnerHTML_(attribution)
                 node.replaceChild_oldChild_(newnode, child)
                 copynode = newnode
-
-            # remove Mail-inserted forwarding attribution?
-            if is_forward:
-                nodes       = dom.querySelectorAll_("body > div > blockquote > div > span > b")
-                removeNodes = []
-                for i in range(nodes.length()):
-                    node    = nodes.item_(i)
-                    key     = node.innerText().strip(' \v\t\n\r:')
-                    if key in LocalizedHeaders:
-                        removeNodes.append(node)
-                for node in removeNodes:
-                    SPAN        = node.parentNode()
-                    DIV         = SPAN.parentNode()
-                    BLOCKQUOTE  = DIV.parentNode()
-                    BLOCKQUOTE.removeChild_(DIV)
 
             # increase quote level of attribution?
             if (is_forward and cls.app.custom_forwarding_increase_quotelevel) or (not is_forward and cls.app.custom_reply_increase_quotelevel):

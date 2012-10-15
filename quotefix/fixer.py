@@ -270,18 +270,9 @@ class MailDocumentEditor(Category(MailDocumentEditor)):
         matcher = self.app.signature_matcher
 
         # find nodes which might contain senders signature
-        possibles = [
-            #"body > div > blockquote > div > br",
-            #"body > div > blockquote br",
-            #"body > blockquote br",
-            #"body > blockquote > div",
-            "div", "br", "span"
-        ]
-
-        nodes = []
-        for possible in possibles:
-            matches = dom.querySelectorAll_(possible)
-            nodes += [ matches.item_(i) for i in range(matches.length()) ]
+        nodes   = []
+        matches = dom.querySelectorAll_("div, br, span")
+        nodes   += [ matches.item_(i) for i in range(matches.length()) ]
 
         # try to find a signature
         matches = []
