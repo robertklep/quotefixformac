@@ -16,7 +16,7 @@ class MessageHeaders(Category(MessageHeaders)):
 
     @swizzle(MessageHeaders, 'htmlStringShowingHeaderDetailLevel:useBold:useGray:')
     def htmlStringShowingHeaderDetailLevel_useBold_useGray_(self, original, level, bold, gray):
-        if self.app.use_custom_forwarding_attribution:
+        if self.app.use_custom_forwarding_attribution and self.app.remove_apple_mail_forward_attribution:
             return ''
         return original(self, level, bold, gray)
 

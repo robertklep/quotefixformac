@@ -195,6 +195,11 @@ If you run into any problems with regards to replying or forwarding mail, consid
     def custom_forwarding_increase_quotelevel(self):
         return self.prefs.bool["QuoteFixCustomForwardingIncreaseQuoteLevel"] or False
 
+    # 'remove Apple Mail forward attribution'
+    @property
+    def remove_apple_mail_forward_attribution(self):
+        return self.prefs.bool["QuoteFixRemoveAppleMailForwardAttribution"] or False
+
     # 'custom forwarding is HTML code'
     @property
     def custom_forwarding_is_html(self):

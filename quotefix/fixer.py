@@ -48,6 +48,10 @@ class MailDocumentEditor(Category(MailDocumentEditor)):
     def registerQuoteFixApplication(cls, app):
         cls.app = app
 
+#    @swizzle(MailDocumentEditor, 'appendMessageArray:')
+#    def appendMessageArray(self, original, messages):
+#        return original(self, messages)
+
     @swizzle(MailDocumentEditor, 'finishLoadingEditor')
     def finishLoadingEditor(self, original):
         logging.debug('MailDocumentEditor finishLoadingEditor')

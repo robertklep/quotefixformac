@@ -76,6 +76,7 @@ class QFAddressee:
 class QFDateTime(str):
     """ wraps a datetime object """
     formatter           = NSDateFormatter.alloc().init()
+    default_format      = "EEE MMM dd yyyy HH:mm:ss"
     STRFTIME_TO_UNICODE = {
         '%Y'    : 'YYYY',
         '%m'    : 'MM',
@@ -96,7 +97,7 @@ class QFDateTime(str):
     }
 
     def __new__(cls, nsdate):
-        cls.formatter.setDateFormat_("EEE MMM dd yyyy HH:mm:ss")
+        cls.formatter.setDateFormat_(cls.default_format)
         self            = super(QFDateTime, cls).__new__(
             cls,
             cls.formatter.stringFromDate_(nsdate).encode('utf-8')
@@ -137,17 +138,17 @@ class QFDateTime(str):
             fmt
         )
 
-    def strftime(self, fmt, locale = None):
-        return self.format(self.strftime_to_unicode(fmt), locale)
+    def strftime(self, fmt, locale = None, timezone = None):
+        return self.format(self.strftime_to_unicode(fmt), locale, timezone = None)
 
-    def format(self, fmt, locale = None):
+    def format(self, fmt, locale = None, timezone = None):
         self.formatter.setDateFormat_(fmt)
         if locale:
             self.formatter.setLocale_(NSLocale.alloc().initWithLocaleIdentifier_(locale))
         return self.formatter.stringFromDate_(self.nsdate).encode('utf-8')
 
     def locale(self, locale):
-        return self.format("EEE MMM dd yyyy HH:mm:ss", locale)
+        return self.format(self.default_format, locale)
 
     @classmethod
     def nsdate_to_datetime(cls, nsdate):
