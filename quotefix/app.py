@@ -218,10 +218,11 @@ If you run into any problems with regards to replying or forwarding mail, consid
     # signature matcher
     @property
     def signature_matcher(self):
+        matcher = None
         # use custom matcher?
         if self.prefs.bool["QuoteFixUseCustomSignatureMatcher"]:
             matcher = self.prefs.string["QuoteFixCustomSignatureMatcher"]
-        else:
+        if not matcher:
             matcher = self.default_signature_matcher
 
         # try to compile regular expression to catch errors early

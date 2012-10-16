@@ -102,7 +102,7 @@ class QFDateTime(str):
             cls.formatter.stringFromDate_(nsdate).encode('utf-8')
         )
         self.nsdate     = nsdate
-        
+
         # set date/time attributes
         attributes      = dict(
             year        = "YYYY",
