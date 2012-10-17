@@ -6,6 +6,23 @@
       <description>Most recent changes with links to updates.</description>
       <language>en</language>
       <item>
+        <title>Version 2.4.12</title>
+        <description><![CDATA[
+          <h2>New Features</h2>
+          <ul>
+            <li>New option: remove attachment placeholder text when replying</li>
+            <li>New option: remove attribution that Apple Mail prepends to a message when forwarding</li>
+          </ul>
+        ]]></description>
+        <pubDate>Tue Oct 16 12:37:16 2012 CEST</pubDate>
+        <enclosure
+          url="http://quotefixformac.googlecode.com/files/QuoteFix-2.4.12.zip"
+          length="5594061"
+          sparkle:version="2.4.12"
+          type="application/octet-stream"
+          sparkle:dsaSignature="MCwCFGi0U2gee/S47fNaJRzcQ6cEVcHVAhR7l3vgassWzGE8ZQoryMgyfwYgfQ==" />
+      </item>
+      <item>
         <title>Version 2.4.11</title>
         <description><![CDATA[
           <h2>Support for 10.6.8 and 10.7.5</h2>
