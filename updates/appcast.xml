@@ -6,6 +6,22 @@
       <description>Most recent changes with links to updates.</description>
       <language>en</language>
       <item>
+        <title>Version 2.4.13</title>
+        <description><![CDATA[
+          <h2>Bugfix</h2>
+          <ul>
+            <li>Fixed an issue with customized attributions when Mail is running in Cyrillic-based languages</li>
+          </ul>
+        ]]></description>
+        <pubDate>Fri Oct 19 13:28:07 2012 CEST</pubDate>
+        <enclosure
+          url="http://quotefixformac.googlecode.com/files/QuoteFix-2.4.13.zip"
+          length="5594263"
+          sparkle:version="2.4.13"
+          type="application/octet-stream"
+          sparkle:dsaSignature="MC0CFDyWpK1lMywa2gtSPhwvRAJsxoV8AhUAvcS0iX2lOd7SBmmRmDIBRVQg/Ho=" />
+      </item>
+      <item>
         <title>Version 2.4.12</title>
         <description><![CDATA[
           <h2>New Features</h2>
