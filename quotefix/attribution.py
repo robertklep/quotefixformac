@@ -58,7 +58,7 @@ class CustomizedAttribution:
     def customize_attribution(cls, original, editor, dom, reply, inreplyto, template, is_forward):
         # create matcher for matching original attribution (and replace
         # nsbp's with normal spaces)
-        matcher = re.compile(re.sub(r'%\d+\$\@', '.*?', original.replace(u'\xa0', ' ').strip()))
+        matcher = re.compile(re.sub(r'%\d+\$\@', '.*?', re.escape(original.replace(u'\xa0', ' ').strip())))
 
         # find possible nodes which can contain attribution
         root    = dom.documentElement()
