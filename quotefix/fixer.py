@@ -68,12 +68,6 @@ class MailDocumentEditor(Category(MailDocumentEditor)):
                 logging.debug("QuoteFix is not active, so no QuoteFixing for you!")
                 return
 
-            # check for supported messagetype
-            logging.debug('message type is %s' % self.messageType())
-            if self.messageType() not in self.app.message_types_to_quotefix:
-                logging.debug('\t not in %s, bailing' % self.app.message_types_to_quotefix)
-                return
-
             # grab composeView instance (this is the WebView which contains the
             # message editor) and check for the right conditions
             try:
@@ -95,6 +89,11 @@ class MailDocumentEditor(Category(MailDocumentEditor)):
             # should we be quotefixing?
             if not self.app.is_quotefixing:
                 logging.debug('quotefixing turned off in preferences, skipping that part')
+            elif self.messageType() not in self.app.message_types_to_quotefix:
+                logging.debug('message type "%s" not in %s, not quotefixing' % (
+                    self.messageType(),
+                    self.app.message_types_to_quotefix
+                ))
             else:
                 # remove attachment placeholders?
                 if self.app.remove_attachment_placeholders:
