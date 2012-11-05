@@ -98,6 +98,7 @@ class MailDocumentEditor(Category(MailDocumentEditor)):
                 # remove attachment placeholders?
                 if self.app.remove_attachment_placeholders:
                     self.remove_attachment_placeholders(backend, htmlroot)
+                    backend.setHasChanges_(False)
 
                 # move cursor to end of document
                 view.moveToEndOfDocument_(self)
@@ -166,6 +167,7 @@ class MailDocumentEditor(Category(MailDocumentEditor)):
                         reply       = message,
                         inreplyto   = backend.originalMessage()
                     )
+                    backend.setHasChanges_(False)
                 except:
                     # ignore when not debugging
                     if self.app.is_debugging:
