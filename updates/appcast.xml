@@ -6,6 +6,31 @@
       <description>Most recent changes with links to updates.</description>
       <language>en</language>
       <item>
+        <title>Version 2.4.14</title>
+        <description><![CDATA[
+          <h2>Functionality change</h2>
+          <p>
+            This version of QuoteFix changes the way customized attributions
+            are handled.
+          </p>
+          <p>
+            Before, customized attributions were seen as part of the
+            quotefixing process, and if quotefixing was disabled, the
+            customized attributions were disabled as well. With this version,
+            customized attributions are separated from the quotefixing, so you
+            can choose to disable quotefixing while still keeping the
+            customized attributions.
+          </p>
+        ]]></description>
+        <pubDate>Mon Nov  5 08:23:26 2012 CET</pubDate>
+        <enclosure
+          url="http://quotefixformac.googlecode.com/files/QuoteFix-2.4.14.zip"
+          length="5593510"
+          sparkle:version="2.4.14"
+          type="application/octet-stream"
+          sparkle:dsaSignature="MC4CFQCo5QAiKw57jEbvgFPnV5icNDquZQIVANpIksZhoyi+i7B9DSub1CK7PotS" />
+      </item>
+      <item>
         <title>Version 2.4.13</title>
         <description><![CDATA[
           <h2>Bugfix</h2>
