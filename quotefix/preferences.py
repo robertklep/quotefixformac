@@ -112,7 +112,9 @@ class QuoteFixPreferencesController(NSObject):
             formatter = NSDateFormatter.alloc().init()
             # use current user locale for 'last update' timestamp
             formatter.setLocale_(NSLocale.currentLocale())
-            formatter.setDateFormat_("EEE MMM dd yyyy HH:mm:ss")
+            # use user-definable 'medium style' formats
+            formatter.setTimeStyle_(NSDateFormatterMediumStyle)
+            formatter.setDateStyle_(NSDateFormatterMediumStyle)
             date = formatter.stringFromDate_(date)
         self.lastUpdateCheck.setStringValue_(date)
 
