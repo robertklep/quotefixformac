@@ -118,6 +118,10 @@ class CustomizedAttribution:
                 is_html     = is_html,
             )
 
+            # replace leading whitespace with non-breaking spaces
+            attribution = re.sub(r'(?m)^( +)' , lambda m: u'\u00a0' * len(m.group(1)), attribution)
+            attribution = re.sub(r'(?m)^(\t+)', lambda m: u'\u00a0\u00a0' * len(m.group(1)), attribution)
+
             # replace newlines with hard linebreaks
             attribution = attribution.replace('\n', '<br/>')
 
@@ -148,7 +152,7 @@ class CustomizedAttribution:
     def render_attribution(cls, reply, inreplyto, template, is_html):
         # expand template and return it
         return cls.render_with_params(
-            template, 
+            template,
             cls.setup_params(reply, inreplyto),
             is_html
         )
