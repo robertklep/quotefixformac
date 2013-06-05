@@ -11,3 +11,4 @@ tools/*
 testing/*
 frameworks/Python.framework/*
 fixes
+venv
