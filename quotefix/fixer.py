@@ -80,6 +80,13 @@ class MailDocumentEditor(Category(MailDocumentEditor)):
             backend     = self.backEnd()
             htmldom     = view.mainFrame().DOMDocument()
             htmlroot    = htmldom.documentElement()
+            messageType = self.messageType()
+
+            # XXX: hack alert! if message type is DRAFT, but we can determine this
+            # is actually a Send Again action, adjust the message type.
+            origmboxid  = backend.originalMessage().originalMailboxID()
+            if messageType == DRAFT and origmboxid != -1:
+                messageType = SENDAGAIN
 
             # send original HTML to menu for debugging
             self.app.html = htmlroot.innerHTML()
@@ -89,9 +96,22 @@ class MailDocumentEditor(Category(MailDocumentEditor)):
             # should we be quotefixing?
             if not self.app.is_quotefixing:
                 logging.debug('quotefixing turned off in preferences, skipping that part')
-            elif self.messageType() not in self.app.message_types_to_quotefix:
+#            elif self.messageType() == 4:
+#                NSLog('       omd : %@', orig.originalMailboxID())
+#                NSLog('DRAFT, orig: %@', orig)
+#                NSLog('       omd : %@', orig.originalMailboxID())
+#                NSLog('       prim: %@', orig.primitiveOptions())
+#                NSLog('       hast: %@', orig.hasTemporaryUid())
+#                NSLog('       opts: %@', orig.options())
+#                NSLog('       orgu: %@', orig.originalMailboxURL())
+#                NSLog('       msg : %@', backend.message())
+#                NSLog('       type: %@', backend.type())
+#                NSLog('       doci: %@', backend.documentID())
+#                NSLog('       url : %@', backend.originalMessageBaseURL())
+#                NSLog('       defm: %@', backend.defaultMessageStore())
+            elif messageType not in self.app.message_types_to_quotefix:
                 logging.debug('message type "%s" not in %s, not quotefixing' % (
-                    self.messageType(),
+                    messageType,
                     self.app.message_types_to_quotefix
                 ))
             else:

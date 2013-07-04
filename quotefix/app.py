@@ -143,6 +143,7 @@ If you run into any problems with regards to replying or forwarding mail, consid
         if self.prefs.bool["QuoteFixFixForward"]:       types.append(FORWARD)
         if self.prefs.bool["QuoteFixFixDraft"]:         types.append(DRAFT)
         if self.prefs.bool["QuoteFixFixNewMessage"]:    types.append(NEW)
+        if self.prefs.bool["QuoteFixFixSendAgain"]:     types.append(SENDAGAIN)
         return types
 
     # 'don't add extra line of whitespace below first-level quote'
