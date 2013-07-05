@@ -84,9 +84,11 @@ class MailDocumentEditor(Category(MailDocumentEditor)):
 
             # XXX: hack alert! if message type is DRAFT, but we can determine this
             # is actually a Send Again action, adjust the message type.
-            origmboxid  = backend.originalMessage().originalMailboxID()
-            if messageType == DRAFT and origmboxid != -1:
-                messageType = SENDAGAIN
+            origmsg = backend.originalMessage()
+            if origmsg:
+                origmboxid = origmsg.originalMailboxID()
+                if messageType == DRAFT and origmboxid != -1:
+                    messageType = SENDAGAIN
 
             # send original HTML to menu for debugging
             self.app.html = htmlroot.innerHTML()
