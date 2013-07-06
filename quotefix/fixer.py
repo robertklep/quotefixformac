@@ -161,10 +161,13 @@ class MailDocumentEditor(Category(MailDocumentEditor)):
 
             # provide custom attribution?
             attributor = None
-            if self.app.use_custom_reply_attribution and self.messageType() in [ REPLY, REPLY_ALL ]:
+            if self.app.use_custom_reply_attribution and messageType in [ REPLY, REPLY_ALL ]:
                 logging.debug("calling customize_attribution() for reply(-all)")
                 attributor = CustomizedAttribution.customize_reply
-            elif self.app.use_custom_forwarding_attribution and self.messageType() == FORWARD:
+            elif self.app.use_custom_sendagain_attribution and messageType in [ SENDAGAIN ]:
+                logging.debug("calling customize_attribution() for Send Again")
+                attributor = CustomizedAttribution.customize_sendagain
+            elif self.app.use_custom_forwarding_attribution and messageType == FORWARD:
                 logging.debug("calling customize_attribution() for forwarding")
                 attributor = CustomizedAttribution.customize_forward
 

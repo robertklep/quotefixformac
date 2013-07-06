@@ -48,6 +48,7 @@ class QuoteFixPreferencesController(NSObject):
     checkUpdateButton                   = objc.IBOutlet()
     customReplyAttribution              = objc.IBOutlet()
     customForwardingAttribution         = objc.IBOutlet()
+    customSendAgainAttribution          = objc.IBOutlet()
     customSignatureMatcher              = objc.IBOutlet()
     customSignatureMatcherFeedback      = objc.IBOutlet()
     customSignatureMatcherDefault       = objc.IBOutlet()
@@ -105,6 +106,7 @@ class QuoteFixPreferencesController(NSObject):
         # set attribution previews
         self.set_preview(self.customReplyAttribution)
         self.set_preview(self.customForwardingAttribution)
+        self.set_preview(self.customSendAgainAttribution)
 
     def setLastUpdateCheck(self):
         date = self.app.last_update_check
@@ -123,7 +125,7 @@ class QuoteFixPreferencesController(NSObject):
         obj = notification.object()
         tag = obj.tag()
         # update previews when customized attribution fields change
-        if tag in [ 31, 32 ]:
+        if tag in [ 31, 32, 33 ]:
             self.set_preview(obj)
         # check custom signature matcher and provide feedback
         elif tag in [ 50 ]:

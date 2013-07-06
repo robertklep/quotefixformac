@@ -3,6 +3,7 @@ from    objc                        import Category, lookUpClass
 from    datetime                    import datetime
 from    quotefix.utils              import swizzle, SimpleTemplate
 from    quotefix.pyratemp           import Template
+from    quotefix.messagetypes       import *
 from    quotefix.attributionclasses import *
 import  re
 
@@ -21,7 +22,7 @@ class MessageHeaders(Category(MessageHeaders)):
         return original(self, level, bold, gray)
 
 class CustomizedAttribution:
-    """ Provide customized reply/forward attributions """
+    """ Provide customized reply/sendagain/forward attributions """
 
     @classmethod
     def registerQuoteFixApplication(cls, app):
@@ -39,7 +40,19 @@ class CustomizedAttribution:
             reply       = reply,
             inreplyto   = inreplyto,
             template    = app.custom_reply_attribution,
-            is_forward  = False
+            messagetype = REPLY
+        )
+
+    @classmethod
+    def customize_sendagain(cls, app, editor, dom, reply, inreplyto):
+        return cls.customize_attribution(
+            original    = Message.replyPrefixWithSpacer_(False),
+            editor      = editor,
+            dom         = dom,
+            reply       = reply,
+            inreplyto   = inreplyto,
+            template    = app.custom_sendagain_attribution,
+            messagetype = SENDAGAIN
         )
 
     @classmethod
@@ -51,11 +64,15 @@ class CustomizedAttribution:
             reply       = reply,
             inreplyto   = inreplyto,
             template    = app.custom_forwarding_attribution,
-            is_forward  = True
+            messagetype = FORWARD
         )
 
     @classmethod
-    def customize_attribution(cls, original, editor, dom, reply, inreplyto, template, is_forward):
+    def customize_attribution(cls, original, editor, dom, reply, inreplyto, template, messagetype):
+        is_forward      = messagetype == FORWARD
+        is_reply        = messagetype == REPLY
+        is_sendagain    = messagetype == SENDAGAIN
+
         # create matcher for matching original attribution (and replace
         # nsbp's with normal spaces)
         original    = original.replace(u'\xa0', ' ').strip()
@@ -87,16 +104,15 @@ class CustomizedAttribution:
                     continue
 
             # should attribution be treated as HTML?
-            is_html = False
-            if is_forward and cls.app.custom_forwarding_is_html:
-                is_html = True
-            elif not is_html and cls.app.custom_reply_is_html:
-                is_html = True
+            is_html =   (is_forward     and cls.app.custom_forwarding_is_html) or \
+                        (is_sendagain   and cls.app.custom_sendagain_is_html) or \
+                        (is_reply       and cls.app.custom_reply_is_html)
 
             # check if message is rich text with HTML-attribution
             if is_html and not is_rich:
-                if (is_forward and cls.app.custom_forwarding_convert_to_rich) or \
-                    (not is_forward and cls.app.custom_reply_convert_to_rich):
+                if  (is_forward     and cls.app.custom_forwarding_convert_to_rich) or \
+                    (is_sendagain   and cls.app.custom_sendagain_convert_to_rich) or \
+                    (is_reply       and cls.app.custom_reply_convert_to_rich):
                     editor.makeRichText_(editor)
                 elif not cls.app.dont_show_html_attribution_warning:
                     idx = NSRunAlertPanel(
@@ -136,7 +152,9 @@ class CustomizedAttribution:
                 copynode = newnode
 
             # increase quote level of attribution?
-            if (is_forward and cls.app.custom_forwarding_increase_quotelevel) or (not is_forward and cls.app.custom_reply_increase_quotelevel):
+            if  (is_forward     and cls.app.custom_forwarding_increase_quotelevel) or \
+                (is_sendagain   and cls.app.custom_sendagain_increase_quotelevel) or \
+                (is_reply       and cls.app.custom_reply_increase_quotelevel):
                 copy = copynode.cloneNode_(True)
                 copynode.parentNode().removeChild_(copynode)
                 blockquote = root.firstDescendantBlockQuote()
