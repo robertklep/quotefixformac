@@ -181,6 +181,31 @@ If you run into any problems with regards to replying or forwarding mail, consid
     def custom_reply_convert_to_rich(self):
         return self.prefs.bool['QuoteFixCustomReplyConvertToRichText'] or False
 
+    # 'use custom send-again attribution'
+    @property
+    def use_custom_sendagain_attribution(self):
+        return self.is_active and self.prefs.bool["QuoteFixUseCustomSendAgainAttribution"] or False
+
+    # 'custom send-again attribution'
+    @property
+    def custom_sendagain_attribution(self):
+        return self.prefs.string["QuoteFixCustomSendAgainAttribution"] or ""
+
+    # 'increase quotelevel with custom send-again attribution'
+    @property
+    def custom_sendagain_increase_quotelevel(self):
+        return self.prefs.bool["QuoteFixCustomSendAgainIncreaseQuoteLevel"] or False
+
+    # 'custom send-again is HTML code'
+    @property
+    def custom_sendagain_is_html(self):
+        return self.prefs.bool["QuoteFixCustomSendAgainIsHTML"] or False
+
+    # 'convert send-again to rich text when needed?'
+    @property
+    def custom_sendagain_convert_to_rich(self):
+        return self.prefs.bool['QuoteFixCustomSendAgainConvertToRichText'] or False
+
     # 'use custom forwarding attribution'
     @property
     def use_custom_forwarding_attribution(self):

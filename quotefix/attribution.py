@@ -46,7 +46,7 @@ class CustomizedAttribution:
     @classmethod
     def customize_sendagain(cls, app, editor, dom, reply, inreplyto):
         return cls.customize_attribution(
-            original    = Message.replyPrefixWithSpacer_(False),
+            original    = None,
             editor      = editor,
             dom         = dom,
             reply       = reply,
@@ -75,33 +75,43 @@ class CustomizedAttribution:
 
         # create matcher for matching original attribution (and replace
         # nsbp's with normal spaces)
-        original    = original.replace(u'\xa0', ' ').strip()
-        original    = original.replace('(', r'\(').replace(')', r'\)')
-        original    = re.sub(r'%\d+\$\@', '.*?', original)
-        matcher     = re.compile(original)
+        if original:
+            original    = original.replace(u'\xa0', ' ').strip()
+            original    = original.replace('(', r'\(').replace(')', r'\)')
+            original    = re.sub(r'%\d+\$\@', '.*?', original)
+            matcher     = re.compile(original)
+        else:
+            matcher     = None
 
         # find possible nodes which can contain attribution
-        root    = dom.documentElement()
-        nodes   = root.getElementsByClassName_('AppleOriginalContents')
-        if not nodes.length():
-            nodes = root.getElementsByClassName_('ApplePlainTextBody')
+        root = dom.documentElement()
+        if is_sendagain:
+            # Special case: Mail doesn't include an attribution for Send Again messages,
+            # so we'll just use the root element
+            node        = root
+            children    = node.getElementsByTagName_('body')
+        else:
+            nodes = root.getElementsByClassName_('AppleOriginalContents')
             if not nodes.length():
-                return False
-        node = nodes.item_(0)
+                nodes = root.getElementsByClassName_('ApplePlainTextBody')
+                if not nodes.length():
+                    return False
+            node        = nodes.item_(0)
+            children    = node.childNodes()
 
         # check children for attribution node
-        is_rich     = editor.backEnd().containsRichText()
-        children    = node.childNodes()
+        is_rich = editor.backEnd().containsRichText()
         for i in range(children.length()):
             child = children.item_(i)
-            if child.nodeType() == 1:
-                html = child.innerHTML()
-                if not matcher.match(html):
-                    continue
-            elif child.nodeType() == 3:
-                text = child.data()
-                if not matcher.match(text):
-                    continue
+            if not is_sendagain:
+                if child.nodeType() == 1:
+                    html = child.innerHTML()
+                    if matcher and not matcher.match(html):
+                        continue
+                elif child.nodeType() == 3:
+                    text = child.data()
+                    if matcher and not matcher.match(text):
+                        continue
 
             # should attribution be treated as HTML?
             is_html =   (is_forward     and cls.app.custom_forwarding_is_html) or \
@@ -142,7 +152,18 @@ class CustomizedAttribution:
             attribution = attribution.replace('\n', '<br/>')
 
             # replace old attribution with new, depending on node type
-            if child.nodeType() == 1:
+            if is_sendagain:
+                newnode = dom.createElement_("span")
+                newnode.setInnerHTML_(attribution)
+
+                grandchildren = child.children()
+                if grandchildren.length():
+                    child.insertBefore_refChild_(newnode, grandchildren.item_(0))
+                else:
+                    child.appendChild_(newnode)
+
+                copynode = newnode
+            elif child.nodeType() == 1:
                 child.setInnerHTML_(attribution)
                 copynode = child
             else:
