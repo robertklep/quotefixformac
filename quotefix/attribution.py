@@ -155,13 +155,7 @@ class CustomizedAttribution:
             if is_sendagain:
                 newnode = dom.createElement_("span")
                 newnode.setInnerHTML_(attribution)
-
-                grandchildren = child.children()
-                if grandchildren.length():
-                    child.insertBefore_refChild_(newnode, grandchildren.item_(0))
-                else:
-                    child.appendChild_(newnode)
-
+                child.insertBefore_refChild_(newnode, child.firstChild())
                 copynode = newnode
             elif child.nodeType() == 1:
                 child.setInnerHTML_(attribution)
@@ -174,7 +168,6 @@ class CustomizedAttribution:
 
             # increase quote level of attribution?
             if  (is_forward     and cls.app.custom_forwarding_increase_quotelevel) or \
-                (is_sendagain   and cls.app.custom_sendagain_increase_quotelevel) or \
                 (is_reply       and cls.app.custom_reply_increase_quotelevel):
                 copy = copynode.cloneNode_(True)
                 copynode.parentNode().removeChild_(copynode)

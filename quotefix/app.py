@@ -191,11 +191,6 @@ If you run into any problems with regards to replying or forwarding mail, consid
     def custom_sendagain_attribution(self):
         return self.prefs.string["QuoteFixCustomSendAgainAttribution"] or ""
 
-    # 'increase quotelevel with custom send-again attribution'
-    @property
-    def custom_sendagain_increase_quotelevel(self):
-        return self.prefs.bool["QuoteFixCustomSendAgainIncreaseQuoteLevel"] or False
-
     # 'custom send-again is HTML code'
     @property
     def custom_sendagain_is_html(self):
