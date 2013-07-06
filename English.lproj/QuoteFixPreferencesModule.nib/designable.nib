@@ -1185,14 +1185,173 @@
 															<reference key="NSColor" ref="600795121"/>
 															<reference key="NSTabView" ref="84626589"/>
 														</object>
-														<object class="NSTabViewItem" id="564558408">
-															<object class="NSView" key="NSView" id="319098281">
+														<object class="NSTabViewItem" id="273567364">
+															<string key="NSIdentifier">1</string>
+															<object class="NSView" key="NSView" id="64702769">
 																<nil key="NSNextResponder"/>
 																<int key="NSvFlags">256</int>
+																<object class="NSMutableArray" key="NSSubviews">
+																	<bool key="EncodedWithXMLCoder">YES</bool>
+																	<object class="NSBox" id="113428820">
+																		<reference key="NSNextResponder" ref="64702769"/>
+																		<int key="NSvFlags">36</int>
+																		<object class="NSMutableArray" key="NSSubviews">
+																			<bool key="EncodedWithXMLCoder">YES</bool>
+																			<object class="NSView" id="813383485">
+																				<reference key="NSNextResponder" ref="113428820"/>
+																				<int key="NSvFlags">274</int>
+																				<object class="NSMutableArray" key="NSSubviews">
+																					<bool key="EncodedWithXMLCoder">YES</bool>
+																					<object class="NSTextField" id="235948193">
+																						<reference key="NSNextResponder" ref="813383485"/>
+																						<int key="NSvFlags">268</int>
+																						<string key="NSFrame">{{19, 55}, {577, 226}}</string>
+																						<reference key="NSSuperview" ref="813383485"/>
+																						<reference key="NSNextKeyView" ref="902994728"/>
+																						<int key="NSTag">31</int>
+																						<bool key="NSEnabled">YES</bool>
+																						<object class="NSTextFieldCell" key="NSCell" id="162760275">
+																							<int key="NSCellFlags">-1804074943</int>
+																							<int key="NSCellFlags2">4195328</int>
+																							<string key="NSContents"/>
+																							<reference key="NSSupport" ref="819029157"/>
+																							<string key="NSPlaceholderString">Enter your custom Send Again attribution</string>
+																							<reference key="NSControlView" ref="235948193"/>
+																							<bool key="NSDrawsBackground">YES</bool>
+																							<reference key="NSBackgroundColor" ref="71118749"/>
+																							<reference key="NSTextColor" ref="159487033"/>
+																						</object>
+																						<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
+																					</object>
+																					<object class="NSButton" id="902994728">
+																						<reference key="NSNextResponder" ref="813383485"/>
+																						<int key="NSvFlags">268</int>
+																						<string key="NSFrame">{{16, 32}, {637, 18}}</string>
+																						<reference key="NSSuperview" ref="813383485"/>
+																						<reference key="NSNextKeyView" ref="934555376"/>
+																						<bool key="NSEnabled">YES</bool>
+																						<object class="NSButtonCell" key="NSCell" id="709998712">
+																							<int key="NSCellFlags">67108864</int>
+																							<int key="NSCellFlags2">131072</int>
+																							<string key="NSContents">Increase quote level for custom Send Again attribution</string>
+																							<reference key="NSSupport" ref="26"/>
+																							<reference key="NSControlView" ref="902994728"/>
+																							<int key="NSButtonFlags">1211912448</int>
+																							<int key="NSButtonFlags2">2</int>
+																							<reference key="NSNormalImage" ref="697075880"/>
+																							<reference key="NSAlternateImage" ref="748518385"/>
+																							<string key="NSAlternateContents"/>
+																							<string key="NSKeyEquivalent"/>
+																							<int key="NSPeriodicDelay">200</int>
+																							<int key="NSPeriodicInterval">25</int>
+																						</object>
+																						<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
+																					</object>
+																					<object class="NSButton" id="1015388710">
+																						<reference key="NSNextResponder" ref="813383485"/>
+																						<int key="NSvFlags">268</int>
+																						<string key="NSFrame">{{17, 287}, {605, 18}}</string>
+																						<reference key="NSSuperview" ref="813383485"/>
+																						<reference key="NSNextKeyView" ref="235948193"/>
+																						<bool key="NSEnabled">YES</bool>
+																						<object class="NSButtonCell" key="NSCell" id="375530853">
+																							<int key="NSCellFlags">67108864</int>
+																							<int key="NSCellFlags2">0</int>
+																							<string key="NSContents">Enable custom attribution for Send Again</string>
+																							<reference key="NSSupport" ref="819029157"/>
+																							<reference key="NSControlView" ref="1015388710"/>
+																							<int key="NSButtonFlags">1211912448</int>
+																							<int key="NSButtonFlags2">2</int>
+																							<reference key="NSNormalImage" ref="697075880"/>
+																							<reference key="NSAlternateImage" ref="748518385"/>
+																							<string key="NSAlternateContents"/>
+																							<string key="NSKeyEquivalent"/>
+																							<int key="NSPeriodicDelay">200</int>
+																							<int key="NSPeriodicInterval">25</int>
+																						</object>
+																						<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
+																					</object>
+																					<object class="NSButton" id="934555376">
+																						<reference key="NSNextResponder" ref="813383485"/>
+																						<int key="NSvFlags">268</int>
+																						<string key="NSFrame">{{16, 12}, {205, 18}}</string>
+																						<reference key="NSSuperview" ref="813383485"/>
+																						<reference key="NSNextKeyView" ref="93796308"/>
+																						<bool key="NSEnabled">YES</bool>
+																						<object class="NSButtonCell" key="NSCell" id="726514330">
+																							<int key="NSCellFlags">67108864</int>
+																							<int key="NSCellFlags2">131072</int>
+																							<string key="NSContents">Treat attribution as HTML</string>
+																							<reference key="NSSupport" ref="28025662"/>
+																							<reference key="NSControlView" ref="934555376"/>
+																							<int key="NSButtonFlags">1211912448</int>
+																							<int key="NSButtonFlags2">2</int>
+																							<reference key="NSNormalImage" ref="697075880"/>
+																							<reference key="NSAlternateImage" ref="748518385"/>
+																							<string key="NSAlternateContents"/>
+																							<string key="NSKeyEquivalent"/>
+																							<int key="NSPeriodicDelay">200</int>
+																							<int key="NSPeriodicInterval">25</int>
+																						</object>
+																						<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
+																					</object>
+																					<object class="NSButton" id="93796308">
+																						<reference key="NSNextResponder" ref="813383485"/>
+																						<int key="NSvFlags">268</int>
+																						<string key="NSFrame">{{224, 12}, {429, 18}}</string>
+																						<reference key="NSSuperview" ref="813383485"/>
+																						<reference key="NSNextKeyView" ref="689220382"/>
+																						<bool key="NSEnabled">YES</bool>
+																						<object class="NSButtonCell" key="NSCell" id="576057630">
+																							<int key="NSCellFlags">67108864</int>
+																							<int key="NSCellFlags2">131072</int>
+																							<string key="NSContents">Automatically convert message to rich text when needed</string>
+																							<reference key="NSSupport" ref="26"/>
+																							<reference key="NSControlView" ref="93796308"/>
+																							<int key="NSButtonFlags">1211912448</int>
+																							<int key="NSButtonFlags2">2</int>
+																							<reference key="NSNormalImage" ref="697075880"/>
+																							<reference key="NSAlternateImage" ref="748518385"/>
+																							<string key="NSAlternateContents"/>
+																							<string key="NSKeyEquivalent"/>
+																							<int key="NSPeriodicDelay">200</int>
+																							<int key="NSPeriodicInterval">25</int>
+																						</object>
+																						<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
+																					</object>
+																				</object>
+																				<string key="NSFrameSize">{615, 316}</string>
+																				<reference key="NSSuperview" ref="113428820"/>
+																				<reference key="NSNextKeyView" ref="1015388710"/>
+																				<string key="NSReuseIdentifierKey">_NS:21</string>
+																			</object>
+																		</object>
+																		<string key="NSFrame">{{13, 13}, {615, 316}}</string>
+																		<reference key="NSSuperview" ref="64702769"/>
+																		<reference key="NSNextKeyView" ref="813383485"/>
+																		<string key="NSOffsets">{0, 0}</string>
+																		<object class="NSTextFieldCell" key="NSTitleCell">
+																			<int key="NSCellFlags">67108864</int>
+																			<int key="NSCellFlags2">0</int>
+																			<string key="NSContents">Box</string>
+																			<reference key="NSSupport" ref="26"/>
+																			<reference key="NSBackgroundColor" ref="71118749"/>
+																			<object class="NSColor" key="NSTextColor">
+																				<int key="NSColorSpace">3</int>
+																				<bytes key="NSWhite">MCAwLjgwMDAwMDAxMTkAA</bytes>
+																			</object>
+																		</object>
+																		<reference key="NSContentView" ref="813383485"/>
+																		<int key="NSBorderType">0</int>
+																		<int key="NSBoxType">0</int>
+																		<int key="NSTitlePosition">0</int>
+																		<bool key="NSTransparent">NO</bool>
+																	</object>
+																</object>
 																<string key="NSFrame">{{10, 25}, {642, 333}}</string>
-																<reference key="NSNextKeyView" ref="689220382"/>
+																<reference key="NSNextKeyView" ref="113428820"/>
 															</object>
-															<string key="NSLabel">"Send Again"</string>
+															<string key="NSLabel">Send Again</string>
 															<reference key="NSColor" ref="600795121"/>
 															<reference key="NSTabView" ref="84626589"/>
 														</object>
@@ -3232,6 +3391,196 @@ ZS5nb29nbGUuY29tL3AvcXVvdGVmaXhmb3JtYWM</string>
 					</object>
 					<int key="connectionID">492</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">delegate</string>
+						<reference key="source" ref="235948193"/>
+						<reference key="destination" ref="844267535"/>
+					</object>
+					<int key="connectionID">526</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: values.QuoteFixCustomSendAgainAttribution</string>
+						<reference key="source" ref="235948193"/>
+						<reference key="destination" ref="512304363"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="235948193"/>
+							<reference key="NSDestination" ref="512304363"/>
+							<string key="NSLabel">value: values.QuoteFixCustomSendAgainAttribution</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">values.QuoteFixCustomSendAgainAttribution</string>
+							<object class="NSDictionary" key="NSOptions">
+								<string key="NS.key.0">NSContinuouslyUpdatesValue</string>
+								<boolean value="YES" key="NS.object.0"/>
+							</object>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">531</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">enabled: values.QuoteFixUseCustomSendAgainAttribution</string>
+						<reference key="source" ref="235948193"/>
+						<reference key="destination" ref="512304363"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="235948193"/>
+							<reference key="NSDestination" ref="512304363"/>
+							<string key="NSLabel">enabled: values.QuoteFixUseCustomSendAgainAttribution</string>
+							<string key="NSBinding">enabled</string>
+							<string key="NSKeyPath">values.QuoteFixUseCustomSendAgainAttribution</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">532</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: values.QuoteFixUseCustomSendAgainAttribution</string>
+						<reference key="source" ref="1015388710"/>
+						<reference key="destination" ref="512304363"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="1015388710"/>
+							<reference key="NSDestination" ref="512304363"/>
+							<string key="NSLabel">value: values.QuoteFixUseCustomSendAgainAttribution</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">values.QuoteFixUseCustomSendAgainAttribution</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">528</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: values.QuoteFixCustomSendAgainConvertToRichText</string>
+						<reference key="source" ref="93796308"/>
+						<reference key="destination" ref="512304363"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="93796308"/>
+							<reference key="NSDestination" ref="512304363"/>
+							<string key="NSLabel">value: values.QuoteFixCustomSendAgainConvertToRichText</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">values.QuoteFixCustomSendAgainConvertToRichText</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">530</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">enabled: values.QuoteFixCustomSendAgainIsHTML</string>
+						<reference key="source" ref="93796308"/>
+						<reference key="destination" ref="512304363"/>
+						<object class="NSNibBindingConnector" key="connector" id="746929">
+							<reference key="NSSource" ref="93796308"/>
+							<reference key="NSDestination" ref="512304363"/>
+							<string key="NSLabel">enabled: values.QuoteFixCustomSendAgainIsHTML</string>
+							<string key="NSBinding">enabled</string>
+							<string key="NSKeyPath">values.QuoteFixCustomSendAgainIsHTML</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">535</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">enabled2: values.QuoteFixUseCustomReplyAttribution</string>
+						<reference key="source" ref="93796308"/>
+						<reference key="destination" ref="512304363"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="93796308"/>
+							<reference key="NSDestination" ref="512304363"/>
+							<string key="NSLabel">enabled2: values.QuoteFixUseCustomReplyAttribution</string>
+							<string key="NSBinding">enabled2</string>
+							<string key="NSKeyPath">values.QuoteFixUseCustomReplyAttribution</string>
+							<object class="NSDictionary" key="NSOptions">
+								<bool key="EncodedWithXMLCoder">YES</bool>
+								<object class="NSArray" key="dict.sortedKeys">
+									<bool key="EncodedWithXMLCoder">YES</bool>
+									<string>NSMultipleValuesPlaceholder</string>
+									<string>NSNoSelectionPlaceholder</string>
+									<string>NSNotApplicablePlaceholder</string>
+									<string>NSNullPlaceholder</string>
+								</object>
+								<object class="NSArray" key="dict.values">
+									<bool key="EncodedWithXMLCoder">YES</bool>
+									<integer value="-1"/>
+									<integer value="-1"/>
+									<integer value="-1"/>
+									<integer value="-1"/>
+								</object>
+							</object>
+							<reference key="NSPreviousConnector" ref="746929"/>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">536</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: values.QuoteFixCustomSendAgainIsHTML</string>
+						<reference key="source" ref="934555376"/>
+						<reference key="destination" ref="512304363"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="934555376"/>
+							<reference key="NSDestination" ref="512304363"/>
+							<string key="NSLabel">value: values.QuoteFixCustomSendAgainIsHTML</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">values.QuoteFixCustomSendAgainIsHTML</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">529</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">enabled: values.QuoteFixUseCustomSendAgainAttribution</string>
+						<reference key="source" ref="934555376"/>
+						<reference key="destination" ref="512304363"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="934555376"/>
+							<reference key="NSDestination" ref="512304363"/>
+							<string key="NSLabel">enabled: values.QuoteFixUseCustomSendAgainAttribution</string>
+							<string key="NSBinding">enabled</string>
+							<string key="NSKeyPath">values.QuoteFixUseCustomSendAgainAttribution</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">534</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: values.QuoteFixCustomSendAgainIncreaseQuoteLevel</string>
+						<reference key="source" ref="902994728"/>
+						<reference key="destination" ref="512304363"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="902994728"/>
+							<reference key="NSDestination" ref="512304363"/>
+							<string key="NSLabel">value: values.QuoteFixCustomSendAgainIncreaseQuoteLevel</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">values.QuoteFixCustomSendAgainIncreaseQuoteLevel</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">527</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">enabled: values.QuoteFixUseCustomSendAgainAttribution</string>
+						<reference key="source" ref="902994728"/>
+						<reference key="destination" ref="512304363"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="902994728"/>
+							<reference key="NSDestination" ref="512304363"/>
+							<string key="NSLabel">enabled: values.QuoteFixUseCustomSendAgainAttribution</string>
+							<string key="NSBinding">enabled</string>
+							<string key="NSKeyPath">values.QuoteFixUseCustomSendAgainAttribution</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">533</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -3990,7 +4339,7 @@ ZS5nb29nbGUuY29tL3AvcXVvdGVmaXhmb3JtYWM</string>
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="1010398895"/>
 							<reference ref="205261604"/>
-							<reference ref="564558408"/>
+							<reference ref="273567364"/>
 						</object>
 						<reference key="parent" ref="487297559"/>
 					</object>
@@ -4029,20 +4378,6 @@ ZS5nb29nbGUuY29tL3AvcXVvdGVmaXhmb3JtYWM</string>
 							<reference ref="646853082"/>
 						</object>
 						<reference key="parent" ref="205261604"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">498</int>
-						<reference key="object" ref="564558408"/>
-						<object class="NSMutableArray" key="children">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="319098281"/>
-						</object>
-						<reference key="parent" ref="84626589"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">499</int>
-						<reference key="object" ref="319098281"/>
-						<reference key="parent" ref="564558408"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">205</int>
@@ -4242,6 +4577,108 @@ ZS5nb29nbGUuY29tL3AvcXVvdGVmaXhmb3JtYWM</string>
 						<reference key="object" ref="662835239"/>
 						<reference key="parent" ref="742030531"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">500</int>
+						<reference key="object" ref="273567364"/>
+						<object class="NSMutableArray" key="children">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<reference ref="64702769"/>
+						</object>
+						<reference key="parent" ref="84626589"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">501</int>
+						<reference key="object" ref="64702769"/>
+						<object class="NSMutableArray" key="children">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<reference ref="113428820"/>
+						</object>
+						<reference key="parent" ref="273567364"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">502</int>
+						<reference key="object" ref="113428820"/>
+						<object class="NSMutableArray" key="children">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<reference ref="235948193"/>
+							<reference ref="1015388710"/>
+							<reference ref="93796308"/>
+							<reference ref="934555376"/>
+							<reference ref="902994728"/>
+						</object>
+						<reference key="parent" ref="64702769"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">504</int>
+						<reference key="object" ref="235948193"/>
+						<object class="NSMutableArray" key="children">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<reference ref="162760275"/>
+						</object>
+						<reference key="parent" ref="113428820"/>
+						<string key="objectName">customReplyTextField</string>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">505</int>
+						<reference key="object" ref="1015388710"/>
+						<object class="NSMutableArray" key="children">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<reference ref="375530853"/>
+						</object>
+						<reference key="parent" ref="113428820"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">506</int>
+						<reference key="object" ref="93796308"/>
+						<object class="NSMutableArray" key="children">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<reference ref="576057630"/>
+						</object>
+						<reference key="parent" ref="113428820"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">507</int>
+						<reference key="object" ref="934555376"/>
+						<object class="NSMutableArray" key="children">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<reference ref="726514330"/>
+						</object>
+						<reference key="parent" ref="113428820"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">508</int>
+						<reference key="object" ref="902994728"/>
+						<object class="NSMutableArray" key="children">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<reference ref="709998712"/>
+						</object>
+						<reference key="parent" ref="113428820"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">509</int>
+						<reference key="object" ref="709998712"/>
+						<reference key="parent" ref="902994728"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">510</int>
+						<reference key="object" ref="726514330"/>
+						<reference key="parent" ref="934555376"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">511</int>
+						<reference key="object" ref="576057630"/>
+						<reference key="parent" ref="93796308"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">512</int>
+						<reference key="object" ref="375530853"/>
+						<reference key="parent" ref="1015388710"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">513</int>
+						<reference key="object" ref="162760275"/>
+						<reference key="parent" ref="235948193"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -4395,8 +4832,24 @@ ZS5nb29nbGUuY29tL3AvcXVvdGVmaXhmb3JtYWM</string>
 					<string>495.IBPluginDependency</string>
 					<string>496.IBPluginDependency</string>
 					<string>497.IBPluginDependency</string>
-					<string>498.IBPluginDependency</string>
-					<string>499.IBPluginDependency</string>
+					<string>500.IBPluginDependency</string>
+					<string>501.IBPluginDependency</string>
+					<string>502.IBPluginDependency</string>
+					<string>504.IBPluginDependency</string>
+					<string>505.IBPluginDependency</string>
+					<string>506.IBAttributePlaceholdersKey</string>
+					<string>506.IBPluginDependency</string>
+					<string>507.IBAttributePlaceholdersKey</string>
+					<string>507.IBPluginDependency</string>
+					<string>508.IBAttributePlaceholdersKey</string>
+					<string>508.IBPluginDependency</string>
+					<string>509.IBAttributePlaceholdersKey</string>
+					<string>509.IBPluginDependency</string>
+					<string>510.IBPluginDependency</string>
+					<string>511.IBAttributePlaceholdersKey</string>
+					<string>511.IBPluginDependency</string>
+					<string>512.IBPluginDependency</string>
+					<string>513.IBPluginDependency</string>
 					<string>52.IBPluginDependency</string>
 					<string>58.IBPluginDependency</string>
 					<string>59.IBPluginDependency</string>
@@ -4761,6 +5214,51 @@ aGUgbGFzdCBtYXRjaCBpdCBmaW5kcy4</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<object class="NSMutableDictionary">
+						<string key="NS.key.0">ToolTip</string>
+						<object class="IBToolTipAttribute" key="NS.object.0">
+							<string key="name">ToolTip</string>
+							<reference key="object" ref="93796308"/>
+							<string key="toolTip">When "Treat as HTML" is on, replies should be in Rich Text format. Otherwise, even though the attribution appears to be HTML-formatted, when sending the message the formatting is removed by Mail. Enabling this option automatically converts the message to Rich Text in such cases. Otherwise, you'll get an annoying warning.</string>
+						</object>
+					</object>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<object class="NSMutableDictionary">
+						<string key="NS.key.0">ToolTip</string>
+						<object class="IBToolTipAttribute" key="NS.object.0">
+							<string key="name">ToolTip</string>
+							<reference key="object" ref="934555376"/>
+							<string key="toolTip">When enabled, the attribution is treated as HTML. This means special characters like '&lt;', '&gt;' and '&amp;' won't be escaped.</string>
+						</object>
+					</object>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<object class="NSMutableDictionary">
+						<string key="NS.key.0">ToolTip</string>
+						<object class="IBToolTipAttribute" key="NS.object.0">
+							<string key="name">ToolTip</string>
+							<reference key="object" ref="902994728"/>
+							<string key="toolTip">Normally, attribution lines are at quote level 0, the top-most level. With this checkbox checked, the quote level of the attribution is increased (to 1) so it will appear to be part of the message you are replying to.</string>
+						</object>
+					</object>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<object class="NSMutableDictionary">
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<reference key="dict.sortedKeys" ref="0"/>
+						<reference key="dict.values" ref="0"/>
+					</object>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<object class="NSMutableDictionary">
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<reference key="dict.sortedKeys" ref="0"/>
+						<reference key="dict.values" ref="0"/>
+					</object>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -4789,7 +5287,7 @@ aGUgbGFzdCBtYXRjaCBpdCBmaW5kcy4</string>
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">499</int>
+			<int key="maxID">536</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
