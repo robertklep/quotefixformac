@@ -85,10 +85,17 @@ class MailDocumentEditor(Category(MailDocumentEditor)):
             # XXX: hack alert! if message type is DRAFT, but we can determine this
             # is actually a Send Again action, adjust the message type.
             origmsg = backend.originalMessage()
-            if origmsg:
-                origmboxid = origmsg.originalMailboxID()
-                if messageType == DRAFT and origmboxid != -1:
-                    messageType = SENDAGAIN
+            if origmsg and messageType == DRAFT:
+                # get the message viewer for this message
+                viewer = MessageViewer.existingViewerShowingMessage_(origmsg)
+                if viewer:
+                    # get the mailbox for the viewer
+                    mailboxes = viewer.selectedMailboxes()
+                    # get the Drafts mailbox
+                    draftmailbox = viewer.draftsMailbox()
+                    # check if they're the same; if not, it's a Send-Again
+                    if draftmailbox not in mailboxes:
+                        messageType = SENDAGAIN
 
             # send original HTML to menu for debugging
             self.app.html = htmlroot.innerHTML()
@@ -99,8 +106,16 @@ class MailDocumentEditor(Category(MailDocumentEditor)):
             if not self.app.is_quotefixing:
                 logging.debug('quotefixing turned off in preferences, skipping that part')
 #            elif self.messageType() == 4:
-#                NSLog('       omd : %@', orig.originalMailboxID())
+#                orig = backend.originalMessage()
+#                viewer = MessageViewer.existingViewerShowingMessage_(orig)
+#                mboxuids = viewer.selectedMailboxUids()
+#                mbox = viewer.selectedMailboxes()
+#                draftmbox = viewer.draftsMailbox()
 #                NSLog('DRAFT, orig: %@', orig)
+#                NSLog('       view: %@', viewer)
+#                NSLog('       mbox: %@', mboxuids)
+#                NSLog('       mbxs: %@', mbox)
+#                NSLog('       drft: %@', draftmbox)
 #                NSLog('       omd : %@', orig.originalMailboxID())
 #                NSLog('       prim: %@', orig.primitiveOptions())
 #                NSLog('       hast: %@', orig.hasTemporaryUid())
