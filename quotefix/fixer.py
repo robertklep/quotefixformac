@@ -3,7 +3,8 @@ from    quotefix.utils          import swizzle
 from    quotefix.attribution    import CustomizedAttribution
 from    quotefix.messagetypes   import *
 from    objc                    import Category, lookUpClass
-import  logging, re, traceback
+from    logger                  import logger
+import  re, traceback
 
 MailApp = lookUpClass('MailApp')
 class MailApp(Category(MailApp)):
@@ -54,7 +55,7 @@ class MailDocumentEditor(Category(MailDocumentEditor)):
 
     @swizzle(MailDocumentEditor, 'finishLoadingEditor')
     def finishLoadingEditor(self, original):
-        logging.debug('MailDocumentEditor finishLoadingEditor')
+        logger.debug('MailDocumentEditor finishLoadingEditor')
 
         # execute original finishLoadingEditor()
         original(self)
@@ -65,7 +66,7 @@ class MailDocumentEditor(Category(MailDocumentEditor)):
 
             # check if we can proceed
             if not is_active:
-                logging.debug("QuoteFix is not active, so no QuoteFixing for you!")
+                logger.debug("QuoteFix is not active, so no QuoteFixing for you!")
                 return
 
             # grab composeView instance (this is the WebView which contains the
@@ -104,7 +105,7 @@ class MailDocumentEditor(Category(MailDocumentEditor)):
 
             # should we be quotefixing?
             if not self.app.is_quotefixing:
-                logging.debug('quotefixing turned off in preferences, skipping that part')
+                logger.debug('quotefixing turned off in preferences, skipping that part')
 #            elif self.messageType() == 4:
 #                orig = backend.originalMessage()
 #                viewer = MessageViewer.existingViewerShowingMessage_(orig)
@@ -127,7 +128,7 @@ class MailDocumentEditor(Category(MailDocumentEditor)):
 #                NSLog('       url : %@', backend.originalMessageBaseURL())
 #                NSLog('       defm: %@', backend.defaultMessageStore())
             elif messageType not in self.app.message_types_to_quotefix:
-                logging.debug('message type "%s" not in %s, not quotefixing' % (
+                logger.debug('message type "%s" not in %s, not quotefixing' % (
                     messageType,
                     self.app.message_types_to_quotefix
                 ))
@@ -142,31 +143,31 @@ class MailDocumentEditor(Category(MailDocumentEditor)):
 
                 # remove quotes?
                 if self.app.remove_quotes:
-                    logging.debug('calling remove_quotes()')
+                    logger.debug('calling remove_quotes()')
                     self.remove_quotes(htmldom, self.app.remove_quotes_level)
                     backend.setHasChanges_(False)
 
                 # make quotes selectable?
                 if self.app.selectable_quotes:
-                    logging.debug('calling make_selectable_quotes()')
+                    logger.debug('calling make_selectable_quotes()')
                     self.make_selectable_quotes(view, htmldom)
                     backend.setHasChanges_(False)
 
                 # remove signature from sender
                 if not self.app.keep_sender_signature:
-                    logging.debug('calling remove_old_signature()')
+                    logger.debug('calling remove_old_signature()')
                     if self.remove_old_signature(htmldom, view):
                         backend.setHasChanges_(False)
 
                 # place cursor above own signature (if any)
-                logging.debug('calling move_above_new_signature()')
+                logger.debug('calling move_above_new_signature()')
                 if self.move_above_new_signature(htmldom, view):
                     backend.setHasChanges_(False)
                 else:
                     view.insertNewline_(self)
 
                 # perform some general cleanups
-                logging.debug('calling cleanup_layout()')
+                logger.debug('calling cleanup_layout()')
                 if self.cleanup_layout(htmlroot, backend):
                     backend.setHasChanges_(False)
 
@@ -177,13 +178,13 @@ class MailDocumentEditor(Category(MailDocumentEditor)):
             # provide custom attribution?
             attributor = None
             if self.app.use_custom_reply_attribution and messageType in [ REPLY, REPLY_ALL ]:
-                logging.debug("calling customize_attribution() for reply(-all)")
+                logger.debug("calling customize_attribution() for reply(-all)")
                 attributor = CustomizedAttribution.customize_reply
             elif self.app.use_custom_sendagain_attribution and messageType in [ SENDAGAIN ]:
-                logging.debug("calling customize_attribution() for Send Again")
+                logger.debug("calling customize_attribution() for Send Again")
                 attributor = CustomizedAttribution.customize_sendagain
             elif self.app.use_custom_forwarding_attribution and messageType == FORWARD:
-                logging.debug("calling customize_attribution() for forwarding")
+                logger.debug("calling customize_attribution() for forwarding")
                 attributor = CustomizedAttribution.customize_forward
 
             if attributor:
@@ -214,13 +215,13 @@ class MailDocumentEditor(Category(MailDocumentEditor)):
                         raise
 
             # move to beginning of line
-            logging.debug('calling view.moveToBeginningOfLine()')
+            logger.debug('calling view.moveToBeginningOfLine()')
             view.moveToBeginningOfLine_(self)
 
             # done
-            logging.debug('QuoteFixing done')
-        except Exception, e:
-            logging.exception(e)
+            logger.debug('QuoteFixing done')
+        except Exception:
+            logger.critical(traceback.format_exc())
             if self.app.is_debugging:
                 NSRunAlertPanel(
                     'QuoteFix caught an exception',

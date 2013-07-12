@@ -5,7 +5,8 @@ from    quotefix.utils          import swizzle, htmlunescape
 from    quotefix.attribution    import CustomizedAttribution
 from    quotefix.preview        import preview_message
 from    datetime                import datetime, timedelta
-import  objc, random, logging, re
+from    logger                  import logger
+import  objc, random, re
 
 class QuoteFixPreferencesModule(NSPreferencesModule):
 
@@ -66,9 +67,8 @@ class QuoteFixPreferencesController(NSObject):
     @objc.IBAction
     def changeDebugging_(self, sender):
         is_debugging = sender.state()
-        logging.getLogger('').setLevel(is_debugging and logging.DEBUG or logging.WARNING)
-        if is_debugging:
-            logging.debug('debug logging active')
+        logger.setLevel(is_debugging and logger.DEBUG or logger.WARNING)
+        logger.debug('debug logging active')
 
     @objc.IBAction
     def changeUpdateInterval_(self, sender):
