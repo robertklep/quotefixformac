@@ -1,7 +1,8 @@
 from    AppKit          import *
 from    Foundation      import *
 from    datetime        import datetime
-import  objc, os, os.path, logging
+from    logger          import logger
+import  objc, os, os.path
 
 # load Sparkle framework
 BUNDLE          = NSBundle.bundleWithIdentifier_('name.klep.mail.QuoteFix')
@@ -34,7 +35,7 @@ class Updater:
     def check_for_updates(self):
         if not self.enabled:
             return
-        logging.debug("checking for updates (URL = %s)" % self.updater.feedURL())
+        logger.debug("checking for updates (URL = %s)" % self.updater.feedURL())
         self.updater.checkForUpdatesInBackground()
 
     @property
@@ -66,10 +67,10 @@ class UpdaterDelegate(NSObject):
         return NSBundle.mainBundle().bundlePath()
 
     def updater_didFinishLoadingAppcast_(self, updater, appcast):
-        logging.debug("Updater finished loading appcast.")
+        logger.debug("Updater finished loading appcast.")
 
     def updaterDidNotFindUpdate_(self, updater):
-        logging.debug("Updater did not find update.")
+        logger.debug("Updater did not find update.")
 
     def updater_didFindValidUpdate_(self, updater, update):
-        logging.debug("Updater found valid update.")
+        logger.debug("Updater found valid update.")
