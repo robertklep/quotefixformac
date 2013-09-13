@@ -151,6 +151,8 @@ class QuoteFixPreferencesController(NSObject):
 
     # render a preview message for customized attributions
     def set_preview(self, sender):
+        if not sender:
+            return
         viewers = MessageViewer.allMessageViewers()
         if not viewers:
             return
