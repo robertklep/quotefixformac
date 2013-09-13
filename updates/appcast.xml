@@ -6,6 +6,19 @@
       <description>Most recent changes with links to updates.</description>
       <language>en</language>
       <item>
+        <title>Version 2.4.16</title>
+        <description><![CDATA[
+          <h2>Mac OS X 10.8.5 compatibility</h2>
+        ]]></description>
+        <pubDate>Fri Sep 13 07:24:01 2013 CEST</pubDate>
+        <enclosure
+          url="http://quotefixformac.googlecode.com/files/QuoteFix-2.4.16.zip"
+          length="7693115"
+          sparkle:version="2.4.16"
+          type="application/octet-stream"
+          sparkle:dsaSignature="MCwCFEqJ+fVZR+59ueolNtYbbimih4yUAhQF/G9IWggWQ6blQOEm3F1h7MN88Q==" />
+      </item>
+      <item>
         <title>Version 2.4.15</title>
         <description><![CDATA[
           <h2>Mac OS X 10.8.4 compatibility</h2>
