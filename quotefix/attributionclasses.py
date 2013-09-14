@@ -35,6 +35,9 @@ class QFRecipients:
     def __unicode__(self):
         return unicode(self.All)
 
+    def __repr__(self):
+        return self.__unicode__()
+
 class QFAddresseeList:
 
     def __init__(self, addresseelist):
@@ -47,7 +50,7 @@ class QFAddresseeList:
         for addressee in list(addresseelist):
             # expand MessageAddressee instances
             if isinstance(addressee, MessageAddressee):
-                addressee = "%s <%s>" % (addressee.displayName(), addressee.address())
+                addressee = addressee.formattedAddress()
             self.addressees.append( QFAddressee(addressee) )
 
     def __len__(self):
@@ -61,6 +64,9 @@ class QFAddresseeList:
     def __unicode__(self):
         return self.join(", ")
 
+    def __repr__(self):
+        return self.__unicode__()
+
 class QFAddressee:
     """ wrap a message addressee """
 
@@ -72,6 +78,9 @@ class QFAddressee:
 
     def __unicode__(self):
         return self.address
+
+    def __repr__(self):
+        return self.__unicode__()
 
 class QFDateTime(str):
     """ wraps a datetime object """

@@ -21,8 +21,8 @@ setup(
     description = "QuoteFix for Mac is a Mail.app plugin",
     data_files  = [
         'English.lproj',
-        'Dutch.lproj',
-        'French.lproj',
+#        'Dutch.lproj',
+#        'French.lproj',
         'updates/quotefix.sparkle.pub.pem',
         'resources/donate.gif'
     ],

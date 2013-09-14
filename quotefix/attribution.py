@@ -205,7 +205,7 @@ class CustomizedAttribution:
             # try to expand a complex template first
             try:
                 return Template(string = template, data = params)()
-            except Exception, e:
+            except Exception:
                 return "<i>&lt;A templating error occured, please check your template for errors&gt;</i>"
 
         # simple template
