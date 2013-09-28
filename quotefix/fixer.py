@@ -177,8 +177,8 @@ class MailDocumentEditor(Category(MailDocumentEditor)):
 
             # provide custom attribution?
             attributor = None
-            if self.app.use_custom_reply_attribution and messageType in [ REPLY, REPLY_ALL ]:
-                logger.debug("calling customize_attribution() for reply(-all)")
+            if self.app.use_custom_reply_attribution and messageType in [ REPLY, REPLY_ALL, REPLY_AS ]:
+                logger.debug("calling customize_attribution() for reply{-all,-as}")
                 attributor = CustomizedAttribution.customize_reply
             elif self.app.use_custom_sendagain_attribution and messageType in [ SENDAGAIN ]:
                 logger.debug("calling customize_attribution() for Send Again")

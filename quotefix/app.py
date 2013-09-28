@@ -138,12 +138,19 @@ If you run into any problems with regards to replying or forwarding mail, consid
     @property
     def message_types_to_quotefix(self):
         types = []
-        if self.prefs.bool["QuoteFixFixReply"]:         types.append(REPLY)
-        if self.prefs.bool["QuoteFixFixReplyAll"]:      types.append(REPLY_ALL)
-        if self.prefs.bool["QuoteFixFixForward"]:       types.append(FORWARD)
-        if self.prefs.bool["QuoteFixFixDraft"]:         types.append(DRAFT)
-        if self.prefs.bool["QuoteFixFixNewMessage"]:    types.append(NEW)
-        if self.prefs.bool["QuoteFixFixSendAgain"]:     types.append(SENDAGAIN)
+        if self.prefs.bool["QuoteFixFixReply"]:
+            types.append(REPLY)
+            types.append(REPLY_AS)
+        if self.prefs.bool["QuoteFixFixReplyAll"]:
+            types.append(REPLY_ALL)
+        if self.prefs.bool["QuoteFixFixForward"]:
+            types.append(FORWARD)
+        if self.prefs.bool["QuoteFixFixDraft"]:
+            types.append(DRAFT)
+        if self.prefs.bool["QuoteFixFixNewMessage"]:
+            types.append(NEW)
+        if self.prefs.bool["QuoteFixFixSendAgain"]:
+            types.append(SENDAGAIN)
         return types
 
     # 'don't add extra line of whitespace below first-level quote'
