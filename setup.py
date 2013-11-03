@@ -30,11 +30,11 @@ setup(
         extension       = '.mailbundle',
         semi_standalone = False,
         packages        = [ 'quotefix' ],
-        frameworks      = glob("frameworks/*.framework"),
+        frameworks      = glob("frameworks/Sparkle*.framework"),
         plist           = dict(
             NSPrincipalClass                    = 'QuoteFix',
             CFBundleIdentifier                  = 'name.klep.mail.QuoteFix',
-            NSHumanReadableCopyright            = '(c) 2009, 2010, 2011, 2012 Robert Klep, robert@klep.name',
+            NSHumanReadableCopyright            = '(c) 2009 - 2013 Robert Klep, robert@klep.name',
             SupportedPluginCompatibilityUUIDs   = [
                 # 10.6
                 '225E0A48-2CDB-44A6-8D99-A9BB8AF6BA04', # Mail 4.0
