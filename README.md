@@ -254,8 +254,9 @@ warranties whatsoever.
 QuoteFix' downloads and support is hosted by Google at
 http://code.google.com/p/quotefixformac/
 
->  QuoteFix uses the Sparkle framework from Andy Matuschak to provide
->  software updates, which comes with the following permission notice:
+QuoteFix uses the Sparkle framework from Andy Matuschak to provide software
+updates, which comes with the following permission notice:
+
 >  Copyright (c) 2006 Andy Matuschak Permission is hereby granted, free of
 >  charge, to any person obtaining a copy of this software and associated
 >  documentation files (the "Software"), to deal in the Software without
