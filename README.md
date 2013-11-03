@@ -68,11 +68,87 @@ depending on what `VARIABLE` contains.
 
 A (non-exhaustive) list of variables you can use:
 
+<table border=0>
+    <tr>
+        <td valign="top">`${message.from}`</td>
+        <td>
+            Name and e-mail address of sender of message:<br/>
+            <i>Your Friend &lt;yourfriend@example.com&gt;</i>
+        </td>
+    </tr>
+    <tr>
+        <td valign="top">`${message.from.name}`</td>
+        <td>
+            Name of sender of message:<br/>
+            <i>Your Friend</i>
+        </td>
+    </tr>
+    <tr>
+        <td valign="top">`${message.from.email}`</td>
+        <td>
+            E-mail address of sender of message:<br/>
+            <i>yourfriend@example.com</i>
+        </td>
+    </tr>
+    <tr>
+        <td valign="top">`${message.to}`</td>
+        <td>
+            Your e-mail address (this is the address that was used for
+            the message to reach you). This is more like the
+            <code>Delivered-To</code> header than the <code>To</code>
+            header (for that, see <code>${message.recipients}</code>)
+        </td>
+    </tr>
+    <tr>
+        <td valign="top">`${message.recipients}`</td>
+        <td>
+            A list of all the recipients of the message, as mentioned in
+            both the <code>To</code> and <code>Cc</code> headers.
+        </td>
+    </tr>
+    <tr>
+        <td valign="top">`${message.recipients.to}`</td>
+        <td>
+            A list of the recipients of the message mentioned in
+            the <code>To</code> header.
+        </td>
+    </tr>
+    <tr>
+        <td valign="top">`${message.recipients.cc}`</td>
+        <td>
+            A list of the recipients of the message mentioned in
+            the <code>Cc</code> header.
+        </td>
+    </tr>
+    <tr>
+        <td valign="top">`${message.subject}`</td>
+        <td>The subject of the message.</td>
+    </tr>
+    <tr>
+        <td valign="top">
+            `${message.sent}`<br/>
+            `${message.received}`
+        </td>
+        <td>
+            Sent/received timestamps. If you want more finegrained
+            control over formatting timestamps, these variables split
+            into separate fields: <code>year</code>, <code>month</code>,
+            <code>day</code>, <code>hour</code>, <code>hour12</code>,
+            <code>ampm</code>, <code>minute</code>, <code>second</code>,
+            <code>weeknumber</code>, <code>monthshort</code>,
+            <code>monthlong</code>, <code>dayshort</code>,
+            <code>daylong</code>, <code>date</code>, <code>time</code>.<br/>
+            Use these like so: <code>${message.sent.year}</code>.
+            <p><a href="#advanced-datetime-formatting">See below for more advanced date/time formatting
+                options.</a></p>
+        </td>
+    </tr>
+</table>
 
 If you want even more freedom in formatting attribution lines, there's an
-experimental feature (which can be enabled in the Advanced preferences)
+experimental feature (which can be enabled in the *Advanced* preferences)
 which enables conditional statements, string/date formatting, and much
-more. This is based on a modified version of the pyratemp templating
+more. This is based on a modified version of the [pyratemp](http://www.simple-is-better.org/template/pyratemp.html) templating
 library for Python written by Roland Koebler.
 
 A small example of what's possible:
