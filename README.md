@@ -70,28 +70,28 @@ A (non-exhaustive) list of variables you can use:
 
 <table border=0>
     <tr>
-        <td valign="top">`${message.from}`</td>
+        <td valign="top"><code>${message.from}</code></td>
         <td>
             Name and e-mail address of sender of message:<br/>
             <i>Your Friend &lt;yourfriend@example.com&gt;</i>
         </td>
     </tr>
     <tr>
-        <td valign="top">`${message.from.name}`</td>
+        <td valign="top"><code>${message.from.name}</code></td>
         <td>
             Name of sender of message:<br/>
             <i>Your Friend</i>
         </td>
     </tr>
     <tr>
-        <td valign="top">`${message.from.email}`</td>
+        <td valign="top"><code>${message.from.email}</code></td>
         <td>
             E-mail address of sender of message:<br/>
             <i>yourfriend@example.com</i>
         </td>
     </tr>
     <tr>
-        <td valign="top">`${message.to}`</td>
+        <td valign="top"><code>${message.to}</code></td>
         <td>
             Your e-mail address (this is the address that was used for
             the message to reach you). This is more like the
@@ -100,34 +100,34 @@ A (non-exhaustive) list of variables you can use:
         </td>
     </tr>
     <tr>
-        <td valign="top">`${message.recipients}`</td>
+        <td valign="top"><code>${message.recipients}</code></td>
         <td>
             A list of all the recipients of the message, as mentioned in
             both the <code>To</code> and <code>Cc</code> headers.
         </td>
     </tr>
     <tr>
-        <td valign="top">`${message.recipients.to}`</td>
+        <td valign="top"><code>${message.recipients.to}</code></td>
         <td>
             A list of the recipients of the message mentioned in
             the <code>To</code> header.
         </td>
     </tr>
     <tr>
-        <td valign="top">`${message.recipients.cc}`</td>
+        <td valign="top"><code>${message.recipients.cc}</code></td>
         <td>
             A list of the recipients of the message mentioned in
             the <code>Cc</code> header.
         </td>
     </tr>
     <tr>
-        <td valign="top">`${message.subject}`</td>
+        <td valign="top"><code>${message.subject}</code></td>
         <td>The subject of the message.</td>
     </tr>
     <tr>
         <td valign="top">
-            `${message.sent}`<br/>
-            `${message.received}`
+            <code>${message.sent}</code><br/>
+            <code>${message.received}</code>
         </td>
         <td>
             Sent/received timestamps. If you want more finegrained
