@@ -4,20 +4,18 @@ import  py2app, sys, os, commands
 
 # overriding version?
 if 'QUOTEFIX_VERSION' in os.environ:
-    hgversion = os.environ['QUOTEFIX_VERSION']
+    version = os.environ['QUOTEFIX_VERSION']
 else:
     # determine version by latest tag
-    status, hgtags = commands.getstatusoutput("env VERSIONER_PYTHON_VERSION= hg tags 2>/dev/null | grep -v '^tip' | head -1")
+    status, version = commands.getstatusoutput("git describe --abbrev=0 --tags")
     if status != 0:
         # probably no hg installed or not building from a repository
-        hgversion = "unknown"
-    else:
-        hgversion = hgtags.split()[0]
+        version = "unknown"
 
 # define distutils setup structure
 setup(
     plugin      = [ 'QuoteFix.py' ],
-    version     = hgversion,
+    version     = version,
     description = "QuoteFix for Mac is a Mail.app plugin",
     data_files  = [
         'English.lproj',
