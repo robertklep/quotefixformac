@@ -50,7 +50,6 @@ it, check off the QuoteFix is enabled checkbox. As of version 2.3.1,
 could use [the standard way of assigning a keyboard shortcut to a menu item
 in Mac OS X](http://lifehacker.com/343328/create-a-keyboard-shortcut-for-any-menu-action-in-any-program) to enable or disable QuoteFix with a keyboard shortcut.
 
-
 ## Customized Attributions
 
 QuoteFix also provides the ability to define your own attribution lines
@@ -245,6 +244,31 @@ uninstalling it:
     *  When QuoteFix is **disabled**, pressing `Option` will *enable* QuoteFix for
       that particular message only;
     *  Likewise: when QuoteFix is **enabled**, pressing `Option` will *disable* QuoteFix for that particular message only;
+
+## Building the plug-in
+
+If you want to build the plug-in yourself, ideally you need to use a non-system Python interpreter (although not *strictly* necessary if you want to use the plug-in on your system only).
+
+I use Python 2.7.5 as installed by [Homebrew](http://brew.sh/). I also use [virtualenv](https://pypi.python.org/pypi/virtualenv/) to create a clean environment in which to build the plug-in.
+
+Make sure the following requirements are installed:
+```
+pip install pyobjc # might take some time
+pip install py2app
+```
+
+Next, clone the repository:
+```
+git clone https://github.com/robertklep/quotefixformac.git
+```
+
+And build the plug-in:
+```
+cd quotefixformac
+python setup.py py2app
+```
+
+This will build the plug-in, which can be located in `dist/`.
 
 ## Licence & copyright
 
