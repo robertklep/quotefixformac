@@ -45,7 +45,7 @@ preferences speak for themselves, or have a useful tooltip which pops up
 when you hover the cursor above it.
 
 If you temporarily want to turn off QuoteFix, but don't want to uninstall
-it, check off the QuoteFix is enabled checkbox. As of version 2.3.1,
+it, check off the *QuoteFix is enabled* checkbox. As of version 2.3.1,
 (de)activating QuoteFix can be done from a menu item in the Mail menu. You
 could use [the standard way of assigning a keyboard shortcut to a menu item
 in Mac OS X](http://lifehacker.com/343328/create-a-keyboard-shortcut-for-any-menu-action-in-any-program) to enable or disable QuoteFix with a keyboard shortcut.
