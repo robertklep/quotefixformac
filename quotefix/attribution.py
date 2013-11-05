@@ -1,4 +1,4 @@
-from    AppKit                      import *
+from    AppKit                      import NSRunAlertPanel
 from    objc                        import Category, lookUpClass
 from    datetime                    import datetime
 from    quotefix.utils              import swizzle, SimpleTemplate
@@ -9,9 +9,9 @@ import  re
 
 # Mavericks
 try:
-    Message = MCMessage
+    from AppKit import MCMessage as Message
 except:
-    pass
+    from AppKit import Message
 
 # patch MessageHeaders class to return empty attributions with forwards
 try:

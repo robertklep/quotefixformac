@@ -1,5 +1,5 @@
-from    AppKit          import *
-from    Foundation      import *
+from    AppKit          import NSKeyValueObservingOptionNew, NSUserDefaultsController, NSMenuItem, NSApplication, NSBundle, NSObject
+from    Foundation      import NSLog
 import  objc
 
 class Menu(NSObject):

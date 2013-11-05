@@ -1,5 +1,5 @@
-from    AppKit          import *
-from    Foundation      import *
+from    AppKit          import NSBundle
+from    Foundation      import NSLog
 from    quotefix        import *
 import  objc
 

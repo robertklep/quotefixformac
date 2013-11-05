@@ -1,5 +1,5 @@
-from    AppKit      import *
-from    Foundation  import *
+from    AppKit      import NSDate, NSLocale, NSDateFormatter
+from    Foundation  import NSLog
 from    datetime    import datetime
 import  email.utils, re
 

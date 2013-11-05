@@ -1,10 +1,11 @@
-from    AppKit                  import *
+from    AppKit                  import NSRunAlertPanel, NSAlternateKeyMask, NSEvent, NSKeyDown, NSControlKeyMask, MessageViewer
+from    Foundation              import NSLog
 from    quotefix.utils          import swizzle
 from    quotefix.attribution    import CustomizedAttribution
 from    quotefix.messagetypes   import *
 from    objc                    import Category, lookUpClass
 from    logger                  import logger
-import  re, traceback
+import  re, traceback, objc
 
 MailApp = lookUpClass('MailApp')
 class MailApp(Category(MailApp)):

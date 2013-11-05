@@ -1,5 +1,5 @@
-from    AppKit          import *
-from    Foundation      import *
+from    AppKit          import NSBundle, NSObject
+from    Foundation      import NSLog
 from    datetime        import datetime
 from    logger          import logger
 import  objc, os, os.path

@@ -1,5 +1,5 @@
-from    AppKit                  import *
-from    Foundation              import *
+from    AppKit                  import NSUserDefaults, NSBundle, NSApplication, NSRunAlertPanel
+from    Foundation              import NSLog
 from    quotefix.messagetypes   import *
 from    quotefix.menu           import Menu
 from    objc                    import Category, lookUpClass
