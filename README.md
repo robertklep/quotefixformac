@@ -1,5 +1,11 @@
 # QuoteFix for Mac
 
+## !! Mavericks support
+
+See [the Releases page](https://github.com/robertklep/quotefixformac/releases).
+
+## What is it?
+
 QuoteFix is a plug-in for Mail.app which fixes some issues with replying to
 e-mail:
 
