@@ -41,21 +41,21 @@ class MailApp(Category(MailApp)):
                 )
         original(self, event)
 
-# our own MailDocumentEditor implementation
-MailDocumentEditor = lookUpClass('MailDocumentEditor')
-class MailDocumentEditor(Category(MailDocumentEditor)):
+# our own DocumentEditor implementation
+DocumentEditor = lookUpClass('DocumentEditor')
+class DocumentEditor(Category(DocumentEditor)):
 
     @classmethod
     def registerQuoteFixApplication(cls, app):
         cls.app = app
 
-#    @swizzle(MailDocumentEditor, 'appendMessageArray:')
+#    @swizzle(DocumentEditor, 'appendMessageArray:')
 #    def appendMessageArray(self, original, messages):
 #        return original(self, messages)
 
-    @swizzle(MailDocumentEditor, 'finishLoadingEditor')
+    @swizzle(DocumentEditor, 'finishLoadingEditor')
     def finishLoadingEditor(self, original):
-        logger.debug('MailDocumentEditor finishLoadingEditor')
+        logger.debug('DocumentEditor finishLoadingEditor')
 
         # execute original finishLoadingEditor()
         original(self)

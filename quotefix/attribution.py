@@ -7,15 +7,25 @@ from    quotefix.messagetypes       import *
 from    quotefix.attributionclasses import *
 import  re
 
+# Mavericks
+try:
+    Message = MCMessage
+except:
+    pass
+
 # patch MessageHeaders class to return empty attributions with forwards
-MessageHeaders = lookUpClass('MessageHeaders')
-class MessageHeaders(Category(MessageHeaders)):
+try:
+    MessageHeadersBase = lookUpClass('MCMessageHeaders')
+except:
+    MessageHeadersBase = lookUpClass('MessageHeaders')
+
+class QFMessageHeaders(MessageHeadersBase):
 
     @classmethod
     def registerQuoteFixApplication(cls, app):
         cls.app = app
 
-    @swizzle(MessageHeaders, 'htmlStringShowingHeaderDetailLevel:useBold:useGray:')
+    @swizzle(MessageHeadersBase, 'htmlStringShowingHeaderDetailLevel:useBold:useGray:')
     def htmlStringShowingHeaderDetailLevel_useBold_useGray_(self, original, level, bold, gray):
         if self.app.use_custom_forwarding_attribution and self.app.remove_apple_mail_forward_attribution:
             return ''
