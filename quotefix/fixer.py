@@ -52,10 +52,6 @@ class DocumentEditor(Category(DocumentEditor)):
     def registerQuoteFixApplication(cls, app):
         cls.app = app
 
-#    @swizzle(DocumentEditor, 'appendMessageArray:')
-#    def appendMessageArray(self, original, messages):
-#        return original(self, messages)
-
     @swizzle(DocumentEditor, 'finishLoadingEditor')
     def finishLoadingEditor(self, original):
         logger.debug('DocumentEditor finishLoadingEditor')
@@ -104,32 +100,9 @@ class DocumentEditor(Category(DocumentEditor)):
             # send original HTML to menu for debugging
             self.app.html = htmlroot.innerHTML()
 
-#            open("/tmp/message.html", "wc").write(self.app.html.encode('utf-8'))
-
             # should we be quotefixing?
             if not self.app.is_quotefixing:
                 logger.debug('quotefixing turned off in preferences, skipping that part')
-#            elif self.messageType() == 4:
-#                orig = backend.originalMessage()
-#                viewer = MessageViewer.existingViewerShowingMessage_(orig)
-#                mboxuids = viewer.selectedMailboxUids()
-#                mbox = viewer.selectedMailboxes()
-#                draftmbox = viewer.draftsMailbox()
-#                NSLog('DRAFT, orig: %@', orig)
-#                NSLog('       view: %@', viewer)
-#                NSLog('       mbox: %@', mboxuids)
-#                NSLog('       mbxs: %@', mbox)
-#                NSLog('       drft: %@', draftmbox)
-#                NSLog('       omd : %@', orig.originalMailboxID())
-#                NSLog('       prim: %@', orig.primitiveOptions())
-#                NSLog('       hast: %@', orig.hasTemporaryUid())
-#                NSLog('       opts: %@', orig.options())
-#                NSLog('       orgu: %@', orig.originalMailboxURL())
-#                NSLog('       msg : %@', backend.message())
-#                NSLog('       type: %@', backend.type())
-#                NSLog('       doci: %@', backend.documentID())
-#                NSLog('       url : %@', backend.originalMessageBaseURL())
-#                NSLog('       defm: %@', backend.defaultMessageStore())
             elif messageType not in self.app.message_types_to_quotefix:
                 logger.debug('message type "%s" not in %s, not quotefixing' % (
                     messageType,
@@ -239,11 +212,9 @@ class DocumentEditor(Category(DocumentEditor)):
         if not messagebody:
             return
         attachments = messagebody.attachmentFilenames()
-#        NSLog('att: %@', attachments)
         if not attachments:
             return
         html        = htmlroot.innerHTML()
-#        NSLog('html:\n%@\n', html)
         matchnames  = []
         for attachment in attachments:
             attachment  = attachment.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;')
@@ -252,7 +223,6 @@ class DocumentEditor(Category(DocumentEditor)):
             escaped     = escaped.replace(r'\:', '[:_]')
             matchnames.append(escaped)
         matches = "|".join(matchnames)
-#        NSLog('matches: %@', matches)
         html    = re.sub(matches, '', html)
         htmlroot.setInnerHTML_(html)
 
@@ -274,19 +244,6 @@ class DocumentEditor(Category(DocumentEditor)):
             blockquote = blockquotes.item_(i)
             # don't fix top-level blockquote
             if blockquote.quoteLevel() > 1:
-#                # get parent node
-#                parent = blockquote.parentNode()
-#
-#                # check for DIV
-#                if isinstance(parent, DOMElement) and parent.nodeName().lower() == 'div':
-#                    # replace parent-container with a new (selectable) BLOCKQUOTE
-#                    newblockquote = dom.createElement_("blockquote")
-#                    newblockquote.setAttribute_value_("style", "background:rgba(255,255,255,0.1);padding:0!important;margin:0!important;z-index:%d" % (blockquote.quoteLevel() * 10))
-#                    newblockquote.setInnerHTML_(parent.innerHTML())
-#                    grandparent = parent.parentNode()
-#                    grandparent.replaceChild_oldChild_(newblockquote, parent)
-#                continue
-
                 # get current computed style
                 style = dom.getComputedStyle_pseudoElement_(blockquote, None).cssText()
 
@@ -329,17 +286,6 @@ class DocumentEditor(Category(DocumentEditor)):
             # skip nodes which aren't at quotelevel 1
             if node.quoteLevel() != 1:
                 continue
-
-#            if node.nodeName().lower() == 'div':
-#                NSLog("div: %r" % unicode( node.innerHTML() ))
-#            elif node.nodeName().lower() == 'span':
-#                NSLog("span: %r" % unicode( node.innerHTML() ))
-#            elif node.nodeName().lower() == 'br':
-#                nextnode = node.nextSibling()
-#                if isinstance(nextnode, DOMText):
-#                    NSLog("br, nextnode = text: %r" % unicode( nextnode.data() ))
-#                else:
-#                    NSLog("br, nextnode: %r" % unicode( nextnode) )
 
             # BR's are empty, so treat them differently
             if node.nodeName().lower() == 'br':
