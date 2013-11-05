@@ -15,21 +15,32 @@ except:
 
 # patch MessageHeaders class to return empty attributions with forwards
 try:
-    MessageHeadersBase = lookUpClass('MCMessageHeaders')
+    from AppKit import MCMessageHeaders
+    class MCMessageHeaders(Category(MCMessageHeaders)):
+
+        @classmethod
+        def registerQuoteFixApplication(cls, app):
+            cls.app = app
+
+        @swizzle(MCMessageHeaders, 'htmlStringShowingHeaderDetailLevel:useBold:useGray:')
+        def htmlStringShowingHeaderDetailLevel_useBold_useGray_(self, original, level, bold, gray):
+            if self.app.use_custom_forwarding_attribution and self.app.remove_apple_mail_forward_attribution:
+                return ''
+            return original(self, level, bold, gray)
+    MessageHeaders = MCMessageHeaders
 except:
-    MessageHeadersBase = lookUpClass('MessageHeaders')
+    from AppKit import MessageHeaders
+    class MessageHeaders(Category(MessageHeaders)):
 
-class QFMessageHeaders(MessageHeadersBase):
+        @classmethod
+        def registerQuoteFixApplication(cls, app):
+            cls.app = app
 
-    @classmethod
-    def registerQuoteFixApplication(cls, app):
-        cls.app = app
-
-    @swizzle(MessageHeadersBase, 'htmlStringShowingHeaderDetailLevel:useBold:useGray:')
-    def htmlStringShowingHeaderDetailLevel_useBold_useGray_(self, original, level, bold, gray):
-        if self.app.use_custom_forwarding_attribution and self.app.remove_apple_mail_forward_attribution:
-            return ''
-        return original(self, level, bold, gray)
+        @swizzle(MessageHeaders, 'htmlStringShowingHeaderDetailLevel:useBold:useGray:')
+        def htmlStringShowingHeaderDetailLevel_useBold_useGray_(self, original, level, bold, gray):
+            if self.app.use_custom_forwarding_attribution and self.app.remove_apple_mail_forward_attribution:
+                return ''
+            return original(self, level, bold, gray)
 
 class CustomizedAttribution:
     """ Provide customized reply/sendagain/forward attributions """

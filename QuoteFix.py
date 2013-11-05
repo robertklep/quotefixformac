@@ -22,7 +22,7 @@ class QuoteFix(objc.runtime.MVMailBundle):
 
         # initialize our posing classes with app instance
         DocumentEditor.registerQuoteFixApplication(app)
-        QFMessageHeaders.registerQuoteFixApplication(app)
+        MessageHeaders.registerQuoteFixApplication(app)
         MailApp.registerQuoteFixApplication(app)
         QuoteFixPreferencesController.registerQuoteFixApplication(app)
         CustomizedAttribution.registerQuoteFixApplication(app)

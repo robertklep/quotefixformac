@@ -7,6 +7,8 @@ from    objc                    import Category, lookUpClass
 from    logger                  import logger
 import  re, traceback, objc
 
+DOMText = lookUpClass('DOMText')
+
 MailApp = lookUpClass('MailApp')
 class MailApp(Category(MailApp)):
 
