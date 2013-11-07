@@ -81,6 +81,8 @@ setup(
                 '04D6EC0A-52FF-4BBE-9896-C0B5FB851BBA',
                 # 10.9 (special MBP version)
                 '72F55B63-35E4-4323-8CA7-104774A0DE95',
+                # Mavericks Mail update
+                'FBE5B158-5602-4A6D-9CC5-8461B9B7054E',
             ],
             # settings for Sparkle
             SUFeedURL = 'https://raw.github.com/robertklep/quotefixformac/master/updates/appcast.xml',
