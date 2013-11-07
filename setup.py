@@ -79,6 +79,8 @@ setup(
                 # 10.9
                 '0941BB9F-231F-452D-A26F-47A43863C991',
                 '04D6EC0A-52FF-4BBE-9896-C0B5FB851BBA',
+                # 10.9 (special MBP version)
+                '72F55B63-35E4-4323-8CA7-104774A0DE95',
             ],
             # settings for Sparkle
             SUFeedURL = 'https://raw.github.com/robertklep/quotefixformac/master/updates/appcast.xml',
