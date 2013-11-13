@@ -6,6 +6,26 @@
       <description>Most recent changes with links to updates.</description>
       <language>en</language>
       <item>
+        <title>Version 2.5.0</title>
+        <description><![CDATA[
+          <h2>Changes</h2>
+          <ul>
+            <li>Mavericks support</li>
+            <li>Dropped support for pre-10.8</li>
+            <li>New feature: customized attributions for <i>Send Again</i></li>
+            <li>Fixed: triggering a <i>Reply</i> from AppleScript skipped quotefixing</li>
+            <li>Various other small changes and fixes</li>
+          </ul>
+        ]]></description>
+        <pubDate>Wed Nov 13 10:23:18 2013 CET</pubDate>
+        <enclosure
+          url="https://github.com/robertklep/quotefixformac/releases/download/v2.5.0/QuoteFix-2.5.0.zip"
+          length="7283688"
+          sparkle:version="2.5.0"
+          type="application/octet-stream"
+          sparkle:dsaSignature="MCwCFFGaBUqa3VXYVL/Q5wfDiGM8h4HrAhQsTuN9DWpoyhNgkm/ACXkQ6muszQ==" />
+      </item>
+      <item>
         <title>Version 2.4.16</title>
         <description><![CDATA[
           <h2>Mac OS X 10.8.5 compatibility</h2>
