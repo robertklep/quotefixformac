@@ -2,3 +2,6 @@ tools
 build
 dist
 *.sw?
+*.priv.pem
+venv
+*.zip

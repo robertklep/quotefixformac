@@ -1,5 +1,5 @@
-from    AppKit          import *
-from    Foundation      import *
+from    AppKit          import NSBundle
+from    Foundation      import NSLog
 from    quotefix        import *
 import  objc
 
@@ -21,7 +21,7 @@ class QuoteFix(objc.runtime.MVMailBundle):
         app = App(version, updater)
 
         # initialize our posing classes with app instance
-        MailDocumentEditor.registerQuoteFixApplication(app)
+        DocumentEditor.registerQuoteFixApplication(app)
         MessageHeaders.registerQuoteFixApplication(app)
         MailApp.registerQuoteFixApplication(app)
         QuoteFixPreferencesController.registerQuoteFixApplication(app)

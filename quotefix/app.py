@@ -1,5 +1,5 @@
-from    AppKit                  import *
-from    Foundation              import *
+from    AppKit                  import NSUserDefaults, NSBundle, NSApplication, NSRunAlertPanel
+from    Foundation              import NSLog
 from    quotefix.messagetypes   import *
 from    quotefix.menu           import Menu
 from    objc                    import Category, lookUpClass
@@ -132,7 +132,7 @@ If you run into any problems with regards to replying or forwarding mail, consid
     # 'remove quotes from level'
     @property
     def remove_quotes_level(self):
-        return self.prefs.int["QuoteFixRemoveQuotesLevel"]
+        return self.prefs.int["QuoteFixRemoveQuotesLevel"] or 5
 
     # message types to perform quotefixing on
     @property

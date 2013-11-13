@@ -1,5 +1,5 @@
-from    AppKit      import *
-from    Foundation  import *
+from    AppKit      import NSDate, NSLocale, NSDateFormatter
+from    Foundation  import NSLog
 from    datetime    import datetime
 import  email.utils, re
 
@@ -9,7 +9,6 @@ class QFMessage:
     def __init__(self, message):
         self.From           = QFAddressee(message.sender())
         self.sender         = message.sender()
-        self.comment        = message.senderAddressComment()
         self.to             = QFAddresseeList( message.to() )
         self.recipients     = QFRecipients(
             All     = message.recipients(),
@@ -49,7 +48,7 @@ class QFAddresseeList:
         self.addressees = []
         for addressee in list(addresseelist):
             # expand MessageAddressee instances
-            if isinstance(addressee, MessageAddressee):
+            if addressee.__class__.__name__ in [ 'MFMessageAddressee', 'MessageAddressee' ]:
                 addressee = addressee.formattedAddress()
             self.addressees.append( QFAddressee(addressee) )
 

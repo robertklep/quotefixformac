@@ -1,4 +1,4 @@
-from    AppKit                      import *
+from    AppKit                      import NSRunAlertPanel
 from    objc                        import Category, lookUpClass
 from    datetime                    import datetime
 from    quotefix.utils              import swizzle, SimpleTemplate
@@ -7,19 +7,40 @@ from    quotefix.messagetypes       import *
 from    quotefix.attributionclasses import *
 import  re
 
+# Mavericks
+try:
+    from AppKit import MCMessage as Message
+except:
+    from AppKit import Message
+
 # patch MessageHeaders class to return empty attributions with forwards
-MessageHeaders = lookUpClass('MessageHeaders')
-class MessageHeaders(Category(MessageHeaders)):
+try:
+    from AppKit import MCMessageHeaders
+    class MCMessageHeaders(Category(MCMessageHeaders)):
 
-    @classmethod
-    def registerQuoteFixApplication(cls, app):
-        cls.app = app
+        @classmethod
+        def registerQuoteFixApplication(cls, app):
+            cls.app = app
 
-    @swizzle(MessageHeaders, 'htmlStringShowingHeaderDetailLevel:useBold:useGray:')
-    def htmlStringShowingHeaderDetailLevel_useBold_useGray_(self, original, level, bold, gray):
-        if self.app.use_custom_forwarding_attribution and self.app.remove_apple_mail_forward_attribution:
-            return ''
-        return original(self, level, bold, gray)
+        @swizzle(MCMessageHeaders, 'htmlStringShowingHeaderDetailLevel:useBold:useGray:')
+        def htmlStringShowingHeaderDetailLevel_useBold_useGray_(self, original, level, bold, gray):
+            if self.app.use_custom_forwarding_attribution and self.app.remove_apple_mail_forward_attribution:
+                return ''
+            return original(self, level, bold, gray)
+    MessageHeaders = MCMessageHeaders
+except:
+    from AppKit import MessageHeaders
+    class MessageHeaders(Category(MessageHeaders)):
+
+        @classmethod
+        def registerQuoteFixApplication(cls, app):
+            cls.app = app
+
+        @swizzle(MessageHeaders, 'htmlStringShowingHeaderDetailLevel:useBold:useGray:')
+        def htmlStringShowingHeaderDetailLevel_useBold_useGray_(self, original, level, bold, gray):
+            if self.app.use_custom_forwarding_attribution and self.app.remove_apple_mail_forward_attribution:
+                return ''
+            return original(self, level, bold, gray)
 
 class CustomizedAttribution:
     """ Provide customized reply/sendagain/forward attributions """

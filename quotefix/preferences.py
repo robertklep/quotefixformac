@@ -1,6 +1,6 @@
 # -*- coding:utf-8 -*-
-from    AppKit                  import *
-from    Foundation              import *
+from    AppKit                  import NSPreferencesModule, NSNib, NSBox, NSNibTopLevelObjects, NSObject, NSPreferences, NSWorkspace, NSURL, NSBundle, NSImage, NSDateFormatter, NSLocale, NSDateFormatterMediumStyle, NSColor, MessageViewer
+from    Foundation              import NSLog
 from    quotefix.utils          import swizzle, htmlunescape
 from    quotefix.attribution    import CustomizedAttribution
 from    quotefix.preview        import preview_message
