@@ -4,6 +4,10 @@
 
 See [the Releases page](https://github.com/robertklep/quotefixformac/releases).
 
+## FAQ
+
+See [the wiki](https://github.com/robertklep/quotefixformac/wiki/FAQ---Frequently-Asked-Questions).
+
 ## What is it?
 
 QuoteFix is a plug-in for Mail.app which fixes some issues with replying to
