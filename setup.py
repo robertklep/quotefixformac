@@ -83,6 +83,8 @@ setup(
                 '72F55B63-35E4-4323-8CA7-104774A0DE95',
                 # Mavericks Mail update
                 'FBE5B158-5602-4A6D-9CC5-8461B9B7054E',
+                # 10.9.1 build 13b27
+                'E5EEAF89-45D0-4AB2-94C1-F1771B141573',
             ],
             # settings for Sparkle
             SUFeedURL = 'https://raw.github.com/robertklep/quotefixformac/master/updates/appcast.xml',
