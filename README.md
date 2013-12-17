@@ -1,4 +1,4 @@
-# QuoteFix for Mac
+# QuoteFix for Mac <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=4UF2KB2BTW6AC"><img style="vertical-align:middle; opacity:0.3" src="https://www.paypalobjects.com/en_GB/i/btn/btn_donate_SM.gif"></a>
 
 ## Latest releases
 
