@@ -285,8 +285,8 @@ This will build the plug-in, which can be located in `dist/`.
 This plugin is written by Robert Klep and is provided "as-is", without any
 warranties whatsoever.
 
-QuoteFix' downloads and support is hosted by Google at
-http://code.google.com/p/quotefixformac/
+QuoteFix source, downloads and support is hosted by GitHub at
+https://github.com/robertklep/quotefixformac
 
 QuoteFix uses the Sparkle framework from Andy Matuschak to provide software
 updates, which comes with the following permission notice:
