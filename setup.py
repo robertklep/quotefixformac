@@ -11,6 +11,8 @@ else:
     if status != 0:
         # probably no hg installed or not building from a repository
         version = "unknown"
+    if version[0] == 'v':
+        version = version[1:]
 
 # define distutils setup structure
 setup(
