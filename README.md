@@ -1,8 +1,8 @@
 # QuoteFix for Mac
 
-## Mavericks support
+## Latest releases
 
-As of [version 2.5.0](https://github.com/robertklep/quotefixformac/releases), QuoteFix supports Mac OS X 10.9 Mavericks.
+*  [v2.5.1](https://github.com/robertklep/quotefixformac/releases/tag/v2.5.1): 10.9.1 support
 
 ## FAQ
 
