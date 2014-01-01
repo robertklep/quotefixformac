@@ -1,4 +1,4 @@
-# QuoteFix for Mac
+# QuoteFix for Mac <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=4UF2KB2BTW6AC"><img style="vertical-align:middle; opacity:0.3" src="https://www.paypalobjects.com/en_GB/i/btn/btn_donate_SM.gif"></a>
 
 ## Latest releases
 
@@ -285,8 +285,8 @@ This will build the plug-in, which can be located in `dist/`.
 This plugin is written by Robert Klep and is provided "as-is", without any
 warranties whatsoever.
 
-QuoteFix' downloads and support is hosted by Google at
-http://code.google.com/p/quotefixformac/
+QuoteFix source, downloads and support is hosted by GitHub at
+https://github.com/robertklep/quotefixformac
 
 QuoteFix uses the Sparkle framework from Andy Matuschak to provide software
 updates, which comes with the following permission notice:
