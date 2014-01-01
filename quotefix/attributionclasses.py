@@ -86,7 +86,7 @@ class QFDateTime(str):
     formatter           = NSDateFormatter.alloc().init()
     default_format      = "EEE MMM dd yyyy HH:mm:ss"
     STRFTIME_TO_UNICODE = {
-        '%Y'    : 'YYYY',
+        '%Y'    : 'yyyy',
         '%m'    : 'MM',
         '%d'    : 'dd',
         '%H'    : 'HH',
@@ -114,7 +114,7 @@ class QFDateTime(str):
 
         # set date/time attributes
         attributes      = dict(
-            year        = "YYYY",
+            year        = "yyyy",
             month       = "MM",
             day         = "dd",
             hour        = "HH",
