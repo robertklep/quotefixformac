@@ -6,6 +6,21 @@
       <description>Most recent changes with links to updates.</description>
       <language>en</language>
       <item>
+        <title>Version 2.5.3</title>
+        <description><![CDATA[
+          <ul>
+            <li>Support for Mac OS X 10.9.2</li>
+          </ul>
+        ]]></description>
+        <pubDate>Wed Feb 26 09:42:55 2014 CET</pubDate>
+        <enclosure
+          url="https://github.com/robertklep/quotefixformac/releases/download/v2.5.3/QuoteFix-v2.5.3.zip"
+          length="7283988"
+          sparkle:version="v2.5.3"
+          type="application/octet-stream"
+          sparkle:dsaSignature="MC4CFQCoKG1lynE0hicECRzFfjztG00WcwIVAMlde8VUJ2711V3gOK7z+huVhgmR" />
+      </item>
+      <item>
         <title>Version 2.5.2</title>
         <description><![CDATA[
           <ul>
