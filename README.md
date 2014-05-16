@@ -8,6 +8,7 @@ However, do keep submitting bug reports. I'll try and fix them as fast as I can.
 
 ## Latest releases
 
+*  [v2.5.4](https://github.com/robertklep/quotefixformac/releases/tag/v2.5.4): 10.9.3 support
 *  [v2.5.3](https://github.com/robertklep/quotefixformac/releases/tag/v2.5.3): 10.9.2 support
 *  [v2.5.2](https://github.com/robertklep/quotefixformac/releases/tag/v2.5.2): fixed bug in date formatting
 *  [v2.5.1](https://github.com/robertklep/quotefixformac/releases/tag/v2.5.1): 10.9.1 support
