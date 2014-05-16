@@ -97,6 +97,8 @@ setup(
                 '11D49A8C-C627-4E1C-AD98-6AFE8E66A841',
                 # 10.9.2 release
                 '88ED2D4C-D384-4BF5-8E94-B533455E6AAF',
+                # 10.9.3 release
+                'F4C26776-22B3-4A0A-96E1-EA8E4482E0B5',
             ],
             # settings for Sparkle
             SUFeedURL = 'https://raw.github.com/robertklep/quotefixformac/master/updates/appcast.xml',
