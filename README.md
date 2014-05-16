@@ -1,5 +1,11 @@
 # QuoteFix for Mac <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=4UF2KB2BTW6AC"><img style="vertical-align:middle; opacity:0.3" src="https://www.paypalobjects.com/en_GB/i/btn/btn_donate_SM.gif"></a>
 
+## _Important notice_
+
+I decided to not accept requests for new features for the time being, primarily due to lack of time. Any feature requests will be closed (but tagged so if things quiet down, I can reopen them).
+
+However, do keep submitting bug reports. I'll try and fix them as fast as I can.
+
 ## Latest releases
 
 *  [v2.5.3](https://github.com/robertklep/quotefixformac/releases/tag/v2.5.3): 10.9.2 support
