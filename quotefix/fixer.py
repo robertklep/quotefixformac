@@ -88,7 +88,10 @@ class DocumentEditor(Category(DocumentEditor)):
             if origmsg and messageType == DRAFT:
                 # get the message viewer for this message
                 viewer = MessageViewer.existingViewerShowingMessage_(origmsg)
-                if viewer:
+                if not viewer:
+                    # XXX: this happens with conversation view active, not sure if this is stable enough though
+                    messageType = SENDAGAIN
+                elif viewer:
                     # get the mailbox for the viewer
                     mailboxes = viewer.selectedMailboxes()
                     # get the Drafts mailbox
