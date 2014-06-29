@@ -177,13 +177,14 @@ class DocumentEditor(Category(DocumentEditor)):
                         False
                     )
                 try:
-                    attributor(
-                        app         = self.app,
-                        editor      = self,
-                        dom         = htmldom,
-                        reply       = message,
-                        inreplyto   = backend.originalMessage()
-                    )
+                    for original in objc.getInstanceVariable(backend, '_originalMessages'):
+                        attributor(
+                            app         = self.app,
+                            editor      = self,
+                            dom         = htmldom,
+                            reply       = message,
+                            inreplyto   = original,
+                        )
                     backend.setHasChanges_(False)
                 except:
                     # ignore when not debugging
@@ -208,23 +209,25 @@ class DocumentEditor(Category(DocumentEditor)):
                 )
 
     def remove_attachment_placeholders(self, backend, htmlroot):
-        messagebody = backend.originalMessage().messageBody()
-        if not messagebody:
-            return
-        attachments = messagebody.attachmentFilenames()
-        if not attachments:
-            return
-        html        = htmlroot.innerHTML()
-        matchnames  = []
-        for attachment in attachments:
-            attachment  = attachment.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;')
-            escaped     = re.escape('&lt;%s&gt;' % attachment)
-            escaped     = escaped.replace(r'\ ', r'(?: |\&nbsp;)')
-            escaped     = escaped.replace(r'\:', '[:_]')
-            matchnames.append(escaped)
-        matches = "|".join(matchnames)
-        html    = re.sub(matches, '', html)
-        htmlroot.setInnerHTML_(html)
+        messages = objc.getInstanceVariable(backend, '_originalMessages')
+        for original in messages:
+            messagebody = original.messageBody()
+            if not messagebody:
+                return
+            attachments = messagebody.attachmentFilenames()
+            if not attachments:
+                return
+            html        = htmlroot.innerHTML()
+            matchnames  = []
+            for attachment in attachments:
+                attachment  = attachment.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;')
+                escaped     = re.escape('&lt;%s&gt;' % attachment)
+                escaped     = escaped.replace(r'\ ', r'(?: |\&nbsp;)')
+                escaped     = escaped.replace(r'\:', '[:_]')
+                matchnames.append(escaped)
+            matches = "|".join(matchnames)
+            html    = re.sub(matches, '', html)
+            htmlroot.setInnerHTML_(html)
 
     def remove_quotes(self, dom, level):
         # find all blockquotes
