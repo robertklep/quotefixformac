@@ -6,6 +6,23 @@
       <description>Most recent changes with links to updates.</description>
       <language>en</language>
       <item>
+        <title>Version 2.5.5</title>
+        <description><![CDATA[
+          <h2>Bugfixes</h2>
+          <ul>
+            <li>Issue #13: custom attributions didn't work with Send Again in conversation mode</li>
+            <li>Issue #17: forwarding multiple messages threw exception</li>
+          </ul>
+        ]]></description>
+        <pubDate>Sun Jun 29 12:44:58 2014 CEST</pubDate>
+        <enclosure
+          url="https://github.com/robertklep/quotefixformac/releases/download/v2.5.5/QuoteFix-v2.5.5.zip"
+          length="7284402"
+          sparkle:version="v2.5.5"
+          type="application/octet-stream"
+          sparkle:dsaSignature="MC0CFQCORQWKxs9Q2S9K9kjZQ/5JEpyk9gIUXYbRXpqJmWUhqkkU9S5Qe3SorEQ=" />
+      </item>
+      <item>
         <title>Version 2.5.4</title>
         <description><![CDATA[
           <h2>10.9.3 support</h2>
