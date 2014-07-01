@@ -6,6 +6,19 @@
       <description>Most recent changes with links to updates.</description>
       <language>en</language>
       <item>
+        <title>Version 2.5.6</title>
+        <description><![CDATA[
+          <h2>10.9.4 support</h2>
+        ]]></description>
+        <pubDate>Tue Jul  1 11:25:19 2014 CEST</pubDate>
+        <enclosure
+          url="https://github.com/robertklep/quotefixformac/releases/download/v2.5.6/QuoteFix-v2.5.6.zip"
+          length="7284422"
+          sparkle:version="v2.5.6"
+          type="application/octet-stream"
+          sparkle:dsaSignature="MCwCFHQbXMkVqbaXTZjL97TX9HFwgFKNAhRdhtdmDI1vk1ky4DaWv4hOPzOOTA==" />
+      </item>
+        <item>
         <title>Version 2.5.5</title>
         <description><![CDATA[
           <h2>Bugfixes</h2>
