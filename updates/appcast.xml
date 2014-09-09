@@ -6,6 +6,22 @@
       <description>Most recent changes with links to updates.</description>
       <language>en</language>
       <item>
+        <title>Version 2.5.7</title>
+        <description><![CDATA[
+          <h2>Bugfix</h2>
+          <ul>
+            <li>Fixes issue #21 ("Quotefix fails on long sender name")</li>
+          </ul>
+        ]]></description>
+        <pubDate>Tue Sep  9 11:45:28 2014 CEST</pubDate>
+        <enclosure
+          url="https://github.com/robertklep/quotefixformac/releases/download/v2.5.7/QuoteFix-v2.5.7.zip"
+          length="7495338"
+          sparkle:version="v2.5.7"
+          type="application/octet-stream"
+          sparkle:dsaSignature="MCwCFFDilde6mQN5BaseKxjUFXCIsap1AhRCgZaM5fxZCsMZ5qMKotXcm/zu1g==" />
+      </item>
+      <item>
         <title>Version 2.5.6</title>
         <description><![CDATA[
           <h2>10.9.4 support</h2>
