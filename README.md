@@ -8,6 +8,7 @@ However, do keep submitting bug reports. I'll try and fix them as fast as I can.
 
 ## Latest releases
 
+*  [v2.5.7](https://github.com/robertklep/quotefixformac/releases/tag/v2.5.7): fixes #21
 *  [v2.5.6](https://github.com/robertklep/quotefixformac/releases/tag/v2.5.6): 10.9.4 support
 *  [v2.5.5](https://github.com/robertklep/quotefixformac/releases/tag/v2.5.5): bugfixes
 *  [v2.5.4](https://github.com/robertklep/quotefixformac/releases/tag/v2.5.4): 10.9.3 support
