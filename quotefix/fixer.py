@@ -103,6 +103,46 @@ class DocumentEditor(Category(DocumentEditor)):
             # send original HTML to menu for debugging
             self.app.html = htmlroot.innerHTML()
 
+            # provide custom attribution?
+            attributor = None
+            if self.app.use_custom_reply_attribution and messageType in [ REPLY, REPLY_ALL, REPLY_AS ]:
+                logger.debug("calling customize_attribution() for reply{-all,-as}")
+                attributor = CustomizedAttribution.customize_reply
+            elif self.app.use_custom_sendagain_attribution and messageType in [ SENDAGAIN ]:
+                logger.debug("calling customize_attribution() for Send Again")
+                attributor = CustomizedAttribution.customize_sendagain
+            elif self.app.use_custom_forwarding_attribution and messageType == FORWARD:
+                logger.debug("calling customize_attribution() for forwarding")
+                attributor = CustomizedAttribution.customize_forward
+
+            if attributor:
+                # play nice with Attachment Tamer
+                try:
+                    message = backend.draftMessage()
+                except:
+                    message = backend._makeMessageWithContents_isDraft_shouldSign_shouldEncrypt_shouldSkipSignature_shouldBePlainText_(
+                        backend.copyOfContentsForDraft_shouldBePlainText_isOkayToForceRichText_(True, False, True),
+                        True,
+                        False,
+                        False,
+                        False,
+                        False
+                    )
+                try:
+                    for original in objc.getInstanceVariable(backend, '_originalMessages'):
+                        attributor(
+                            app         = self.app,
+                            editor      = self,
+                            dom         = htmldom,
+                            reply       = message,
+                            inreplyto   = original,
+                        )
+                    backend.setHasChanges_(False)
+                except:
+                    # ignore when not debugging
+                    if self.app.is_debugging:
+                        raise
+
             # should we be quotefixing?
             if not self.app.is_quotefixing:
                 logger.debug('quotefixing turned off in preferences, skipping that part')
@@ -153,46 +193,6 @@ class DocumentEditor(Category(DocumentEditor)):
                 # move cursor to end of document
                 if self.app.move_cursor_to_top:
                     view.moveToBeginningOfDocument_(self)
-
-            # provide custom attribution?
-            attributor = None
-            if self.app.use_custom_reply_attribution and messageType in [ REPLY, REPLY_ALL, REPLY_AS ]:
-                logger.debug("calling customize_attribution() for reply{-all,-as}")
-                attributor = CustomizedAttribution.customize_reply
-            elif self.app.use_custom_sendagain_attribution and messageType in [ SENDAGAIN ]:
-                logger.debug("calling customize_attribution() for Send Again")
-                attributor = CustomizedAttribution.customize_sendagain
-            elif self.app.use_custom_forwarding_attribution and messageType == FORWARD:
-                logger.debug("calling customize_attribution() for forwarding")
-                attributor = CustomizedAttribution.customize_forward
-
-            if attributor:
-                # play nice with Attachment Tamer
-                try:
-                    message = backend.draftMessage()
-                except:
-                    message = backend._makeMessageWithContents_isDraft_shouldSign_shouldEncrypt_shouldSkipSignature_shouldBePlainText_(
-                        backend.copyOfContentsForDraft_shouldBePlainText_isOkayToForceRichText_(True, False, True),
-                        True,
-                        False,
-                        False,
-                        False,
-                        False
-                    )
-                try:
-                    for original in objc.getInstanceVariable(backend, '_originalMessages'):
-                        attributor(
-                            app         = self.app,
-                            editor      = self,
-                            dom         = htmldom,
-                            reply       = message,
-                            inreplyto   = original,
-                        )
-                    backend.setHasChanges_(False)
-                except:
-                    # ignore when not debugging
-                    if self.app.is_debugging:
-                        raise
 
             # move to beginning of line
             logger.debug('calling view.moveToBeginningOfLine()')

@@ -100,6 +100,7 @@ class CustomizedAttribution:
             original    = original.replace(u'\xa0', ' ').strip()
             original    = original.replace('(', r'\(').replace(')', r'\)')
             original    = re.sub(r'%\d+\$\@', '.*?', original)
+            original    = re.sub(r'\s+', '\\s+', original)
             matcher     = re.compile(original)
         else:
             matcher     = None
@@ -120,8 +121,18 @@ class CustomizedAttribution:
             node        = nodes.item_(0)
             children    = node.childNodes()
 
-        # check children for attribution node
+        # rich text message?
         is_rich = editor.backEnd().containsRichText()
+
+        # when message isn't rich text, replace &nbsp;'s with regular spaces to
+        # prevent issues with finding the attribution node (XXX: this *may*
+        # break other parts of the message, to perhaps we should limit this to
+        # only the start of the message somehow)
+        if not is_rich:
+            node.setInnerHTML_(node.innerHTML().replace('&nbsp;', ' '))
+            children = node.childNodes()
+
+        # check children for attribution node
         for i in range(children.length()):
             child = children.item_(i)
             if not is_sendagain:
