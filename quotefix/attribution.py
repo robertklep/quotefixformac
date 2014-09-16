@@ -9,24 +9,25 @@ import  re
 
 # Mavericks
 try:
-    from AppKit import MCMessage as Message
+    Message = lookUpClass('MCMessage')
 except:
     from AppKit import Message
 
 # patch MessageHeaders class to return empty attributions with forwards
 try:
-    from AppKit import MCMessageHeaders
+    MCMessageHeaders = lookUpClass('MCMessageHeaders')
     class MCMessageHeaders(Category(MCMessageHeaders)):
 
         @classmethod
         def registerQuoteFixApplication(cls, app):
             cls.app = app
 
-        @swizzle(MCMessageHeaders, 'htmlStringShowingHeaderDetailLevel:useBold:useGray:')
-        def htmlStringShowingHeaderDetailLevel_useBold_useGray_(self, original, level, bold, gray):
-            if self.app.use_custom_forwarding_attribution and self.app.remove_apple_mail_forward_attribution:
-                return ''
-            return original(self, level, bold, gray)
+# XXX: doesn't exist on Yosemite
+#        @swizzle(MCMessageHeaders, 'htmlStringShowingHeaderDetailLevel:useBold:useGray:')
+#        def htmlStringShowingHeaderDetailLevel_useBold_useGray_(self, original, level, bold, gray):
+#            if self.app.use_custom_forwarding_attribution and self.app.remove_apple_mail_forward_attribution:
+#                return ''
+#            return original(self, level, bold, gray)
     MessageHeaders = MCMessageHeaders
 except:
     from AppKit import MessageHeaders
