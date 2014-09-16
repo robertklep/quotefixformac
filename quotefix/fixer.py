@@ -120,8 +120,13 @@ class DocumentEditor(Category(DocumentEditor)):
                 try:
                     message = backend.draftMessage()
                 except:
+                    try:
+                        copy = backend.copyOfContentsForDraft_shouldBePlainText_isOkayToForceRichText_(True, False, True)
+                    except:
+                        # Yosemite
+                        copy = backend.copyOfContentsForDraft_shouldBePlainText_isOkayToForceRichText_isMailDropPlaceholderMessage_(True, False, True, False)
                     message = backend._makeMessageWithContents_isDraft_shouldSign_shouldEncrypt_shouldSkipSignature_shouldBePlainText_(
-                        backend.copyOfContentsForDraft_shouldBePlainText_isOkayToForceRichText_(True, False, True),
+                        copy,
                         True,
                         False,
                         False,

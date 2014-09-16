@@ -16,6 +16,12 @@ However, do keep submitting bug reports. I'll try and fix them as fast as I can.
 *  [v2.5.2](https://github.com/robertklep/quotefixformac/releases/tag/v2.5.2): fixed bug in date formatting
 *  [v2.5.1](https://github.com/robertklep/quotefixformac/releases/tag/v2.5.1): 10.9.1 support
 
+### Yosemite support (prereleases)
+
+Please note that these are a work-in-progress and will not be fully tested or feature-complete.
+
+*  [v2.6.0-alpha.1](https://github.com/robertklep/quotefixformac/releases/tag/v2.6.0-alpha.1)
+
 ## FAQ
 
 See [the wiki](https://github.com/robertklep/quotefixformac/wiki/FAQ---Frequently-Asked-Questions).
