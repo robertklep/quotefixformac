@@ -22,12 +22,19 @@ try:
         def registerQuoteFixApplication(cls, app):
             cls.app = app
 
-# XXX: doesn't exist on Yosemite
-#        @swizzle(MCMessageHeaders, 'htmlStringShowingHeaderDetailLevel:useBold:useGray:')
-#        def htmlStringShowingHeaderDetailLevel_useBold_useGray_(self, original, level, bold, gray):
-#            if self.app.use_custom_forwarding_attribution and self.app.remove_apple_mail_forward_attribution:
-#                return ''
-#            return original(self, level, bold, gray)
+        try:
+            @swizzle(MCMessageHeaders, 'htmlStringShowingHeaderDetailLevel:useBold:useGray:')
+            def htmlStringShowingHeaderDetailLevel_useBold_useGray_(self, original, level, bold, gray):
+                if self.app.use_custom_forwarding_attribution and self.app.remove_apple_mail_forward_attribution:
+                    return ''
+                return original(self, level, bold, gray)
+        except:
+            # Yosemite
+            @swizzle(MCMessageHeaders, 'htmlStringUseBold:useGray:')
+            def htmlStringUseBold_useGray_(self, original, bold, gray):
+                if self.app.use_custom_forwarding_attribution and self.app.remove_apple_mail_forward_attribution:
+                    return ''
+                return original(self, bold, gray)
     MessageHeaders = MCMessageHeaders
 except:
     from AppKit import MessageHeaders
@@ -95,6 +102,20 @@ class CustomizedAttribution:
         is_reply        = messagetype == REPLY
         is_sendagain    = messagetype == SENDAGAIN
 
+        attribution = cls.render_attribution(
+            reply       = reply,
+            inreplyto   = inreplyto,
+            template    = template,
+            is_html     = False,
+        )
+
+        # replace leading whitespace with non-breaking spaces
+        attribution = re.sub(r'(?m)^( +)' , lambda m: u'\u00a0' * len(m.group(1)), attribution)
+        attribution = re.sub(r'(?m)^(\t+)', lambda m: u'\u00a0\u00a0' * len(m.group(1)), attribution)
+
+        # replace newlines with hard linebreaks
+        attribution = attribution.replace('\n', '<br/>')
+
         # create matcher for matching original attribution (and replace
         # nsbp's with normal spaces)
         if original:
@@ -104,114 +125,72 @@ class CustomizedAttribution:
             original    = re.sub(r'\s+', '\\s+', original)
             matcher     = re.compile(original)
         else:
-            matcher     = None
-
-        # find possible nodes which can contain attribution
-        root = dom.documentElement()
-        if is_sendagain:
-            # Special case: Mail doesn't include an attribution for Send Again messages,
-            # so we'll just use the root element
-            node        = root
-            children    = node.getElementsByTagName_('body')
-        else:
-            nodes = root.getElementsByClassName_('AppleOriginalContents')
-            if not nodes.length():
-                nodes = root.getElementsByClassName_('ApplePlainTextBody')
-                if not nodes.length():
-                    return False
-            node        = nodes.item_(0)
-            children    = node.childNodes()
+            matcher = None
 
         # rich text message?
         is_rich = editor.backEnd().containsRichText()
 
-        # when message isn't rich text, replace &nbsp;'s with regular spaces to
-        # prevent issues with finding the attribution node (XXX: this *may*
-        # break other parts of the message, to perhaps we should limit this to
-        # only the start of the message somehow)
-        if not is_rich:
-            node.setInnerHTML_(node.innerHTML().replace('&nbsp;', ' '))
-            children = node.childNodes()
+        # should attribution be treated as HTML?
+        is_html =   (is_forward     and cls.app.custom_forwarding_is_html) or \
+                    (is_sendagain   and cls.app.custom_sendagain_is_html) or \
+                    (is_reply       and cls.app.custom_reply_is_html)
 
-        # check children for attribution node
-        for i in range(children.length()):
-            child = children.item_(i)
-            if not is_sendagain:
-                if child.nodeType() == 1:
-                    html = child.innerHTML()
-                    if matcher and not matcher.match(html):
-                        continue
-                elif child.nodeType() == 3:
-                    text = child.data()
-                    if matcher and not matcher.match(text):
-                        continue
+        # check if message is rich text with HTML-attribution
+        if is_html and not is_rich:
+            if  (is_forward     and cls.app.custom_forwarding_convert_to_rich) or \
+                (is_sendagain   and cls.app.custom_sendagain_convert_to_rich) or \
+                (is_reply       and cls.app.custom_reply_convert_to_rich):
+                editor.makeRichText_(editor)
+            elif not cls.app.dont_show_html_attribution_warning:
+                idx = NSRunAlertPanel(
+                    "QuoteFix warning",
+                    "You are using an HTML-attribution, but the current message format is plain text.\n\n" +
+                    "Unless you convert to rich text, the HTML-formatting will be lost when sending the message.",
+                    "OK",
+                    "Don't show this warning again",
+                    None
+                )
+                if idx == 0:
+                    cls.app.dont_show_html_attribution_warning = True
 
-            # should attribution be treated as HTML?
-            is_html =   (is_forward     and cls.app.custom_forwarding_is_html) or \
-                        (is_sendagain   and cls.app.custom_sendagain_is_html) or \
-                        (is_reply       and cls.app.custom_reply_is_html)
+        # render attribution
+        attribution = cls.render_attribution(
+            reply       = reply,
+            inreplyto   = inreplyto,
+            template    = template,
+            is_html     = is_html,
+        )
 
-            # check if message is rich text with HTML-attribution
-            if is_html and not is_rich:
-                if  (is_forward     and cls.app.custom_forwarding_convert_to_rich) or \
-                    (is_sendagain   and cls.app.custom_sendagain_convert_to_rich) or \
-                    (is_reply       and cls.app.custom_reply_convert_to_rich):
-                    editor.makeRichText_(editor)
-                elif not cls.app.dont_show_html_attribution_warning:
-                    idx = NSRunAlertPanel(
-                        "QuoteFix warning",
-                        "You are using an HTML-attribution, but the current message format is plain text.\n\n" +
-                        "Unless you convert to rich text, the HTML-formatting will be lost when sending the message.",
-                        "OK",
-                        "Don't show this warning again",
-                        None
-                    )
-                    if idx == 0:
-                        cls.app.dont_show_html_attribution_warning = True
+        # replace leading whitespace with non-breaking spaces
+        attribution = re.sub(r'(?m)^( +)' , lambda m: u'\u00a0' * len(m.group(1)), attribution)
+        attribution = re.sub(r'(?m)^(\t+)', lambda m: u'\u00a0\u00a0' * len(m.group(1)), attribution)
 
-            # render attribution
-            attribution = cls.render_attribution(
-                reply       = reply,
-                inreplyto   = inreplyto,
-                template    = template,
-                is_html     = is_html,
-            )
+        # replace newlines with hard linebreaks
+        attribution = attribution.replace('\n', '<br/>')
 
-            # replace leading whitespace with non-breaking spaces
-            attribution = re.sub(r'(?m)^( +)' , lambda m: u'\u00a0' * len(m.group(1)), attribution)
-            attribution = re.sub(r'(?m)^(\t+)', lambda m: u'\u00a0\u00a0' * len(m.group(1)), attribution)
+        # Get HTML contents of e-mail.
+        root = dom.documentElement()
+        html = root.innerHTML()
 
-            # replace newlines with hard linebreaks
-            attribution = attribution.replace('\n', '<br/>')
+        # Special case: Mail doesn't include an attribution for Send Again messages,
+        # so we'll just add a customized attribution right after the <body> element.
+        if is_sendagain or matcher == None:
+            html = re.sub(r'(?i)(?P<element><\s?body.*?>)', r'\g<element>' + attribution, html)
+        elif matcher:
+            html = matcher.sub(attribution, html)
 
-            # replace old attribution with new, depending on node type
-            if is_sendagain:
-                newnode = dom.createElement_("span")
-                newnode.setInnerHTML_(attribution)
-                child.insertBefore_refChild_(newnode, child.firstChild())
-                copynode = newnode
-            elif child.nodeType() == 1:
-                child.setInnerHTML_(attribution)
-                copynode = child
-            else:
-                newnode = dom.createElement_("span")
-                newnode.setInnerHTML_(attribution)
-                node.replaceChild_oldChild_(newnode, child)
-                copynode = newnode
+        # Restore HTML of root element.
+        root.setInnerHTML_(html)
 
-            # increase quote level of attribution?
-            if  (is_forward     and cls.app.custom_forwarding_increase_quotelevel) or \
-                (is_reply       and cls.app.custom_reply_increase_quotelevel):
-                copy = copynode.cloneNode_(True)
-                copynode.parentNode().removeChild_(copynode)
-                blockquote = root.firstDescendantBlockQuote()
-                blockquote.insertBefore_refChild_(copy, blockquote.childNodes().item_(0))
+        # TODO: increase quote level of attribution?
+#        if  (is_forward     and cls.app.custom_forwarding_increase_quotelevel) or \
+#            (is_reply       and cls.app.custom_reply_increase_quotelevel):
+#            copy = copynode.cloneNode_(True)
+#            copynode.parentNode().removeChild_(copynode)
+#            blockquote = root.firstDescendantBlockQuote()
+#            blockquote.insertBefore_refChild_(copy, blockquote.childNodes().item_(0))
 
-            # done
-            return True
-
-        # done nothing
-        return False
+        return True
 
     @classmethod
     def render_attribution(cls, reply, inreplyto, template, is_html):
