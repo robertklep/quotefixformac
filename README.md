@@ -8,20 +8,21 @@ However, do keep submitting bug reports. I'll try and fix them as fast as I can.
 
 ## Latest releases
 
-*  [v2.5.7](https://github.com/robertklep/quotefixformac/releases/tag/v2.5.7): fixes #21
-*  [v2.5.6](https://github.com/robertklep/quotefixformac/releases/tag/v2.5.6): 10.9.4 support
-*  [v2.5.5](https://github.com/robertklep/quotefixformac/releases/tag/v2.5.5): bugfixes
-*  [v2.5.4](https://github.com/robertklep/quotefixformac/releases/tag/v2.5.4): 10.9.3 support
-*  [v2.5.3](https://github.com/robertklep/quotefixformac/releases/tag/v2.5.3): 10.9.2 support
-*  [v2.5.2](https://github.com/robertklep/quotefixformac/releases/tag/v2.5.2): fixed bug in date formatting
-*  [v2.5.1](https://github.com/robertklep/quotefixformac/releases/tag/v2.5.1): 10.9.1 support
+* [v2.5.7](https://github.com/robertklep/quotefixformac/releases/tag/v2.5.7): fixes #21
+* [v2.5.6](https://github.com/robertklep/quotefixformac/releases/tag/v2.5.6): 10.9.4 support
+* [v2.5.5](https://github.com/robertklep/quotefixformac/releases/tag/v2.5.5): bugfixes
+* [v2.5.4](https://github.com/robertklep/quotefixformac/releases/tag/v2.5.4): 10.9.3 support
+* [v2.5.3](https://github.com/robertklep/quotefixformac/releases/tag/v2.5.3): 10.9.2 support
+* [v2.5.2](https://github.com/robertklep/quotefixformac/releases/tag/v2.5.2): fixed bug in date formatting
+* [v2.5.1](https://github.com/robertklep/quotefixformac/releases/tag/v2.5.1): 10.9.1 support
 
 ### Yosemite support (prereleases)
 
 Please note that these are a work-in-progress and will not be fully tested or feature-complete.
 
-*  [v2.6.0-alpha.2](https://github.com/robertklep/quotefixformac/releases/tag/v2.6.0-alpha.2)
-*  [v2.6.0-alpha.1](https://github.com/robertklep/quotefixformac/releases/tag/v2.6.0-alpha.1)
+* [v2.6.0-alpha.3](https://github.com/robertklep/quotefixformac/releases/tag/v2.6.0-alpha.3)
+* [v2.6.0-alpha.2](https://github.com/robertklep/quotefixformac/releases/tag/v2.6.0-alpha.2)
+* [v2.6.0-alpha.1](https://github.com/robertklep/quotefixformac/releases/tag/v2.6.0-alpha.1)
 
 ## FAQ
 
@@ -32,11 +33,10 @@ See [the wiki](https://github.com/robertklep/quotefixformac/wiki/FAQ---Frequentl
 QuoteFix is a plug-in for Mail.app which fixes some issues with replying to
 e-mail:
 
-*  it tries to remove the signature from the original message;
-*  it removes certain unnecessary empty lines;
-*  it positions the cursor below the original message, instead of above it
-   (in other words, bottom-posting instead of top-posting);
-*  it can (optionally) prune nested quotes from a specific level and above;
+* it tries to remove the signature from the original message;
+* it removes certain unnecessary empty lines;
+* it positions the cursor below the original message, instead of above it (in other words, bottom-posting instead of top-posting);
+* it can (optionally) prune nested quotes from a specific level and above;
 
 It also provides customized attributions for replies and forwards.
 
@@ -52,13 +52,11 @@ defaults write com.apple.mail BundleCompatibilityVersion -string 3
 
 Next, perform the following steps:
 
-*  Download the plugin if you haven't done so already
-*  Navigate in Finder to `~/Library/Mail/`
-   (where `~` means: your home directory)
-*  If a `Bundles` folder doesn't yet exist, create an empty one
-*  Extract the downloaded ZIP file and copy `QuoteFix.mailbundle` into the
-   Bundles folder
-*  Lastly, quit Mail.app if it's running, and start it up again.
+* Download the plugin if you haven't done so already
+* Navigate in Finder to `~/Library/Mail/` (where `~` means: your home directory)
+* If a `Bundles` folder doesn't yet exist, create an empty one
+* Extract the downloaded ZIP file and copy `QuoteFix.mailbundle` into the Bundles folder
+* Lastly, quit Mail.app if it's running, and start it up again.
 
 In case you run into any problems, or want to uninstall QuoteFix, just
 remove QuoteFix.mailbundle from the bundle-folder and restart Mail.app.
@@ -262,17 +260,11 @@ ${message.sent.locale('fr_FR')}
 QuoteFix has various ways of turning off its behaviour, short of
 uninstalling it:
 
-*  You can turn QuoteFix off from its preferences; this will disable the
-   plug-in until you enable it again;
-*  You can quickly turn the plug-in on/off from the Mail menu. If you want,
-   you can even assign a keyboard shortcut to this menu item from System
-   Preferences;
-*  You can toggle the enable (or disable) status of QuoteFix for a single
-   message by pressing down `Option` whilst initiating a Reply/Forward
-   action. That is:
-    *  When QuoteFix is **disabled**, pressing `Option` will *enable* QuoteFix for
-      that particular message only;
-    *  Likewise: when QuoteFix is **enabled**, pressing `Option` will *disable* QuoteFix for that particular message only;
+* You can turn QuoteFix off from its preferences; this will disable the plug-in until you enable it again;
+* You can quickly turn the plug-in on/off from the Mail menu. If you want, you can even assign a keyboard shortcut to this menu item from System Preferences;
+* You can toggle the enable (or disable) status of QuoteFix for a single message by pressing down `Option` whilst initiating a Reply/Forward action. That is:
+    * When QuoteFix is **disabled**, pressing `Option` will *enable* QuoteFix for that particular message only;
+    * Likewise: when QuoteFix is **enabled**, pressing `Option` will *disable* QuoteFix for that particular message only;
 
 ## Building the plug-in
 
