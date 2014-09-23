@@ -122,7 +122,7 @@ class CustomizedAttribution:
             original    = original.replace(u'\xa0', ' ').strip()
             original    = original.replace('(', r'\(').replace(')', r'\)')
             original    = re.sub(r'%\d+\$\@', '.*?', original)
-            original    = re.sub(r'\s+', '\\s+', original)
+            original    = re.sub(r'\s+', '(?:\\s|&nbsp;)+', original)
             matcher     = re.compile(original)
         else:
             matcher = None
@@ -175,9 +175,10 @@ class CustomizedAttribution:
         # Special case: Mail doesn't include an attribution for Send Again messages,
         # so we'll just add a customized attribution right after the <body> element.
         if is_sendagain or matcher == None:
-            html = re.sub(r'(?i)(?P<element><\s?body.*?>)', r'\g<element>' + attribution, html)
+            # TODO: limit quote level!
+            html = re.sub(r'(?i)(?P<element><\s?body.*?>)', r'\g<element>' + attribution, html, count = 1)
         elif matcher:
-            html = matcher.sub(attribution, html)
+            html = matcher.sub(attribution, html, count = 1)
 
         # Restore HTML of root element.
         root.setInnerHTML_(html)
