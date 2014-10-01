@@ -20,6 +20,7 @@ However, do keep submitting bug reports. I'll try and fix them as fast as I can.
 
 Please note that these are a work-in-progress and will not be fully tested or feature-complete.
 
+* [v2.6.0-alpha.4](https://github.com/robertklep/quotefixformac/releases/tag/v2.6.0-alpha.4)
 * [v2.6.0-alpha.3](https://github.com/robertklep/quotefixformac/releases/tag/v2.6.0-alpha.3)
 * [v2.6.0-alpha.2](https://github.com/robertklep/quotefixformac/releases/tag/v2.6.0-alpha.2)
 * [v2.6.0-alpha.1](https://github.com/robertklep/quotefixformac/releases/tag/v2.6.0-alpha.1)
