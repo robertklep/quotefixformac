@@ -105,6 +105,8 @@ setup(
                 '21599536-7086-449D-B777-B2880FC27F86',
                 # Mail 8.0 (1985.4) (Yosemite)
                 'FBDAA21E-7D7A-40EC-941A-469A09C590A6',
+                # Mail 8.0 (1988) (Yosemite)
+                'FBD91264-8866-4DEB-AFBF-F08505810056',
             ],
             # settings for Sparkle
             SUFeedURL = 'https://raw.github.com/robertklep/quotefixformac/master/updates/appcast.xml',
