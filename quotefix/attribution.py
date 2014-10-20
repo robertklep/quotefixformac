@@ -5,7 +5,7 @@ from    quotefix.utils              import swizzle, SimpleTemplate
 from    quotefix.pyratemp           import Template
 from    quotefix.messagetypes       import *
 from    quotefix.attributionclasses import *
-import  re
+import  re, platform
 
 # Mavericks
 try:
@@ -173,13 +173,10 @@ class CustomizedAttribution:
         html = root.innerHTML()
 
         # Fix Yosemite attributions
-        import platform
         osversion = platform.mac_ver()[0]
         if osversion.startswith('10.10'):
             # move <blockquote> one level down
-            html = re.sub(r'(?i)(<blockquote.*?>)(.*?)(<br.*?>)', r'\2\1', html, count = 1)
-            # remove trailing whitespace after <blockquote>
-            html = re.sub(r'(?i)(<blockquote.*?>)(<br.*?>)+',     r'\1',   html, count = 1)
+            html = re.sub(r'(?i)(<blockquote.*?>)(.*?)(<br.*?>)+', r'\2\1', html, count = 1)
 
         # Special case: Mail doesn't include an attribution for Send Again messages,
         # so we'll just add a customized attribution right after the <body> element.
