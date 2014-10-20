@@ -175,8 +175,8 @@ class CustomizedAttribution:
         # Fix Yosemite attributions
         import platform
         osversion = platform.mac_ver()[0]
-        if osversion == '10.10':
-            html = re.sub(r'(?i)(<blockquote.*?>)(<div>.*?</div>)(<br.*?>)?', r'\2\3\1', html, count = 1)
+        if osversion.startswith('10.10'):
+            html = re.sub(r'(?i)(<blockquote.*?>)(.*?)(<br.*?>)', r'\2\3\1', html, count = 1)
 
         # Special case: Mail doesn't include an attribution for Send Again messages,
         # so we'll just add a customized attribution right after the <body> element.
