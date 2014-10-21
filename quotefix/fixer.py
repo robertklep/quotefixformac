@@ -85,20 +85,8 @@ class DocumentEditor(Category(DocumentEditor)):
             # XXX: hack alert! if message type is DRAFT, but we can determine this
             # is actually a Send Again action, adjust the message type.
             origmsg = backend.originalMessage()
-            if origmsg and messageType == DRAFT:
-                # get the message viewer for this message
-                viewer = MessageViewer.existingViewerShowingMessage_(origmsg)
-                if not viewer:
-                    # XXX: this happens with conversation view active, not sure if this is stable enough though
-                    messageType = SENDAGAIN
-                elif viewer:
-                    # get the mailbox for the viewer
-                    mailboxes = viewer.selectedMailboxes()
-                    # get the Drafts mailbox
-                    draftmailbox = viewer.draftsMailbox()
-                    # check if they're the same; if not, it's a Send-Again
-                    if draftmailbox not in mailboxes:
-                        messageType = SENDAGAIN
+            if origmsg and messageType == DRAFT and origmsg.type() == 0:
+                messageType = SENDAGAIN
 
             # send original HTML to menu for debugging
             self.app.html = htmlroot.innerHTML()
