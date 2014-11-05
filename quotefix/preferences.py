@@ -1,5 +1,5 @@
 # -*- coding:utf-8 -*-
-from    AppKit                  import NSPreferencesModule, NSNib, NSBox, NSNibTopLevelObjects, NSObject, NSPreferences, NSWorkspace, NSURL, NSBundle, NSImage, NSDateFormatter, NSLocale, NSDateFormatterMediumStyle, NSColor, MessageViewer
+from    AppKit                  import NSPreferencesModule, NSNib, NSBox, NSNibTopLevelObjects, NSNibOwner, NSObject, NSPreferences, NSWorkspace, NSURL, NSBundle, NSImage, NSDateFormatter, NSLocale, NSDateFormatterMediumStyle, NSColor, MessageViewer
 from    Foundation              import NSLog
 from    quotefix.utils          import swizzle, htmlunescape
 from    quotefix.attribution    import CustomizedAttribution
@@ -11,10 +11,9 @@ import  objc, random, re
 class QuoteFixPreferencesModule(NSPreferencesModule):
 
     def init(self):
-        context     = { NSNibTopLevelObjects : [] }
-        nib         = NSNib.alloc().initWithNibNamed_bundle_("QuoteFixPreferencesModule.nib", NSBundle.bundleWithIdentifier_('name.klep.mail.QuoteFix'))
-        inited      = nib.instantiateNibWithExternalNameTable_(context)
-        self.view   = filter(lambda _: isinstance(_, NSBox), context[NSNibTopLevelObjects])[0]
+        bundle = NSBundle.bundleWithIdentifier_('name.klep.mail.QuoteFix')
+        nib = bundle.loadNibNamed_owner_topLevelObjects_('QuoteFixPreferencesModule', self, None)
+        self.view = filter(lambda _: isinstance(_, NSBox), nib[1])[0]
         self.setMinSize_(self.view.boundsSize())
         self.setPreferencesView_(self.view)
         return self
@@ -118,7 +117,9 @@ class QuoteFixPreferencesController(NSObject):
             formatter.setTimeStyle_(NSDateFormatterMediumStyle)
             formatter.setDateStyle_(NSDateFormatterMediumStyle)
             date = formatter.stringFromDate_(date)
-        self.lastUpdateCheck.setStringValue_(date)
+            self.lastUpdateCheck.setStringValue_(date)
+        else:
+            self.lastUpdateCheck.setStringValue_('Never')
 
     # act as a delegate for text fields
     def controlTextDidChange_(self, notification):
