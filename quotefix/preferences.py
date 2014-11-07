@@ -13,6 +13,9 @@ class QuoteFixPreferencesModule(NSPreferencesModule):
     def init(self):
         bundle = NSBundle.bundleWithIdentifier_('name.klep.mail.QuoteFix')
         nib = bundle.loadNibNamed_owner_topLevelObjects_('QuoteFixPreferencesModule', self, None)
+        if not nib or nib[0] < 1:
+            raise AssertionError('unable to load nib')
+        nib[1].retain()
         self.view = filter(lambda _: isinstance(_, NSBox), nib[1])[0]
         self.setMinSize_(self.view.boundsSize())
         self.setPreferencesView_(self.view)
