@@ -274,27 +274,24 @@ class DocumentEditor(Category(DocumentEditor)):
         # get matcher
         matcher = self.app.signature_matcher
 
-        # find nodes which might contain senders signature
-        nodes   = []
-        matches = dom.querySelectorAll_("div, br, span")
-        nodes   += [ matches.item_(i) for i in range(matches.length()) ]
-
-        # try to find a signature
+        # find all text nodes
+        xpathresult = dom.evaluate_contextNode_resolver_type_inResult_(
+            '//text()',
+            root,
+            None,
+            0,
+            None
+        )
         matches = []
-        for node in nodes:
-            # skip nodes which aren't at quotelevel 1
-            if node.quoteLevel() != 1:
-                continue
-
-            # BR's are empty, so treat them differently
-            if node.nodeName().lower() == 'br':
-                nextnode = node.nextSibling()
-                if isinstance(nextnode, DOMText) and matcher.search(nextnode.data()):
-                    matches.append(node)
-            elif node.nodeName().lower() in [ 'div', 'span' ] and matcher.search(node.innerHTML()):
+        node = xpathresult.iterateNext()
+        while node:
+            # if a text node is at quote level 1, and it matches our signature
+            # matcher, we'll use it as the start of a signature
+            if node.quoteLevel() == 1 and matcher.search(node.data()):
                 matches.append(node)
+            node = xpathresult.iterateNext()
 
-        # if we found a signature, remove it
+        # if we found possible signatures, remove them
         if len(matches):
             signature = matches[self.app.remove_from_last_signature_match and -1 or 0]
 
@@ -302,7 +299,7 @@ class DocumentEditor(Category(DocumentEditor)):
             node    = signature
             parent  = signature.parentNode()
             while node:
-                if node.nodeName().lower() == 'object':
+                if node.nodeName().lower() == 'object': # attachment
                     node = node.nextSibling()
                 else:
                     nextnode = node.nextSibling()
