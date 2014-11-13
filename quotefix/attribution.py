@@ -102,28 +102,15 @@ class CustomizedAttribution:
         is_reply        = messagetype == REPLY
         is_sendagain    = messagetype == SENDAGAIN
 
-        attribution = cls.render_attribution(
-            reply       = reply,
-            inreplyto   = inreplyto,
-            template    = template,
-            is_html     = False,
-        )
-
-        # replace leading whitespace with non-breaking spaces
-        attribution = re.sub(r'(?m)^( +)' , lambda m: u'\u00a0' * len(m.group(1)), attribution)
-        attribution = re.sub(r'(?m)^(\t+)', lambda m: u'\u00a0\u00a0' * len(m.group(1)), attribution)
-
-        # replace newlines with hard linebreaks
-        attribution = attribution.replace('\n', '<br/>')
-
         # create matcher for matching original attribution (and replace
         # nsbp's with normal spaces)
         if original:
-            original    = original.replace(u'\xa0', ' ').strip()
-            original    = original.replace('(', r'\(').replace(')', r'\)')
-            original    = re.sub(r'%\d+\$\@', '.*?', original)
-            original    = re.sub(r'\s+', '(?:\\s|&nbsp;)+', original)
-            matcher     = re.compile(original)
+            original = original.replace(u'\xa0', ' ').strip()
+            original = original.replace('(', r'\(').replace(')', r'\)')
+            original = re.sub(r'%\d+\$\@', '.*?', original)
+            original = re.sub(r'\s+', '(?:\\s|&nbsp;)+', original)
+            original = original + r'(?=[<\s])'
+            matcher  = re.compile(original)
         else:
             matcher = None
 
