@@ -8,6 +8,7 @@ However, do keep submitting bug reports. I'll try and fix them as fast as I can.
 
 ## Latest releases
 
+* [v2.6.0](https://github.com/robertklep/quotefixformac/releases/tag/v2.6.0): official 10.10 support, plus rewrites of several parts of the plug-in
 * [v2.5.7](https://github.com/robertklep/quotefixformac/releases/tag/v2.5.7): fixes #21
 * [v2.5.6](https://github.com/robertklep/quotefixformac/releases/tag/v2.5.6): 10.9.4 support
 * [v2.5.5](https://github.com/robertklep/quotefixformac/releases/tag/v2.5.5): bugfixes
@@ -15,23 +16,6 @@ However, do keep submitting bug reports. I'll try and fix them as fast as I can.
 * [v2.5.3](https://github.com/robertklep/quotefixformac/releases/tag/v2.5.3): 10.9.2 support
 * [v2.5.2](https://github.com/robertklep/quotefixformac/releases/tag/v2.5.2): fixed bug in date formatting
 * [v2.5.1](https://github.com/robertklep/quotefixformac/releases/tag/v2.5.1): 10.9.1 support
-
-### Yosemite support (prereleases)
-
-Please note that these are a work-in-progress and will not be fully tested or feature-complete.
-
-* [v2.6.0-beta.6](https://github.com/robertklep/quotefixformac/releases/tag/v2.6.0-beta.6)
-* [v2.6.0-beta.5](https://github.com/robertklep/quotefixformac/releases/tag/v2.6.0-beta.5)
-* [v2.6.0-beta.4](https://github.com/robertklep/quotefixformac/releases/tag/v2.6.0-beta.4)
-* [v2.6.0-beta.3](https://github.com/robertklep/quotefixformac/releases/tag/v2.6.0-beta.3)
-* [v2.6.0-beta.2](https://github.com/robertklep/quotefixformac/releases/tag/v2.6.0-beta.2)
-* [v2.6.0-beta.1](https://github.com/robertklep/quotefixformac/releases/tag/v2.6.0-beta.1)
-
-### Yosemite support (prereleases)
-
-Please note that these are a work-in-progress and will not be fully tested or feature-complete.
-
-*  [v2.6.0-alpha.1](https://github.com/robertklep/quotefixformac/releases/tag/v2.6.0-alpha.1)
 
 ## FAQ
 
