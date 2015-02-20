@@ -27,6 +27,12 @@ Please note that these are a work-in-progress and will not be fully tested or fe
 * [v2.6.0-beta.2](https://github.com/robertklep/quotefixformac/releases/tag/v2.6.0-beta.2)
 * [v2.6.0-beta.1](https://github.com/robertklep/quotefixformac/releases/tag/v2.6.0-beta.1)
 
+### Yosemite support (prereleases)
+
+Please note that these are a work-in-progress and will not be fully tested or feature-complete.
+
+*  [v2.6.0-alpha.1](https://github.com/robertklep/quotefixformac/releases/tag/v2.6.0-alpha.1)
+
 ## FAQ
 
 See [the wiki](https://github.com/robertklep/quotefixformac/wiki/FAQ---Frequently-Asked-Questions).
