@@ -6,6 +6,23 @@
       <description>Most recent changes with links to updates.</description>
       <language>en</language>
       <item>
+        <title>Version 2.6.0</title>
+        <description><![CDATA[
+          <h2>Official Yosemite release</h2>
+          <ul>
+            <li>Yosemite support (basically, pulling 2.6.0 out of beta)</li>
+            <li>Rewrites of various parts of the plug-in</li>
+          </ul>
+        ]]></description>
+        <pubDate>Fri Feb 20 14:33:16 2015 CET</pubDate>
+        <enclosure
+          url="https://github.com/robertklep/quotefixformac/releases/download/v2.6.0/QuoteFix-v2.6.0.zip"
+          length="5778039"
+          sparkle:version="v2.6.0"
+          type="application/octet-stream"
+          sparkle:dsaSignature="MC4CFQCsmEufQberEbeeuGYQrMPnku+vbAIVAM5cwkkD09mZJ4kNSMvIyWJPIK66" />
+      </item>
+      <item>
         <title>Version 2.5.7</title>
         <description><![CDATA[
           <h2>Bugfix</h2>
