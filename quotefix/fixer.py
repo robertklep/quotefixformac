@@ -169,7 +169,7 @@ def fix(self):
             if self.cleanup_layout(htmlroot, backend):
                 backend.setHasChanges_(False)
 
-            # move cursor to end of document
+            # move cursor to top of document
             if self.app.move_cursor_to_top:
                 view.moveToBeginningOfDocument_(self)
 

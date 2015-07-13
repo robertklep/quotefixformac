@@ -159,9 +159,9 @@ class CustomizedAttribution:
         root = dom.documentElement()
         html = root.innerHTML()
 
-        # Fix Yosemite attributions
-        osversion = platform.mac_ver()[0]
-        if osversion.startswith('10.10'):
+        # Fix attributions for Yosemite and up
+        osMinorVersion = int(platform.mac_ver()[0].split('.')[1])
+        if osMinorVersion >= 10:
             # move <blockquote> one level down
             html = re.sub(r'(?i)(<blockquote.*?>)(.*?)(<br.*?>)+', r'\2\1', html, count = 1)
 
