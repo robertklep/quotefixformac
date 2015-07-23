@@ -54,15 +54,8 @@ def fix(self):
             logger.debug("QuoteFix is not active, so no QuoteFixing for you!")
             return
 
-        # grab composeView instance (this is the WebView which contains the
-        # message editor) and check for the right conditions
-        try:
-            view = objc.getInstanceVariable(self, 'composeWebView')
-        except:
-            # was renamed in Lion
-            view = objc.getInstanceVariable(self, '_composeWebView')
-
-        # grab some other variables we need to perform our business
+        # Grab some variables we need to perform our business
+        view        = self.composeWebView() # contains the message editor
         backend     = self.backEnd()
         htmldom     = view.mainFrame().DOMDocument()
         htmlroot    = htmldom.documentElement()
@@ -361,43 +354,57 @@ def cleanup_layout(self, root, backend):
 
 # Check which class we need to overload (ComposeViewController for El Capitan,
 # DocumentEditor for Yosemite and earlier
-ComposeViewController = lookUpClass('ComposeViewController')
-class ComposeViewController(Category(ComposeViewController)):
+try:
+    ComposeViewController = lookUpClass('ComposeViewController')
+    class ComposeViewController(Category(ComposeViewController)):
 
-    @classmethod
-    def registerQuoteFixApplication(cls, app):
-        cls.app = app
+        @classmethod
+        def registerQuoteFixApplication(cls, app):
+            cls.app = app
 
-    @swizzle(ComposeViewController, 'finishLoadingEditor')
-    def finishLoadingEditor(self, original):
-        logger.debug('ComposeViewController finishLoadingEditor')
-        original(self)
-        self.fix()
+        @swizzle(ComposeViewController, 'finishLoadingEditor')
+        def finishLoadingEditor(self, original):
+            logger.debug('ComposeViewController finishLoadingEditor')
+            original(self)
+            self.fix()
 
-ComposeViewController.fix = fix
-ComposeViewController.remove_attachment_placeholders = remove_attachment_placeholders
-ComposeViewController.remove_quotes = remove_quotes
-ComposeViewController.make_selectable_quotes = make_selectable_quotes
-ComposeViewController.remove_old_signature = remove_old_signature
-ComposeViewController.move_above_new_signature = move_above_new_signature
-ComposeViewController.cleanup_layout = cleanup_layout
+    ComposeViewController.fix = fix
+    ComposeViewController.remove_attachment_placeholders = remove_attachment_placeholders
+    ComposeViewController.remove_quotes = remove_quotes
+    ComposeViewController.make_selectable_quotes = make_selectable_quotes
+    ComposeViewController.remove_old_signature = remove_old_signature
+    ComposeViewController.move_above_new_signature = move_above_new_signature
+    ComposeViewController.cleanup_layout = cleanup_layout
+except Exception, e:
+    logger.debug('Unable to fix ComposeViewController: %s' % e)
+    class ComposeViewController:
+        @classmethod
+        def registerQuoteFixApplication(cls, app):
+            cls.app = app
 
-DocumentEditor = lookUpClass('DocumentEditor')
-class DocumentEditor(Category(DocumentEditor)):
-    @classmethod
-    def registerQuoteFixApplication(cls, app):
-        cls.app = app
+try:
+    DocumentEditor = lookUpClass('DocumentEditor')
+    class DocumentEditor(Category(DocumentEditor)):
+        @classmethod
+        def registerQuoteFixApplication(cls, app):
+            cls.app = app
 
-    @swizzle(DocumentEditor, 'finishLoadingEditor')
-    def finishLoadingEditor(self, original):
-        logger.debug('DocumentEditor finishLoadingEditor')
-        original(self)
-        self.fix()
+        @swizzle(DocumentEditor, 'finishLoadingEditor')
+        def finishLoadingEditor(self, original):
+            logger.debug('DocumentEditor finishLoadingEditor')
+            original(self)
+            self.fix()
 
-DocumentEditor.fix = fix
-DocumentEditor.remove_attachment_placeholders = remove_attachment_placeholders
-DocumentEditor.remove_quotes = remove_quotes
-DocumentEditor.make_selectable_quotes = make_selectable_quotes
-DocumentEditor.remove_old_signature = remove_old_signature
-DocumentEditor.move_above_new_signature = move_above_new_signature
-DocumentEditor.cleanup_layout = cleanup_layout
+    DocumentEditor.fix = fix
+    DocumentEditor.remove_attachment_placeholders = remove_attachment_placeholders
+    DocumentEditor.remove_quotes = remove_quotes
+    DocumentEditor.make_selectable_quotes = make_selectable_quotes
+    DocumentEditor.remove_old_signature = remove_old_signature
+    DocumentEditor.move_above_new_signature = move_above_new_signature
+    DocumentEditor.cleanup_layout = cleanup_layout
+except Exception, e:
+    logger.debug('Unable to fix DocumentEditor: %s' % e)
+    class DocumentEditor:
+        @classmethod
+        def registerQuoteFixApplication(cls, app):
+            cls.app = app

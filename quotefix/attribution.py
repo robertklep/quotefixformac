@@ -22,19 +22,19 @@ try:
         def registerQuoteFixApplication(cls, app):
             cls.app = app
 
-        try:
-            @swizzle(MCMessageHeaders, 'htmlStringShowingHeaderDetailLevel:useBold:useGray:')
-            def htmlStringShowingHeaderDetailLevel_useBold_useGray_(self, original, level, bold, gray):
-                if self.app.use_custom_forwarding_attribution and self.app.remove_apple_mail_forward_attribution:
-                    return ''
-                return original(self, level, bold, gray)
-        except:
-            # Yosemite
-            @swizzle(MCMessageHeaders, 'htmlStringUseBold:useGray:')
-            def htmlStringUseBold_useGray_(self, original, bold, gray):
-                if self.app.use_custom_forwarding_attribution and self.app.remove_apple_mail_forward_attribution:
-                    return ''
-                return original(self, bold, gray)
+        @swizzle(MCMessageHeaders, 'htmlStringShowingHeaderDetailLevel:useBold:useGray:')
+        def htmlStringShowingHeaderDetailLevel_useBold_useGray_(self, original, level, bold, gray):
+            if self.app.use_custom_forwarding_attribution and self.app.remove_apple_mail_forward_attribution:
+                return ''
+            return original(self, level, bold, gray)
+
+        # Yosemite and up
+        @swizzle(MCMessageHeaders, 'htmlStringUseBold:useGray:')
+        def htmlStringUseBold_useGray_(self, original, bold, gray):
+            if self.app.use_custom_forwarding_attribution and self.app.remove_apple_mail_forward_attribution:
+                return ''
+            return original(self, bold, gray)
+
     MessageHeaders = MCMessageHeaders
 except:
     from AppKit import MessageHeaders

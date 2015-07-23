@@ -19,7 +19,7 @@ def swizzle(cls, SEL, *alternatives):
                 pass
 
         if not oldIMP:
-            logger.error('Couldn\'t swizzle selector "%s" for class "%s"' % (SEL, cls))
+            logger.debug('Couldn\'t swizzle selector "%s" for class "%s"' % (SEL, cls))
             return func
         if oldIMP.isClassMethod:
             oldIMP = cls.methodForSelector_(SEL)
