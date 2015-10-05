@@ -153,6 +153,9 @@ def fix(self):
             # place cursor above own signature (if any)
             logger.debug('calling move_above_new_signature()')
             if self.move_above_new_signature(htmldom, view):
+                # insert a paragraph break?
+                if not self.app.no_whitespace_below_quote:
+                    view.insertParagraphSeparator_(self)
                 backend.setHasChanges_(False)
             else:
                 view.insertNewline_(self)
@@ -319,10 +322,6 @@ def move_above_new_signature(self, dom, view):
     # move up (positions cursor above signature)
     view.moveUp_(self)
 
-    # insert a paragraph break?
-    if not self.app.no_whitespace_below_quote:
-        view.insertParagraphSeparator_(self)
-
     # signal that we moved
     return True
 
@@ -355,6 +354,21 @@ def cleanup_layout(self, root, backend):
 # Check which class we need to overload (ComposeViewController for El Capitan,
 # DocumentEditor for Yosemite and earlier
 try:
+
+    ComposeWindowController = lookUpClass('ComposeWindowController')
+    class ComposeWindowController(Category(ComposeWindowController)):
+
+        # When the compose window has become key, any animations should be done
+        # and we are clear to position the cursor to above the signature.
+        @swizzle(ComposeWindowController, 'windowDidBecomeKey:')
+        def windowDidBecomeKey(self, original, arg1):
+            original(self, arg1)
+            controller = self.contentViewController()
+            if controller:
+                view     = controller.composeWebView()
+                htmldom  = view.mainFrame().DOMDocument()
+                controller.move_above_new_signature(htmldom, view)
+
     ComposeViewController = lookUpClass('ComposeViewController')
     class ComposeViewController(Category(ComposeViewController)):
 
