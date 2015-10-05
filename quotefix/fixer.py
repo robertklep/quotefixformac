@@ -355,20 +355,6 @@ def cleanup_layout(self, root, backend):
 # DocumentEditor for Yosemite and earlier
 try:
 
-    ComposeWindowController = lookUpClass('ComposeWindowController')
-    class ComposeWindowController(Category(ComposeWindowController)):
-
-        # When the compose window has become key, any animations should be done
-        # and we are clear to position the cursor to above the signature.
-        @swizzle(ComposeWindowController, 'windowDidBecomeKey:')
-        def windowDidBecomeKey(self, original, arg1):
-            original(self, arg1)
-            controller = self.contentViewController()
-            if controller:
-                view     = controller.composeWebView()
-                htmldom  = view.mainFrame().DOMDocument()
-                controller.move_above_new_signature(htmldom, view)
-
     ComposeViewController = lookUpClass('ComposeViewController')
     class ComposeViewController(Category(ComposeViewController)):
 
@@ -378,9 +364,24 @@ try:
 
         @swizzle(ComposeViewController, 'finishLoadingEditor')
         def finishLoadingEditor(self, original):
-            logger.debug('ComposeViewController finishLoadingEditor')
+            logger.debug('[ComposeViewController finishLoadingEditor]')
             original(self)
             self.fix()
+
+        @swizzle(ComposeViewController, 'show')
+        def show(self, original):
+            logger.debug('[ComposeViewController show]')
+            original(self)
+
+            # Don't let any changes made during quotefixing trigger the 'Save
+            # to Drafts' alert.
+            self.setHasUserMadeChanges_(False)
+
+            # When the compose view should be shown, we assume any animations
+            # are done and we can position the cursor.
+            view     = self.composeWebView()
+            htmldom  = view.mainFrame().DOMDocument()
+            self.move_above_new_signature(htmldom, view)
 
     ComposeViewController.fix = fix
     ComposeViewController.remove_attachment_placeholders = remove_attachment_placeholders
