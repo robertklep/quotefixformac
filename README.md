@@ -8,7 +8,7 @@ However, do keep submitting bug reports. I'll try and fix them as fast as I can.
 
 ## _El Capitan_ support
 
-The latest [v2.7.0-alpha](https://github.com/robertklep/quotefixformac/releases) release should work on El Capitan. There's still some pending issues that I hope to resolve shortly, but most functionality works.
+The latest [v2.7.0 beta](https://github.com/robertklep/quotefixformac/releases) release should work on El Capitan. There's still some pending issues that I hope to resolve shortly, but most functionality works.
 
 ## Latest releases
 
