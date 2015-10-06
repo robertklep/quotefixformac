@@ -127,7 +127,6 @@ def fix(self):
             # remove attachment placeholders?
             if self.app.remove_attachment_placeholders:
                 self.remove_attachment_placeholders(backend, htmlroot)
-                backend.setHasChanges_(False)
 
             # move cursor to end of document
             view.moveToEndOfDocument_(self)
@@ -136,19 +135,16 @@ def fix(self):
             if self.app.remove_quotes:
                 logger.debug('calling remove_quotes()')
                 self.remove_quotes(htmldom, self.app.remove_quotes_level)
-                backend.setHasChanges_(False)
 
             # make quotes selectable?
             if self.app.selectable_quotes:
                 logger.debug('calling make_selectable_quotes()')
                 self.make_selectable_quotes(view, htmldom)
-                backend.setHasChanges_(False)
 
             # remove signature from sender
             if not self.app.keep_sender_signature:
                 logger.debug('calling remove_old_signature()')
-                if self.remove_old_signature(htmldom, view):
-                    backend.setHasChanges_(False)
+                self.remove_old_signature(htmldom, view)
 
             # place cursor above own signature (if any)
             logger.debug('calling move_above_new_signature()')
@@ -156,14 +152,12 @@ def fix(self):
                 # insert a paragraph break?
                 if not self.app.no_whitespace_below_quote:
                     view.insertParagraphSeparator_(self)
-                backend.setHasChanges_(False)
             else:
                 view.insertNewline_(self)
 
             # perform some general cleanups
             logger.debug('calling cleanup_layout()')
-            if self.cleanup_layout(htmlroot, backend):
-                backend.setHasChanges_(False)
+            self.cleanup_layout(htmlroot, backend)
 
             # move cursor to top of document
             if self.app.move_cursor_to_top:
@@ -367,21 +361,25 @@ try:
             logger.debug('[ComposeViewController finishLoadingEditor]')
             original(self)
             self.fix()
+            # Don't let any changes made during quotefixing trigger the 'Save
+            # to Drafts' alert.
+            self.setHasUserMadeChanges_(False)
+            self.backEnd().setHasChanges_(False)
 
         @swizzle(ComposeViewController, 'show')
         def show(self, original):
             logger.debug('[ComposeViewController show]')
             original(self)
 
-            # Don't let any changes made during quotefixing trigger the 'Save
-            # to Drafts' alert.
-            self.setHasUserMadeChanges_(False)
-
             # When the compose view should be shown, we assume any animations
             # are done and we can position the cursor.
             view     = self.composeWebView()
             htmldom  = view.mainFrame().DOMDocument()
-            self.move_above_new_signature(htmldom, view)
+            if not self.move_above_new_signature(htmldom, view):
+                if self.app.move_cursor_to_top:
+                    view.moveToBeginningOfDocument_(self)
+                else:
+                    view.moveToEndOfDocument_(self)
 
     ComposeViewController.fix = fix
     ComposeViewController.remove_attachment_placeholders = remove_attachment_placeholders
