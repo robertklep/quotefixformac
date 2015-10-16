@@ -103,11 +103,11 @@ def fix(self):
             try:
                 for original in objc.getInstanceVariable(backend, '_originalMessages'):
                     attributor(
-                        app         = self.app,
-                        editor      = self,
-                        dom         = htmldom,
-                        reply       = message,
-                        inreplyto   = original,
+                        app       = self.app,
+                        editor    = self,
+                        dom       = htmldom,
+                        reply     = message,
+                        inreplyto = original,
                     )
                 backend.setHasChanges_(False)
             except:
@@ -282,8 +282,8 @@ def remove_old_signature(self, dom, view):
                 parent.removeChild_(node)
                 node = nextnode
             while not node and parent != blockquote:
-                node    = parent.nextSibling()
-                parent  = parent.parentNode()
+                node   = parent.nextSibling()
+                parent = parent.parentNode()
 
         # move down a line
         view.moveDown_(self)
@@ -337,8 +337,8 @@ def cleanup_layout(self, root, backend):
     # clean up linebreaks before first blockquote
     blockquote = root.firstDescendantBlockQuote()
     if blockquote:
-        parent  = blockquote.parentNode()
-        node    = blockquote.previousSibling()
+        parent = blockquote.parentNode()
+        node   = blockquote.previousSibling()
         while node and node.nodeName().lower() == 'br':
             parent.removeChild_(node)
             node = blockquote.previousSibling()
@@ -373,21 +373,20 @@ try:
 
             # When the compose view should be shown, we assume any animations
             # are done and we can position the cursor.
-            view     = self.composeWebView()
-            htmldom  = view.mainFrame().DOMDocument()
-            if not self.move_above_new_signature(htmldom, view):
-                if self.app.move_cursor_to_top:
-                    view.moveToBeginningOfDocument_(self)
-                else:
-                    view.moveToEndOfDocument_(self)
+            view    = self.composeWebView()
+            htmldom = view.mainFrame().DOMDocument()
+            if self.app.move_cursor_to_top:
+                view.moveToBeginningOfDocument_(self)
+            elif not self.move_above_new_signature(htmldom, view):
+                view.moveToEndOfDocument_(self)
 
-    ComposeViewController.fix = fix
+    ComposeViewController.fix                            = fix
     ComposeViewController.remove_attachment_placeholders = remove_attachment_placeholders
-    ComposeViewController.remove_quotes = remove_quotes
-    ComposeViewController.make_selectable_quotes = make_selectable_quotes
-    ComposeViewController.remove_old_signature = remove_old_signature
-    ComposeViewController.move_above_new_signature = move_above_new_signature
-    ComposeViewController.cleanup_layout = cleanup_layout
+    ComposeViewController.remove_quotes                  = remove_quotes
+    ComposeViewController.make_selectable_quotes         = make_selectable_quotes
+    ComposeViewController.remove_old_signature           = remove_old_signature
+    ComposeViewController.move_above_new_signature       = move_above_new_signature
+    ComposeViewController.cleanup_layout                 = cleanup_layout
 except Exception, e:
     logger.debug('Unable to fix ComposeViewController: %s' % e)
     class ComposeViewController:
@@ -408,13 +407,13 @@ try:
             original(self)
             self.fix()
 
-    DocumentEditor.fix = fix
+    DocumentEditor.fix                            = fix
     DocumentEditor.remove_attachment_placeholders = remove_attachment_placeholders
-    DocumentEditor.remove_quotes = remove_quotes
-    DocumentEditor.make_selectable_quotes = make_selectable_quotes
-    DocumentEditor.remove_old_signature = remove_old_signature
-    DocumentEditor.move_above_new_signature = move_above_new_signature
-    DocumentEditor.cleanup_layout = cleanup_layout
+    DocumentEditor.remove_quotes                  = remove_quotes
+    DocumentEditor.make_selectable_quotes         = make_selectable_quotes
+    DocumentEditor.remove_old_signature           = remove_old_signature
+    DocumentEditor.move_above_new_signature       = move_above_new_signature
+    DocumentEditor.cleanup_layout                 = cleanup_layout
 except Exception, e:
     logger.debug('Unable to fix DocumentEditor: %s' % e)
     class DocumentEditor:
