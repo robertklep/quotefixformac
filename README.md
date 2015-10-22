@@ -6,12 +6,9 @@ I decided to not accept requests for new features for the time being, primarily 
 
 However, do keep submitting bug reports. I'll try and fix them as fast as I can.
 
-## _El Capitan_ support
-
-The latest [v2.7.0 beta](https://github.com/robertklep/quotefixformac/releases) release should work on El Capitan. There's still some pending issues that I hope to resolve shortly, but most functionality works.
-
 ## Latest releases
 
+* [v2.7.0](https://github.com/robertklep/quotefixformac/releases/tag/v2.7.0): official 10.11 (El Capitan) support
 * [v2.6.0](https://github.com/robertklep/quotefixformac/releases/tag/v2.6.0): official 10.10 support, plus rewrites of several parts of the plug-in
 * [v2.5.7](https://github.com/robertklep/quotefixformac/releases/tag/v2.5.7): fixes #21
 * [v2.5.6](https://github.com/robertklep/quotefixformac/releases/tag/v2.5.6): 10.9.4 support
