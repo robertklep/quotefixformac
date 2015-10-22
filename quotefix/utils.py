@@ -1,12 +1,26 @@
 import  objc, re, htmlentitydefs
+from    logger import logger
 
 # Method Swizzler: exchange an existing Objective-C method with a new
 # implementation (akin to monkeypatching)
-def swizzle(cls, SEL):
+def swizzle(cls, SEL, *alternatives):
+    alternatives = (SEL,) + alternatives
     if isinstance(cls, basestring):
         cls = objc.lookUpClass(cls)
     def decorator(func):
-        oldIMP = cls.instanceMethodForSelector_(SEL)
+        oldIMP = None
+
+        # try the selector, or any of the proposed alternatives
+        for SEL in alternatives:
+            try:
+                oldIMP = cls.instanceMethodForSelector_(SEL)
+                break
+            except:
+                pass
+
+        if not oldIMP:
+            logger.debug('Couldn\'t swizzle selector "%s" for class "%s"' % (SEL, cls))
+            return func
         if oldIMP.isClassMethod:
             oldIMP = cls.methodForSelector_(SEL)
         def wrapper(self, *args, **kwargs):
