@@ -6,6 +6,20 @@
       <description>Most recent changes with links to updates.</description>
       <language>en</language>
       <item>
+        <title>Version 2.7.0</title>
+        <description><![CDATA[
+          <h2>El Capitan Support</h2>
+          <p>Thanks to all beta testers!</p>
+        ]]></description>
+        <pubDate>Thu Oct 22 11:49:24 2015 CEST</pubDate>
+        <enclosure
+          url="https://github.com/robertklep/quotefixformac/releases/download/v2.7.0/QuoteFix-v2.7.0.zip"
+          length="5778616"
+          sparkle:version="v2.7.0"
+          type="application/octet-stream"
+          sparkle:dsaSignature="MCwCFGFVutcDT7L54kNIqpy+7uWm9oBWAhR5MP3BCcfwxyGjtnV2s/aeH/eKVg==" />
+      </item>
+      <item>
         <title>Version 2.6.0</title>
         <description><![CDATA[
           <h2>Official Yosemite release</h2>
