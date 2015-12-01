@@ -1,11 +1,12 @@
 from    AppKit                      import NSRunAlertPanel
 from    objc                        import Category, lookUpClass
 from    datetime                    import datetime
+from    logger                      import logger
 from    quotefix.utils              import swizzle, SimpleTemplate
 from    quotefix.pyratemp           import Template
 from    quotefix.messagetypes       import *
 from    quotefix.attributionclasses import *
-import  re, platform
+import  re, platform, traceback
 
 # Mavericks
 try:
@@ -212,6 +213,7 @@ class CustomizedAttribution:
             try:
                 return Template(string = template, data = params)()
             except Exception:
+                logger.debug(traceback.format_exc())
                 return "<i>&lt;A templating error occured, please check your template for errors&gt;</i>"
 
         # simple template

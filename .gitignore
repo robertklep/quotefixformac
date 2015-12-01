@@ -3,6 +3,7 @@ build
 dist
 *.sw?
 *.priv.pem
+*.pyc
 venv
 *.zip
 testing
