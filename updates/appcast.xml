@@ -6,6 +6,22 @@
       <description>Most recent changes with links to updates.</description>
       <language>en</language>
       <item>
+        <title>Version 2.7.1</title>
+        <description><![CDATA[
+          <h2>New Features</h2>
+          <ul>
+            <li>Logging of template errors when in debugging mode</li>
+          </ul>
+        ]]></description>
+        <pubDate>Thu Dec  3 13:57:22 2015 CET</pubDate>
+        <enclosure
+          url="https://github.com/robertklep/quotefixformac/releases/download/v2.7.1/QuoteFix-v2.7.1.zip"
+          length="5790705"
+          sparkle:version="v2.7.1"
+          type="application/octet-stream"
+          sparkle:dsaSignature="MC4CFQCJ88rohD+/cnn9cXQW79/ofTSlPQIVAM4OvIV1npz7chH0SK9DR+3qbevg" />
+      </item>
+      <item>
         <title>Version 2.7.0</title>
         <description><![CDATA[
           <h2>El Capitan Support</h2>
