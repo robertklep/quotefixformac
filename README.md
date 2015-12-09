@@ -8,6 +8,10 @@ However, do keep submitting bug reports. I'll try and fix them as fast as I can.
 
 ## Latest releases
 
+The latest release can always be found [here](https://github.com/robertklep/quotefixformac/releases/tag/).
+
+* [v2.7.2](https://github.com/robertklep/quotefixformac/releases/tag/v2.7.2): support for 10.11.2
+* [v2.7.1](https://github.com/robertklep/quotefixformac/releases/tag/v2.7.1): minor update to enable logging of template errors
 * [v2.7.0](https://github.com/robertklep/quotefixformac/releases/tag/v2.7.0): official 10.11 (El Capitan) support
 * [v2.6.0](https://github.com/robertklep/quotefixformac/releases/tag/v2.6.0): official 10.10 support, plus rewrites of several parts of the plug-in
 * [v2.5.7](https://github.com/robertklep/quotefixformac/releases/tag/v2.5.7): fixes #21
