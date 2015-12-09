@@ -8,7 +8,7 @@ However, do keep submitting bug reports. I'll try and fix them as fast as I can.
 
 ## Latest releases
 
-The latest release can always be found [here](https://github.com/robertklep/quotefixformac/releases/tag/).
+The latest release can always be found [here](https://github.com/robertklep/quotefixformac/releases/).
 
 * [v2.7.2](https://github.com/robertklep/quotefixformac/releases/tag/v2.7.2): support for 10.11.2
 * [v2.7.1](https://github.com/robertklep/quotefixformac/releases/tag/v2.7.1): minor update to enable logging of template errors
