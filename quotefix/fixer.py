@@ -1,4 +1,4 @@
-from    AppKit                  import NSRunAlertPanel, NSAlternateKeyMask, NSEvent, NSKeyDown, NSControlKeyMask, MessageViewer
+from    AppKit                  import NSRunAlertPanel, NSAlternateKeyMask, NSEvent, NSKeyDown, NSFlagsChanged, NSControlKeyMask, MessageViewer
 from    Foundation              import NSLog
 from    quotefix.utils          import swizzle
 from    quotefix.attribution    import CustomizedAttribution
@@ -6,8 +6,6 @@ from    quotefix.messagetypes   import *
 from    objc                    import Category, lookUpClass
 from    logger                  import logger
 import  re, traceback, objc
-
-DOMText = lookUpClass('DOMText')
 
 MailApp = lookUpClass('MailApp')
 class MailApp(Category(MailApp)):
@@ -21,27 +19,27 @@ class MailApp(Category(MailApp)):
         if not hasattr(self, 'app'):
             original(self, event)
             return
-        self.app.toggle_key_active = False
-        # keep track of an active option key
-        flags = event.modifierFlags()
-        if (flags & NSAlternateKeyMask) and not (flags & NSControlKeyMask):
-            self.app.toggle_key_active = True
-            # handle reply/reply-all (XXX: won't work if you have assigned
-            # a different shortcut key to these actions!)
-            if event.type() == NSKeyDown and event.charactersIgnoringModifiers().lower() == 'r':
-                # strip the Option-key from the event
-                event = NSEvent.keyEventWithType_location_modifierFlags_timestamp_windowNumber_context_characters_charactersIgnoringModifiers_isARepeat_keyCode_(
-                    event.type(),
-                    event.locationInWindow(),
-                    event.modifierFlags() & ~NSAlternateKeyMask,
-                    event.timestamp(),
-                    event.windowNumber(),
-                    event.context(),
-                    event.characters(),
-                    event.charactersIgnoringModifiers(),
-                    event.isARepeat(),
-                    event.keyCode()
-                )
+
+        # Keep track of an active Opt key
+        if event.type() == NSFlagsChanged:
+            flags = event.modifierFlags()
+            self.app.toggle_key_active = (flags & NSAlternateKeyMask) and not (flags & NSControlKeyMask)
+
+        # Handle reply/reply-all (XXX: won't work if you have assigned a different shortcut key to these actions)
+        if self.app.toggle_key_active and event.type() == NSKeyDown and event.charactersIgnoringModifiers().lower() == 'r':
+            # Strip the Opt-key from the event
+            event = NSEvent.keyEventWithType_location_modifierFlags_timestamp_windowNumber_context_characters_charactersIgnoringModifiers_isARepeat_keyCode_(
+                event.type(),
+                event.locationInWindow(),
+                event.modifierFlags() & ~NSAlternateKeyMask,
+                event.timestamp(),
+                event.windowNumber(),
+                event.context(),
+                event.characters(),
+                event.charactersIgnoringModifiers(),
+                event.isARepeat(),
+                event.keyCode()
+            )
         original(self, event)
 
 def fix(self):
@@ -370,6 +368,11 @@ try:
         def show(self, original):
             logger.debug('[ComposeViewController show]')
             original(self)
+
+            # If toggle key is active, temporarily switch the active state
+            is_active = self.app.toggle_key_active ^ self.app.is_active
+            if not is_active:
+                return
 
             # When the compose view should be shown, we assume any animations
             # are done and we can position the cursor.
