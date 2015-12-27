@@ -6,6 +6,19 @@
       <description>Most recent changes with links to updates.</description>
       <language>en</language>
       <item>
+        <title>Version 2.7.3</title>
+        <description><![CDATA[
+          <h2>(Somewhat) fixed issue with Opt-override</h2>
+        ]]></description>
+        <pubDate>Sun Dec 27 12:11:38 2015 CET</pubDate>
+        <enclosure
+          url="https://github.com/robertklep/quotefixformac/releases/download/v2.7.3/QuoteFix-v2.7.3.zip"
+          length="5791489"
+          sparkle:version="v2.7.3"
+          type="application/octet-stream"
+          sparkle:dsaSignature="MCwCFDhd9sXhG/PMnFQmGpoqKKg/r308AhRDuhilZrLxLyK+00xRCXNTILWtyA==" />
+      </item>
+      <item>
         <title>Version 2.7.2</title>
         <description><![CDATA[
           <h2>10.11.2 support</h2>
