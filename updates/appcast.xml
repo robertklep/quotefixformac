@@ -6,6 +6,19 @@
       <description>Most recent changes with links to updates.</description>
       <language>en</language>
       <item>
+        <title>Version 2.7.4</title>
+        <description><![CDATA[
+          <h2>Preliminary support for Mail 9.3</h2>
+        ]]></description>
+        <pubDate>Sat Feb  6 07:37:56 2016 CET</pubDate>
+        <enclosure
+          url="https://github.com/robertklep/quotefixformac/releases/download/v2.7.4/QuoteFix-v2.7.4.zip"
+          length="5791767"
+          sparkle:version="v2.7.4"
+          type="application/octet-stream"
+          sparkle:dsaSignature="MC0CFQCVZ6FWye6e12Z3edKyIhKS6rNzeAIUTNkS7pkA3OoYrKGRCYQKbbU8+cE=" />
+      </item>
+      <item>
         <title>Version 2.7.3</title>
         <description><![CDATA[
           <h2>(Somewhat) fixed issue with Opt-override</h2>
