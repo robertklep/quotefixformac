@@ -119,6 +119,8 @@ setup(
                 'DAF41AB7-F9AD-4273-9934-C81C74705B69',
                 # Mail 9.2 (3112) El Capitan 10.11.2
                 '1550C683-EA48-4036-B7CE-FB6F5D13EE02',
+                # Mail 9.3 (beta)
+                '71562B89-0D90-4588-8E94-A75B701D6443',
             ],
             # settings for Sparkle
             SUFeedURL = 'https://raw.github.com/robertklep/quotefixformac/master/updates/appcast.xml',
