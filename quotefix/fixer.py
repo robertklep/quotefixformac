@@ -81,30 +81,13 @@ def fix(self):
             attributor = CustomizedAttribution.customize_forward
 
         if attributor:
-            # play nice with Attachment Tamer
-            try:
-                message = backend.draftMessage()
-            except:
-                try:
-                    copy = backend.copyOfContentsForDraft_shouldBePlainText_isOkayToForceRichText_(True, False, True)
-                except:
-                    # Yosemite
-                    copy = backend.copyOfContentsForDraft_shouldBePlainText_isOkayToForceRichText_isMailDropPlaceholderMessage_(True, False, True, False)
-                message = backend._makeMessageWithContents_isDraft_shouldSign_shouldEncrypt_shouldSkipSignature_shouldBePlainText_(
-                    copy,
-                    True,
-                    False,
-                    False,
-                    False,
-                    False
-                )
             try:
                 for original in objc.getInstanceVariable(backend, '_originalMessages'):
                     attributor(
                         app       = self.app,
                         editor    = self,
                         dom       = htmldom,
-                        reply     = message,
+                        reply     = backend.message(),
                         inreplyto = original,
                     )
                 backend.setHasChanges_(False)
@@ -181,10 +164,17 @@ def fix(self):
 def remove_attachment_placeholders(self, backend, htmlroot):
     messages = objc.getInstanceVariable(backend, '_originalMessages')
     for original in messages:
-        messagebody = original.messageBody()
+        try:
+            # ElCap and older
+            messagebody = original.messageBody()
+        except:
+            # Sierra
+            messagebody = original.cachedMimeBody()
         if not messagebody:
+            NSLog('no message body')
             return
         attachments = messagebody.attachmentFilenames()
+        NSLog('attachments: %@', attachments)
         if not attachments:
             return
         html        = htmlroot.innerHTML()
@@ -354,7 +344,7 @@ try:
         def registerQuoteFixApplication(cls, app):
             cls.app = app
 
-        @swizzle(ComposeViewController, 'finishLoadingEditor')
+        @swizzle(ComposeViewController, 'finishLoadingEditor', '_finishLoadingEditor')
         def finishLoadingEditor(self, original):
             logger.debug('[ComposeViewController finishLoadingEditor]')
             original(self)
