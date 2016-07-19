@@ -1,3 +1,4 @@
+# coding=utf-8
 from    AppKit                  import NSUserDefaults, NSBundle, NSApplication, NSRunAlertPanel
 from    Foundation              import NSLog
 from    quotefix.messagetypes   import *
@@ -273,7 +274,7 @@ If you run into any problems with regards to replying or forwarding mail, consid
 
     @property
     def default_signature_matcher(self):
-        return r'(?i)--(?:&nbsp;|\s+|\xa0)?$'
+        return ur'(?i)(?:--|—|–)(?:&nbsp;|\s+|\xa0)?$'
 
     # handle warning message generated with customized attributions
     @property
