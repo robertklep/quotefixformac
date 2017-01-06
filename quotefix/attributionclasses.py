@@ -102,6 +102,7 @@ class QFDateTime(str):
         '%x'    : 'EEE MMM dd yyyy',
         '%X'    : 'HH:mm:ss',
         '%z'    : 'Z',
+        '%Z'    : 'zzz',
     }
 
     def __new__(cls, nsdate):
@@ -129,7 +130,8 @@ class QFDateTime(str):
             daylong     = "EEEE",
             date        = "EEE MMM dd yyyy",
             time        = "HH:mm:ss",
-            timezone    = "Z",
+            offset      = "Z",
+            timezone    = "zzz",
         )
 
         for attribute, format in attributes.items():
