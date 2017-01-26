@@ -107,6 +107,7 @@ def fix(self):
         else:
             # remove attachment placeholders?
             if self.app.remove_attachment_placeholders:
+                logger.debug('calling remove_attachment_placeholders()')
                 self.remove_attachment_placeholders(backend, htmlroot)
 
             # move cursor to end of document
@@ -163,17 +164,18 @@ def fix(self):
 
 def remove_attachment_placeholders(self, backend, htmlroot):
     messages = objc.getInstanceVariable(backend, '_originalMessages')
+    if not messages:
+        NSLog('unable to retrieve _originalMessages')
+        return
     for original in messages:
         try:
             # ElCap and older
             messagebody = original.messageBody()
+            attachments = messagebody.attachmentFilenames()
         except:
             # Sierra
-            messagebody = original.cachedMimeBody()
-        if not messagebody:
-            NSLog('no message body')
-            return
-        attachments = messagebody.attachmentFilenames()
+            message = original.parsedMessage()
+            attachments = [ v.filename() for k, v in message.attachmentsByURL().iteritems() ]
         NSLog('attachments: %@', attachments)
         if not attachments:
             return
