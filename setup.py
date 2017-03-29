@@ -112,6 +112,8 @@ PLIST = {
         '9054AFD9-2607-489E-8E63-8B09A749BC61',
         # Mail 10.2 (3253) Sierra 10.12.2 beta
         '1CD3B36A-0E3B-4A26-8F7E-5BDF96AAC97E',
+        # Mail 10.3 (3273) Sierra 10.12.4
+        '21560BD9-A3CC-482E-9B99-95B7BF61EDC1',
     ],
     # settings for Sparkle
     'SUFeedURL' : 'https://raw.github.com/robertklep/quotefixformac/master/updates/appcast.xml',
