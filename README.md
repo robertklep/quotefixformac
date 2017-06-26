@@ -50,7 +50,7 @@ It also provides customized attributions for replies and forwards.
 
 Before installing the plug-in, you'll need to make sure that Mail.app's
 plug-in support is turned on. For this, execute the following two commands
-in Terminal.app:
+in Terminal.app as root or admin user:
 ```
 defaults write com.apple.mail EnableBundles -bool true
 defaults write com.apple.mail BundleCompatibilityVersion -string 3
