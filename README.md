@@ -52,8 +52,8 @@ Before installing the plug-in, you'll need to make sure that Mail.app's
 plug-in support is turned on. For this, execute the following two commands
 in Terminal.app:
 ```
-defaults write com.apple.mail EnableBundles -bool true
-defaults write com.apple.mail BundleCompatibilityVersion -string 3
+defaults write ~/Library/Containers/com.apple.mail/Data/Library/Preferences/com.apple.mail.plist EnableBundles -bool true
+defaults write ~/Library/Containers/com.apple.mail/Data/Library/Preferences/com.apple.mail.plist BundleCompatibilityVersion 4
 ```
 
 Next, perform the following steps:
