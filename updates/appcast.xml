@@ -6,6 +6,19 @@
       <description>Most recent changes with links to updates.</description>
       <language>en</language>
       <item>
+        <title>Version 2.8.0</title>
+        <description><![CDATA[
+          <h2>Long overdue 2.8.0 release</h2>
+        ]]></description>
+        <pubDate>Fri Aug 18 13:49:19 2017 CEST</pubDate>
+        <enclosure
+          url="https://github.com/robertklep/quotefixformac/releases/download/v2.8.0/QuoteFix-v2.8.0.zip"
+          length="5791937"
+          sparkle:version="v2.8.0"
+          type="application/octet-stream"
+          sparkle:dsaSignature="MCwCFE0eC6NRNrKF9/zQIyR9xb6otquuAhR/z8PUgRUOEr9PbIoFZj+XjKflVQ==" />
+      </item>
+      <item>
         <title>Version 2.7.4</title>
         <description><![CDATA[
           <h2>Preliminary support for Mail 9.3</h2>
