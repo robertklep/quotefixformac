@@ -10,6 +10,7 @@ However, do keep submitting bug reports. I'll try and fix them as fast as I can.
 
 The latest release can always be found [here](https://github.com/robertklep/quotefixformac/releases/).
 
+* [v2.8.0](https://github.com/robertklep/quotefixformac/releases/tag/v2.8.0): Official 2.8.0 release
 * [v2.8.0-alpha.6](https://github.com/robertklep/quotefixformac/releases/tag/v2.8.0-alpha.6): Sierra 10.12.4 support
 * [v2.8.0-alpha.5](https://github.com/robertklep/quotefixformac/releases/tag/v2.8.0-alpha.5): bugfixes
 * [v2.8.0-alpha.4](https://github.com/robertklep/quotefixformac/releases/tag/v2.8.0-alpha.4): bugfixes
