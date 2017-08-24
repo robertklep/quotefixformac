@@ -27,44 +27,67 @@ class QuoteFixPreferencesModule(NSPreferencesModule):
     def isResizable(self):
         return False
 
-class QuoteFixPreferences(NSPreferences):
+try:
+    # High Sierra
+    MailPreferences = objc.lookUpClass('MailPreferences')
+    MailApp         = objc.lookUpClass('MailApp')
 
-    @classmethod
-    def injectPreferencesModule(cls, prefs):
-        titles = objc.getInstanceVariable(prefs, '_preferenceTitles')
-        if 'QuoteFix' not in titles:
-            prefs.addPreferenceNamed_owner_("QuoteFix", QuoteFixPreferencesModule.sharedInstance())
-            toolbar     = objc.getInstanceVariable(prefs, '_preferencesPanel').toolbar()
-            numitems    = len( toolbar.items() )
-            toolbar.insertItemWithItemIdentifier_atIndex_("QuoteFix", numitems)
+    class QuoteFixPreferences(MailPreferences):
 
-    @swizzle(NSPreferences, 'showPreferencesPanel')
-    def showPreferencesPanel(self, original):
-        QuoteFixPreferences.injectPreferencesModule(self)
-        original(self)
+        @classmethod
+        def injectPreferencesModule(cls, prefs):
+            titles = objc.getInstanceVariable(prefs, '_preferenceTitles')
+            if 'QuoteFix' not in titles:
+                prefs.addPreferenceNamed_owner_("QuoteFix", QuoteFixPreferencesModule.sharedInstance())
+
+    class QuoteFixMailApp(MailApp):
+
+        @swizzle(MailApp, 'showPreferencesPanel:')
+        def showPreferencesPanel_(self, original, id):
+            prefs = NSPreferences.sharedPreferences()
+            if prefs: QuoteFixPreferences.injectPreferencesModule(prefs)
+            original(self, id)
+
+except:
+
+    class QuoteFixPreferences(NSPreferences):
+
+        @classmethod
+        def injectPreferencesModule(cls, prefs):
+            titles = objc.getInstanceVariable(prefs, '_preferenceTitles')
+            if 'QuoteFix' not in titles:
+                prefs.addPreferenceNamed_owner_("QuoteFix", QuoteFixPreferencesModule.sharedInstance())
+                toolbar     = objc.getInstanceVariable(prefs, '_preferencesPanel').toolbar()
+                numitems    = len( toolbar.items() )
+                toolbar.insertItemWithItemIdentifier_atIndex_("QuoteFix", numitems)
+
+        @swizzle(NSPreferences, 'showPreferencesPanel')
+        def showPreferencesPanel(self, original):
+            QuoteFixPreferences.injectPreferencesModule(self)
+            original(self)
 
 # controller for NIB controls
 class QuoteFixPreferencesController(NSObject):
-    updateInterval                      = objc.IBOutlet()
-    lastUpdateCheck                     = objc.IBOutlet()
-    currentVersionUpdater               = objc.IBOutlet()
-    checkUpdateButton                   = objc.IBOutlet()
-    customReplyAttribution              = objc.IBOutlet()
-    customForwardingAttribution         = objc.IBOutlet()
-    customSendAgainAttribution          = objc.IBOutlet()
-    customSignatureMatcher              = objc.IBOutlet()
-    customSignatureMatcherFeedback      = objc.IBOutlet()
-    customSignatureMatcherDefault       = objc.IBOutlet()
-    helpButton                          = objc.IBOutlet()
-    donateButton                        = objc.IBOutlet()
+    updateInterval                  = objc.IBOutlet()
+    lastUpdateCheck                 = objc.IBOutlet()
+    currentVersionUpdater           = objc.IBOutlet()
+    checkUpdateButton               = objc.IBOutlet()
+    customReplyAttribution          = objc.IBOutlet()
+    customForwardingAttribution     = objc.IBOutlet()
+    customSendAgainAttribution      = objc.IBOutlet()
+    customSignatureMatcher          = objc.IBOutlet()
+    customSignatureMatcherFeedback  = objc.IBOutlet()
+    customSignatureMatcherDefault   = objc.IBOutlet()
+    helpButton                      = objc.IBOutlet()
+    donateButton                    = objc.IBOutlet()
 
     @classmethod
     def registerQuoteFixApplication(cls, app):
         cls.app = app
         # inject preferences module
-        prefs = NSPreferences.sharedPreferences()
-        if prefs:
-            QuoteFixPreferences.injectPreferencesModule(prefs)
+        #prefs = NSPreferences.sharedPreferences()
+        #if prefs:
+        #    QuoteFixPreferences.injectPreferencesModule(prefs)
 
     @objc.IBAction
     def changeDebugging_(self, sender):
