@@ -6,6 +6,19 @@
       <description>Most recent changes with links to updates.</description>
       <language>en</language>
       <item>
+        <title>Version 2.8.2</title>
+        <description><![CDATA[
+          <h2>Bugfix</h2>
+        ]]></description>
+        <pubDate>Mon Aug 28 12:25:51 2017 CEST</pubDate>
+        <enclosure
+          url="https://github.com/robertklep/quotefixformac/releases/download/v2.8.2/QuoteFix-v2.8.2.zip"
+          length="5791642"
+          sparkle:version="v2.8.2"
+          type="application/octet-stream"
+          sparkle:dsaSignature="MC0CFQC0RUjNc/rtdpDJJ7QQR0/0aBfXeQIUAzXIkjfi+W3kCUBIiCIxm+m80FM=" />
+      </item>
+      <item>
         <title>Version 2.8.1</title>
         <description><![CDATA[
           <h2>Minor changes</h2>
