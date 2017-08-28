@@ -351,6 +351,11 @@ try:
             logger.debug('[ComposeViewController finishLoadingEditor]')
             original(self)
             self.fix()
+
+            is_active = self.app.toggle_key_active ^ self.app.is_active
+            if not is_active or not self.app.is_quotefixing:
+                return
+
             # Don't let any changes made during quotefixing trigger the 'Save
             # to Drafts' alert.
             self.setHasUserMadeChanges_(False)
@@ -363,7 +368,7 @@ try:
 
             # If toggle key is active, temporarily switch the active state
             is_active = self.app.toggle_key_active ^ self.app.is_active
-            if not is_active:
+            if not is_active or not self.app.is_quotefixing:
                 return
 
             # When the compose view should be shown, we assume any animations
