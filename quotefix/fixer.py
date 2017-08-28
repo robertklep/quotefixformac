@@ -352,10 +352,6 @@ try:
             original(self)
             self.fix()
 
-            is_active = self.app.toggle_key_active ^ self.app.is_active
-            if not is_active or not self.app.is_quotefixing:
-                return
-
             # Don't let any changes made during quotefixing trigger the 'Save
             # to Drafts' alert.
             self.setHasUserMadeChanges_(False)
