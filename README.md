@@ -332,3 +332,5 @@ See also [http://sparkle.andymatuschak.org/](http://sparkle.andymatuschak.org/).
 # Like Quotefix?
 
 Consider making a donation: <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=4UF2KB2BTW6AC"><img style="vertical-align:middle" src="https://www.paypalobjects.com/en_GB/i/btn/btn_donate_SM.gif"></a>
+
+ETH: 0x93eaE7ad708EF996bdd2d03d42D10dB278E29172	
