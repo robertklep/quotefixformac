@@ -168,15 +168,23 @@ def remove_attachment_placeholders(self, backend, htmlroot):
         NSLog('unable to retrieve _originalMessages')
         return
     for original in messages:
-        try:
-            # ElCap and older
-            messagebody = original.messageBody()
-            attachments = messagebody.attachmentFilenames()
-        except:
+        if original.respondsToSelector_('parsedMessage'):
             # Sierra
             message = original.parsedMessage()
             attachments = [ v.filename() for k, v in message.attachmentsByURL().iteritems() ]
-        NSLog('attachments: %@', attachments)
+        elif original.respondsToSelector_('messageBody'):
+            messagebody = original.messageBody()
+            if not messagebody:
+                # High Sierra
+                NSLog('unable to retrieve message body to remove attachment placeholders')
+                continue
+            else:
+                # ElCap and older
+                attachments = messagebody.attachmentFilenames()
+        else:
+            NSLog("unable to retrieve list of attachments")
+            continue
+
         if not attachments:
             return
         html        = htmlroot.innerHTML()
