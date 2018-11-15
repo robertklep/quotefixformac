@@ -60,15 +60,19 @@
 			a[name]				{ color: inherit !important }
 			a[name]:hover	{ text-decoration: none }
 
-			ul, p, table
+			ul, ol, p, table
 			{
 				width				: 80%;
 			}
 
-			ul
+			ul, ol
 			{
 				margin			: 1em auto;
 			}
+
+      ol ul {
+        margin-left : 0 !important;
+      }
 
 			ul.toc, ul.toc li
 			{
@@ -98,8 +102,8 @@
 			}
 
       code
-      { 
-        background: #ccc; 
+      {
+        background: #ccc;
         font-size: 12px;
       }
 
@@ -172,38 +176,32 @@
 				It also provides customized attributions for replies and forwards.
 			</p>
 			<h2><a name="installing">Installing the plug-in</a></h2>
+      <ol>
+        <li> Provide permission to "Terminal.app" for installing the QuoteFix plugin:
+          <ul>
+           <li>Go to "System Preferences &gt; Security &amp; Privacy &gt; Privacy"
+           <li>Unlock if needed via clicking lower left "Lock Icon"
+           <li>Select "Full Disk Access or Application Data"
+           <li>Click the "+" icon
+           <li>Select "Terminal.app" and click "Add"
+           <li>Note: The "Terminal.app" have to be restarted for changes to take effect (if its already open).
+          </ul>
+        </li>
+        <li>Double click or run <code>Install-or-Upgrade-or-Reenable.command</code></li>
+        <li>Enable the QuoteFix plugin in Mail.app:
+          <ul>
+            <li>Go to "Mail &gt; Preferences &gt; General"
+            <li>Click "Manage Plug-ins" button
+            <li>Check mark the "QuoteFix.mailbundle"
+            <li>Click "Apply and Restart Mail.app" button
+          </ul>
+        </li>
+      </ol>
 			<p>
-				Before installing the plug-in, you'll need to make sure that
-				Mail.app's plug-in support is turned on. For this, execute the
-				following two commands in Terminal.app:
-			</p>
-			<p>
-				<code>
-					defaults write com.apple.mail EnableBundles -bool true<br/>
-					defaults write com.apple.mail BundleCompatibilityVersion -string 3
-				</code>
-			</p>
-			<p>
-				Next, perform the following steps:
-				<ul>
-					<li>Download the plugin if you haven't done so already</li>
-					<li>Navigate in Finder to <code>~/Library/Mail/</code><br/>
-							<i>(where <b>~</b> means: your home directory)</i>
-					</li>
-					<li>
-					If a <code>Bundles</code> folder doesn't yet exist, create an
-					empty one
-					</li>
-          <li>Extract the downloaded ZIP file and copy <code>QuoteFix.mailbundle</code> into the <code>Bundles</code> folder</li>
-				</ul>
-			</p>
-			<p>
-				Lastly, quit Mail.app if it's running, and start it up again.
-			</p>
-			<p>
-				<a name="uninstall">In case you run into any problems</a>, or want to
-				uninstall QuoteFix, just remove <code>QuoteFix.mailbundle</code> from
-				the bundle-folder and restart Mail.app.
+        <a name="uninstall">In case you run into any problems</a>, or want to
+        uninstall QuoteFix, just remove <code>QuoteFix.mailbundle</code> from
+        the bundle-folder and restart Mail.app. You can also double click or
+        run the <code>Uninstall.command</code> script.
 			</p>
 			<h2><a name="using">Using the plug-in</a></h2>
 			<p>

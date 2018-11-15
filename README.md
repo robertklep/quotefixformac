@@ -10,6 +10,7 @@ However, do keep submitting bug reports. I'll try and fix them as fast as I can.
 
 The latest release can always be found [here](https://github.com/robertklep/quotefixformac/releases/).
 
+* [v2.10.0-alpha.1](https://github.com/robertklep/quotefixformac/releases/tag/v2.10.0-alpha.1): Mojave support
 * [v2.9.0](https://github.com/robertklep/quotefixformac/releases/tag/v2.9.0): Official 2.9.0 release
 * [v2.9.0-alpha.1](https://github.com/robertklep/quotefixformac/releases/tag/v2.9.0-alpha.1): High Sierra support
 * [v2.8.0](https://github.com/robertklep/quotefixformac/releases/tag/v2.8.0): Official 2.8.0 release
@@ -334,4 +335,4 @@ See also [http://sparkle.andymatuschak.org/](http://sparkle.andymatuschak.org/).
 
 Consider making a donation: <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=4UF2KB2BTW6AC"><img style="vertical-align:middle" src="https://www.paypalobjects.com/en_GB/i/btn/btn_donate_SM.gif"></a>
 
-ETH: 0x93eaE7ad708EF996bdd2d03d42D10dB278E29172	
+ETH: 0x93eaE7ad708EF996bdd2d03d42D10dB278E29172
