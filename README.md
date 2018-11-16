@@ -6,14 +6,11 @@ I decided to not accept requests for new features for the time being, primarily 
 
 However, do keep submitting bug reports. I'll try and fix them as fast as I can.
 
-## Mojave support
-
-For the time being, Mojave won't be supported. The latest version (2.9.0) fails to load on Mojave, and I have only limited time to try and get it working (FWIW, merely adding the Mojave UUID to `setup.py` isn't enough).
-
 ## Latest releases
 
 The latest release can always be found [here](https://github.com/robertklep/quotefixformac/releases/).
 
+* [v2.10.0-alpha.1](https://github.com/robertklep/quotefixformac/releases/tag/v2.10.0-alpha.1): Mojave support
 * [v2.9.0](https://github.com/robertklep/quotefixformac/releases/tag/v2.9.0): Official 2.9.0 release
 * [v2.9.0-alpha.1](https://github.com/robertklep/quotefixformac/releases/tag/v2.9.0-alpha.1): High Sierra support
 * [v2.8.0](https://github.com/robertklep/quotefixformac/releases/tag/v2.8.0): Official 2.8.0 release
