@@ -125,7 +125,7 @@ yes | rm -rf "${HOME}/Library/Mail/Bundles (Disabled)/QuoteFix.mailbundle"
 echo "QF:: Installation complete" 
 
 if [[ ${mh_mac_osx_version_p} == *"10.14"* ]]; then
-echo "\nQF:: ${GCB}Plugin copied into '${HOME}/Library/Mail/Bundles'${CC}. Follow the \"Step 3\" from \"Install-Instructions-Mojave-OS-and-Above.txt\"\n\n"
+echo "\nQF:: ${GCB}Plugin copied into '${HOME}/Library/Mail/Bundles'${CC}. Proceed with the next step (\"Enable the QuoteFix plugin in Mail.app\")\n\n"
 else
 echo "\n========================================================="
 echo "  ${GCB}QF Plugin successfully installed${CC}, ${RCWHB} restart Mail.app ${CC}  "

@@ -1,105 +1,106 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-	<head>
-		<style type="text/css">
-			body, html
-			{
-				margin			: 0;
-				padding			: 0;
-				background	: #e5e5e5;
-				color				: black;
-				font-family	: Palatino, Georgia, serif;
+  <head>
+    <title>QuoteFix for Mac</title>
+    <style type="text/css">
+      body, html
+      {
+        margin      : 0;
+        padding      : 0;
+        background  : #e5e5e5;
+        color        : black;
+        font-family  : Palatino, Georgia, serif;
         font-size   : 15px;
-				line-height	: 150%;
-				text-align	: justify;
-			}
+        line-height  : 150%;
+        text-align  : justify;
+      }
 
-			.container
-			{
+      .container
+      {
         background            : white;
-				width									: 680px;
-				margin								: 1em auto;
-				padding								: 1em;
-				border								: 4px solid #ccc;
-				-webkit-border-radius	: 10px;
-				-moz-border-radius		: 10px;
-			}
+        width                  : 680px;
+        margin                : 1em auto;
+        padding                : 1em;
+        border                : 4px solid #ccc;
+        -webkit-border-radius  : 10px;
+        -moz-border-radius    : 10px;
+      }
 
-			h1, h2, h3, h4, h5, h6
-			{
-				font-style	: italic;
-				font-weight	: normal;
-				text-align	: center;
-				margin			: 0.5em 0;
-			}
+      h1, h2, h3, h4, h5, h6
+      {
+        font-style  : italic;
+        font-weight  : normal;
+        text-align  : center;
+        margin      : 0.5em 0;
+      }
 
-			h1
-			{
-				font-weight	: bold;
-				font-size		: 250%;
-				margin-bottom: 1em;
-			}
+      h1
+      {
+        font-weight  : bold;
+        font-size    : 250%;
+        margin-bottom: 1em;
+      }
 
-			h2
-			{
-				text-align	: left;
-				margin			: 1.5em 10% 1em 10%;
-			}
+      h2
+      {
+        text-align  : left;
+        margin      : 1.5em 10% 1em 10%;
+      }
 
-			a
-			{
-				color				: #009;
-				text-decoration: none;
-			}
+      a
+      {
+        color        : #009;
+        text-decoration: none;
+      }
 
-			a:hover
-			{
-				text-decoration: underline;
-			}
+      a:hover
+      {
+        text-decoration: underline;
+      }
 
-			a[name]				{ color: inherit !important }
-			a[name]:hover	{ text-decoration: none }
+      a[name]        { color: inherit !important }
+      a[name]:hover  { text-decoration: none }
 
-			ul, ol, p, table
-			{
-				width				: 80%;
-			}
+      ul, ol, p, table
+      {
+        width        : 80%;
+      }
 
-			ul, ol
-			{
-				margin			: 1em auto;
-			}
+      ul, ol
+      {
+        margin      : 1em auto;
+      }
 
       ol ul {
         margin-left : 0 !important;
       }
 
-			ul.toc, ul.toc li
-			{
-				list-style	: none;
-				margin			: 0;
-				padding			: 0;
-			}
+      ul.toc, ul.toc li
+      {
+        list-style  : none;
+        margin      : 0;
+        padding      : 0;
+      }
 
-			ul.toc
-			{
-				font-size	: 110%;
-				margin		: 0 10%;
-			}
+      ul.toc
+      {
+        font-size  : 110%;
+        margin    : 0 10%;
+      }
 
-			ul.toc li
-			{
-				display	: inline-block;
-				width		: 49%;
-			}
+      ul.toc li
+      {
+        display  : inline-block;
+        width    : 49%;
+      }
 
-			ul.toc li:nth-child(odd) 	{ text-align: left }
-			ul.toc li:nth-child(even) { text-align: right }
+      ul.toc li:nth-child(odd)   { text-align: left }
+      ul.toc li:nth-child(even) { text-align: right }
 
-			p
-			{
-				margin	: 0.5em auto;
-			}
+      p
+      {
+        margin  : 0.5em auto;
+      }
 
       code
       {
@@ -115,244 +116,246 @@
         border: 1px solid #bbb;
       }
 
-			.pre
-			{
-				width			: 70%;
-				margin		: 0 auto;
-				font-family: monospace;
-				font-size	: 85%;
-				text-align	: justify;
-			}
+      .pre
+      {
+        width      : 70%;
+        margin    : 0 auto;
+        font-family: monospace;
+        font-size  : 85%;
+        text-align  : justify;
+      }
 
-			table
-			{
-				margin		: 0 10%;
-				border: 1px solid #ccc;
-				border-spacing	: 1px;
-			}
+      table
+      {
+        margin    : 0 10%;
+        border: 1px solid #ccc;
+        border-spacing  : 1px;
+      }
 
-			table td
-			{
-				padding	: 0 0.5em;
-				vertical-align: top;
-				border	: 1px solid #ddd;
-			}
+      table td
+      {
+        padding  : 0 0.5em;
+        vertical-align: top;
+        border  : 1px solid #ddd;
+      }
 
-			table tr td:first-child
-			{
-				font-family	: monospace;
-				font-size		: 12px;
-				background	: #ccc;
-			}
+      table tr td:first-child
+      {
+        font-family  : monospace;
+        font-size    : 12px;
+        background  : #ccc;
+      }
 
-		</style>
-	</head>
-	<body>
-		<div class="container">
-			<h1>QuoteFix</h1>
-			<h2>Table of contents</h2>
-			<ul class="toc">
-				<li><a href="#what">what is it?</a></li>
-				<li><a href="#installing">installing the plug-in</a></li>
-				<li><a href="#using">using the plug-in</a></li>
-				<li><a href="#attribution">customized attributions</a></li>
-				<li><a href="#datetimeformatting">advanced date/time formatting</a></li>
-				<li><a href="#enabledisable">enabling/disabling</a></li>
-				<li><a href="#faq">frequently asked questions</a></li>
-				<li><a href="#licence">licence &amp; copyright</a></li>
-			</ul>
-			<h2><a name="what">What is it?</a></h2>
-			<p>
-				QuoteFix is a plug-in for Mail.app which fixes some issues with
-				replying to e-mail:
-			</p>
-			<ul>
-				<li>it tries to remove the signature from the original message</li>
-				<li>it removes certain unnecessary empty lines</li>
-				<li>it positions the cursor below the original message, instead of above it (in other words, bottom-posting instead of top-posting)</li>
-				<li>it can (optionally) prune nested quotes from a specific level and above</li>
-			</ul>
-			<p>
-				It also provides customized attributions for replies and forwards.
-			</p>
-			<h2><a name="installing">Installing the plug-in</a></h2>
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>QuoteFix</h1>
+      <h2>Table of contents</h2>
+      <ul class="toc">
+        <li><a href="#what">what is it?</a></li>
+        <li><a href="#installing">installing the plug-in</a></li>
+        <li><a href="#using">using the plug-in</a></li>
+        <li><a href="#attribution">customized attributions</a></li>
+        <li><a href="#datetimeformatting">advanced date/time formatting</a></li>
+        <li><a href="#enabledisable">enabling/disabling</a></li>
+        <li><a href="#faq">frequently asked questions</a></li>
+        <li><a href="#licence">licence &amp; copyright</a></li>
+      </ul>
+      <h2><a name="what">What is it?</a></h2>
+      <p>
+        QuoteFix is a plug-in for Mail.app which fixes some issues with
+        replying to e-mail:
+      </p>
+      <ul>
+        <li>it tries to remove the signature from the original message</li>
+        <li>it removes certain unnecessary empty lines</li>
+        <li>it positions the cursor below the original message, instead of above it (in other words, bottom-posting instead of top-posting)</li>
+        <li>it can (optionally) prune nested quotes from a specific level and above</li>
+      </ul>
+      <p>
+        It also provides customized attributions for replies and forwards.
+      </p>
+      <h2><a name="installing">Installing the plug-in</a></h2>
+      <p>
+        Installation is provided through simple shell scripts, courtesy of <a href="https://myjeeva.com">Jeevanandam M.</a>
+      </p>
       <ol>
         <li> Provide permission to "Terminal.app" for installing the QuoteFix plugin:
           <ul>
            <li>Go to "System Preferences &gt; Security &amp; Privacy &gt; Privacy"
-           <li>Unlock if needed via clicking lower left "Lock Icon"
+           <li>Unlock, if needed, bt clicking the lock icon in the lower left corner
            <li>Select "Full Disk Access or Application Data"
            <li>Click the "+" icon
            <li>Select "Terminal.app" and click "Add"
-           <li>Note: The "Terminal.app" have to be restarted for changes to take effect (if its already open).
+           <li>Note: Terminal.app has to be restarted for changes to take effect
           </ul>
         </li>
         <li>Double click or run <code>Install-or-Upgrade-or-Reenable.command</code></li>
         <li>Enable the QuoteFix plugin in Mail.app:
           <ul>
             <li>Go to "Mail &gt; Preferences &gt; General"
-            <li>Click "Manage Plug-ins" button
-            <li>Check mark the "QuoteFix.mailbundle"
-            <li>Click "Apply and Restart Mail.app" button
+            <li>Click the "Manage Plug-ins" button
+            <li>Check "QuoteFix.mailbundle"
+            <li>Click the "Apply and Restart Mail.app" button
           </ul>
         </li>
       </ol>
-			<p>
+      <p>
         <a name="uninstall">In case you run into any problems</a>, or want to
-        uninstall QuoteFix, just remove <code>QuoteFix.mailbundle</code> from
-        the bundle-folder and restart Mail.app. You can also double click or
-        run the <code>Uninstall.command</code> script.
-			</p>
-			<h2><a name="using">Using the plug-in</a></h2>
-			<p>
-				After installation, QuoteFix is enabled. It will perform its magic
-				automatically when you reply to, or forward, messages.
-			</p>
-			<p>
-				The behaviour of the plug-in is customizable via its preferences.
-				QuoteFix has it's own preference pane in the preferences window of
-				Mail.app. Most preferences speak for themselves, or have a useful
-				tooltip which pops up when you hover the cursor above it.
-			</p>
-			<p>
-				If you temporarily want to turn off QuoteFix, but don't want to
-				<a href="#uninstall">uninstall</a> it, check off the <i>QuoteFix is
-					enabled</i> checkbox. As of version 2.3.1, (de)activating
-				QuoteFix can be done from a menu item in the <code>Mail</code>
-				menu. You could use <a
-					href="http://lifehacker.com/343328/create-a-keyboard-shortcut-for-any-menu-action-in-any-program">the
-					standard way of assigning a keyboard shortcut to a menu item in
-					Mac OS X</a> to enable or disable QuoteFix with a keyboard
-				shortcut.
-			</p>
-			<h2><a name="attribution">Customized Attributions</a></h2>
-			<p>
-				QuoteFix also provides the ability to define your own attribution
-				lines (the first line of a reply/forward, usually looking something
-				like <code>On SOME DATE, at SOME TIME, SOMEONE wrote:</code>).
-			</p>
-			<p>
-				Customized attributions work by way of templates: you define
-				a template in the preferences, and parts of the template will
-				&ndash; at the time of replying or forwarding &ndash; be replaced
-				by values reflecting parts of the message you are replying to or
-				forwarding.
-			</p>
-			<p>
-				Templating works by replacing template variables with values.
-				A template variable looks like this:
-				<code>${VARIABLE}</code>. It will be replaced with a value
-				depending on what <code>VARIABLE</code> contains.
-			</p>
-			<p>
-				A (non-exhaustive) list of variables you can use:
-				<table border=0>
-					<tr>
-						<td>${message.from}</td>
-						<td>
-							Name and e-mail address of sender of message:<br/>
-							<i>Your Friend &lt;yourfriend@example.com&gt;</i>
-						</td>
-					</tr>
-					<tr>
-						<td>${message.from.name}</td>
-						<td>
-							Name of sender of message:<br/>
-							<i>Your Friend</i>
-						</td>
-					</tr>
-					<tr>
-						<td>${message.from.email}</td>
-						<td>
-							E-mail address of sender of message:<br/>
-							<i>yourfriend@example.com</i>
-						</td>
-					</tr>
-					<tr>
-						<td>${message.to}</td>
-						<td>
-							Your e-mail address (this is the address that was used for
-							the message to reach you). This is more like the
-							<code>Delivered-To</code> header than the <code>To</code>
-							header (for that, see <code>${message.recipients}</code>)
-						</td>
-					</tr>
-					<tr>
-						<td>${message.recipients}</td>
-						<td>
-							A list of all the recipients of the message, as mentioned in
-							both the <code>To</code> and <code>Cc</code> headers.
-						</td>
-					</tr>
-					<tr>
-						<td>${message.recipients.to}</td>
-						<td>
-							A list of the recipients of the message mentioned in
-							the <code>To</code> header.
-						</td>
-					</tr>
-					<tr>
-						<td>${message.recipients.cc}</td>
-						<td>
-							A list of the recipients of the message mentioned in
-							the <code>Cc</code> header.
-						</td>
-					</tr>
-					<tr>
-						<td>${message.subject}</td>
-						<td>The subject of the message.</td>
-					</tr>
-					<tr>
-						<td>
-							${message.sent}<br/>
-							${message.received}
-						</td>
-						<td>
-							Sent/received timestamps. If you want more finegrained
-							control over formatting timestamps, these variables split
-							into separate fields: <code>year</code>, <code>month</code>,
-							<code>day</code>, <code>hour</code>, <code>hour12</code>,
-							<code>ampm</code>, <code>minute</code>, <code>second</code>,
-							<code>weeknumber</code>, <code>monthshort</code>,
-							<code>monthlong</code>, <code>dayshort</code>,
-							<code>daylong</code>, <code>date</code>, <code>time</code>.<br/>
-							Use these like so: <code>${message.sent.year}</code>.
-							<p><a href="#datetimeformatting">See below for more advanced date/time formatting
-								options.</a></p>
-						</td>
-					</tr>
-				</table>
-			</p>
-			<p>
-				If you want even more freedom in formatting attribution lines,
-				there's an experimental feature (which can be enabled in the
-				<i>Advanced</i> preferences) which enables conditional statements,
-				string/date formatting, and much more. This is based on a modified
-				version of the <a target="_blank"
-					href="http://www.simple-is-better.org/template/pyratemp.html">pyratemp</a>
-				templating library for Python written by Roland Koebler.
-			</p>
-			<p>
-				A small example of what's possible:<br/>
+        uninstall QuoteFix, double click or run the <code>Uninstall.command</code> script.
+        You can also remove <code>QuoteFix.mailbundle</code> from the Mail bundle folder.
+      </p>
+      <h2><a name="using">Using the plug-in</a></h2>
+      <p>
+        After installation, QuoteFix is enabled. It will perform its magic
+        automatically when you reply to, or forward, messages.
+      </p>
+      <p>
+        The behaviour of the plug-in is customizable via its preferences.
+        QuoteFix has it's own preference pane in the preferences window of
+        Mail.app. Most preferences speak for themselves, or have a useful
+        tooltip which pops up when you hover the cursor above it.
+      </p>
+      <p>
+        If you temporarily want to turn off QuoteFix, but don't want to
+        <a href="#uninstall">uninstall</a> it, check off the <i>QuoteFix is
+          enabled</i> checkbox. As of version 2.3.1, (de)activating
+        QuoteFix can be done from a menu item in the <code>Mail</code>
+        menu. You could use <a
+          href="http://lifehacker.com/343328/create-a-keyboard-shortcut-for-any-menu-action-in-any-program">the
+          standard way of assigning a keyboard shortcut to a menu item in
+          Mac OS X</a> to enable or disable QuoteFix with a keyboard
+        shortcut.
+      </p>
+      <h2><a name="attribution">Customized Attributions</a></h2>
+      <p>
+        QuoteFix also provides the ability to define your own attribution
+        lines (the first line of a reply/forward, usually looking something
+        like <code>On SOME DATE, at SOME TIME, SOMEONE wrote:</code>).
+      </p>
+      <p>
+        Customized attributions work by way of templates: you define
+        a template in the preferences, and parts of the template will
+        &ndash; at the time of replying or forwarding &ndash; be replaced
+        by values reflecting parts of the message you are replying to or
+        forwarding.
+      </p>
+      <p>
+        Templating works by replacing template variables with values.
+        A template variable looks like this:
+        <code>${VARIABLE}</code>. It will be replaced with a value
+        depending on what <code>VARIABLE</code> contains.
+      </p>
+      <p>
+        A (non-exhaustive) list of variables you can use:
+        <table border=0>
+          <tr>
+            <td>${message.from}</td>
+            <td>
+              Name and e-mail address of sender of message:<br/>
+              <i>Your Friend &lt;yourfriend@example.com&gt;</i>
+            </td>
+          </tr>
+          <tr>
+            <td>${message.from.name}</td>
+            <td>
+              Name of sender of message:<br/>
+              <i>Your Friend</i>
+            </td>
+          </tr>
+          <tr>
+            <td>${message.from.email}</td>
+            <td>
+              E-mail address of sender of message:<br/>
+              <i>yourfriend@example.com</i>
+            </td>
+          </tr>
+          <tr>
+            <td>${message.to}</td>
+            <td>
+              Your e-mail address (this is the address that was used for
+              the message to reach you). This is more like the
+              <code>Delivered-To</code> header than the <code>To</code>
+              header (for that, see <code>${message.recipients}</code>)
+            </td>
+          </tr>
+          <tr>
+            <td>${message.recipients}</td>
+            <td>
+              A list of all the recipients of the message, as mentioned in
+              both the <code>To</code> and <code>Cc</code> headers.
+            </td>
+          </tr>
+          <tr>
+            <td>${message.recipients.to}</td>
+            <td>
+              A list of the recipients of the message mentioned in
+              the <code>To</code> header.
+            </td>
+          </tr>
+          <tr>
+            <td>${message.recipients.cc}</td>
+            <td>
+              A list of the recipients of the message mentioned in
+              the <code>Cc</code> header.
+            </td>
+          </tr>
+          <tr>
+            <td>${message.subject}</td>
+            <td>The subject of the message.</td>
+          </tr>
+          <tr>
+            <td>
+              ${message.sent}<br/>
+              ${message.received}
+            </td>
+            <td>
+              Sent/received timestamps. If you want more finegrained
+              control over formatting timestamps, these variables split
+              into separate fields: <code>year</code>, <code>month</code>,
+              <code>day</code>, <code>hour</code>, <code>hour12</code>,
+              <code>ampm</code>, <code>minute</code>, <code>second</code>,
+              <code>weeknumber</code>, <code>monthshort</code>,
+              <code>monthlong</code>, <code>dayshort</code>,
+              <code>daylong</code>, <code>date</code>, <code>time</code>.<br/>
+              Use these like so: <code>${message.sent.year}</code>.
+              <p><a href="#datetimeformatting">See below for more advanced date/time formatting
+                options.</a></p>
+            </td>
+          </tr>
+        </table>
+      </p>
+      <p>
+        If you want even more freedom in formatting attribution lines,
+        there's an experimental feature (which can be enabled in the
+        <i>Advanced</i> preferences) which enables conditional statements,
+        string/date formatting, and much more. This is based on a modified
+        version of the <a target="_blank"
+          href="http://www.simple-is-better.org/template/pyratemp.html">pyratemp</a>
+        templating library for Python written by Roland Koebler.
+      </p>
+      <p>
+        A small example of what's possible:<br/>
         <code class="block">
-					From: ${message.from}<br/>
-					{% if message.recipients.to %}<br/>
-					&nbsp;To: ${message.recipients.to.join("; ", "name")}<br/>
-					{% end %}<br/>
-					{% if message.recipients.cc %}<br/>
-				  &nbsp;Cc: ${message.recipients.cc.join("; ", "name")}<br/>
-					{% end %}<br/>
-					Subject: ${message.subject.lower()}<br/>
-					Sent-Date: ${message.sent.strftime("%d-%m-%Y")}<br/>
-				</code>
-			</p>
-			<p>
-				You can also enable HTML-formatting for your custom attributions.
-				For this to work, the (outgoing) message format should be <i>Rich
-					Text</i>. You can have QuoteFix automatically convert a message
-				to Rich Text if your attribution should be interpreted in HTML.
-				Otherwise, QuoteFix will issue a warning.
-			</p>
+          From: ${message.from}<br/>
+          {% if message.recipients.to %}<br/>
+          &nbsp;To: ${message.recipients.to.join("; ", "name")}<br/>
+          {% end %}<br/>
+          {% if message.recipients.cc %}<br/>
+          &nbsp;Cc: ${message.recipients.cc.join("; ", "name")}<br/>
+          {% end %}<br/>
+          Subject: ${message.subject.lower()}<br/>
+          Sent-Date: ${message.sent.strftime("%d-%m-%Y")}<br/>
+        </code>
+      </p>
+      <p>
+        You can also enable HTML-formatting for your custom attributions.
+        For this to work, the (outgoing) message format should be <i>Rich
+          Text</i>. You can have QuoteFix automatically convert a message
+        to Rich Text if your attribution should be interpreted in HTML.
+        Otherwise, QuoteFix will issue a warning.
+      </p>
       <p>
         If you want to mimic the attribution generated by Outlook, try this
         (with HTML-formatting enabled):
@@ -363,163 +366,163 @@
           &lt;b&gt;Subject:&lt;/b&gt; ${message.subject}<br>
         </code>
       </p>
-			<p>
-				When you're editing your customized attribution, QuoteFix will
-				generate an approximate preview as tooltip of the text field you're
-				entering the attribution in.
-			</p>
-			<h2><a name="datetimeformatting">Advanced date/time formatting</a></h2>
-			<p>
-				If you want even more finegrained control over the formatting of
-				dates and times, you can enable "advanced templating" in the
-				<i>Advanced</i> preferences, after which date/time variables like
-				<code>message.sent</code> and <code>message.received</code> will
-				have <code>.format</code> and <code>.strftime</code> methods with
-				which you can format the output of the objects.
-			</p>
-			<p>
-				Functionally, these two methods perform the same operation &mdash;
-				namely formatting date/time objects &mdash; the difference is in
-				the formatting strings used:
-				<ul>
-					<li>
-						<code>.strftime</code> uses the common <i>Unix</i> function with
-						the same name for formatting. <a
-							href="http://docs.python.org/library/time.html#time.strftime">Look
-							here for more information</a>.
-					</li>
-					<li>
-						<code>.format</code> uses the <i>Unicode</i> date format patterns.
-						<a
-							href="http://unicode.org/reports/tr35/tr35-10.html#Date_Format_Patterns">
-							Look here for more information</a>.
-					</li>
-				</ul>
-			</p>
-			<p>
-				An example:
-			</p>
-			<p>
-				<code>${message.sent.format("EEE MMM dd yyyy HH:mm:ss")}</code>
-			</p>
-			<p>
-				This will output: <code>Sun Nov 06 2011 10:19:34</code>
-			</p>
-			<p>
-				<b>However: the output will be generated in the current locale,
-					which means that it will be formatted according to your local
-					language settings. See below on how to use a different locale.
-				</b>
-			</p>
-			<p>
-				Similarly, with <code>.strftime</code>:
-				<br/>
-				<code>${message.sent.strftime("%a %b %d %Y %H:%M:%S")}</code>
-			</p>
-			<p>
-				Both methods accept a second argument: a locale identifier. You can
-				use it to convert the output to a certain locale, instead of the
-				default locale (which can be changed in the <i>System
-					Preferences</i> of Mac OS X: <i>Language &amp; Text</i> &gt;
-				<i>Formats</i>).
-			</p>
-			<p>
-				The same example as above, but with a different locale:
-			</p>
-			<p>
-				<code>${message.sent.format("EEE MMM dd yyyy HH:mm:ss", 'fr_FR')}</code>
-			</p>
-			<p>
-				The output: <code>dim. nov. 06 2011 10:19:34</code>
-			</p>
-			<p>
-				If you want the default format, just in a different locale,
-				use the <code>.locale</code> method:
-			</p>
-			<p>
-				<code>${message.sent.locale('fr_FR')}</code>
-			</p>
-			<h2><a name="enabledisable">Enabling/disabling the plug-in</a></h2>
-			<p>
-				QuoteFix has various ways of turning off its behaviour, short of
-				uninstalling it:
-			</p>
-			<p>
-				<ul>
-					<li>You can turn QuoteFix off from its preferences; this will
-						  disable the plug-in until you enable it again;
-					</li>
-					<li>
-						You can quickly turn the plug-in on/off from the <i>Mail</i>
-						menu. If you want, you can even assign a keyboard shortcut to
-						this menu item from System Preferences;
-					</li>
-					<li>
-						You can toggle the enable (or disable) status of QuoteFix for
-						a single message by pressing down <code>Option</code> whilst
-						initiating a Reply/Forward action. That is:
-						<ul style="margin-left: 0">
-							<li>When QuoteFix is <b>disabled</b>, pressing <code>Option</code>
-							will <i>enable</i> QuoteFix for that particular message only;
-							</li>
-							<li>Likewise: when QuoteFix is <b>enabled</b>, pressing <code>Option</code>
-							will <i>disable</i> QuoteFix for that particular message only;
-							</li>
-						</ul>
-					</li>
-				</ul>
-			</p>
-			<h2><a name="faq">Frequently Asked Questions</a></h2>
+      <p>
+        When you're editing your customized attribution, QuoteFix will
+        generate an approximate preview as tooltip of the text field you're
+        entering the attribution in.
+      </p>
+      <h2><a name="datetimeformatting">Advanced date/time formatting</a></h2>
+      <p>
+        If you want even more finegrained control over the formatting of
+        dates and times, you can enable "advanced templating" in the
+        <i>Advanced</i> preferences, after which date/time variables like
+        <code>message.sent</code> and <code>message.received</code> will
+        have <code>.format</code> and <code>.strftime</code> methods with
+        which you can format the output of the objects.
+      </p>
+      <p>
+        Functionally, these two methods perform the same operation &mdash;
+        namely formatting date/time objects &mdash; the difference is in
+        the formatting strings used:
+        <ul>
+          <li>
+            <code>.strftime</code> uses the common <i>Unix</i> function with
+            the same name for formatting. <a
+              href="http://docs.python.org/library/time.html#time.strftime">Look
+              here for more information</a>.
+          </li>
+          <li>
+            <code>.format</code> uses the <i>Unicode</i> date format patterns.
+            <a
+              href="http://unicode.org/reports/tr35/tr35-10.html#Date_Format_Patterns">
+              Look here for more information</a>.
+          </li>
+        </ul>
+      </p>
+      <p>
+        An example:
+      </p>
+      <p>
+        <code>${message.sent.format("EEE MMM dd yyyy HH:mm:ss")}</code>
+      </p>
+      <p>
+        This will output: <code>Sun Nov 06 2011 10:19:34</code>
+      </p>
+      <p>
+        <b>However: the output will be generated in the current locale,
+          which means that it will be formatted according to your local
+          language settings. See below on how to use a different locale.
+        </b>
+      </p>
+      <p>
+        Similarly, with <code>.strftime</code>:
+        <br/>
+        <code>${message.sent.strftime("%a %b %d %Y %H:%M:%S")}</code>
+      </p>
+      <p>
+        Both methods accept a second argument: a locale identifier. You can
+        use it to convert the output to a certain locale, instead of the
+        default locale (which can be changed in the <i>System
+          Preferences</i> of Mac OS X: <i>Language &amp; Text</i> &gt;
+        <i>Formats</i>).
+      </p>
+      <p>
+        The same example as above, but with a different locale:
+      </p>
+      <p>
+        <code>${message.sent.format("EEE MMM dd yyyy HH:mm:ss", 'fr_FR')}</code>
+      </p>
+      <p>
+        The output: <code>dim. nov. 06 2011 10:19:34</code>
+      </p>
+      <p>
+        If you want the default format, just in a different locale,
+        use the <code>.locale</code> method:
+      </p>
+      <p>
+        <code>${message.sent.locale('fr_FR')}</code>
+      </p>
+      <h2><a name="enabledisable">Enabling/disabling the plug-in</a></h2>
+      <p>
+        QuoteFix has various ways of turning off its behaviour, short of
+        uninstalling it:
+      </p>
+      <p>
+        <ul>
+          <li>You can turn QuoteFix off from its preferences; this will
+              disable the plug-in until you enable it again;
+          </li>
+          <li>
+            You can quickly turn the plug-in on/off from the <i>Mail</i>
+            menu. If you want, you can even assign a keyboard shortcut to
+            this menu item from System Preferences;
+          </li>
+          <li>
+            You can toggle the enable (or disable) status of QuoteFix for
+            a single message by pressing down <code>Option</code> whilst
+            initiating a Reply/Forward action. That is:
+            <ul style="margin-left: 0">
+              <li>When QuoteFix is <b>disabled</b>, pressing <code>Option</code>
+              will <i>enable</i> QuoteFix for that particular message only;
+              </li>
+              <li>Likewise: when QuoteFix is <b>enabled</b>, pressing <code>Option</code>
+              will <i>disable</i> QuoteFix for that particular message only;
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </p>
+      <h2><a name="faq">Frequently Asked Questions</a></h2>
       <p>
         See the <a
           href="https://github.com/robertklep/quotefixformac/wiki/FAQ---Frequently-Asked-Questions">Wiki</a>
         for a list of frequently asked questions, and their answers.
       </p>
-			<h2><a name="licence">Licence &amp; copyright</a></h2>
-			<p>
-				This plugin is written by <a href="mailto:robert@klep.name">Robert Klep</a>
-				and is provided "as-is", without <em>any</em> warranties whatsoever.
-			</p>
-			<p>
-				QuoteFix' downloads and support is hosted by GitHub at
-				<a href="https://github.com/robertklep/quotefixformac">https://github.com/robertklep/quotefixformac</a>
-			</p>
-			<p>
-				QuoteFix uses the Sparkle framework from Andy Matuschak to provide
-				software updates, which comes with the following permission notice:
-				<div class="pre">
-					Copyright (c) 2006 Andy Matuschak
+      <h2><a name="licence">Licence &amp; copyright</a></h2>
+      <p>
+        This plugin is written by <a href="mailto:robert@klep.name">Robert Klep</a>
+        and is provided "as-is", without <em>any</em> warranties whatsoever.
+      </p>
+      <p>
+        QuoteFix' downloads and support is hosted by GitHub at
+        <a href="https://github.com/robertklep/quotefixformac">https://github.com/robertklep/quotefixformac</a>
+      </p>
+      <p>
+        QuoteFix uses the Sparkle framework from Andy Matuschak to provide
+        software updates, which comes with the following permission notice:
+        <div class="pre">
+          Copyright (c) 2006 Andy Matuschak
 
-					Permission is hereby granted, free of charge, to any person
-					obtaining a copy of this software and associated documentation
-					files (the "Software"), to deal in the Software without
-					restriction, including without limitation the rights to use,
-					copy, modify, merge, publish, distribute, sublicense, and/or
-					sell copies of the Software, and to permit persons to whom the
-					Software is furnished to do so, subject to the following
-					conditions:
+          Permission is hereby granted, free of charge, to any person
+          obtaining a copy of this software and associated documentation
+          files (the "Software"), to deal in the Software without
+          restriction, including without limitation the rights to use,
+          copy, modify, merge, publish, distribute, sublicense, and/or
+          sell copies of the Software, and to permit persons to whom the
+          Software is furnished to do so, subject to the following
+          conditions:
 
-					The above copyright notice and this permission notice shall be
-					included in all copies or substantial portions of the Software.
+          The above copyright notice and this permission notice shall be
+          included in all copies or substantial portions of the Software.
 
-					THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-					EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
-					OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-					NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
-					HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
-					WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-					FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-					OTHER DEALINGS IN THE SOFTWARE.
-				</div>
-			</p>
-			<p>
-				See also <a href="http://sparkle.andymatuschak.org/">http://sparkle.andymatuschak.org/</a>
-			</p>
-			<h2>Like Quotefix?</h2>
-			<p>
-				Consider making a donation:
-				<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=4UF2KB2BTW6AC"><img style="vertical-align:middle" src="https://www.paypalobjects.com/en_GB/i/btn/btn_donate_SM.gif"></a>
-			</p>
-		</div>
-	</body>
+          THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+          EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+          OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+          NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+          HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+          WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+          FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+          OTHER DEALINGS IN THE SOFTWARE.
+        </div>
+      </p>
+      <p>
+        See also <a href="http://sparkle.andymatuschak.org/">http://sparkle.andymatuschak.org/</a>
+      </p>
+      <h2>Like Quotefix?</h2>
+      <p>
+        Consider making a donation:
+        <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=4UF2KB2BTW6AC"><img style="vertical-align:middle" src="https://www.paypalobjects.com/en_GB/i/btn/btn_donate_SM.gif"></a>
+      </p>
+    </div>
+  </body>
 </html>

@@ -52,55 +52,39 @@ It also provides customized attributions for replies and forwards.
 
 ## Installation
 
-Before installing the plug-in, you'll need to make sure that Mail.app's
-plug-in support is turned on. For this, execute the following two commands
-in Terminal.app:
-```
-defaults write ~/Library/Containers/com.apple.mail/Data/Library/Preferences/com.apple.mail.plist EnableBundles -bool true
-defaults write ~/Library/Containers/com.apple.mail/Data/Library/Preferences/com.apple.mail.plist BundleCompatibilityVersion 4
-```
+Installation is provided through simple shell scripts, courtesy of <a href="https://myjeeva.com">Jeevanandam M.</a>
 
-Next, perform the following steps:
+1. Provide permission to "Terminal.app" for installing the QuoteFix plugin:
+    - Go to _"System Preferences > Security & Privacy  Privacy"_
+    - Unlock, if needed, bt clicking the lock icon in the lower left corner
+    - Select _"Full Disk Access or Application Data"_
+    - Click the "+" icon
+    - Select _"Terminal.app"_ and click _"Add"_
+    - Note: Terminal.app has to be restarted for changes to take effect
+2. Double click or run <code>Install-or-Upgrade-or-Reenable.command</code>
+3. Enable the QuoteFix plugin in Mail.app:
+    - Go to _"Mail > Preferences > General"_
+    - Click the _"Manage Plug-ins"_ button
+    - Check _"QuoteFix.mailbundle"_
+    - Click the _"Apply and Restart Mail.app"_ button
 
-* Download the plugin if you haven't done so already
-* Navigate in Finder to `~/Library/Mail/` (where `~` means: your home directory)
-* If a `Bundles` folder doesn't yet exist, create an empty one
-* Extract the downloaded ZIP file and copy `QuoteFix.mailbundle` into the Bundles folder
-* Lastly, quit Mail.app if it's running, and start it up again.
-
-In case you run into any problems, or want to uninstall QuoteFix, just
-remove QuoteFix.mailbundle from the bundle-folder and restart Mail.app.
+In case you run into any problems, or want to uninstall QuoteFix, double click or run the `Uninstall.command` script. You can also remove `QuoteFix.mailbundle` from the Mail bundle folder.
 
 ## Usage
 
-After installation, QuoteFix is enabled. It will perform its magic
-automatically when you reply to, or forward, messages.
+After installation, QuoteFix is enabled. It will perform its magic automatically when you reply to, or forward, messages.
 
-The behaviour of the plug-in is customizable via its preferences. QuoteFix
-has it's own preference pane in the preferences window of Mail.app. Most
-preferences speak for themselves, or have a useful tooltip which pops up
-when you hover the cursor above it.
+The behaviour of the plug-in is customizable via its preferences. QuoteFix has it's own preference pane in the preferences window of Mail.app. Most preferences speak for themselves, or have a useful tooltip which pops up when you hover the cursor above it.
 
-If you temporarily want to turn off QuoteFix, but don't want to uninstall
-it, check off the *QuoteFix is enabled* checkbox. As of version 2.3.1,
-(de)activating QuoteFix can be done from a menu item in the Mail menu. You
-could use [the standard way of assigning a keyboard shortcut to a menu item
-in Mac OS X](http://lifehacker.com/343328/create-a-keyboard-shortcut-for-any-menu-action-in-any-program) to enable or disable QuoteFix with a keyboard shortcut.
+If you temporarily want to turn off QuoteFix, but don't want to uninstall it, check off the *QuoteFix is enabled* checkbox. As of version 2.3.1, (de)activating QuoteFix can be done from a menu item in the Mail menu. You could use [the standard way of assigning a keyboard shortcut to a menu item in Mac OS X](http://lifehacker.com/343328/create-a-keyboard-shortcut-for-any-menu-action-in-any-program) to enable or disable QuoteFix with a keyboard shortcut.
 
 ## Customized Attributions
 
-QuoteFix also provides the ability to define your own attribution lines
-(the first line of a reply/forward, usually looking something like
-`On SOME DATE, at SOME TIME, SOMEONE wrote:`).
+QuoteFix also provides the ability to define your own attribution lines (the first line of a reply/forward, usually looking something like `On SOME DATE, at SOME TIME, SOMEONE wrote:`).
 
-Customized attributions work by way of templates: you define a template in
-the preferences, and parts of the template will – at the time of replying
-or forwarding – be replaced by values reflecting parts of the message you
-are replying to or forwarding.
+Customized attributions work by way of templates: you define a template in the preferences, and parts of the template will – at the time of replying or forwarding – be replaced by values reflecting parts of the message you are replying to or forwarding.
 
-Templating works by replacing template variables with values. A template
-variable looks like this: `${VARIABLE}`. It will be replaced with a value
-depending on what `VARIABLE` contains.
+Templating works by replacing template variables with values. A template variable looks like this: `${VARIABLE}`. It will be replaced with a value depending on what `VARIABLE` contains.
 
 A (non-exhaustive) list of variables you can use:
 
@@ -181,11 +165,7 @@ A (non-exhaustive) list of variables you can use:
     </tr>
 </table>
 
-If you want even more freedom in formatting attribution lines, there's an
-experimental feature (which can be enabled in the *Advanced* preferences)
-which enables conditional statements, string/date formatting, and much
-more. This is based on a modified version of the [pyratemp](http://www.simple-is-better.org/template/pyratemp.html) templating
-library for Python written by Roland Koebler.
+If you want even more freedom in formatting attribution lines, there's an experimental feature (which can be enabled in the *Advanced* preferences) which enables conditional statements, string/date formatting, and much more. This is based on a modified version of the [pyratemp](http://www.simple-is-better.org/template/pyratemp.html) templating library for Python written by Roland Koebler.
 
 A small example of what's possible:
 ```
@@ -200,39 +180,25 @@ Subject: ${message.subject.lower()}
 Sent-Date: ${message.sent.strftime("%d-%m-%Y")}
 ```
 
-You can also enable HTML-formatting for your custom attributions. For this
-to work, the (outgoing) message format should be *Rich Text*. You can have
-QuoteFix automatically convert a message to Rich Text if your attribution
-should be interpreted in HTML. Otherwise, QuoteFix will issue a warning.
+You can also enable HTML-formatting for your custom attributions. For this to work, the (outgoing) message format should be *Rich Text*. You can have QuoteFix automatically convert a message to Rich Text if your attribution should be interpreted in HTML. Otherwise, QuoteFix will issue a warning.
 
-If you want to mimic the attribution generated by Outlook, try this (with
-HTML-formatting enabled):
+If you want to mimic the attribution generated by Outlook, try this (with HTML-formatting enabled):
 ```
 <b>From:</b> ${message.from}
 <b>Date:</b> ${message.received}
 <b>To:</b> ${message.to}
 <b>Subject:</b> ${message.subject}
 ```
-When you're editing your customized attribution, QuoteFix will generate an
-approximate preview as tooltip of the text field you're entering the
-attribution in.
+When you're editing your customized attribution, QuoteFix will generate an approximate preview as tooltip of the text field you're entering the attribution in.
 
 ## Advanced date/time formatting
 
-If you want even more finegrained control over the formatting of dates and
-times, you can enable *"advanced templating"* in the Advanced preferences,
-after which date/time variables like `message.sent` and `message.received`
-will have `.format()` and `.strftime()` methods with which you can format the
-output of the objects.
+If you want even more finegrained control over the formatting of dates and times, you can enable *"advanced templating"* in the Advanced preferences, after which date/time variables like `message.sent` and `message.received` will have `.format()` and `.strftime()` methods with which you can format the output of the objects.
 
-Functionally, these two methods perform the same operation – namely
-formatting date/time objects – the difference is in the formatting strings
-used:
+Functionally, these two methods perform the same operation – namely formatting date/time objects – the difference is in the formatting strings used:
 
-*  `.strftime()` uses the common Unix function with the same name for
-   formatting. [Look here for more information](http://docs.python.org/library/time.html#time.strftime).
-*  `.format()` uses the Unicode date format patterns. [Look here for more
-   information](http://unicode.org/reports/tr35/tr35-10.html#Date_Format_Patterns).
+*  `.strftime()` uses the common Unix function with the same name for formatting. [Look here for more information](http://docs.python.org/library/time.html#time.strftime).
+*  `.format()` uses the Unicode date format patterns. [Look here for more information](http://unicode.org/reports/tr35/tr35-10.html#Date_Format_Patterns).
 
 An example:
 ```
@@ -245,13 +211,9 @@ Similarly, with `.strftime()`:
 ${message.sent.strftime("%a %b %d %Y %H:%M:%S")}
 ```
 
-However: the output will be generated in the current locale, which means
-that it will be formatted according to your local language settings.
+However: the output will be generated in the current locale, which means that it will be formatted according to your local language settings.
 
-To change this, both methods accept a second argument: a locale
-identifier. You can use it to convert the output to a certain locale,
-instead of the default locale (which can be changed in the *System
-Preferences* of Mac OS X: *Language & Text > Formats*).
+To change this, both methods accept a second argument: a locale identifier. You can use it to convert the output to a certain locale, instead of the default locale (which can be changed in the *System Preferences* of Mac OS X: *Language & Text > Formats*).
 
 The same example as above, but with a different locale:
 ```
@@ -259,16 +221,14 @@ ${message.sent.format("EEE MMM dd yyyy HH:mm:ss", 'fr_FR')}
 ```
 The output: `dim. nov. 06 2011 10:19:34`
 
-If you want the default format, just in a different locale, use the
-`.locale()` method:
+If you want the default format, just in a different locale, use the `.locale()` method:
 ```
 ${message.sent.locale('fr_FR')}
 ```
 
 ## Enabling/disabling the plug-in
 
-QuoteFix has various ways of turning off its behaviour, short of
-uninstalling it:
+QuoteFix has various ways of turning off its behaviour, short of uninstalling it:
 
 * You can turn QuoteFix off from its preferences; this will disable the plug-in until you enable it again;
 * You can quickly turn the plug-in on/off from the Mail menu. If you want, you can even assign a keyboard shortcut to this menu item from System Preferences;
