@@ -123,6 +123,9 @@ PLIST = {
         # Mail 12.0 (3445.100.39) Mojave
         'A4343FAF-AE18-40D0-8A16-DFAE481AF9C1'
     ],
+    'Supported10.15PluginCompatibilityUUIDs' : [
+        '6EEA38FB-1A0B-469B-BB35-4C2E0EEA9053'
+    ],
     # settings for Sparkle
     'SUFeedURL' : 'https://raw.github.com/robertklep/quotefixformac/master/updates/appcast.xml',
     'SUEnableAutomaticChecks' : False,
