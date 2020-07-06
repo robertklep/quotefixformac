@@ -3,7 +3,7 @@ from    Foundation              import NSLog
 from    quotefix.utils          import swizzle
 from    quotefix.attribution    import CustomizedAttribution
 from    quotefix.messagetypes   import *
-from    objc                    import Category, lookUpClass
+from    objc                    import Category, lookUpClass, registerMetaDataForSelector
 from    logger                  import logger
 import  re, traceback, objc
 
@@ -42,7 +42,25 @@ class MailApp(Category(MailApp)):
             )
         original(self, event)
 
-def fix(self):
+def call_fix_later(self):
+    try:
+        logger.debug("entered fix_future")
+        backend = self.backEnd()
+        future = backend.messageFuture()
+        future.addSuccessBlock_(lambda message: fix(self, message))
+        logger.debug("success block added")
+    except Exception:
+        logger.critical(traceback.format_exc())
+        if self.app.is_debugging:
+            NSRunAlertPanel(
+                'QuoteFix caught an exception',
+                'The QuoteFix plug-in caught an exception in call_fix_later:\n\n' +
+                traceback.format_exc() +
+                '\nPlease contact the developer quoting the contents of this alert.',
+                None, None, None
+            )
+
+def fix(self, message=None):
     try:
         # if toggle key is active, temporarily switch the active state
         is_active = self.app.toggle_key_active ^ self.app.is_active
@@ -82,12 +100,18 @@ def fix(self):
 
         if attributor:
             try:
+                if message is None:
+                    # Must be pre-Catalina, where we can get the
+                    # message directly without having to go through
+                    # the future.
+                    assert not HAS_MESSAGE_FUTURE
+                    message = backend.message()
                 for original in objc.getInstanceVariable(backend, '_originalMessages'):
                     attributor(
                         app       = self.app,
                         editor    = self,
                         dom       = htmldom,
-                        reply     = backend.message(),
+                        reply     = message,
                         inreplyto = original,
                     )
                 backend.setHasChanges_(False)
@@ -384,7 +408,40 @@ try:
             elif not self.move_above_new_signature(htmldom, view):
                 view.moveToEndOfDocument_(self)
 
-    ComposeViewController.fix                            = fix
+    # As of Catalina, you can't get the message directly from the
+    # backend.  Rather, you have to get the EFFuture instance (see
+    # private EmailFoundation.framework), and tell it to call you when
+    # the message is ready.)
+    ComposeBackEnd = lookUpClass("ComposeBackEnd")
+    HAS_MESSAGE_FUTURE = bool(
+        ComposeBackEnd.instancesRespondToSelector_("messageFuture")
+    )
+
+    if HAS_MESSAGE_FUTURE:
+        # Must tell PyObjC that [EFFuture addSuccessBlock:] takes a
+        # block that itself takes an object, which is presumably the
+        # result of the future.
+        registerMetaDataForSelector(
+            b"EFFuture",
+            b"addSuccessBlock:",
+            dict(
+                arguments={
+                    2: {
+                        "callable": {
+                            "retval": {"type": b"v"},
+                            "arguments": {
+                                "0": {"type": b"^v"},
+                                "1": {"type": b"@"},
+                            },
+                        },
+                    },
+                },
+            ),
+        )
+        ComposeViewController.fix = call_fix_later
+    else:
+        ComposeViewController.fix = fix
+
     ComposeViewController.remove_attachment_placeholders = remove_attachment_placeholders
     ComposeViewController.remove_quotes                  = remove_quotes
     ComposeViewController.make_selectable_quotes         = make_selectable_quotes
