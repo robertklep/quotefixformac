@@ -124,6 +124,7 @@ PLIST = {
         'A4343FAF-AE18-40D0-8A16-DFAE481AF9C1'
     ],
     'Supported10.15PluginCompatibilityUUIDs' : [
+        # Version 13.4 (3608.80.23.2.2) Catalina 10.15.5
         '6EEA38FB-1A0B-469B-BB35-4C2E0EEA9053'
     ],
     # settings for Sparkle
