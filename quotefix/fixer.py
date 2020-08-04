@@ -43,6 +43,13 @@ class MailApp(Category(MailApp)):
         original(self, event)
 
 def call_fix_later(self):
+    """Tell the ComposeBackEnd to call fix() later, when the message is ready.
+
+    This became necessary starting around Catalina, when you could no
+    longer ask the ComposeBackEnd to immediately give you the message
+    instance.
+
+    """
     try:
         logger.debug("entered fix_future")
         backend = self.backEnd()
@@ -61,6 +68,17 @@ def call_fix_later(self):
             )
 
 def fix(self, message=None):
+    """Run all of the relevant fixes on a new message.
+
+    This function is attached as a method on DocumentEditor and/or
+    ComposeViewController.
+
+    If message is None then we get the message from the
+    ComposeBackEnd.  Doing this became impossible around Catalina,
+    where instead we ask the ComposeBackEnd to call this function
+    later with the message: see call_fix_later elsewhere in this file.
+
+    """
     try:
         # if toggle key is active, temporarily switch the active state
         is_active = self.app.toggle_key_active ^ self.app.is_active
