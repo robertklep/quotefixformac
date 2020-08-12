@@ -10,6 +10,7 @@ However, do keep submitting bug reports. I'll try and fix them as fast as I can.
 
 The latest release can always be found [here](https://github.com/robertklep/quotefixformac/releases/).
 
+* [v2.11.0-alpha.2](https://github.com/robertklep/quotefixformac/releases/tag/v2.11.0-alpha.2): Better Catalina support (thanks to @dsedivec)
 * [v2.11.0-alpha.1](https://github.com/robertklep/quotefixformac/releases/tag/v2.11.0-alpha.1): Catalina support
 * [v2.10.0-alpha.1](https://github.com/robertklep/quotefixformac/releases/tag/v2.10.0-alpha.1): Mojave support
 * [v2.9.0](https://github.com/robertklep/quotefixformac/releases/tag/v2.9.0): Official 2.9.0 release
