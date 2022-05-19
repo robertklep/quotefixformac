@@ -4,7 +4,7 @@
 
 I decided to not accept requests for new features for the time being, primarily due to lack of time. Any feature requests will be closed (but tagged so if things quiet down, I can reopen them).
 
-However, do keep submitting bug reports. I'll try and fix them as fast as I can.
+This also means I won't be looking at supporting macOS versions other than the ones already supported.
 
 ## Latest releases
 
